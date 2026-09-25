@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ag-ink: #0C0B0A;
+  --color-ag-paper: #F5F2ED;
+  --color-ag-accent: #F2600C;
+}
+
+:root { --ag-accent: #F2600C; }
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: #0C0B0A;
+  color: #F5F2ED;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+::selection { background: var(--ag-accent, #F2600C); color: #0A0A0A; }
+a { color: inherit; text-decoration: none; }
+a:hover { color: var(--ag-accent, #F2600C); }
+input, textarea, button { font: inherit; color: inherit; }
+
+@keyframes ag-marquee { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
+@keyframes ag-marquee-rev { from { transform: translate3d(-50%,0,0); } to { transform: translate3d(0,0,0); } }
+@keyframes ag-pulse { 0%,100% { opacity: 1; } 50% { opacity: .2; } }
+@keyframes ag-wave {
+  0%   { transform: translate3d(0,0,0) skewY(0deg); }
+  25%  { transform: translate3d(-1.6%,-4px,0) skewY(-1.1deg); }
+  50%  { transform: translate3d(0,2px,0) skewY(.8deg); }
+  75%  { transform: translate3d(-0.9%,-2px,0) skewY(-0.5deg); }
+  100% { transform: translate3d(0,0,0) skewY(0deg); }
+}
+@keyframes ag-drift { 0%,100% { transform: rotate(-0.6deg); } 50% { transform: rotate(0.8deg); } }
+
+@keyframes ag-rail-r{0.00%{transform:translate3d(-11.00cqw,0,-258.46cqw) rotateY(-6.00deg)}4.17%{transform:translate3d(-3.79cqw,0,-225.92cqw) rotateY(-6.92deg)}8.33%{transform:translate3d(2.73cqw,0,-197.04cqw) rotateY(-7.83deg)}12.50%{transform:translate3d(8.60cqw,0,-171.43cqw) rotateY(-8.75deg)}16.67%{transform:translate3d(13.87cqw,0,-148.70cqw) rotateY(-9.67deg)}20.83%{transform:translate3d(18.56cqw,0,-128.54cqw) rotateY(-10.58deg)}25.00%{transform:translate3d(22.72cqw,0,-110.65cqw) rotateY(-11.50deg)}29.17%{transform:translate3d(26.37cqw,0,-94.78cqw) rotateY(-12.42deg)}33.33%{transform:translate3d(29.57cqw,0,-80.70cqw) rotateY(-13.33deg)}37.50%{transform:translate3d(32.34cqw,0,-68.21cqw) rotateY(-14.25deg)}41.67%{transform:translate3d(34.71cqw,0,-57.13cqw) rotateY(-15.17deg)}45.83%{transform:translate3d(36.73cqw,0,-47.30cqw) rotateY(-16.08deg)}50.00%{transform:translate3d(38.42cqw,0,-38.58cqw) rotateY(-17.00deg)}54.17%{transform:translate3d(39.81cqw,0,-30.84cqw) rotateY(-17.92deg)}58.33%{transform:translate3d(40.94cqw,0,-23.98cqw) rotateY(-18.83deg)}62.50%{transform:translate3d(41.84cqw,0,-17.89cqw) rotateY(-19.75deg)}66.67%{transform:translate3d(42.53cqw,0,-12.48cqw) rotateY(-20.67deg)}70.83%{transform:translate3d(43.06cqw,0,-7.69cqw) rotateY(-21.58deg)}75.00%{transform:translate3d(43.43cqw,0,-3.44cqw) rotateY(-22.50deg)}79.17%{transform:translate3d(43.69cqw,0,0.33cqw) rotateY(-23.42deg)}83.33%{transform:translate3d(43.85cqw,0,3.68cqw) rotateY(-24.33deg)}87.50%{transform:translate3d(43.94cqw,0,6.65cqw) rotateY(-25.25deg)}91.67%{transform:translate3d(43.98cqw,0,9.28cqw) rotateY(-26.17deg)}95.83%{transform:translate3d(44.00cqw,0,11.62cqw) rotateY(-27.08deg)}100.00%{transform:translate3d(44.00cqw,0,13.70cqw) rotateY(-28.00deg)}}
+@keyframes ag-rail-l{0.00%{transform:translate3d(11.00cqw,0,-258.46cqw) rotateY(6.00deg)}4.17%{transform:translate3d(3.79cqw,0,-225.92cqw) rotateY(6.92deg)}8.33%{transform:translate3d(-2.73cqw,0,-197.04cqw) rotateY(7.83deg)}12.50%{transform:translate3d(-8.60cqw,0,-171.43cqw) rotateY(8.75deg)}16.67%{transform:translate3d(-13.87cqw,0,-148.70cqw) rotateY(9.67deg)}20.83%{transform:translate3d(-18.56cqw,0,-128.54cqw) rotateY(10.58deg)}25.00%{transform:translate3d(-22.72cqw,0,-110.65cqw) rotateY(11.50deg)}29.17%{transform:translate3d(-26.37cqw,0,-94.78cqw) rotateY(12.42deg)}33.33%{transform:translate3d(-29.57cqw,0,-80.70cqw) rotateY(13.33deg)}37.50%{transform:translate3d(-32.34cqw,0,-68.21cqw) rotateY(14.25deg)}41.67%{transform:translate3d(-34.71cqw,0,-57.13cqw) rotateY(15.17deg)}45.83%{transform:translate3d(-36.73cqw,0,-47.30cqw) rotateY(16.08deg)}50.00%{transform:translate3d(-38.42cqw,0,-38.58cqw) rotateY(17.00deg)}54.17%{transform:translate3d(-39.81cqw,0,-30.84cqw) rotateY(17.92deg)}58.33%{transform:translate3d(-40.94cqw,0,-23.98cqw) rotateY(18.83deg)}62.50%{transform:translate3d(-41.84cqw,0,-17.89cqw) rotateY(19.75deg)}66.67%{transform:translate3d(-42.53cqw,0,-12.48cqw) rotateY(20.67deg)}70.83%{transform:translate3d(-43.06cqw,0,-7.69cqw) rotateY(21.58deg)}75.00%{transform:translate3d(-43.43cqw,0,-3.44cqw) rotateY(22.50deg)}79.17%{transform:translate3d(-43.69cqw,0,0.33cqw) rotateY(23.42deg)}83.33%{transform:translate3d(-43.85cqw,0,3.68cqw) rotateY(24.33deg)}87.50%{transform:translate3d(-43.94cqw,0,6.65cqw) rotateY(25.25deg)}91.67%{transform:translate3d(-43.98cqw,0,9.28cqw) rotateY(26.17deg)}95.83%{transform:translate3d(-44.00cqw,0,11.62cqw) rotateY(27.08deg)}100.00%{transform:translate3d(-44.00cqw,0,13.70cqw) rotateY(28.00deg)}}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-ag-ribbon] { animation-duration: 1ms !important; animation-iteration-count: 1 !important; }
+  [data-ag-card] { animation-play-state: paused; }
+}
