@@ -102,6 +102,60 @@ test('an unmappable internal link is reported, not silently passed through', () 
   );
 });
 
+// Fix round 2, finding 1: convert.mjs handled style/style-hover but silently
+// dropped style-focus (the ":focus" analogue), so it survived as a dead
+// attribute next to className -- 18 occurrences across five templates, all
+// the same declaration, all losing the focus-state accent border on a form
+// field. Mirrors the style-hover test above with a 'focus:' prefix, using
+// the real declaration from the templates (border-bottom-color has no
+// dedicated tw.mjs rule, so it falls back to an arbitrary property).
+test('style-focus becomes a focus: variant and is removed', () => {
+  const out = convert(
+    '<input style="border:0" style-focus="border-bottom-color:var(--ag-accent,#F2600C)">',
+    ASSETS,
+  );
+  assert.equal(
+    out,
+    '<input className="border-0 focus:[border-bottom-color:var(--ag-accent,#F2600C)]" />',
+  );
+});
+
+// Fix round 2, finding 2: <sc-raw-select> (the role/budget selectors in
+// careers.html and contact.html) passed through as an unrecognised custom
+// element, so its <option> children had no dropdown to render in. Renaming
+// the tag is the whole fix -- attributes and options need no special
+// handling, unlike image-slot's attribute-clearing rewrite.
+test('sc-raw-select becomes a select with its options intact', () => {
+  const out = convert(
+    '<sc-raw-select name="role" style="border:0" style-focus="border-bottom-color:var(--ag-accent,#F2600C)"><option>Founder</option><option>Engineer</option></sc-raw-select>',
+    ASSETS,
+  );
+  assert.equal(
+    out,
+    '<select name="role" className="border-0 focus:[border-bottom-color:var(--ag-accent,#F2600C)]"><option>Founder</option><option>Engineer</option></select>',
+  );
+});
+
+// Fix round 2, finding 3: style-focus and sc-raw-select are the second and
+// third time an unnamed pattern slipped through silently (after the .html
+// vs .dc.html links). Rather than trust that the next one will also get
+// caught by a human re-reading a diff, the converter now scans for any
+// remaining hyphenated custom tag or style-/sc- prefixed attribute that the
+// rules above did not name, and refuses to ship it quietly. Two independent
+// triggers -- an unknown tag and an unknown attribute -- both covered here.
+test('an unknown custom element or style-/sc- attribute triggers the completeness guard', () => {
+  assert.throws(
+    () => convert('<foo-bar></foo-bar>', ASSETS),
+    /unhandled custom element: <foo-bar>/,
+    'should report the specific unknown custom element',
+  );
+  assert.throws(
+    () => convert('<div style-active="color:red"></div>', ASSETS),
+    /unhandled attribute: style-active/,
+    'should report the specific unknown attribute',
+  );
+});
+
 // The brief's version of this test -- assert.match(out, /\{'\{'\}/) -- is
 // vacuous: it still passes on a CORRUPTED escape. A naive
 // `.replace(/\{/g, X).replace(/\}/g, Y)` pipeline reprocesses the braces

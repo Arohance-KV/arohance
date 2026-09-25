@@ -39,12 +39,25 @@ const ATTRS = {
 
 const VOID = new Set(['area','base','br','col','embed','hr','img','input','link','meta','source','track','wbr']);
 
+// Completeness guard: the full census of hyphenated custom tags found in
+// the real templates is image-slot, sc-raw-select, and x-dc -- nothing
+// else. image-slot and sc-raw-select are actively renamed away below, so
+// they never reach the guard after a successful conversion; x-dc is the
+// bundler's whole-document wrapper that the CLI's </helmet> slice always
+// discards (and which node-html-parser drops outright as an unmatched
+// closing tag when it does appear), so it is the only tag name allowed to
+// survive untouched. Anything else with a hyphen is unknown and must be
+// reported, not shipped -- see the guard after the main loop below.
+const KNOWN_TAGS = new Set(['x-dc']);
+
 export function convert(html, assets) {
   const root = parse(html, { lowerCaseTagName: false, comment: false });
-  // hrefs that look like an internal page link (start with "Arohance") but
-  // did not resolve to a route -- collected across the whole document so
-  // the CLI can report every broken link in one pass, not just the first.
-  const unresolved = new Set();
+  // Diagnostics collected across the whole document and reported together
+  // in one throw, rather than on the first hit: an internal link this
+  // converter cannot map, or a construct the rename tables do not know
+  // about, is a bug in the converter's coverage, not something to ship
+  // silently. One failure path for both categories.
+  const problems = new Set();
 
   for (const el of root.querySelectorAll('*')) {
     // 1. image-slot -> img
@@ -61,7 +74,15 @@ export function convert(html, assets) {
       el.set_content('');
     }
 
-    // 2. style + style-hover -> className
+    // 1b. sc-raw-select -> select. Unlike image-slot, this is a direct
+    // rename only: attributes (name, style, style-focus) and the bare
+    // <option> children are left alone for the normal rules below and for
+    // node-html-parser's own serialization to handle.
+    if (el.rawTagName && el.rawTagName.toLowerCase() === 'sc-raw-select') {
+      el.rawTagName = 'select';
+    }
+
+    // 2. style + style-hover + style-focus -> className
     const classes = [];
     const existing = el.getAttribute('class');
     if (existing) classes.push(existing);
@@ -69,6 +90,8 @@ export function convert(html, assets) {
     if (style) { classes.push(...styleToClasses(style)); el.removeAttribute('style'); }
     const hover = el.getAttribute('style-hover');
     if (hover) { classes.push(...styleToClasses(hover, 'hover:')); el.removeAttribute('style-hover'); }
+    const focus = el.getAttribute('style-focus');
+    if (focus) { classes.push(...styleToClasses(focus, 'focus:')); el.removeAttribute('style-focus'); }
     if (classes.length) el.setAttribute('class', classes.join(' '));
 
     // 3. attribute renames + asset/route rewriting
@@ -77,20 +100,35 @@ export function convert(html, assets) {
       if (assets[v]) v = assets[v];
       if (name.toLowerCase() === 'href' && v.startsWith('Arohance')) {
         const route = toRoute(v);
-        if (route === null) unresolved.add(v);
+        if (route === null) problems.add(`unmapped internal link: ${v}`);
         else v = route;
       }
       const renamed = ATTRS[name.toLowerCase()];
       if (renamed) { el.removeAttribute(name); el.setAttribute(renamed, v); }
       else if (v !== value) el.setAttribute(name, v);
     }
+
+    // 3b. completeness guard. By this point every known style-/sc- prefixed
+    // attribute (style-hover, style-focus, sc-camel-view-box) and every
+    // known hyphenated custom tag (image-slot, sc-raw-select) has already
+    // been consumed or renamed above, and x-dc is explicitly allowed. If
+    // any of the three still hits here, or the real templates grow a new
+    // one the rules above do not name, report it instead of shipping it.
+    // data-* and aria-* are untouched by construction: neither starts with
+    // "style-" or "sc-".
+    const tag = el.rawTagName;
+    if (tag && tag.includes('-') && !KNOWN_TAGS.has(tag.toLowerCase())) {
+      problems.add(`unhandled custom element: <${tag}>`);
+    }
+    for (const name of Object.keys(el.attributes)) {
+      if (/^(style|sc)-/i.test(name)) {
+        problems.add(`unhandled attribute: ${name}`);
+      }
+    }
   }
 
-  // An internal link this converter cannot map is a bug in the mapping,
-  // not something to pass through silently -- fail loudly instead of
-  // shipping a page with dead navigation.
-  if (unresolved.size) {
-    throw new Error(`convert: unmapped internal link(s): ${[...unresolved].join(', ')}`);
+  if (problems.size) {
+    throw new Error(`convert: ${[...problems].join('; ')}`);
   }
 
   let out = root.toString();
