@@ -95,5 +95,10 @@ export function mount(root: HTMLElement, o: StrokeOpts): () => void {
   };
   (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => requestAnimationFrame(init));
 
-  return () => { killed = true; if (tl) tl.kill(); if (io) io.disconnect(); root.removeEventListener('pointerenter', play); gsap.killTweensOf([...strokes(), ...fills(), rect]); };
+  let disposed = false;
+  return () => {
+    if (disposed) return;
+    disposed = true;
+    killed = true; if (tl) tl.kill(); if (io) io.disconnect(); root.removeEventListener('pointerenter', play); gsap.killTweensOf([...strokes(), ...fills(), rect]);
+  };
 }
