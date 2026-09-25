@@ -27,7 +27,9 @@ export default function AgRuntime({ modules }: AgRuntimeProps) {
     const root = document.querySelector<HTMLElement>('[data-ag-root]');
     if (!root) return;
     const disposers = modules.map((m) => m(root));
-    return () => disposers.forEach((d) => d());
+    return () => disposers.forEach((d) => {
+      try { d(); } catch { /* isolate: one bad disposer must not strand the rest */ }
+    });
   }, [modules]);
 
   return null;
