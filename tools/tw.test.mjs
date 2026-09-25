@@ -57,3 +57,9 @@ test('prefix is applied to every emitted class', () => {
 test('declarations are order-preserving and semicolon-tolerant', () => {
   assert.equal(cls('display:flex;;align-items:center;'), 'flex items-center');
 });
+
+test('negative lengths become arbitrary values, never double hyphens', () => {
+  assert.equal(cls('margin-top:-8px'), 'mt-[-8px]');
+  assert.equal(cls('top:-10px'), 'top-[-10px]');
+  assert.equal(cls('margin:-4px -8px'), 'my-[-4px] mx-[-8px]');
+});

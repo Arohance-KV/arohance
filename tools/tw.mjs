@@ -9,13 +9,13 @@ const SPACING = {
 export const escapeValue = (v) => v.trim().replace(/\s+/g, '_');
 
 const scale = (v) => {
-  const m = /^(-?\d+(?:\.\d+)?)px$/.exec(v.trim());
+  const t = v.trim();
+  if (t === '0') return '0';
+  const m = /^(\d+(?:\.\d+)?)px$/.exec(t);   // no leading sign: negatives fall through
   if (m) {
-    const n = Number(m[1]);
-    const hit = SPACING[Math.abs(n)];
-    if (hit !== undefined) return (n < 0 ? '-' : '') + hit;
+    const hit = SPACING[Number(m[1])];
+    if (hit !== undefined) return hit;
   }
-  if (v.trim() === '0') return '0';
   return null;
 };
 
