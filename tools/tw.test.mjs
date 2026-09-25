@@ -63,3 +63,23 @@ test('negative lengths become arbitrary values, never double hyphens', () => {
   assert.equal(cls('top:-10px'), 'top-[-10px]');
   assert.equal(cls('margin:-4px -8px'), 'my-[-4px] mx-[-8px]');
 });
+
+test('size keywords map on both axes, viewport units stay arbitrary', () => {
+  assert.equal(cls('width:100%'), 'w-full');
+  assert.equal(cls('height:100%'), 'h-full');
+  assert.equal(cls('height:auto'), 'h-auto');
+  assert.equal(cls('min-width:min-content'), 'min-w-min');
+  assert.equal(cls('max-height:max-content'), 'max-h-max');
+  assert.equal(cls('width:100vw'), 'w-[100vw]');
+  assert.equal(cls('height:100vh'), 'h-[100vh]');
+  assert.equal(cls('width:100vh'), 'w-[100vh]');
+  assert.equal(cls('min-height:640px'), 'min-h-[640px]');
+});
+
+test('border and font-weight happy paths', () => {
+  assert.equal(cls('border:0'), 'border-0');
+  assert.equal(cls('border:none'), 'border-0');
+  assert.equal(cls('font-weight:700'), 'font-bold');
+  assert.equal(cls('font-weight:400'), 'font-normal');
+  assert.equal(cls('font-weight:500'), 'font-medium');
+});

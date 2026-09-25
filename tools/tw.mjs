@@ -27,7 +27,7 @@ const len = (prefix) => (v) => {
 
 const keyword = (table) => (v) => table[v.trim()] ?? null;
 
-const SIZE = { '100%': 'full', '100vw': 'screen', '100vh': 'screen', auto: 'auto', 'fit-content': 'fit', 'min-content': 'min', 'max-content': 'max' };
+const SIZE = { '100%': 'full', auto: 'auto', 'fit-content': 'fit', 'min-content': 'min', 'max-content': 'max' };
 const size = (prefix) => (v) => {
   const k = SIZE[v.trim()];
   if (k) return `${prefix}-${k}`;
