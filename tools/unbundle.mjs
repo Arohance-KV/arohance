@@ -60,7 +60,9 @@ for (const file of readdirSync('.')) {
       if (!hit) { byHash.set(hash, null); assetMap[uuid] = null; continue; }
       out = `.source/vendor/${hit[1]}`;
       if (existsSync(out)) {
-        console.warn(`variant ignored: ${hit[1]} differs between bundles; keeping first`);
+        if (!buf.equals(readFileSync(out))) {
+          console.warn(`variant ignored: ${hit[1]} differs between bundles; keeping first`);
+        }
         byHash.set(hash, out);
         assetMap[uuid] = out;
         continue;

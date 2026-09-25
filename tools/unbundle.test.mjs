@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync, readdirSync } from 'node:fs';
+import { spawnSync } from 'node:child_process';
 
 test('unbundle produced all seven templates', () => {
   for (const slug of ['home','about','services','studio','careers','contact','case-study']) {
@@ -30,4 +31,17 @@ test('reported asset count matches files actually written', () => {
   const vendor = readdirSync('.source/vendor').length;
   assert.equal(paths.size, images + vendor,
     'assets.json distinct paths must equal files on disk');
+});
+
+test('collision warning fires only for genuinely differing content', () => {
+  const run = () => {
+    const r = spawnSync(process.execPath, ['tools/unbundle.mjs'], { encoding: 'utf8' });
+    assert.equal(r.status, 0, `unbundle failed: ${r.stderr}`);
+    return r.stderr;
+  };
+  for (const stderr of [run(), run()]) {
+    const warned = [...stderr.matchAll(/variant ignored: (\S+)/g)].map(m => m[1]);
+    assert.deepEqual(warned, ['contact-pill.js'],
+      'exactly one variant warning, naming the only library that differs across bundles');
+  }
 });
