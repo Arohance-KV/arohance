@@ -2,14 +2,24 @@ import { parse } from 'node-html-parser';
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { styleToClasses } from './tw.mjs';
 
-const ROUTES = {
-  'Arohance%20Homepage.dc.html': '/',
-  'Arohance%20About.dc.html': '/about',
-  'Arohance%20Services.dc.html': '/services',
-  'Arohance%20Studio.dc.html': '/studio',
-  'Arohance%20Careers.dc.html': '/careers',
-  'Arohance%20Contact.dc.html': '/contact',
-  'Arohance%20Case%20Study.dc.html': '/case-study',
+const PAGE_ROUTES = {
+  'Arohance Homepage': '/',
+  'Arohance About': '/about',
+  'Arohance Services': '/services',
+  'Arohance Studio': '/studio',
+  'Arohance Careers': '/careers',
+  'Arohance Contact': '/contact',
+  'Arohance Case Study': '/case-study',
+};
+
+/** Rewrite an internal artifact link to its route, preserving any #fragment.
+ *  Accepts both the `.dc.html` (home) and bare `.html` (all other pages)
+ *  spellings. Returns null if this is not an internal page link. */
+const toRoute = (href) => {
+  const m = /^(Arohance(?:%20|\s).*?)(?:\.dc)?\.html(#.*)?$/i.exec(href);
+  if (!m) return null;
+  const route = PAGE_ROUTES[decodeURIComponent(m[1])];
+  return route ? route + (m[2] || '') : null;
 };
 
 const ATTRS = {
@@ -31,6 +41,10 @@ const VOID = new Set(['area','base','br','col','embed','hr','img','input','link'
 
 export function convert(html, assets) {
   const root = parse(html, { lowerCaseTagName: false, comment: false });
+  // hrefs that look like an internal page link (start with "Arohance") but
+  // did not resolve to a route -- collected across the whole document so
+  // the CLI can report every broken link in one pass, not just the first.
+  const unresolved = new Set();
 
   for (const el of root.querySelectorAll('*')) {
     // 1. image-slot -> img
@@ -61,11 +75,22 @@ export function convert(html, assets) {
     for (const [name, value] of Object.entries({ ...el.attributes })) {
       let v = value;
       if (assets[v]) v = assets[v];
-      if (ROUTES[v]) v = ROUTES[v];
+      if (name.toLowerCase() === 'href' && v.startsWith('Arohance')) {
+        const route = toRoute(v);
+        if (route === null) unresolved.add(v);
+        else v = route;
+      }
       const renamed = ATTRS[name.toLowerCase()];
       if (renamed) { el.removeAttribute(name); el.setAttribute(renamed, v); }
       else if (v !== value) el.setAttribute(name, v);
     }
+  }
+
+  // An internal link this converter cannot map is a bug in the mapping,
+  // not something to pass through silently -- fail loudly instead of
+  // shipping a page with dead navigation.
+  if (unresolved.size) {
+    throw new Error(`convert: unmapped internal link(s): ${[...unresolved].join(', ')}`);
   }
 
   let out = root.toString();
@@ -103,6 +128,13 @@ if (process.argv[1]?.endsWith('convert.mjs')) {
   // Strip everything up to and including </helmet>, and the trailing logic script.
   const body = html.slice(html.indexOf('</helmet>') + 9).split('<script type="text/x-dc"')[0];
   mkdirSync('.source/jsx', { recursive: true });
-  writeFileSync(`.source/jsx/${slug}.jsx`, convert(body, assets));
+  let jsx;
+  try {
+    jsx = convert(body, assets);
+  } catch (err) {
+    console.error(`convert failed for ${slug}: ${err.message}`);
+    process.exit(1);
+  }
+  writeFileSync(`.source/jsx/${slug}.jsx`, jsx);
   console.log(`wrote .source/jsx/${slug}.jsx`);
 }

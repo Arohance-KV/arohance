@@ -57,6 +57,51 @@ test('internal artifact links become routes', () => {
   assert.equal(out, '<a href="/about">About</a>');
 });
 
+// Fix round 1: the real templates do not agree on a link suffix. Only
+// home.html uses "Name.dc.html" (the case the test above covers); the other
+// six templates use the bare "Name.html" spelling for the identical links,
+// and at least one real link (in services.html) carries a #fragment too.
+// An exact-match table keyed only on ".dc.html" -- as originally written --
+// would leave all of these unconverted; toRoute() must normalise both
+// suffix spellings and preserve any fragment.
+test('internal links convert from both suffix spellings, preserving fragments', () => {
+  const t = (href) => convert(`<a href="${href}">x</a>`, ASSETS);
+  assert.equal(t('Arohance%20About.dc.html'), '<a href="/about">x</a>');
+  assert.equal(t('Arohance%20About.html'), '<a href="/about">x</a>');
+  assert.equal(t('Arohance%20Case%20Study.html'), '<a href="/case-study">x</a>');
+  assert.equal(t('Arohance%20Homepage.html'), '<a href="/">x</a>');
+  assert.equal(t('Arohance%20Homepage.html#work'), '<a href="/#work">x</a>');
+});
+
+// Guards the scoping of the new href handling: it must only ever act on the
+// `href` attribute. Every real template also has a nav-logo `alt` attribute
+// that starts with the literal word "Arohance" (`alt="Arohance, Tech &amp;
+// Marketing"`) but is plainly not a link -- if the unmapped-link check below
+// were ever broadened from "the href attribute" to "any attribute value",
+// that alt text would wrongly throw on every single page.
+test('non-internal hrefs and Arohance-prefixed non-href attributes are left untouched', () => {
+  const a = convert('<a href="#contact">x</a>', ASSETS);
+  assert.equal(a, '<a href="#contact">x</a>');
+  const b = convert('<a href="mailto:hello@arohance.com">x</a>', ASSETS);
+  assert.equal(b, '<a href="mailto:hello@arohance.com">x</a>');
+  const c = convert('<img src="x" alt="Arohance, Tech &amp; Marketing">', ASSETS);
+  assert.equal(c, '<img src="x" alt="Arohance, Tech &amp; Marketing" />');
+});
+
+// Fix round 1 (ruling): a link that starts with "Arohance" but cannot be
+// mapped to a route must fail loudly, not survive silently in the output --
+// a converter that quietly ships a dead link is how it reaches Task 9 as an
+// unexplained bug. This would fail if that protection were removed (the old
+// behaviour just left the href as the original, unconverted string and
+// returned normally).
+test('an unmappable internal link is reported, not silently passed through', () => {
+  assert.throws(
+    () => convert('<a href="Arohance%20Nonexistent.html">x</a>', ASSETS),
+    /Arohance%20Nonexistent\.html/,
+    'the thrown error should name the specific unresolved href',
+  );
+});
+
 // The brief's version of this test -- assert.match(out, /\{'\{'\}/) -- is
 // vacuous: it still passes on a CORRUPTED escape. A naive
 // `.replace(/\{/g, X).replace(/\}/g, Y)` pipeline reprocesses the braces
