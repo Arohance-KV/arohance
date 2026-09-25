@@ -20,6 +20,17 @@ const eslintConfig = [
       "next-env.d.ts",
     ],
   },
+  {
+    // Vendored vanilla ports of React Bits components (LiquidEther, StrokeText).
+    // Their internals are third-party code we deliberately do not own or edit —
+    // only the exported mount() boundary is ours. @ts-nocheck and the `any`
+    // annotations are deliberate; see docs/superpowers/plans for the rationale.
+    files: ["lib/liquid-ether.ts", "lib/stroke-text.ts"],
+    rules: {
+      "@typescript-eslint/ban-ts-comment": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+    },
+  },
 ];
 
 export default eslintConfig;

@@ -8,7 +8,7 @@ export const clock: Behavior = (root) => {
     try {
       const t = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'Asia/Kolkata' }).format(new Date());
       el.textContent = t + ' IST';
-    } catch (e) { el.textContent = new Date().toLocaleTimeString(); }
+    } catch { el.textContent = new Date().toLocaleTimeString(); }
   };
   tick();
   const id = setInterval(tick, 1000);
