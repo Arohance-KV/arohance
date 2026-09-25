@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@source not "../docs";
+@source not "../*.html";
 
 @theme {
   --color-ag-ink: #0C0B0A;
