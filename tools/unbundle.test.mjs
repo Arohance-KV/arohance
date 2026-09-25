@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, readdirSync } from 'node:fs';
 
 test('unbundle produced all seven templates', () => {
   for (const slug of ['home','about','services','studio','careers','contact','case-study']) {
@@ -21,4 +21,13 @@ test('asset map resolves every uuid referenced by a template', () => {
     .map(m => m[0]);
   assert.ok(uuids.length > 0, 'home template should reference assets');
   for (const u of new Set(uuids)) assert.ok(u in map, `unmapped asset ${u}`);
+});
+
+test('reported asset count matches files actually written', () => {
+  const map = JSON.parse(readFileSync('.source/assets.json', 'utf8'));
+  const paths = new Set(Object.values(map).filter(Boolean));
+  const images = readdirSync('public/images').length;
+  const vendor = readdirSync('.source/vendor').length;
+  assert.equal(paths.size, images + vendor,
+    'assets.json distinct paths must equal files on disk');
 });

@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync, mkdirSync, readdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { gunzipSync } from 'node:zlib';
 import { join } from 'node:path';
@@ -59,6 +59,12 @@ for (const file of readdirSync('.')) {
       const hit = VENDOR.find(([re]) => re.test(head));
       if (!hit) { byHash.set(hash, null); assetMap[uuid] = null; continue; }
       out = `.source/vendor/${hit[1]}`;
+      if (existsSync(out)) {
+        console.warn(`variant ignored: ${hit[1]} differs between bundles; keeping first`);
+        byHash.set(hash, out);
+        assetMap[uuid] = out;
+        continue;
+      }
       writeFileSync(out, buf);
     } else if (ext === 'woff2') {
       // next/font/google self-hosts these; we do not ship them.
@@ -79,4 +85,5 @@ for (const [file, slug] of Object.entries(SLUGS)) {
 }
 
 writeFileSync('.source/assets.json', JSON.stringify(assetMap, null, 2));
-console.log(`templates: 7  assets: ${[...byHash.values()].filter(Boolean).length}`);
+const written = new Set(Object.values(assetMap).filter(Boolean));
+console.log(`templates: 7  assets: ${written.size}`);
