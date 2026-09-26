@@ -29,6 +29,7 @@ import { existsSync } from 'node:fs';
 import { extname, join, resolve, dirname, normalize, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawn } from 'node:child_process';
+import { tmpdir } from 'node:os';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(__dirname, '..');
@@ -36,9 +37,11 @@ const REPO_ROOT = resolve(__dirname, '..');
 const ORIGINAL_SERVER_PORT = 4500;
 const NEXT_SERVER_PORT = 4501;
 
-const OUT_BASE =
-  process.env.SHOOT_OUT_DIR ||
-  'C:\\Users\\reeja\\AppData\\Local\\Temp\\claude\\c--arohance-projects-Arohance-new-website\\561af6e9-13f9-4c3f-a81c-1a9631b6e39e\\scratchpad\\shots';
+// Portable default (Task 9 fix-round 7): the previous default was one
+// developer's own session-scratch path, unwritable by anyone else on any
+// other machine or in CI. SHOOT_OUT_DIR (or the matching arg in
+// compare.mjs) still overrides this for a specific run.
+const OUT_BASE = process.env.SHOOT_OUT_DIR || join(tmpdir(), 'arohance-fidelity-shots');
 
 // slug -> { the original bundle's filename in the repo root, the port's route }
 const PAGES = [

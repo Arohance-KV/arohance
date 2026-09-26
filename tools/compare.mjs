@@ -11,10 +11,14 @@
 
 import { readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
+import { tmpdir } from 'node:os';
 
-const OUT_BASE =
-  process.env.SHOOT_OUT_DIR ||
-  'C:\\Users\\reeja\\AppData\\Local\\Temp\\claude\\c--arohance-projects-Arohance-new-website\\561af6e9-13f9-4c3f-a81c-1a9631b6e39e\\scratchpad\\shots';
+// Portable default (Task 9 fix-round 7): matches tools/shoot.mjs's own
+// default exactly, so a bare `node tools/compare.mjs <width>` (no env var,
+// no outBase arg) reads back what a bare `node tools/shoot.mjs` just wrote,
+// on any machine or in CI -- not just the one developer's session-scratch
+// path this used to hardcode.
+const OUT_BASE = process.env.SHOOT_OUT_DIR || join(tmpdir(), 'arohance-fidelity-shots');
 
 const SLUGS = ['home', 'about', 'services', 'studio', 'careers', 'contact', 'case-study'];
 
@@ -37,7 +41,13 @@ const GEOMETRY_TOLERANCE_PX = 4;
 // different number of lines rather than just render narrower) must match
 // the original's within a small tolerance — the same reasoning as
 // GEOMETRY_TOLERANCE_PX, just scoped to these three specific elements.
-const FONT_PROOF_TOLERANCE_PX = 2;
+// Tightened from 2px to 1px in fix round 7: a real secondary mechanism
+// (Preflight's html line-height, fixed in round 5) produced a 1.8px
+// residual on the JetBrains Mono proof mid-investigation that would have
+// passed silently under a 2px tolerance. All three families now measure
+// 0.0px with every root cause fixed, so a margin wide enough to have
+// masked a defect actually found during this task serves no purpose.
+const FONT_PROOF_TOLERANCE_PX = 1;
 
 const [, , width, outBaseArg] = process.argv;
 if (!width) {
@@ -245,18 +255,24 @@ function checkHtmlLineHeight(slug) {
   return { slug, ok: problems.length === 0, reason: problems.join('; '), oValue, pValue };
 }
 
-// Task 9 fix-round 6 regression guard: a representative real form
-// control (a <textarea>, present on 5 of the 7 pages) must render at the
-// same computed font-size as the original's. globals.css's own
-// `input, textarea, button { font: inherit }` sat outside any @layer and
-// unconditionally beat every Tailwind utility class regardless of
-// specificity, silently resetting every form control's font-size (and
-// the submit button's font-family) to the browser default -- deleted in
-// favour of Preflight's own equivalent, correctly-layered reset. A
-// future re-addition of an unlayered reset touching these elements (this
-// one or a new one) fails here by the actual computed value, not as an
-// unexplained geometry delta.
-const FORM_CONTROL_FONT_SIZE_TOLERANCE_PX = 1;
+// Task 9 fix-round 6 regression guard, tightened in fix-round 7: a
+// representative real form control (a <textarea>, present on 5 of the 7
+// pages) must render at the same computed font-size AND font-family AND
+// height as the original's. globals.css's own `input, textarea, button {
+// font: inherit }` sat outside any @layer and unconditionally beat every
+// Tailwind utility class regardless of specificity, silently resetting
+// every form control's font-size (and the submit button's font-family)
+// to the browser default -- deleted in favour of Preflight's own
+// equivalent, correctly-layered reset. The round-6 version of this guard
+// asserted only font-size: `tools/shoot.mjs` was already capturing
+// `fontFamily` and `height` on this same element, interpolating
+// fontFamily into the failure message without ever asserting it, and
+// never reading height at all -- so a regression that changed the
+// control's font *family* without changing its *size* (exactly the shape
+// of the round-2 defect elsewhere in this project, where an ambiguous
+// Tailwind arbitrary value resolved to the wrong CSS property) would have
+// reported PASS. All three properties are asserted now.
+const FORM_CONTROL_TOLERANCE_PX = 1;
 
 function checkFormControlProof(slug) {
   const o = load('original', slug);
@@ -272,17 +288,24 @@ function checkFormControlProof(slug) {
   if (!of || !pf) {
     return { slug, ok: false, reason: `real <textarea> present on only one target: original=${!!of} port=${!!pf}` };
   }
+  const problems = [];
   const oSize = parseFloat(of.fontSize);
   const pSize = parseFloat(pf.fontSize);
-  const delta = Math.abs(oSize - pSize);
-  if (delta > FORM_CONTROL_FONT_SIZE_TOLERANCE_PX) {
-    return {
-      slug,
-      ok: false,
-      reason: `<textarea> font-size differs: original=${of.fontSize} port=${pf.fontSize} (Δ${delta.toFixed(1)}px) — port computed font-family: "${pf.fontFamily}"`,
-    };
+  const sizeDelta = Math.abs(oSize - pSize);
+  if (sizeDelta > FORM_CONTROL_TOLERANCE_PX) {
+    problems.push(`font-size differs: original=${of.fontSize} port=${pf.fontSize} (Δ${sizeDelta.toFixed(1)}px)`);
   }
-  return { slug, ok: true, reason: '', oSize, pSize };
+  if (of.fontFamily !== pf.fontFamily) {
+    problems.push(`font-family differs: original="${of.fontFamily}" port="${pf.fontFamily}"`);
+  }
+  const heightDelta = Math.abs(of.height - pf.height);
+  if (heightDelta > FORM_CONTROL_TOLERANCE_PX) {
+    problems.push(`height differs: original=${of.height.toFixed(1)}px port=${pf.height.toFixed(1)}px (Δ${heightDelta.toFixed(1)}px)`);
+  }
+  if (problems.length > 0) {
+    return { slug, ok: false, reason: problems.join('; ') };
+  }
+  return { slug, ok: true, reason: '', oSize, pSize, heightDelta };
 }
 
 const pageSummaries = SLUGS.map(comparePage);
@@ -340,19 +363,19 @@ if (htmlLineHeightFailures.length > 0) {
   process.exitCode = 1;
 }
 
-console.log(`\n## Form control font-size guard (real <textarea>, tolerance +/-${FORM_CONTROL_FONT_SIZE_TOLERANCE_PX}px)`);
+console.log(`\n## Form control guard (real <textarea>: font-size, font-family, height; tolerance +/-${FORM_CONTROL_TOLERANCE_PX}px)`);
 const formControlFailures = formControlResults.filter((r) => !r.ok);
 for (const r of formControlResults) {
   if (r.skipped) {
     console.log(`  SKIP ${r.slug} (no <textarea> on either target)`);
   } else if (r.ok) {
-    console.log(`  PASS ${r.slug} (original ${r.oSize}px, port ${r.pSize}px)`);
+    console.log(`  PASS ${r.slug} (font-size ${r.oSize}px/${r.pSize}px, height Δ${r.heightDelta.toFixed(1)}px, font-family matches)`);
   } else {
     console.log(`  FAIL ${r.slug}: ${r.reason}`);
   }
 }
 if (formControlFailures.length > 0) {
-  console.log(`\n*** FORM CONTROL FONT-SIZE REGRESSION: ${formControlFailures.length}/${formControlResults.length} page(s) failed. ***`);
+  console.log(`\n*** FORM CONTROL REGRESSION: ${formControlFailures.length}/${formControlResults.length} page(s) failed. ***`);
   process.exitCode = 1;
 }
 
