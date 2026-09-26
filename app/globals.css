@@ -230,7 +230,6 @@ body {
 ::selection { background: var(--ag-accent, #F2600C); color: #0A0A0A; }
 a { color: inherit; text-decoration: none; }
 a:hover { color: var(--ag-accent, #F2600C); }
-input, textarea, button { font: inherit; color: inherit; }
 
 @keyframes ag-marquee { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
 @keyframes ag-marquee-rev { from { transform: translate3d(-50%,0,0); } to { transform: translate3d(0,0,0); } }

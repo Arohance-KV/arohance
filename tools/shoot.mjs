@@ -309,6 +309,25 @@ function collectMeasurements() {
     // sitewide -- direct, targeted measurement of the actual mechanism,
     // not just its downstream symptoms.
     htmlLineHeight: getComputedStyle(document.documentElement).lineHeight,
+    // Task 9 fix-round 5 root cause, fix-round 6 guard: globals.css's own
+    // `input, textarea, button { font: inherit; color: inherit; }` sat
+    // outside any @layer, so it unconditionally beat every Tailwind
+    // utility class (all in @layer utilities) regardless of specificity,
+    // resetting every form control's font-size (and the submit button's
+    // font-family) to whatever it inherited -- the browser default, not
+    // the page's intended value. Deleted in favour of Preflight's own
+    // equivalent reset (same properties, correctly inside @layer base).
+    // A real <textarea> (present on 5 of 7 pages -- the two without one,
+    // studio and case-study, have no comparable form control at all) is
+    // the exact element the fix was reconciled against; null here is
+    // "this page has none", not a failure.
+    formControlProof: (() => {
+      const el = document.querySelector('textarea');
+      if (!el) return null;
+      const cs = getComputedStyle(el);
+      const r = el.getBoundingClientRect();
+      return { tagName: el.tagName, fontSize: cs.fontSize, fontFamily: cs.fontFamily, height: r.height };
+    })(),
   };
 }
 

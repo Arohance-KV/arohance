@@ -245,9 +245,50 @@ function checkHtmlLineHeight(slug) {
   return { slug, ok: problems.length === 0, reason: problems.join('; '), oValue, pValue };
 }
 
+// Task 9 fix-round 6 regression guard: a representative real form
+// control (a <textarea>, present on 5 of the 7 pages) must render at the
+// same computed font-size as the original's. globals.css's own
+// `input, textarea, button { font: inherit }` sat outside any @layer and
+// unconditionally beat every Tailwind utility class regardless of
+// specificity, silently resetting every form control's font-size (and
+// the submit button's font-family) to the browser default -- deleted in
+// favour of Preflight's own equivalent, correctly-layered reset. A
+// future re-addition of an unlayered reset touching these elements (this
+// one or a new one) fails here by the actual computed value, not as an
+// unexplained geometry delta.
+const FORM_CONTROL_FONT_SIZE_TOLERANCE_PX = 1;
+
+function checkFormControlProof(slug) {
+  const o = load('original', slug);
+  const p = load('port', slug);
+  if (o.__missing || p.__missing || o.ok === false || p.ok === false) {
+    return { slug, ok: false, reason: 'page data unavailable (see per-page section above)' };
+  }
+  const of = o.formControlProof;
+  const pf = p.formControlProof;
+  if (!of && !pf) {
+    return { slug, ok: true, reason: '', skipped: true };
+  }
+  if (!of || !pf) {
+    return { slug, ok: false, reason: `real <textarea> present on only one target: original=${!!of} port=${!!pf}` };
+  }
+  const oSize = parseFloat(of.fontSize);
+  const pSize = parseFloat(pf.fontSize);
+  const delta = Math.abs(oSize - pSize);
+  if (delta > FORM_CONTROL_FONT_SIZE_TOLERANCE_PX) {
+    return {
+      slug,
+      ok: false,
+      reason: `<textarea> font-size differs: original=${of.fontSize} port=${pf.fontSize} (Δ${delta.toFixed(1)}px) — port computed font-family: "${pf.fontFamily}"`,
+    };
+  }
+  return { slug, ok: true, reason: '', oSize, pSize };
+}
+
 const pageSummaries = SLUGS.map(comparePage);
 const fontProofResults = SLUGS.map(checkFontProofs);
 const htmlLineHeightResults = SLUGS.map(checkHtmlLineHeight);
+const formControlResults = SLUGS.map(checkFormControlProof);
 let totalDiffs = 0;
 
 console.log(`Fidelity comparison at width ${width} (geometry tolerance +/-${GEOMETRY_TOLERANCE_PX}px)`);
@@ -296,6 +337,22 @@ for (const r of htmlLineHeightResults) {
 }
 if (htmlLineHeightFailures.length > 0) {
   console.log(`\n*** HTML LINE-HEIGHT REGRESSION: ${htmlLineHeightFailures.length}/${htmlLineHeightResults.length} page(s) failed. ***`);
+  process.exitCode = 1;
+}
+
+console.log(`\n## Form control font-size guard (real <textarea>, tolerance +/-${FORM_CONTROL_FONT_SIZE_TOLERANCE_PX}px)`);
+const formControlFailures = formControlResults.filter((r) => !r.ok);
+for (const r of formControlResults) {
+  if (r.skipped) {
+    console.log(`  SKIP ${r.slug} (no <textarea> on either target)`);
+  } else if (r.ok) {
+    console.log(`  PASS ${r.slug} (original ${r.oSize}px, port ${r.pSize}px)`);
+  } else {
+    console.log(`  FAIL ${r.slug}: ${r.reason}`);
+  }
+}
+if (formControlFailures.length > 0) {
+  console.log(`\n*** FORM CONTROL FONT-SIZE REGRESSION: ${formControlFailures.length}/${formControlResults.length} page(s) failed. ***`);
   process.exitCode = 1;
 }
 
