@@ -1,7 +1,33 @@
+// Generated + hand-augmented — read before editing.
+//
+// Starting point: `tools/convert.mjs studio` (parses
+// `.source/templates/studio.html`, rewrites inline styles to Tailwind
+// classes) -> `.source/jsx/studio.jsx`, hand-merged into this file once
+// (swapping `<img>` for `next/image`; the converter already emits
+// `next/link`'s `<Link>` for internal anchors, so that part needed no
+// manual swap; wiring up `StudioRuntime`). Since that merge, 19 `max-lg:`
+// responsive classes were hand-added directly in this file during the
+// mobile responsive pass — `tools/convert.mjs` does not produce these and
+// has no notion of a breakpoint at all.
+//
+// A wrong class string is a converter bug: fix `tools/tw.mjs`, not the
+// string here. Do NOT "fix" a class by regenerating and pasting over this
+// file — that silently deletes all 19 `max-lg:` classes, this page goes
+// back to desktop-only, and neither `tools/compare.mjs` (checks 1440 only)
+// nor a passing build says anything. See README.md, "Changing the
+// converter", for the actual procedure.
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import ContactPill from '@/components/ContactPill';
 import StudioRuntime from './studio-runtime';
+
+// Derived from this page's own eyebrow ("The studio") and h1 ("A Studio,
+// Not a Supply Chain") — not invented marketing copy. `%s — Arohance`
+// (root layout).
+export const metadata: Metadata = {
+  title: 'A Studio, Not a Supply Chain',
+};
 
 export default function Studio() {
   return (

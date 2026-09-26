@@ -79,8 +79,20 @@ export const shell: Behavior = (root) => {
   // Review Focus 4 / Fact 1: release the scroll lock unconditionally. If the
   // menu happened to be open when the route changed, the next page must not
   // inherit a stuck `overflow:hidden` on <body>.
+  //
+  // Final fix wave, item 7a: `try/finally`, not a bare sequence. Nothing in
+  // `cleanups` can throw today (each entry is a plain `removeEventListener`
+  // call) — this is not a live defect — but a bare `cleanups.forEach(...)`
+  // followed by the reset means one future throwing cleanup would skip the
+  // reset and strand the user on an unscrollable page with no recovery but a
+  // reload. `AgRuntime` isolates disposers from *different* behaviour
+  // modules from each other; it does not reach inside this one module's own
+  // `forEach` to protect its own last line. `finally` does that here.
   return () => {
-    cleanups.forEach((fn) => fn());
-    document.body.style.overflow = '';
+    try {
+      cleanups.forEach((fn) => fn());
+    } finally {
+      document.body.style.overflow = '';
+    }
   };
 };

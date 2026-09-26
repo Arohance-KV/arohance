@@ -49,6 +49,37 @@ const GEOMETRY_TOLERANCE_PX = 4;
 // masked a defect actually found during this task serves no purpose.
 const FONT_PROOF_TOLERANCE_PX = 1;
 
+// Final fix wave, item 2: the known-acceptable set. The harness's own
+// documented good state (README.md, "Verifying fidelity") is exactly 5
+// differences at 1440, every one structurally unavoidable rather than a
+// defect:
+//
+//   - 4 live clock/timer readings: a `[data-ag-clock]` wall clock (studio,
+//     contact, case-study — `lib/behaviors/clock.ts`) and the homepage
+//     showreel's `[data-vt-time]` counter (`lib/behaviors/reel.ts`) all
+//     read the live system clock or a running timer. Two captures taken a
+//     few seconds apart will never show the same value.
+//   - 1 occluded `background-color`, on Contact: sits behind an
+//     always-opaque foreground layer on both targets, so the value was
+//     never visible to a user in either version.
+//
+// Before this fix, `compare.mjs` only ever compared the raw count (5) to a
+// human's memory of the README — exiting 1 unconditionally whenever
+// totalDiffs > 0, which is ALWAYS true on a perfect run, so the tool could
+// never gate CI or a commit hook. Masking these two known shapes out of the
+// comparison (rather than just special-casing "this page always has N
+// diffs") means a genuine regression that happens to land in the same
+// second as one of the four clock captures is still caught: everything
+// outside the masked span still has to match exactly, and Contact getting
+// a SECOND, different kind of diff (not just its background-color) still
+// counts as residual.
+const CLOCK_TEXT = /\d{2}:\d{2}:\d{2} IST/g; // lib/behaviors/clock.ts's `t + ' IST'`
+const TIMER_TEXT = /\d{2}:\d{2} \/ \d{2}:\d{2}/g; // lib/behaviors/reel.ts's `fmt(...) + ' / ' + fmt(...)`
+
+function maskVolatileText(s) {
+  return s.replace(CLOCK_TEXT, '⁃clock⁃').replace(TIMER_TEXT, '⁃timer⁃');
+}
+
 const [, , width, outBaseArg] = process.argv;
 if (!width) {
   console.error('usage: node tools/compare.mjs <width> [outBase]');
@@ -103,22 +134,33 @@ function comparePage(slug) {
   const o = load('original', slug);
   const p = load('port', slug);
   const lines = [];
+  // Lines NOT accounted for by the known-acceptable set (see above) — what
+  // determines the exit code. A load/capture failure is never acceptable,
+  // regardless of slug.
+  const residualLines = [];
 
   if (o.__missing || p.__missing) {
     if (o.__missing) lines.push(`MISSING: original JSON not found at ${o.__file}`);
     if (p.__missing) lines.push(`MISSING: port JSON not found at ${p.__file}`);
-    return { slug, lines, diffCount: lines.length };
+    residualLines.push(...lines);
+    return { slug, lines, diffCount: lines.length, residualLines, residualCount: residualLines.length };
   }
   if (o.ok === false || p.ok === false) {
     if (o.ok === false) lines.push(`ORIGINAL FAILED TO LOAD/CAPTURE: ${o.error}`);
     if (p.ok === false) lines.push(`PORT FAILED TO LOAD/CAPTURE: ${p.error}`);
-    return { slug, lines, diffCount: lines.length };
+    residualLines.push(...lines);
+    return { slug, lines, diffCount: lines.length, residualLines, residualCount: residualLines.length };
   }
 
   let diffCount = 0;
-  const add = (line) => {
+  // `acceptable: true` marks a line as one of the two known-acceptable
+  // shapes (see CLOCK_TEXT/TIMER_TEXT/maskVolatileText above) — it is still
+  // pushed to `lines` and still counted in `diffCount` (the full list keeps
+  // printing exactly as before), it just doesn't land in `residualLines`.
+  const add = (line, { acceptable = false } = {}) => {
     lines.push(line);
     diffCount++;
+    if (!acceptable) residualLines.push(line);
   };
 
   if (o.scrollWidth !== p.scrollWidth) add(`scrollWidth differs: original=${o.scrollWidth} port=${p.scrollWidth}`);
@@ -162,19 +204,32 @@ function comparePage(slug) {
   }
 
   if (o.bodyBackgroundColor !== p.bodyBackgroundColor) {
-    add(`body background-color differs: original=${o.bodyBackgroundColor} port=${p.bodyBackgroundColor}`);
+    // Known-acceptable on Contact only (see the classification comment
+    // above) — Contact is the one page whose body background sits behind
+    // an always-opaque foreground layer, on both targets. Any OTHER page
+    // showing this diff is not this case and is not marked acceptable.
+    add(`body background-color differs: original=${o.bodyBackgroundColor} port=${p.bodyBackgroundColor}`, {
+      acceptable: slug === 'contact',
+    });
   }
 
   if (o.text !== p.text) {
     const d = textDiff(o.text || '', p.text || '');
+    // Known-acceptable only if masking out clock/timer text from BOTH full
+    // texts makes them equal — i.e. the clock/timer is provably the ONLY
+    // thing that differs. A real regression elsewhere in the page's text,
+    // even one that happens to land on the same page/second as a clock
+    // tick, leaves the masked texts unequal and is NOT marked acceptable.
+    const acceptable = maskVolatileText(o.text || '') === maskVolatileText(p.text || '');
     add(
       `text differs (original ${d.aLen} chars, port ${d.bLen} chars, common prefix ${d.prefixLen} chars)\n` +
         `      original ...${JSON.stringify(d.aMiddle)}...\n` +
         `      port     ...${JSON.stringify(d.bMiddle)}...`,
+      { acceptable },
     );
   }
 
-  return { slug, lines, diffCount };
+  return { slug, lines, diffCount, residualLines, residualCount: residualLines.length };
 }
 
 const FONT_PROOF_FAMILIES = ['archivo', 'jetbrainsMono', 'instrumentSans'];
@@ -313,11 +368,12 @@ const fontProofResults = SLUGS.map(checkFontProofs);
 const htmlLineHeightResults = SLUGS.map(checkHtmlLineHeight);
 const formControlResults = SLUGS.map(checkFormControlProof);
 let totalDiffs = 0;
+let totalResidual = 0;
 
 console.log(`Fidelity comparison at width ${width} (geometry tolerance +/-${GEOMETRY_TOLERANCE_PX}px)`);
 console.log(`reading from: ${outBase}\n`);
 
-for (const { slug, lines, diffCount } of pageSummaries) {
+for (const { slug, lines, diffCount, residualCount } of pageSummaries) {
   console.log(`## ${slug} — ${diffCount} difference(s)`);
   if (lines.length === 0) {
     console.log('  (no differences found)');
@@ -326,6 +382,7 @@ for (const { slug, lines, diffCount } of pageSummaries) {
   }
   console.log('');
   totalDiffs += diffCount;
+  totalResidual += residualCount;
 }
 
 console.log(`TOTAL: ${totalDiffs} difference(s) across ${pageSummaries.length} pages`);
@@ -379,4 +436,27 @@ if (formControlFailures.length > 0) {
   process.exitCode = 1;
 }
 
-if (totalDiffs > 0) process.exitCode = 1;
+// Final fix wave, item 2: the verdict. Before this, `if (totalDiffs > 0)
+// process.exitCode = 1` exited 1 on the harness's own known-good state (5),
+// so this tool could never gate CI or a commit hook — anyone wiring it up
+// got a permanent red and reasonably concluded the harness itself was
+// broken. The exit code now reflects `totalResidual`, not `totalDiffs`:
+// classification happens per-line inside comparePage (above), so a
+// residual count of 0 means every printed difference was independently
+// verified to be one of the two known-acceptable shapes, not just that the
+// total happens to still read 5. The full per-page list above is
+// unchanged either way — only the verdict below is new. This line only
+// ever SETS exitCode to 1, never resets it to 0, so a failure already
+// flagged by one of the three regression guards above can't be silently
+// cleared by a clean residual count here.
+console.log(`\n## Verdict`);
+console.log(`  ${totalDiffs} difference(s) total, ${totalDiffs - totalResidual} known-acceptable (live clock/timer text on [data-ag-clock]/[data-vt-time]; Contact's occluded body background-color), ${totalResidual} residual.`);
+if (totalResidual > 0) {
+  console.log(`\n*** ${totalResidual} RESIDUAL (unclassified) DIFFERENCE(S) — not part of the known-acceptable set: ***`);
+  for (const { slug, residualLines } of pageSummaries) {
+    for (const l of residualLines) console.log(`  - [${slug}] ${l}`);
+  }
+  process.exitCode = 1;
+} else {
+  console.log('  PASS — every difference is accounted for by the known-acceptable set.');
+}

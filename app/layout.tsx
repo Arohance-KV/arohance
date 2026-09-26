@@ -12,8 +12,22 @@ import './globals.css';
 // @font-face rules instead (extracted verbatim from the original bundles
 // by tools/unbundle.mjs). See task-9-report.md, Fix Round 4.
 
+// Final fix wave, item 5: all seven routes used to share this one literal
+// title verbatim (there was no per-route metadata at all) — every tab,
+// bookmark, history entry and search result on the site was identical.
+// `template` now lets each `app/**/page.tsx` supply its own short,
+// content-derived title (its own `<h1>` or eyebrow label, not invented
+// marketing copy — see each page's own `metadata` export) while this file
+// still controls the shared site-name suffix in one place. `default` is
+// used verbatim, template NOT re-applied to it, whenever a route doesn't
+// define its own title — no route currently relies on that fallback (Home
+// opts out of the template explicitly instead, see app/page.tsx), but it
+// stays as the documented safety net for any future route that forgets to.
 export const metadata: Metadata = {
-  title: 'Arohance — Tech & Marketing',
+  title: {
+    default: 'Arohance — Tech & Marketing',
+    template: '%s — Arohance',
+  },
   description:
     'An independent studio for brands, products and the technology underneath them.',
 };

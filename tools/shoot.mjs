@@ -24,7 +24,8 @@
 
 import { chromium } from 'playwright';
 import http from 'node:http';
-import { readFile, mkdir, writeFile } from 'node:fs/promises';
+import net from 'node:net';
+import { readFile, mkdir, writeFile, stat, readdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { extname, join, resolve, dirname, normalize, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -105,6 +106,112 @@ function startStaticServer(root, port) {
     server.once('error', reject);
     server.listen(port, () => resolvePromise(server));
   });
+}
+
+/** True if something is already listening on `port`, false if it is free.
+ * Final fix wave, item 1 (highest priority): guards `startNextServer`
+ * against the exact race that let this harness certify a false pass three
+ * times during this project.
+ *
+ * The failure mode: `next start` fails with EADDRINUSE when the port is
+ * already taken, but the only place that failure could previously surface
+ * was `waitForHttp` below, which races the child process's own `exit`
+ * event against an HTTP probe of the same URL. A server already listening
+ * on the port answers that probe in ~2ms; the child's EADDRINUSE exit
+ * takes hundreds of ms to propagate through Node's process machinery. The
+ * probe always won, `waitForHttp` resolved as if the server had started
+ * cleanly, and the run reported a confident "7/7 captured cleanly", exit
+ * 0 — while every route actually served whatever was already on the port,
+ * not this build. Reviewer-verified: a five-line impostor HTTP server on
+ * 4501 produced exactly that transcript.
+ *
+ * The fix is to check BEFORE spawning anything, so there is nothing left
+ * to race: nothing of ours is listening yet, so any answer here can only
+ * be a pre-existing occupant. And the check binds the port ourselves — the
+ * exact operation `next start` performs internally — rather than
+ * connecting to it as an HTTP client the way `waitForHttp` does; a client
+ * probe only proves *something* answers HTTP, which is indistinguishable
+ * from a healthy server already up on that port (the same ambiguity that
+ * caused the bug). A bind attempt either succeeds (port free; released
+ * immediately via `.close()`) or fails with EADDRINUSE (port occupied) —
+ * deterministic, nothing to race. Mirrors `startStaticServer`'s own
+ * `server.once('error', reject)`, which was never subject to this bug in
+ * the first place because nothing else calls `waitForHttp` against it. */
+function isPortInUse(port) {
+  return new Promise((resolvePromise, reject) => {
+    const probe = net.createServer();
+    probe.once('error', (err) => {
+      if (err.code === 'EADDRINUSE') resolvePromise(true);
+      else reject(err);
+    });
+    probe.once('listening', () => {
+      probe.close(() => resolvePromise(false));
+    });
+    probe.listen(port);
+  });
+}
+
+/** Newest mtime (ms) of any file under any of `dirs` (paths relative to
+ * REPO_ROOT), recursively. A directory that doesn't exist contributes
+ * nothing rather than throwing — `components/` in particular isn't
+ * guaranteed to exist on every checkout shape this script could run
+ * against. */
+async function newestMtimeUnder(dirs) {
+  let newest = 0;
+  async function walk(dir) {
+    let entries;
+    try {
+      entries = await readdir(dir, { withFileTypes: true });
+    } catch {
+      return;
+    }
+    for (const entry of entries) {
+      const full = join(dir, entry.name);
+      if (entry.isDirectory()) {
+        await walk(full);
+      } else if (entry.isFile()) {
+        const s = await stat(full);
+        if (s.mtimeMs > newest) newest = s.mtimeMs;
+      }
+    }
+  }
+  for (const d of dirs) await walk(join(REPO_ROOT, d));
+  return newest;
+}
+
+// Source directories whose changes invalidate an existing `.next` build,
+// for assertBuildIsFresh below. Deliberately excludes `tools/` (editing
+// this harness doesn't require an app rebuild) and the seven root
+// `Arohance *.html` files (design reference, never built into anything).
+const BUILD_INPUT_DIRS = ['app', 'lib', 'components', 'public'];
+
+/** Refuses to run against a `.next` build that predates the source it
+ * claims to represent. Final fix wave, item 1: there was no guard here at
+ * all before — forgetting to rebuild after an edit meant this script
+ * measured the PREVIOUS build, and `compare.mjs` would report a confident
+ * "5 differences" indistinguishable from a genuinely clean run against
+ * current source. Compares `.next/BUILD_ID`'s mtime (Next stamps this file
+ * fresh on every successful build) against the newest mtime under
+ * BUILD_INPUT_DIRS. A missing `.next/BUILD_ID` is treated the same as "no
+ * build at all" (the plain existsSync(.next) check this replaces), just
+ * checked here so both guards live in one place. */
+async function assertBuildIsFresh() {
+  const buildIdPath = join(REPO_ROOT, '.next', 'BUILD_ID');
+  if (!existsSync(buildIdPath)) {
+    console.error('.next/BUILD_ID not found — run `npm run build` before shooting target=port');
+    process.exit(1);
+  }
+  const buildIdMtime = (await stat(buildIdPath)).mtimeMs;
+  const newestSource = await newestMtimeUnder(BUILD_INPUT_DIRS);
+  if (newestSource > buildIdMtime) {
+    console.error(
+      `.next build is stale: .next/BUILD_ID (${new Date(buildIdMtime).toISOString()}) is older than the ` +
+        `newest edited file under ${BUILD_INPUT_DIRS.map((d) => d + '/').join(', ')} ` +
+        `(${new Date(newestSource).toISOString()}).\n` +
+        'Run `npm run build` again before shooting target=port — otherwise this measures the PREVIOUS build, not your current source.',
+    );
+    process.exit(1);
+  }
 }
 
 /** Spawns `next start -p <port>` by invoking Next's own bin script directly
@@ -536,8 +643,15 @@ async function main() {
     baseOrigin = `http://localhost:${ORIGINAL_SERVER_PORT}`;
     console.log(`static server serving ${REPO_ROOT} on ${baseOrigin}`);
   } else {
-    if (!existsSync(join(REPO_ROOT, '.next'))) {
-      console.error('.next not found — run `npm run build` before shooting target=port');
+    await assertBuildIsFresh();
+    if (await isPortInUse(NEXT_SERVER_PORT)) {
+      console.error(
+        `port ${NEXT_SERVER_PORT} is already in use — refusing to start \`next start\` on it.\n` +
+          'Something else is already listening there (maybe a previous run of this script that did not shut ' +
+          'down cleanly, or an unrelated server) — measuring it would silently report on whatever that is, ' +
+          `not this build. Find and stop it (Windows: \`netstat -ano | findstr :${NEXT_SERVER_PORT}\` to get ` +
+          'its PID, then `taskkill /PID <pid> /F`), or free the port some other way, then re-run.',
+      );
       process.exit(1);
     }
     nextChild = startNextServer(NEXT_SERVER_PORT);

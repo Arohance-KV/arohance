@@ -6,6 +6,15 @@ const SPACING = {
   44: '11', 48: '12', 56: '14', 64: '16', 80: '20', 96: '24', 128: '32',
 };
 
+// Not a typo, do not "correct" this to a literal space or to `\_`. Tailwind
+// decodes a `_` back into a literal space when it appears inside an
+// arbitrary value's brackets — that is the documented, intentional escape
+// mechanism (Tailwind's own class-name tokenizer splits on whitespace, so a
+// literal space inside `[...]` would break the class apart; `\_` would just
+// render as a literal underscore instead of a space). This is why, e.g.,
+// `[font-family:'JetBrains_Mono',monospace]` compiles to
+// `font-family:'JetBrains Mono',monospace` and correctly matches the
+// self-hosted font's real name.
 export const escapeValue = (v) => v.trim().replace(/\s+/g, '_');
 
 const scale = (v) => {

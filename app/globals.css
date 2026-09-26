@@ -209,12 +209,26 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-@theme {
-  --color-ag-ink: #0C0B0A;
-  --color-ag-paper: #F5F2ED;
-  --color-ag-accent: #F2600C;
-}
-
+/* Final fix wave, item 7b: the `@theme { --color-ag-ink/-paper/-accent }`
+ * block that used to sit here is deleted, not merely unused. Tailwind v4
+ * only emits an `@theme` variable into compiled CSS when something (a
+ * generated utility, or an explicit `var(--color-*)` reference it can see)
+ * actually uses it — confirmed zero `color-ag-` anywhere in the compiled
+ * output, and zero `bg-ag-ink`/`text-ag-paper`/etc. anywhere in `app/` or
+ * `lib/`, so it was dead from the day it was added, not from later drift.
+ * Its mere presence implied a design-token system this codebase
+ * deliberately does not use — every colour here is an arbitrary Tailwind
+ * value (`bg-[#0C0B0A]`, `text-[#F5F2ED]`, ...) by design, ported to match
+ * the original bundles' inline styles exactly, not mapped onto a token
+ * scale — and invited someone to "finish the migration" by rewriting those
+ * arbitrary values to `bg-ag-ink` etc., which is fidelity risk for no
+ * benefit on a project whose whole contract is pixel-for-pixel match against
+ * a design reference that itself has no token system.
+ *
+ * `--ag-accent` immediately below is NOT part of this and is untouched: a
+ * plain `:root` custom property (not inside `@theme`, so never subject to
+ * the same tree-shaking), referenced sitewide as `var(--ag-accent,#F2600C)`
+ * — genuinely load-bearing, unlike the three removed above. */
 :root { --ag-accent: #F2600C; }
 
 * { box-sizing: border-box; }

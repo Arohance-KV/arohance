@@ -93,8 +93,17 @@ export const shellMinimal: Behavior = (root) => {
   });
   paint();
 
+  // Final fix wave, item 7a: `try/finally`, matching `shell.ts`. Nothing in
+  // `cleanups` can throw today (a plain `removeEventListener` per entry) —
+  // this is not a live defect — but without the `finally`, one future
+  // throwing cleanup would skip the overflow reset and strand the user on
+  // an unscrollable page with no recovery but a reload. See `shell.ts` for
+  // the full reasoning (identical here).
   return () => {
-    cleanups.forEach((fn) => fn());
-    document.body.style.overflow = '';
+    try {
+      cleanups.forEach((fn) => fn());
+    } finally {
+      document.body.style.overflow = '';
+    }
   };
 };

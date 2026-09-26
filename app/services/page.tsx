@@ -1,7 +1,33 @@
+// Generated + hand-augmented — read before editing.
+//
+// Starting point: `tools/convert.mjs services` (parses
+// `.source/templates/services.html`, rewrites inline styles to Tailwind
+// classes) -> `.source/jsx/services.jsx`, hand-merged into this file once
+// (swapping `<img>` for `next/image`; the converter already emits
+// `next/link`'s `<Link>` for internal anchors, so that part needed no
+// manual swap; wiring up `ServicesRuntime`). Since that merge, 26 `max-lg:`
+// responsive classes were hand-added directly in this file during the
+// mobile responsive pass — `tools/convert.mjs` does not produce these and
+// has no notion of a breakpoint at all.
+//
+// A wrong class string is a converter bug: fix `tools/tw.mjs`, not the
+// string here. Do NOT "fix" a class by regenerating and pasting over this
+// file — that silently deletes all 26 `max-lg:` classes, this page goes
+// back to desktop-only, and neither `tools/compare.mjs` (checks 1440 only)
+// nor a passing build says anything. See README.md, "Changing the
+// converter", for the actual procedure.
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import ContactPill from '@/components/ContactPill';
 import ServicesRuntime from './services-runtime';
+
+// Derived from this page's own eyebrow ("+ (Services)") and h1 ("Six
+// Disciplines. One Room.") — not invented marketing copy. `%s — Arohance`
+// (root layout).
+export const metadata: Metadata = {
+  title: 'Six Disciplines, One Room',
+};
 
 export default function Services() {
   return (
