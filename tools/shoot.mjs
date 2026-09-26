@@ -260,6 +260,151 @@ function collectMeasurements() {
       instrumentSans: info(instrumentSans),
     };
   }
+  // Task 10 (mobile responsive): breakage detection, independent of the
+  // original/port comparison above -- per the brief, comparing port against
+  // original at a mobile width tells you almost nothing (the original has
+  // zero responsive breakpoints and was never made to work on a phone).
+  // These five checks are absolute thresholds against the CAPTURED target
+  // itself (usually "port"), not a diff against the other target.
+  function collectBreakage() {
+    const TAP_MIN = 40;
+    const FONT_MIN = 12;
+    const vw = window.innerWidth;
+
+    // A short, human-readable locator for an element -- not guaranteed to
+    // be a valid CSS selector (a data-* attribute's value is inlined
+    // unescaped), just precise enough for a person to find the element in
+    // the JSX. Prefers id, then a data-* attribute (this codebase annotates
+    // almost everything structurally interesting with one), then
+    // tag+firstClass, which is exactly the fallback tools/shoot.mjs's own
+    // measureRealFontProofs uses for the same reason.
+    function short(el) {
+      if (el.id) return '#' + el.id;
+      for (const a of el.attributes) {
+        if (a.name.startsWith('data-')) {
+          return a.value ? `[${a.name}="${a.value.slice(0, 28)}"]` : `[${a.name}]`;
+        }
+      }
+      const cls = (el.getAttribute('class') || '').trim().split(/\s+/)[0];
+      return el.tagName.toLowerCase() + (cls ? '.' + cls : '');
+    }
+    function path(el, depth = 4) {
+      const parts = [];
+      let node = el;
+      while (node && node.nodeType === 1 && parts.length < depth) {
+        parts.unshift(short(node));
+        node = node.parentElement;
+      }
+      return parts.join(' > ');
+    }
+    function textSample(el) {
+      return (el.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 60);
+    }
+    // An element that itself directly carries a text run (not just wraps
+    // other elements) -- deliberately excludes structural wrappers like a
+    // marquee's `overflow-hidden` clipping box, whose scrollWidth is
+    // BY DESIGN larger than its clientWidth (the whole mechanism depends on
+    // it), so that known-intentional shape never appears in `clippedText`.
+    function hasDirectText(el) {
+      for (const n of el.childNodes) {
+        if (n.nodeType === 3 && n.textContent.trim().length > 0) return true;
+      }
+      return false;
+    }
+
+    const all = Array.from(document.querySelectorAll('*'));
+
+    // Two known, deliberately-decorative mechanisms are wider than their own
+    // clipping ancestor BY DESIGN, at every viewport width including 1440
+    // (verified: identical clamp()/cqw formulas, no viewport-conditional
+    // code) -- a translated double-width marquee track (`[data-ag-ribbon]`,
+    // home's "Social — Content — ..." bars) and an infinitely-rotating 3D
+    // card rail (`[data-ag-stream]`'s `[data-ag-card]` children, swung
+    // through 3D space via `rotateY`/`translate3d`, home's "camera never
+    // leaves the building" section). Both sit inside an `overflow-hidden`
+    // ancestor that absorbs the bleed before it ever reaches the page (see
+    // `pageOverflowPx`, which is unaffected by either). Flagging every span/
+    // card inside them would report the mechanism working as intended, not
+    // a defect -- excluded from (a) and (b) below; NOT excluded from the
+    // page-level `pageOverflowPx` check, which is exactly what would catch
+    // it if one of these ever did leak.
+    function isDecorativeTrack(el) {
+      return !!el.closest('[data-ag-ribbon], [data-ag-stream]');
+    }
+
+    // (a) elements extending beyond the viewport's left/right edge.
+    const OVERFLOW_TOL = 1;
+    const overflowingElements = [];
+    for (const el of all) {
+      if (isDecorativeTrack(el)) continue;
+      const r = el.getBoundingClientRect();
+      if (r.width === 0 && r.height === 0) continue; // display:none / detached
+      const over = Math.max(r.right - vw, -r.left);
+      if (over > OVERFLOW_TOL) {
+        overflowingElements.push({
+          selector: path(el),
+          overflowPx: Math.round(over * 10) / 10,
+          rect: { left: Math.round(r.left), right: Math.round(r.right), width: Math.round(r.width) },
+          text: textSample(el),
+        });
+      }
+    }
+
+    // (b) text that overlaps or is clipped: a direct text-bearing element
+    // whose scrollWidth exceeds its clientWidth (typically a `whitespace-
+    // nowrap` element that no longer fits at this viewport width).
+    const CLIP_TOL = 1;
+    const clippedText = [];
+    for (const el of all) {
+      if (isDecorativeTrack(el)) continue;
+      if (!hasDirectText(el)) continue;
+      const over = el.scrollWidth - el.clientWidth;
+      if (over > CLIP_TOL) {
+        clippedText.push({
+          selector: path(el),
+          overflowPx: over,
+          scrollWidth: el.scrollWidth,
+          clientWidth: el.clientWidth,
+          text: textSample(el),
+        });
+      }
+    }
+
+    // (c) interactive elements smaller than a 40x40 tap target.
+    const smallTapTargets = [];
+    for (const el of document.querySelectorAll('a,button,input,textarea,select')) {
+      const r = el.getBoundingClientRect();
+      if (r.width === 0 && r.height === 0) continue; // display:none / detached
+      if (r.width < TAP_MIN || r.height < TAP_MIN) {
+        smallTapTargets.push({
+          selector: path(el),
+          width: Math.round(r.width * 10) / 10,
+          height: Math.round(r.height * 10) / 10,
+          text: textSample(el) || el.getAttribute('aria-label') || el.getAttribute('placeholder') || '',
+        });
+      }
+    }
+
+    // (d) text rendered below ~12px, on a real text-bearing element.
+    const smallFontText = [];
+    for (const el of all) {
+      if (!hasDirectText(el)) continue;
+      const size = parseFloat(getComputedStyle(el).fontSize);
+      if (size < FONT_MIN) {
+        smallFontText.push({ selector: path(el), fontSizePx: size, text: textSample(el) });
+      }
+    }
+
+    return {
+      viewportWidth: vw,
+      pageOverflowPx: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      overflowingElements,
+      clippedText,
+      smallTapTargets,
+      smallFontText,
+    };
+  }
+
   const nav = document.querySelector('[data-ag-nav]');
   const header = document.querySelector('header');
   const footer = document.querySelector('footer');
@@ -331,6 +476,13 @@ function collectMeasurements() {
       const r = el.getBoundingClientRect();
       return { tagName: el.tagName, fontSize: cs.fontSize, fontFamily: cs.fontFamily, height: r.height };
     })(),
+    // Task 10: mobile breakage measurements (see collectBreakage above).
+    // Computed for every capture regardless of target/width -- cheap, and
+    // having it for "original" too is a useful sanity check that the
+    // reference bundle is indeed just as broken at a phone width (it has
+    // zero responsive breakpoints), not a claim this file's comparison
+    // logic acts on.
+    breakage: collectBreakage(),
   };
 }
 

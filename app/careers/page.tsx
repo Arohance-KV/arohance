@@ -22,11 +22,11 @@ export default function Careers() {
 
 <div data-ag-overlay="" className="fixed inset-0 z-[65] bg-[rgba(8,8,7,.66)] [backdrop-filter:blur(18px)] [-webkit-backdrop-filter:blur(18px)] opacity-[0] invisible pointer-events-none [transition:opacity_.5s_ease,visibility_.5s_ease]">
   <div className="absolute inset-0 flex items-start justify-end pt-[clamp(72px,10vh,86px)] px-[clamp(16px,4.4vw,64px)] pb-[clamp(20px,4vh,40px)] overflow-auto">
-    <div data-ag-menu-panel="" className="[flex:0_1_min(100%,420px)] flex flex-col justify-between gap-[clamp(30px,6vh,64px)] min-h-[min(560px,76vh)] bg-[#161412] text-[#F5F2ED] rounded-[16px] pt-5 px-[clamp(20px,2.4vw,30px)] pb-[clamp(24px,3vh,34px)] opacity-[0] [transform:translate3d(28px,0,0)] [transition:opacity_.5s_ease,transform_.6s_cubic-bezier(.16,1,.3,1)] pointer-events-none">
+    <div data-ag-menu-panel="" className="[flex:0_1_min(100%,420px)] flex flex-col justify-between gap-[clamp(30px,6vh,64px)] min-h-[min(560px,76vh)] bg-[#161412] text-[#F5F2ED] rounded-[16px] pt-5 px-[clamp(20px,2.4vw,30px)] pb-[clamp(24px,3vh,34px)] opacity-[0] [transform:translate3d(28px,0,0)] [transition:opacity_.5s_ease,transform_.6s_cubic-bezier(.16,1,.3,1)] pointer-events-none max-lg:min-w-0">
       <div>
         <div className="flex items-center justify-between gap-4 text-[#8A857B]">
           <span className="text-[17px]">→</span>
-          <button data-ag-close="" type="button" aria-label="Close menu" className="w-[30px] h-[30px] border-0 bg-[transparent] text-[#B7B1A6] flex items-center justify-center cursor-pointer text-[19px] leading-[1] [transition:color_.3s] hover:text-[#F5F2ED]">✕</button>
+          <button data-ag-close="" type="button" aria-label="Close menu" className="w-[30px] h-[30px] border-0 bg-[transparent] text-[#B7B1A6] flex items-center justify-center cursor-pointer text-[19px] leading-[1] [transition:color_.3s] hover:text-[#F5F2ED] max-lg:w-[40px] max-lg:h-[40px]">✕</button>
         </div>
         <div className="flex flex-col mt-[clamp(12px,2vh,22px)]">
           <Link data-ag-mlink="" href="/" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#F5F2ED] hover:pl-2.5">Home <span className="text-[.5em] text-[#8A857B]">→</span></Link>
@@ -41,8 +41,8 @@ export default function Careers() {
       <div>
         <div className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8A857B] mb-3.5">Hiring</div>
         <div className="flex flex-col gap-[7px] text-[14.5px] font-medium">
-          <a href="mailto:careers@arohance.com">careers@arohance.com</a>
-          <a href="#process">How we hire</a>
+          <a href="mailto:careers@arohance.com" className="max-lg:py-3">careers@arohance.com</a>
+          <a href="#process" className="max-lg:py-3">How we hire</a>
         </div>
       </div>
     </div>
@@ -63,7 +63,7 @@ export default function Careers() {
 
   <div className="flex justify-between items-end gap-[clamp(20px,5vw,60px)] flex-wrap mt-[clamp(28px,4vw,58px)]">
     <p data-reveal="" className="m-0 max-w-[48ch] text-[clamp(15px,1.35vw,19px)] leading-[1.55] text-[#A9A39A]">Fourteen people who would rather build the thing than manage the people building it. No account layer, no deck factory, no work that goes out with someone else&apos;s name on the craft.</p>
-    <a href="#roles" className="inline-flex items-center gap-3 [font-family:'Archivo',sans-serif] font-semibold text-[clamp(16px,1.6vw,22px)] tracking-[-0.02em] [border-bottom:1px_solid_currentColor] pb-1">See the open roles <span>↓</span></a>
+    <a href="#roles" className="inline-flex items-center gap-3 [font-family:'Archivo',sans-serif] font-semibold text-[clamp(16px,1.6vw,22px)] tracking-[-0.02em] [border-bottom:1px_solid_currentColor] pb-1 max-lg:py-3">See the open roles <span>↓</span></a>
   </div>
 </header>
 
@@ -153,7 +153,7 @@ export default function Careers() {
             <p className="[flex:2_1_min(100%,300px)] m-0 max-w-[48ch] text-[clamp(15px,1.3vw,18px)] leading-[1.55] text-[#A9A39A]">You lead the design of a product from the first sketch to the shipped build, sitting next to the engineers writing it. Five years or more, a portfolio of things that actually launched, and an opinion about type.</p>
             <div className="[flex:1_1_min(100%,200px)] flex flex-col gap-[9px] text-[14px] text-[#A9A39A]">
               <span>Bengaluru, hybrid</span><span>5+ years</span><span data-pay="">₹28–40L</span>
-              <a href="#apply" className="mt-2 [align-self:flex-start] text-[var(--ag-accent,#F2600C)] [border-bottom:1px_solid_currentColor] pb-0.5 font-semibold">Apply →</a>
+              <a href="#apply" className="mt-2 [align-self:flex-start] text-[var(--ag-accent,#F2600C)] [border-bottom:1px_solid_currentColor] pb-0.5 font-semibold max-lg:py-2.5">Apply →</a>
             </div>
           </div>
         </div>
@@ -173,7 +173,7 @@ export default function Careers() {
             <p className="[flex:2_1_min(100%,300px)] m-0 max-w-[48ch] text-[clamp(15px,1.3vw,18px)] leading-[1.55] text-[#A9A39A]">Client platforms, internal tools and the integrations underneath them. TypeScript end to end, comfortable owning infrastructure, and willing to argue with a designer about a transition.</p>
             <div className="[flex:1_1_min(100%,200px)] flex flex-col gap-[9px] text-[14px] text-[#A9A39A]">
               <span>Bengaluru, hybrid</span><span>4+ years</span><span data-pay="">₹26–38L</span>
-              <a href="#apply" className="mt-2 [align-self:flex-start] text-[var(--ag-accent,#F2600C)] [border-bottom:1px_solid_currentColor] pb-0.5 font-semibold">Apply →</a>
+              <a href="#apply" className="mt-2 [align-self:flex-start] text-[var(--ag-accent,#F2600C)] [border-bottom:1px_solid_currentColor] pb-0.5 font-semibold max-lg:py-2.5">Apply →</a>
             </div>
           </div>
         </div>
@@ -193,7 +193,7 @@ export default function Careers() {
             <p className="[flex:2_1_min(100%,300px)] m-0 max-w-[48ch] text-[clamp(15px,1.3vw,18px)] leading-[1.55] text-[#A9A39A]">You shoot it and you cut it. Brand films, founder interviews, product spots, and the twenty vertical cuts that come out of the same shoot day. Resolve or Premiere, your call.</p>
             <div className="[flex:1_1_min(100%,200px)] flex flex-col gap-[9px] text-[14px] text-[#A9A39A]">
               <span>Bengaluru, on site</span><span>3+ years</span><span data-pay="">₹16–26L</span>
-              <a href="#apply" className="mt-2 [align-self:flex-start] text-[var(--ag-accent,#F2600C)] [border-bottom:1px_solid_currentColor] pb-0.5 font-semibold">Apply →</a>
+              <a href="#apply" className="mt-2 [align-self:flex-start] text-[var(--ag-accent,#F2600C)] [border-bottom:1px_solid_currentColor] pb-0.5 font-semibold max-lg:py-2.5">Apply →</a>
             </div>
           </div>
         </div>
@@ -213,7 +213,7 @@ export default function Careers() {
             <p className="[flex:2_1_min(100%,300px)] m-0 max-w-[48ch] text-[clamp(15px,1.3vw,18px)] leading-[1.55] text-[#A9A39A]">Identity systems that get used on Monday: type, motion, packaging, the templates and the working files. You will see your systems running across film, web and print inside the same quarter.</p>
             <div className="[flex:1_1_min(100%,200px)] flex flex-col gap-[9px] text-[14px] text-[#A9A39A]">
               <span>Bengaluru, hybrid</span><span>3+ years</span><span data-pay="">₹18–28L</span>
-              <a href="#apply" className="mt-2 [align-self:flex-start] text-[var(--ag-accent,#F2600C)] [border-bottom:1px_solid_currentColor] pb-0.5 font-semibold">Apply →</a>
+              <a href="#apply" className="mt-2 [align-self:flex-start] text-[var(--ag-accent,#F2600C)] [border-bottom:1px_solid_currentColor] pb-0.5 font-semibold max-lg:py-2.5">Apply →</a>
             </div>
           </div>
         </div>
@@ -233,7 +233,7 @@ export default function Careers() {
             <p className="[flex:2_1_min(100%,300px)] m-0 max-w-[48ch] text-[clamp(15px,1.3vw,18px)] leading-[1.55] text-[#A9A39A]">You run the calendar, the shoot days and the people on them. Five clients, a standing crew, and a release schedule that does not slip.</p>
             <div className="[flex:1_1_min(100%,200px)] flex flex-col gap-[9px] text-[14px] text-[#A9A39A]">
               <span>Bengaluru, on site</span><span>3+ years</span><span data-pay="">₹14–22L</span>
-              <a href="#apply" className="mt-2 [align-self:flex-start] text-[var(--ag-accent,#F2600C)] [border-bottom:1px_solid_currentColor] pb-0.5 font-semibold">Apply →</a>
+              <a href="#apply" className="mt-2 [align-self:flex-start] text-[var(--ag-accent,#F2600C)] [border-bottom:1px_solid_currentColor] pb-0.5 font-semibold max-lg:py-2.5">Apply →</a>
             </div>
           </div>
         </div>
@@ -253,7 +253,7 @@ export default function Careers() {
             <p className="[flex:2_1_min(100%,300px)] m-0 max-w-[48ch] text-[clamp(15px,1.3vw,18px)] leading-[1.55] text-[#A9A39A]">Paid, six months, real client work with a senior designer reviewing it daily. Two of our last three interns are now on the team.</p>
             <div className="[flex:1_1_min(100%,200px)] flex flex-col gap-[9px] text-[14px] text-[#A9A39A]">
               <span>Bengaluru, on site</span><span>Portfolio over degree</span><span data-pay="">₹35k per month</span>
-              <a href="#apply" className="mt-2 [align-self:flex-start] text-[var(--ag-accent,#F2600C)] [border-bottom:1px_solid_currentColor] pb-0.5 font-semibold">Apply →</a>
+              <a href="#apply" className="mt-2 [align-self:flex-start] text-[var(--ag-accent,#F2600C)] [border-bottom:1px_solid_currentColor] pb-0.5 font-semibold max-lg:py-2.5">Apply →</a>
             </div>
           </div>
         </div>
@@ -305,11 +305,11 @@ export default function Careers() {
     <form data-ag-form="" className="[flex:2_1_min(100%,320px)] flex flex-col gap-[clamp(18px,2.4vw,30px)]">
       <label className="flex flex-col gap-[9px]">
         <span className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8C877E]">Name</span>
-        <input type="text" name="name" placeholder="Your name" className="bg-[transparent] border-0 [border-bottom:1px_solid_rgba(245,242,237,.28)] py-2 px-0 text-[clamp(16px,1.5vw,20px)] [outline:none] focus:[border-bottom-color:var(--ag-accent,#F2600C)]" />
+        <input type="text" name="name" placeholder="Your name" className="bg-[transparent] border-0 [border-bottom:1px_solid_rgba(245,242,237,.28)] py-2 px-0 text-[clamp(16px,1.5vw,20px)] [outline:none] focus:[border-bottom-color:var(--ag-accent,#F2600C)] max-lg:py-3" />
       </label>
       <label className="flex flex-col gap-[9px]">
         <span className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8C877E]">Role</span>
-        <select name="role" className="bg-[#0C0B0A] border-0 [border-bottom:1px_solid_rgba(245,242,237,.28)] py-2 px-0 text-[clamp(16px,1.5vw,20px)] [outline:none] focus:[border-bottom-color:var(--ag-accent,#F2600C)]">
+        <select name="role" className="bg-[#0C0B0A] border-0 [border-bottom:1px_solid_rgba(245,242,237,.28)] py-2 px-0 text-[clamp(16px,1.5vw,20px)] [outline:none] focus:[border-bottom-color:var(--ag-accent,#F2600C)] max-lg:py-3">
           <option>Senior product designer</option>
           <option>Full-stack engineer</option>
           <option>Filmmaker, edit led</option>
@@ -321,19 +321,19 @@ export default function Careers() {
       </label>
       <label className="flex flex-col gap-[9px]">
         <span className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8C877E]">Portfolio or repo</span>
-        <input type="url" name="link" placeholder="https://" className="bg-[transparent] border-0 [border-bottom:1px_solid_rgba(245,242,237,.28)] py-2 px-0 text-[clamp(16px,1.5vw,20px)] [outline:none] focus:[border-bottom-color:var(--ag-accent,#F2600C)]" />
+        <input type="url" name="link" placeholder="https://" className="bg-[transparent] border-0 [border-bottom:1px_solid_rgba(245,242,237,.28)] py-2 px-0 text-[clamp(16px,1.5vw,20px)] [outline:none] focus:[border-bottom-color:var(--ag-accent,#F2600C)] max-lg:py-3" />
       </label>
       <label className="flex flex-col gap-[9px]">
         <span className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8C877E]">The one thing you are proudest of</span>
         <textarea name="note" rows={3} placeholder="A few sentences is enough." className="bg-[transparent] border-0 [border-bottom:1px_solid_rgba(245,242,237,.28)] py-2 px-0 text-[clamp(16px,1.5vw,20px)] [outline:none] [resize:vertical] [font-family:inherit] focus:[border-bottom-color:var(--ag-accent,#F2600C)]"></textarea>
       </label>
-      <button data-ag-submit="" type="submit" className="[align-self:flex-start] mt-1.5 bg-[transparent] border-0 [border-bottom:1px_solid_currentColor] pt-0 px-0 pb-1 [font-family:'Archivo',sans-serif] font-semibold text-[clamp(17px,2vw,26px)] tracking-[-0.02em] cursor-pointer [transition:color_.3s] hover:text-[var(--ag-accent,#F2600C)]">Send it →</button>
+      <button data-ag-submit="" type="submit" className="[align-self:flex-start] mt-1.5 bg-[transparent] border-0 [border-bottom:1px_solid_currentColor] pt-0 px-0 pb-1 [font-family:'Archivo',sans-serif] font-semibold text-[clamp(17px,2vw,26px)] tracking-[-0.02em] cursor-pointer [transition:color_.3s] hover:text-[var(--ag-accent,#F2600C)] max-lg:py-2.5">Send it →</button>
     </form>
 
     <div className="[flex:1_1_min(100%,240px)] flex flex-col gap-[clamp(20px,3vw,34px)]">
       <div>
         <div className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8C877E] mb-[9px]">Direct</div>
-        <a href="mailto:careers@arohance.com" className="text-[clamp(16px,1.5vw,21px)] [border-bottom:1px_solid_rgba(245,242,237,.3)] pb-0.5">careers@arohance.com</a>
+        <a href="mailto:careers@arohance.com" className="text-[clamp(16px,1.5vw,21px)] [border-bottom:1px_solid_rgba(245,242,237,.3)] pb-0.5 max-lg:inline-block max-lg:py-3">careers@arohance.com</a>
       </div>
       <div>
         <div className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8C877E] mb-[9px]">Studio</div>
@@ -347,9 +347,9 @@ export default function Careers() {
   </div>
 
   <footer className="[border-top:1px_solid_rgba(245,242,237,.18)]">
-    <div className="flex justify-between gap-4 flex-wrap py-4 px-0 [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.12em] uppercase text-[#8C877E]">
+    <div className="flex justify-between gap-4 flex-wrap py-4 px-0 [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.12em] uppercase text-[#8C877E] max-lg:items-center">
       <span>© 2026 Arohance</span>
-      <span className="flex gap-[18px]"><Link href="/">Home</Link><Link href="/studio">Studio</Link><Link href="/contact">Contact</Link></span>
+      <span className="flex gap-[18px]"><Link href="/" className="max-lg:px-2 max-lg:py-4">Home</Link><Link href="/studio" className="max-lg:px-2 max-lg:py-4">Studio</Link><Link href="/contact" className="max-lg:px-2 max-lg:py-4">Contact</Link></span>
     </div>
     <div className="overflow-hidden leading-[.74] mb-[-0.09em]">
       <span className="block [font-family:'Archivo',sans-serif] font-bold text-[clamp(3.4rem,19.2vw,20rem)] tracking-[-0.05em] [font-variation-settings:'wdth'_104] whitespace-nowrap">CAREERS®</span>
