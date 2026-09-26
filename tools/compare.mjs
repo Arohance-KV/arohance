@@ -24,32 +24,20 @@ const SLUGS = ['home', 'about', 'services', 'studio', 'careers', 'contact', 'cas
 // noise, not a finding. Anything past this is reported.
 const GEOMETRY_TOLERANCE_PX = 4;
 
-// Task 9 fix-round regression guard: `archivoWdthAxis.ratio` (see
-// tools/shoot.mjs's measureFontAxis) is ~1.9 when the Archivo variable
-// font's `wdth` axis is actually in effect (measured against the original:
-// narrow ~1314px, wide ~2507px at 'wdth' 62 vs 125), and ~1.0 when a static
-// font instance silently ignores the axis -- the exact, previously-silent
-// failure mode this project already shipped once (next/font/google given
-// an explicit `weight` array serves static instances with no `wdth` axis
-// at all). 1.3 sits with wide margin on both sides of that gap.
-const FONT_AXIS_RATIO_MIN = 1.3;
-
-// Task 9 fix-round regression guard #2: `instrumentBodyFont` (see
-// tools/shoot.mjs's measureBodyFont) must show the resolved body
-// font-family actually naming Instrument Sans, AND a body-copy string
-// must render at a measurably different width under that resolved value
-// than under the literal `system-ui` keyword. Both are required: the
-// earlier bug (<body>'s font-family utility compiling to a font-*weight*
-// rule instead) left the resolved font-family as a plain system fallback
-// stack, which the name check alone catches; the width check additionally
-// guards against a *different* silent failure -- the family name
-// resolving correctly in the string while the face itself fails to load,
-// so the browser substitutes something visually indistinguishable from
-// system-ui anyway. 2px is well under the ~10.5px delta measured on the
-// reference environment, with margin against a 0px delta (no real font
-// change).
-const BODY_FONT_NAME = 'instrument sans';
-const BODY_FONT_DELTA_MIN_PX = 2;
+// Task 9 fix-round 4 regression guard, replacing the two synthetic-element
+// checks this file used to run (checkFontAxis, checkBodyFont — both
+// measured an off-DOM test span, not the page's own markup, which is
+// exactly the blind spot that let the hashed-name mismatch ship: the
+// synthetic span could set `fontFamily` to the literal string 'Archivo'
+// and get a real result even while every actual h1 on the page never
+// resolved that name at all). See `fontProofs` in tools/shoot.mjs's
+// measureRealFontProofs: three elements that already exist in the
+// converted markup, one per self-hosted family. A real element's
+// rendered box (width AND height, since a wrong font can wrap text onto a
+// different number of lines rather than just render narrower) must match
+// the original's within a small tolerance — the same reasoning as
+// GEOMETRY_TOLERANCE_PX, just scoped to these three specific elements.
+const FONT_PROOF_TOLERANCE_PX = 2;
 
 const [, , width, outBaseArg] = process.argv;
 if (!width) {
@@ -179,63 +167,51 @@ function comparePage(slug) {
   return { slug, lines, diffCount };
 }
 
-/** Regression guard, independent of the per-page diff loop above: does the
- * Archivo variable font's `wdth` axis actually render, on EACH target,
- * measured directly rather than inferred from a config file. A target
- * that silently reverts to static font instances must fail this loudly,
- * not show up as 22 unexplained geometry deltas again. */
-function checkFontAxis(slug) {
-  const o = load('original', slug);
-  const p = load('port', slug);
-  if (o.__missing || p.__missing || o.ok === false || p.ok === false) {
-    return { slug, ok: false, reason: 'page data unavailable (see per-page section above)' };
-  }
-  const oAxis = o.archivoWdthAxis;
-  const pAxis = p.archivoWdthAxis;
-  if (!oAxis || !pAxis) {
-    return { slug, ok: false, reason: 'archivoWdthAxis missing from captured JSON — re-shoot with the current tools/shoot.mjs' };
-  }
-  const problems = [];
-  if (!(oAxis.ratio >= FONT_AXIS_RATIO_MIN)) {
-    problems.push(`original ratio ${oAxis.ratio?.toFixed(3)} < ${FONT_AXIS_RATIO_MIN} (narrow=${oAxis.narrowPx?.toFixed(1)}px wide=${oAxis.widePx?.toFixed(1)}px) — reference itself looks static; check the capture`);
-  }
-  if (!(pAxis.ratio >= FONT_AXIS_RATIO_MIN)) {
-    problems.push(`port ratio ${pAxis.ratio?.toFixed(3)} < ${FONT_AXIS_RATIO_MIN} (narrow=${pAxis.narrowPx?.toFixed(1)}px wide=${pAxis.widePx?.toFixed(1)}px) — the 'wdth' axis is NOT taking effect; likely reverted to a static font instance (e.g. next/font given an explicit weight array instead of axes:['wdth'])`);
-  }
-  return { slug, ok: problems.length === 0, reason: problems.join('; '), oAxis, pAxis };
-}
+const FONT_PROOF_FAMILIES = ['archivo', 'jetbrainsMono', 'instrumentSans'];
 
-/** Regression guard #2, the same shape as checkFontAxis but for the
- * second fix-round finding: does <body> actually resolve to Instrument
- * Sans, measured directly (resolved font-family string + a real rendered-
- * width difference against system-ui), not inferred from globals.css. */
-function checkBodyFont(slug) {
+/** Regression guard: for each of the three self-hosted families, does the
+ * REAL page element that uses it (not a synthetic test node) render at
+ * the same size, on both targets? A family whose real name stops
+ * resolving (wrong CSS, a reverted globals.css, a font file that failed
+ * to ship) shows up here as that specific element's box no longer
+ * matching the original's — the same signal a human would eventually
+ * notice by eye, just automated. */
+function checkFontProofs(slug) {
   const o = load('original', slug);
   const p = load('port', slug);
   if (o.__missing || p.__missing || o.ok === false || p.ok === false) {
     return { slug, ok: false, reason: 'page data unavailable (see per-page section above)' };
   }
-  const oFont = o.instrumentBodyFont;
-  const pFont = p.instrumentBodyFont;
-  if (!oFont || !pFont) {
-    return { slug, ok: false, reason: 'instrumentBodyFont missing from captured JSON — re-shoot with the current tools/shoot.mjs' };
+  const oProofs = o.fontProofs;
+  const pProofs = p.fontProofs;
+  if (!oProofs || !pProofs) {
+    return { slug, ok: false, reason: 'fontProofs missing from captured JSON — re-shoot with the current tools/shoot.mjs' };
   }
   const problems = [];
-  for (const [label, f] of [['original', oFont], ['port', pFont]]) {
-    const nameOk = (f.bodyFontFamily || '').toLowerCase().includes(BODY_FONT_NAME);
-    const deltaOk = Math.abs(f.deltaPx) >= BODY_FONT_DELTA_MIN_PX;
-    if (!nameOk) {
-      problems.push(`${label} body font-family "${f.bodyFontFamily}" does not name Instrument Sans — falling back to a system font stack`);
-    } else if (!deltaOk) {
-      problems.push(`${label} font-family names Instrument Sans but renders identically to system-ui (delta ${f.deltaPx.toFixed(2)}px < ${BODY_FONT_DELTA_MIN_PX}px) — the face may not actually be loading`);
+  const details = {};
+  for (const family of FONT_PROOF_FAMILIES) {
+    const of = oProofs[family];
+    const pf = pProofs[family];
+    if (!of || !pf) {
+      problems.push(`${family}: real element not found on ${!of ? 'original' : 'port'}`);
+      continue;
+    }
+    const widthDelta = Math.abs(of.width - pf.width);
+    const heightDelta = Math.abs(of.height - pf.height);
+    details[family] = { originalWidth: of.width, portWidth: pf.width, widthDelta, heightDelta };
+    if (widthDelta > FONT_PROOF_TOLERANCE_PX || heightDelta > FONT_PROOF_TOLERANCE_PX) {
+      problems.push(
+        `${family} ("${of.text}"): rendered box differs beyond tolerance ` +
+          `(width ${of.width.toFixed(1)}->${pf.width.toFixed(1)}px, height ${of.height.toFixed(1)}->${pf.height.toFixed(1)}px) ` +
+          `— port computed font-family: "${pf.fontFamily}"`,
+      );
     }
   }
-  return { slug, ok: problems.length === 0, reason: problems.join('; '), oFont, pFont };
+  return { slug, ok: problems.length === 0, reason: problems.join('; '), details };
 }
 
 const pageSummaries = SLUGS.map(comparePage);
-const fontAxisResults = SLUGS.map(checkFontAxis);
-const bodyFontResults = SLUGS.map(checkBodyFont);
+const fontProofResults = SLUGS.map(checkFontProofs);
 let totalDiffs = 0;
 
 console.log(`Fidelity comparison at width ${width} (geometry tolerance +/-${GEOMETRY_TOLERANCE_PX}px)`);
@@ -254,31 +230,22 @@ for (const { slug, lines, diffCount } of pageSummaries) {
 
 console.log(`TOTAL: ${totalDiffs} difference(s) across ${pageSummaries.length} pages`);
 
-console.log(`\n## Font variable-width axis regression guard (Archivo 'wdth', threshold ratio >= ${FONT_AXIS_RATIO_MIN})`);
-const fontAxisFailures = fontAxisResults.filter((r) => !r.ok);
-for (const r of fontAxisResults) {
+console.log(`\n## Real-element font rendering guard (Archivo h1, JetBrains Mono footer label, Instrument Sans paragraph; tolerance +/-${FONT_PROOF_TOLERANCE_PX}px)`);
+const fontProofFailures = fontProofResults.filter((r) => !r.ok);
+for (const r of fontProofResults) {
   if (r.ok) {
-    console.log(`  PASS ${r.slug} (original ratio ${r.oAxis.ratio.toFixed(3)}, port ratio ${r.pAxis.ratio.toFixed(3)})`);
+    const d = r.details;
+    console.log(
+      `  PASS ${r.slug} (archivo Δ${d.archivo.widthDelta.toFixed(1)}/${d.archivo.heightDelta.toFixed(1)}px, ` +
+        `jetbrainsMono Δ${d.jetbrainsMono.widthDelta.toFixed(1)}/${d.jetbrainsMono.heightDelta.toFixed(1)}px, ` +
+        `instrumentSans Δ${d.instrumentSans.widthDelta.toFixed(1)}/${d.instrumentSans.heightDelta.toFixed(1)}px)`,
+    );
   } else {
     console.log(`  FAIL ${r.slug}: ${r.reason}`);
   }
 }
-if (fontAxisFailures.length > 0) {
-  console.log(`\n*** FONT AXIS REGRESSION: ${fontAxisFailures.length}/${fontAxisResults.length} page(s) failed. ***`);
-  process.exitCode = 1;
-}
-
-console.log(`\n## Body font regression guard (Instrument Sans, min ${BODY_FONT_DELTA_MIN_PX}px delta vs system-ui)`);
-const bodyFontFailures = bodyFontResults.filter((r) => !r.ok);
-for (const r of bodyFontResults) {
-  if (r.ok) {
-    console.log(`  PASS ${r.slug} (original delta ${r.oFont.deltaPx.toFixed(2)}px, port delta ${r.pFont.deltaPx.toFixed(2)}px)`);
-  } else {
-    console.log(`  FAIL ${r.slug}: ${r.reason}`);
-  }
-}
-if (bodyFontFailures.length > 0) {
-  console.log(`\n*** BODY FONT REGRESSION: ${bodyFontFailures.length}/${bodyFontResults.length} page(s) failed. ***`);
+if (fontProofFailures.length > 0) {
+  console.log(`\n*** REAL FONT RENDERING REGRESSION: ${fontProofFailures.length}/${fontProofResults.length} page(s) failed. ***`);
   process.exitCode = 1;
 }
 

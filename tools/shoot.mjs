@@ -211,76 +211,50 @@ function collectMeasurements() {
     const r = el.getBoundingClientRect();
     return { x: Math.round(r.x), y: Math.round(r.y), width: Math.round(r.width), height: Math.round(r.height) };
   }
-  // Every big heading uses `font-family:'Archivo',sans-serif` with
-  // `font-variation-settings:'wdth' 100/104/106` (Task 9 fix-round finding:
-  // the original's Archivo @font-face is a variable font with a `wdth`
-  // (width) axis; a static, per-weight font instance has no such axis, so
-  // those declarations render as if absent -- silently, with no console
-  // error or build warning, which is exactly why the earlier comparison
-  // caught it visually (a line-wrap difference) rather than any tool
-  // flagging it directly. This measures the ACTUAL rendered effect of the
-  // axis, not just whether the CSS property was accepted: a real variable
-  // instance renders a known string roughly twice as wide at 'wdth' 125 as
-  // at 'wdth' 62 (measured against the original: ~1314px vs ~2507px at
-  // 100px/700 weight); a static instance ignoring the axis renders the same
-  // width at both settings (delta ~= 0, ratio ~= 1).
-  function measureFontAxis() {
-    const test = document.createElement('span');
-    test.style.position = 'absolute';
-    test.style.visibility = 'hidden';
-    test.style.whiteSpace = 'nowrap';
-    test.style.fontFamily = "'Archivo', sans-serif";
-    test.style.fontWeight = '700';
-    test.style.fontSize = '100px';
-    test.textContent = 'SUPPLY CHAIN AROHANCE 0123456789';
-    document.body.appendChild(test);
-    test.style.fontVariationSettings = "'wdth' 62";
-    const narrow = test.getBoundingClientRect().width;
-    test.style.fontVariationSettings = "'wdth' 125";
-    const wide = test.getBoundingClientRect().width;
-    document.body.removeChild(test);
-    return { narrowPx: narrow, widePx: wide, deltaPx: wide - narrow, ratio: narrow > 0 ? wide / narrow : null };
-  }
-  // Task 9 fix-round finding #2: <body> carried its font-family on a
-  // Tailwind arbitrary-value utility (`font-[var(--font-instrument),...]`),
-  // which is ambiguous between the font-family and font-weight utility
-  // groups -- it compiled to a font-*weight* rule instead, so body copy
-  // sitewide silently rendered in the browser's raw fallback stack, never
-  // Instrument Sans. Fixed by moving the declaration into globals.css's
-  // body rule instead (matching the original exactly) and removing the
-  // className. This proves the fix two ways, per the instruction not to
-  // accept a config change on trust a third time: (1) the resolved
-  // font-family string itself must name Instrument Sans, not merely look
-  // plausible -- a wrong/fallback value would still be *a* string; (2) a
-  // real body-copy string must measure a different rendered width under
-  // the resolved font-family than it does forced to the literal keyword
-  // `system-ui` -- if Instrument Sans silently failed to load and the
-  // browser substituted the same face system-ui would have used anyway,
-  // the string alone would look right while the metrics stayed identical.
-  function measureBodyFont() {
-    const bodyFontFamily = getComputedStyle(document.body).fontFamily;
-    const loadedFamilies = Array.from(document.fonts)
-      .filter((f) => f.status === 'loaded')
-      .map((f) => f.family);
-    const test = document.createElement('span');
-    test.style.position = 'absolute';
-    test.style.visibility = 'hidden';
-    test.style.whiteSpace = 'nowrap';
-    test.style.fontSize = '16px';
-    test.style.fontWeight = '400';
-    test.textContent = 'Always-on content built by the people who shoot it, 0123456789';
-    document.body.appendChild(test);
-    test.style.fontFamily = bodyFontFamily;
-    const widthAsRendered = test.getBoundingClientRect().width;
-    test.style.fontFamily = 'system-ui';
-    const widthUnderSystemUi = test.getBoundingClientRect().width;
-    document.body.removeChild(test);
+  // Task 9 fix-round 4 finding: the converted markup references all three
+  // families by their real, literal names (`font-family:'Archivo',
+  // sans-serif`, `'JetBrains_Mono',monospace`, inherited 'Instrument Sans'
+  // on body) because that is what the original's own CSS does -- but
+  // next/font defined those faces under ITS OWN hashed internal names,
+  // reachable only through its CSS variables, so none of the three ever
+  // resolved anywhere in the markup. A synthetic test element that itself
+  // sets `fontFamily` to the literal name (as this file's earlier
+  // measureFontAxis/measureBodyFont did) cannot catch this class of bug:
+  // it proves the font FILE supports whatever is being measured, not that
+  // the PAGE's own markup ever reaches that file. The fix (self-hosting
+  // the original @font-face rules under their real names, globals.css) is
+  // proven here instead by reading three elements that already exist in
+  // the converted markup -- no element is created for this measurement.
+  function measureRealFontProofs() {
+    function info(el) {
+      if (!el) return null;
+      const cs = getComputedStyle(el);
+      const r = el.getBoundingClientRect();
+      return {
+        tagName: el.tagName,
+        text: (el.textContent || '').trim().slice(0, 40),
+        fontFamily: cs.fontFamily,
+        width: r.width,
+        height: r.height,
+        scrollWidth: el.scrollWidth,
+      };
+    }
+    // Archivo: the page's own h1. Prefer its first line-span (the
+    // reveal-per-line headings use `display:block` -- for home's specific
+    // markup that span also carries `white-space:nowrap`, so its box
+    // reflects actual glyph width rather than the full-width container;
+    // case-study's h1 has no spans at all and is used directly).
+    const archivo = document.querySelector('h1 > span') || document.querySelector('h1');
+    // JetBrains Mono: the footer's copyright line -- present, with this
+    // exact structure, on all seven pages.
+    const jetbrainsMono = document.querySelector('footer div span');
+    // Instrument Sans: the first real paragraph on the page (body copy
+    // has no font-family override of its own; it inherits body's).
+    const instrumentSans = document.querySelector('p');
     return {
-      bodyFontFamily,
-      loadedFamilies,
-      widthAsRendered,
-      widthUnderSystemUi,
-      deltaPx: widthAsRendered - widthUnderSystemUi,
+      archivo: info(archivo),
+      jetbrainsMono: info(jetbrainsMono),
+      instrumentSans: info(instrumentSans),
     };
   }
   const nav = document.querySelector('[data-ag-nav]');
@@ -324,8 +298,7 @@ function collectMeasurements() {
     text: normalizeText(document.body.innerText || ''),
     h1: h1Info,
     bodyBackgroundColor: getComputedStyle(document.body).backgroundColor,
-    archivoWdthAxis: measureFontAxis(),
-    instrumentBodyFont: measureBodyFont(),
+    fontProofs: measureRealFontProofs(),
   };
 }
 

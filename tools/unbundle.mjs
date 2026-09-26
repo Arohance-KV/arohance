@@ -32,6 +32,18 @@ const VENDOR = [
 mkdirSync('.source/templates', { recursive: true });
 mkdirSync('.source/vendor', { recursive: true });
 mkdirSync('public/images', { recursive: true });
+mkdirSync('public/fonts', { recursive: true });
+
+// The three families the templates actually reference by name in their
+// helmet <style> blocks (Task 9 fix-round 4 finding: next/font's hashed
+// internal names never matched the converted markup's literal
+// font-family:'Archivo'/'JetBrains_Mono'/'Instrument Sans' references, so
+// none of the three ever resolved in the port -- reproducing the
+// original's own @font-face rules under their real names is the fix).
+// Anything else that might appear here is out of scope and would be a
+// silent gap if skipped, so Pass 2 below throws rather than ignoring an
+// unrecognised family.
+const FONT_FAMILIES = ['Archivo', 'Instrument Sans', 'JetBrains Mono'];
 
 const blockAfter = (lines, kind) => {
   const i = lines.findIndex(l => l.includes(`script type="__bundler/${kind}"`));
@@ -70,8 +82,12 @@ for (const file of readdirSync('.')) {
       }
       writeFileSync(out, buf);
     } else if (ext === 'woff2') {
-      // next/font/google self-hosts these; we do not ship them.
-      byHash.set(hash, null); assetMap[uuid] = null; continue;
+      // Shipped like any other asset now (Task 9 fix-round 4): the
+      // converted markup references these fonts by their real names, and
+      // only the original files, under those names, actually satisfy
+      // that -- see FONT_FAMILIES / Pass 2 below.
+      out = `/fonts/${hash}.woff2`;
+      writeFileSync(join('public/fonts', `${hash}.woff2`), buf);
     } else {
       out = `/images/${hash}.${ext}`;
       writeFileSync(join('public/images', `${hash}.${ext}`), buf);
@@ -98,13 +114,35 @@ for (const file of readdirSync('.')) {
   }
 }
 
-// Pass 2: templates.
+// Pass 2: templates, plus the @font-face rules embedded in each one's own
+// <helmet><style> block. Every template declares the same 21 rules (3
+// families x their own weight/subset split) against its own bundle's
+// uuids; resolving each uuid through the assetMap Pass 1 just built and
+// then deduplicating by the RESOLVED text (not the uuid, which differs
+// per bundle even for identical content) collapses all 7 x 21 = 147 down
+// to the true unique set, the same way byHash already dedupes images.
+const fontFaceRules = new Map(); // resolved rule text -> true, insertion order preserved
 for (const [file, slug] of Object.entries(SLUGS)) {
   const lines = readFileSync(file, 'utf8').split('\n');
-  writeFileSync(`.source/templates/${slug}.html`, blockAfter(lines, 'template'));
+  const template = blockAfter(lines, 'template');
+  writeFileSync(`.source/templates/${slug}.html`, template);
+
+  for (const block of template.match(/@font-face\s*\{[^}]*\}/g) ?? []) {
+    const family = (block.match(/font-family:\s*'([^']+)'/) ?? [])[1];
+    if (!FONT_FAMILIES.includes(family)) {
+      throw new Error(`${slug}: unrecognised @font-face family '${family}' -- add it to FONT_FAMILIES or confirm it should stay unresolved`);
+    }
+    const uuid = (block.match(/url\("([^"]+)"\)/) ?? [])[1];
+    if (!uuid) throw new Error(`${slug}: @font-face for '${family}' has no url("...") src to resolve`);
+    const path = assetMap[uuid];
+    if (!path) throw new Error(`${slug}: @font-face for '${family}' references uuid ${uuid}, which did not resolve to a public path`);
+    const resolved = block.replace(`url("${uuid}")`, `url("${path}")`);
+    if (!fontFaceRules.has(resolved)) fontFaceRules.set(resolved, true);
+  }
 }
+writeFileSync('.source/fonts.css', [...fontFaceRules.keys()].join('\n\n') + '\n');
 
 writeFileSync('.source/assets.json', JSON.stringify(assetMap, null, 2));
 writeFileSync('.source/ext-resources.json', JSON.stringify(extResources, null, 2));
 const written = new Set(Object.values(assetMap).filter(Boolean));
-console.log(`templates: 7  assets: ${written.size}  ext-resources: ${Object.keys(extResources).length}`);
+console.log(`templates: 7  assets: ${written.size}  ext-resources: ${Object.keys(extResources).length}  font-face rules: ${fontFaceRules.size}`);
