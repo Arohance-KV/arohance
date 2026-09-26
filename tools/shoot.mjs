@@ -211,6 +211,36 @@ function collectMeasurements() {
     const r = el.getBoundingClientRect();
     return { x: Math.round(r.x), y: Math.round(r.y), width: Math.round(r.width), height: Math.round(r.height) };
   }
+  // Every big heading uses `font-family:'Archivo',sans-serif` with
+  // `font-variation-settings:'wdth' 100/104/106` (Task 9 fix-round finding:
+  // the original's Archivo @font-face is a variable font with a `wdth`
+  // (width) axis; a static, per-weight font instance has no such axis, so
+  // those declarations render as if absent -- silently, with no console
+  // error or build warning, which is exactly why the earlier comparison
+  // caught it visually (a line-wrap difference) rather than any tool
+  // flagging it directly. This measures the ACTUAL rendered effect of the
+  // axis, not just whether the CSS property was accepted: a real variable
+  // instance renders a known string roughly twice as wide at 'wdth' 125 as
+  // at 'wdth' 62 (measured against the original: ~1314px vs ~2507px at
+  // 100px/700 weight); a static instance ignoring the axis renders the same
+  // width at both settings (delta ~= 0, ratio ~= 1).
+  function measureFontAxis() {
+    const test = document.createElement('span');
+    test.style.position = 'absolute';
+    test.style.visibility = 'hidden';
+    test.style.whiteSpace = 'nowrap';
+    test.style.fontFamily = "'Archivo', sans-serif";
+    test.style.fontWeight = '700';
+    test.style.fontSize = '100px';
+    test.textContent = 'SUPPLY CHAIN AROHANCE 0123456789';
+    document.body.appendChild(test);
+    test.style.fontVariationSettings = "'wdth' 62";
+    const narrow = test.getBoundingClientRect().width;
+    test.style.fontVariationSettings = "'wdth' 125";
+    const wide = test.getBoundingClientRect().width;
+    document.body.removeChild(test);
+    return { narrowPx: narrow, widePx: wide, deltaPx: wide - narrow, ratio: narrow > 0 ? wide / narrow : null };
+  }
   const nav = document.querySelector('[data-ag-nav]');
   const header = document.querySelector('header');
   const footer = document.querySelector('footer');
@@ -252,6 +282,7 @@ function collectMeasurements() {
     text: normalizeText(document.body.innerText || ''),
     h1: h1Info,
     bodyBackgroundColor: getComputedStyle(document.body).backgroundColor,
+    archivoWdthAxis: measureFontAxis(),
   };
 }
 

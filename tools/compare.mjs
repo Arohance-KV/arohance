@@ -24,6 +24,16 @@ const SLUGS = ['home', 'about', 'services', 'studio', 'careers', 'contact', 'cas
 // noise, not a finding. Anything past this is reported.
 const GEOMETRY_TOLERANCE_PX = 4;
 
+// Task 9 fix-round regression guard: `archivoWdthAxis.ratio` (see
+// tools/shoot.mjs's measureFontAxis) is ~1.9 when the Archivo variable
+// font's `wdth` axis is actually in effect (measured against the original:
+// narrow ~1314px, wide ~2507px at 'wdth' 62 vs 125), and ~1.0 when a static
+// font instance silently ignores the axis -- the exact, previously-silent
+// failure mode this project already shipped once (next/font/google given
+// an explicit `weight` array serves static instances with no `wdth` axis
+// at all). 1.3 sits with wide margin on both sides of that gap.
+const FONT_AXIS_RATIO_MIN = 1.3;
+
 const [, , width, outBaseArg] = process.argv;
 if (!width) {
   console.error('usage: node tools/compare.mjs <width> [outBase]');
@@ -152,7 +162,34 @@ function comparePage(slug) {
   return { slug, lines, diffCount };
 }
 
+/** Regression guard, independent of the per-page diff loop above: does the
+ * Archivo variable font's `wdth` axis actually render, on EACH target,
+ * measured directly rather than inferred from a config file. A target
+ * that silently reverts to static font instances must fail this loudly,
+ * not show up as 22 unexplained geometry deltas again. */
+function checkFontAxis(slug) {
+  const o = load('original', slug);
+  const p = load('port', slug);
+  if (o.__missing || p.__missing || o.ok === false || p.ok === false) {
+    return { slug, ok: false, reason: 'page data unavailable (see per-page section above)' };
+  }
+  const oAxis = o.archivoWdthAxis;
+  const pAxis = p.archivoWdthAxis;
+  if (!oAxis || !pAxis) {
+    return { slug, ok: false, reason: 'archivoWdthAxis missing from captured JSON — re-shoot with the current tools/shoot.mjs' };
+  }
+  const problems = [];
+  if (!(oAxis.ratio >= FONT_AXIS_RATIO_MIN)) {
+    problems.push(`original ratio ${oAxis.ratio?.toFixed(3)} < ${FONT_AXIS_RATIO_MIN} (narrow=${oAxis.narrowPx?.toFixed(1)}px wide=${oAxis.widePx?.toFixed(1)}px) — reference itself looks static; check the capture`);
+  }
+  if (!(pAxis.ratio >= FONT_AXIS_RATIO_MIN)) {
+    problems.push(`port ratio ${pAxis.ratio?.toFixed(3)} < ${FONT_AXIS_RATIO_MIN} (narrow=${pAxis.narrowPx?.toFixed(1)}px wide=${pAxis.widePx?.toFixed(1)}px) — the 'wdth' axis is NOT taking effect; likely reverted to a static font instance (e.g. next/font given an explicit weight array instead of axes:['wdth'])`);
+  }
+  return { slug, ok: problems.length === 0, reason: problems.join('; '), oAxis, pAxis };
+}
+
 const pageSummaries = SLUGS.map(comparePage);
+const fontAxisResults = SLUGS.map(checkFontAxis);
 let totalDiffs = 0;
 
 console.log(`Fidelity comparison at width ${width} (geometry tolerance +/-${GEOMETRY_TOLERANCE_PX}px)`);
@@ -170,4 +207,19 @@ for (const { slug, lines, diffCount } of pageSummaries) {
 }
 
 console.log(`TOTAL: ${totalDiffs} difference(s) across ${pageSummaries.length} pages`);
+
+console.log(`\n## Font variable-width axis regression guard (Archivo 'wdth', threshold ratio >= ${FONT_AXIS_RATIO_MIN})`);
+const fontAxisFailures = fontAxisResults.filter((r) => !r.ok);
+for (const r of fontAxisResults) {
+  if (r.ok) {
+    console.log(`  PASS ${r.slug} (original ratio ${r.oAxis.ratio.toFixed(3)}, port ratio ${r.pAxis.ratio.toFixed(3)})`);
+  } else {
+    console.log(`  FAIL ${r.slug}: ${r.reason}`);
+  }
+}
+if (fontAxisFailures.length > 0) {
+  console.log(`\n*** FONT AXIS REGRESSION: ${fontAxisFailures.length}/${fontAxisResults.length} page(s) failed. ***`);
+  process.exitCode = 1;
+}
+
 if (totalDiffs > 0) process.exitCode = 1;
