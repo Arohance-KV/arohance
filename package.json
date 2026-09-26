@@ -24,6 +24,7 @@
     "@types/three": "^0.160.0",
     "eslint": "^9",
     "eslint-config-next": "15.5.26",
+    "image-size": "^2.0.4",
     "node-html-parser": "^9.0.4",
     "tailwindcss": "^4",
     "typescript": "^5"
