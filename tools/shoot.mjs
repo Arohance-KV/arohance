@@ -241,6 +241,48 @@ function collectMeasurements() {
     document.body.removeChild(test);
     return { narrowPx: narrow, widePx: wide, deltaPx: wide - narrow, ratio: narrow > 0 ? wide / narrow : null };
   }
+  // Task 9 fix-round finding #2: <body> carried its font-family on a
+  // Tailwind arbitrary-value utility (`font-[var(--font-instrument),...]`),
+  // which is ambiguous between the font-family and font-weight utility
+  // groups -- it compiled to a font-*weight* rule instead, so body copy
+  // sitewide silently rendered in the browser's raw fallback stack, never
+  // Instrument Sans. Fixed by moving the declaration into globals.css's
+  // body rule instead (matching the original exactly) and removing the
+  // className. This proves the fix two ways, per the instruction not to
+  // accept a config change on trust a third time: (1) the resolved
+  // font-family string itself must name Instrument Sans, not merely look
+  // plausible -- a wrong/fallback value would still be *a* string; (2) a
+  // real body-copy string must measure a different rendered width under
+  // the resolved font-family than it does forced to the literal keyword
+  // `system-ui` -- if Instrument Sans silently failed to load and the
+  // browser substituted the same face system-ui would have used anyway,
+  // the string alone would look right while the metrics stayed identical.
+  function measureBodyFont() {
+    const bodyFontFamily = getComputedStyle(document.body).fontFamily;
+    const loadedFamilies = Array.from(document.fonts)
+      .filter((f) => f.status === 'loaded')
+      .map((f) => f.family);
+    const test = document.createElement('span');
+    test.style.position = 'absolute';
+    test.style.visibility = 'hidden';
+    test.style.whiteSpace = 'nowrap';
+    test.style.fontSize = '16px';
+    test.style.fontWeight = '400';
+    test.textContent = 'Always-on content built by the people who shoot it, 0123456789';
+    document.body.appendChild(test);
+    test.style.fontFamily = bodyFontFamily;
+    const widthAsRendered = test.getBoundingClientRect().width;
+    test.style.fontFamily = 'system-ui';
+    const widthUnderSystemUi = test.getBoundingClientRect().width;
+    document.body.removeChild(test);
+    return {
+      bodyFontFamily,
+      loadedFamilies,
+      widthAsRendered,
+      widthUnderSystemUi,
+      deltaPx: widthAsRendered - widthUnderSystemUi,
+    };
+  }
   const nav = document.querySelector('[data-ag-nav]');
   const header = document.querySelector('header');
   const footer = document.querySelector('footer');
@@ -283,6 +325,7 @@ function collectMeasurements() {
     h1: h1Info,
     bodyBackgroundColor: getComputedStyle(document.body).backgroundColor,
     archivoWdthAxis: measureFontAxis(),
+    instrumentBodyFont: measureBodyFont(),
   };
 }
 

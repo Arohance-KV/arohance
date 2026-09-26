@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${archivo.variable} ${instrument.variable}`}>
-      <body className="font-[var(--font-instrument),system-ui,sans-serif]">
+      <body>
         {children}
       </body>
     </html>

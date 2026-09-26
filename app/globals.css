@@ -16,6 +16,7 @@ body {
   margin: 0;
   background: #0C0B0A;
   color: #F5F2ED;
+  font-family: var(--font-instrument), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }

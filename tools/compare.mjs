@@ -34,6 +34,23 @@ const GEOMETRY_TOLERANCE_PX = 4;
 // at all). 1.3 sits with wide margin on both sides of that gap.
 const FONT_AXIS_RATIO_MIN = 1.3;
 
+// Task 9 fix-round regression guard #2: `instrumentBodyFont` (see
+// tools/shoot.mjs's measureBodyFont) must show the resolved body
+// font-family actually naming Instrument Sans, AND a body-copy string
+// must render at a measurably different width under that resolved value
+// than under the literal `system-ui` keyword. Both are required: the
+// earlier bug (<body>'s font-family utility compiling to a font-*weight*
+// rule instead) left the resolved font-family as a plain system fallback
+// stack, which the name check alone catches; the width check additionally
+// guards against a *different* silent failure -- the family name
+// resolving correctly in the string while the face itself fails to load,
+// so the browser substitutes something visually indistinguishable from
+// system-ui anyway. 2px is well under the ~10.5px delta measured on the
+// reference environment, with margin against a 0px delta (no real font
+// change).
+const BODY_FONT_NAME = 'instrument sans';
+const BODY_FONT_DELTA_MIN_PX = 2;
+
 const [, , width, outBaseArg] = process.argv;
 if (!width) {
   console.error('usage: node tools/compare.mjs <width> [outBase]');
@@ -188,8 +205,37 @@ function checkFontAxis(slug) {
   return { slug, ok: problems.length === 0, reason: problems.join('; '), oAxis, pAxis };
 }
 
+/** Regression guard #2, the same shape as checkFontAxis but for the
+ * second fix-round finding: does <body> actually resolve to Instrument
+ * Sans, measured directly (resolved font-family string + a real rendered-
+ * width difference against system-ui), not inferred from globals.css. */
+function checkBodyFont(slug) {
+  const o = load('original', slug);
+  const p = load('port', slug);
+  if (o.__missing || p.__missing || o.ok === false || p.ok === false) {
+    return { slug, ok: false, reason: 'page data unavailable (see per-page section above)' };
+  }
+  const oFont = o.instrumentBodyFont;
+  const pFont = p.instrumentBodyFont;
+  if (!oFont || !pFont) {
+    return { slug, ok: false, reason: 'instrumentBodyFont missing from captured JSON — re-shoot with the current tools/shoot.mjs' };
+  }
+  const problems = [];
+  for (const [label, f] of [['original', oFont], ['port', pFont]]) {
+    const nameOk = (f.bodyFontFamily || '').toLowerCase().includes(BODY_FONT_NAME);
+    const deltaOk = Math.abs(f.deltaPx) >= BODY_FONT_DELTA_MIN_PX;
+    if (!nameOk) {
+      problems.push(`${label} body font-family "${f.bodyFontFamily}" does not name Instrument Sans — falling back to a system font stack`);
+    } else if (!deltaOk) {
+      problems.push(`${label} font-family names Instrument Sans but renders identically to system-ui (delta ${f.deltaPx.toFixed(2)}px < ${BODY_FONT_DELTA_MIN_PX}px) — the face may not actually be loading`);
+    }
+  }
+  return { slug, ok: problems.length === 0, reason: problems.join('; '), oFont, pFont };
+}
+
 const pageSummaries = SLUGS.map(comparePage);
 const fontAxisResults = SLUGS.map(checkFontAxis);
+const bodyFontResults = SLUGS.map(checkBodyFont);
 let totalDiffs = 0;
 
 console.log(`Fidelity comparison at width ${width} (geometry tolerance +/-${GEOMETRY_TOLERANCE_PX}px)`);
@@ -219,6 +265,20 @@ for (const r of fontAxisResults) {
 }
 if (fontAxisFailures.length > 0) {
   console.log(`\n*** FONT AXIS REGRESSION: ${fontAxisFailures.length}/${fontAxisResults.length} page(s) failed. ***`);
+  process.exitCode = 1;
+}
+
+console.log(`\n## Body font regression guard (Instrument Sans, min ${BODY_FONT_DELTA_MIN_PX}px delta vs system-ui)`);
+const bodyFontFailures = bodyFontResults.filter((r) => !r.ok);
+for (const r of bodyFontResults) {
+  if (r.ok) {
+    console.log(`  PASS ${r.slug} (original delta ${r.oFont.deltaPx.toFixed(2)}px, port delta ${r.pFont.deltaPx.toFixed(2)}px)`);
+  } else {
+    console.log(`  FAIL ${r.slug}: ${r.reason}`);
+  }
+}
+if (bodyFontFailures.length > 0) {
+  console.log(`\n*** BODY FONT REGRESSION: ${bodyFontFailures.length}/${bodyFontResults.length} page(s) failed. ***`);
   process.exitCode = 1;
 }
 
