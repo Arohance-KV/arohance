@@ -63,7 +63,7 @@ export default function Careers() {
 
   <div className="flex justify-between items-end gap-[clamp(20px,5vw,60px)] flex-wrap mt-[clamp(28px,4vw,58px)]">
     <p data-reveal="" className="m-0 max-w-[48ch] text-[clamp(15px,1.35vw,19px)] leading-[1.55] text-[#A9A39A]">Fourteen people who would rather build the thing than manage the people building it. No account layer, no deck factory, no work that goes out with someone else&apos;s name on the craft.</p>
-    <a href="#roles" className="inline-flex items-center gap-3 [font-family:'Archivo',sans-serif] font-semibold text-[clamp(16px,1.6vw,22px)] tracking-[-0.02em] [border-bottom:1px_solid_currentColor] pb-1 max-lg:py-3">See the open roles <span>↓</span></a>
+    <a href="#roles" className="inline-flex items-center gap-3 [font-family:'Archivo',sans-serif] font-semibold text-[clamp(16px,1.6vw,22px)] tracking-[-0.02em] [border-bottom:1px_solid_currentColor] pb-1">See the open roles <span>↓</span></a>
   </div>
 </header>
 
