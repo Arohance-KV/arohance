@@ -210,8 +210,44 @@ function checkFontProofs(slug) {
   return { slug, ok: problems.length === 0, reason: problems.join('; '), details };
 }
 
+// Task 9 fix-round 5 regression guard: the root cause underneath all 24
+// fix-round-4 survivors turned out to have nothing to do with fonts at
+// all -- Tailwind Preflight sets `line-height:1.5` on <html>, which the
+// original never had, so any element without its own explicit `leading-*`
+// utility silently inherited 1.5 instead of the browser's native
+// `normal`. The fix (globals.css's `html` rule now sets `line-height:
+// normal` explicitly) is checked directly here, not just inferred from
+// its symptoms: `htmlLineHeight` (tools/shoot.mjs) must read the literal
+// string 'normal' on both targets. A reintroduced numeric value here
+// (Preflight un-overridden, or the override accidentally removed) fails
+// loudly by name, instead of reappearing as a wall of unrelated-looking
+// geometry deltas for someone to re-diagnose from scratch a fourth time.
+const HTML_LINE_HEIGHT_EXPECTED = 'normal';
+
+function checkHtmlLineHeight(slug) {
+  const o = load('original', slug);
+  const p = load('port', slug);
+  if (o.__missing || p.__missing || o.ok === false || p.ok === false) {
+    return { slug, ok: false, reason: 'page data unavailable (see per-page section above)' };
+  }
+  const oValue = o.htmlLineHeight;
+  const pValue = p.htmlLineHeight;
+  if (oValue == null || pValue == null) {
+    return { slug, ok: false, reason: 'htmlLineHeight missing from captured JSON — re-shoot with the current tools/shoot.mjs' };
+  }
+  const problems = [];
+  if (oValue !== HTML_LINE_HEIGHT_EXPECTED) {
+    problems.push(`original html line-height is "${oValue}", expected "${HTML_LINE_HEIGHT_EXPECTED}" — reference capture looks wrong, check it`);
+  }
+  if (pValue !== HTML_LINE_HEIGHT_EXPECTED) {
+    problems.push(`port html line-height is "${pValue}", expected "${HTML_LINE_HEIGHT_EXPECTED}" — an inherited numeric line-height on <html> is back (Tailwind Preflight sets 1.5; globals.css must override it)`);
+  }
+  return { slug, ok: problems.length === 0, reason: problems.join('; '), oValue, pValue };
+}
+
 const pageSummaries = SLUGS.map(comparePage);
 const fontProofResults = SLUGS.map(checkFontProofs);
+const htmlLineHeightResults = SLUGS.map(checkHtmlLineHeight);
 let totalDiffs = 0;
 
 console.log(`Fidelity comparison at width ${width} (geometry tolerance +/-${GEOMETRY_TOLERANCE_PX}px)`);
@@ -246,6 +282,20 @@ for (const r of fontProofResults) {
 }
 if (fontProofFailures.length > 0) {
   console.log(`\n*** REAL FONT RENDERING REGRESSION: ${fontProofFailures.length}/${fontProofResults.length} page(s) failed. ***`);
+  process.exitCode = 1;
+}
+
+console.log(`\n## html line-height guard (expected "${HTML_LINE_HEIGHT_EXPECTED}" on both targets)`);
+const htmlLineHeightFailures = htmlLineHeightResults.filter((r) => !r.ok);
+for (const r of htmlLineHeightResults) {
+  if (r.ok) {
+    console.log(`  PASS ${r.slug} (original "${r.oValue}", port "${r.pValue}")`);
+  } else {
+    console.log(`  FAIL ${r.slug}: ${r.reason}`);
+  }
+}
+if (htmlLineHeightFailures.length > 0) {
+  console.log(`\n*** HTML LINE-HEIGHT REGRESSION: ${htmlLineHeightFailures.length}/${htmlLineHeightResults.length} page(s) failed. ***`);
   process.exitCode = 1;
 }
 

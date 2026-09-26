@@ -218,7 +218,7 @@
 :root { --ag-accent: #F2600C; }
 
 * { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; line-height: normal; }
 body {
   margin: 0;
   background: #0C0B0A;

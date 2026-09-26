@@ -299,6 +299,16 @@ function collectMeasurements() {
     h1: h1Info,
     bodyBackgroundColor: getComputedStyle(document.body).backgroundColor,
     fontProofs: measureRealFontProofs(),
+    // Task 9 fix-round 4 root cause, fix-round 5 guard: Tailwind
+    // Preflight sets `line-height:1.5` on <html>; the original has no
+    // line-height on html at all, so it (and, after the fix-round 5
+    // restore, the port) computes to the literal string 'normal' here.
+    // Any element without its own explicit `leading-*` utility inherits
+    // this value, so a reintroduced numeric value on <html> would once
+    // again silently change the rendered height of every such element
+    // sitewide -- direct, targeted measurement of the actual mechanism,
+    // not just its downstream symptoms.
+    htmlLineHeight: getComputedStyle(document.documentElement).lineHeight,
   };
 }
 
