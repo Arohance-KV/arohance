@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { convert } from './convert.mjs';
 
 const ASSETS = { 'aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee': '/images/abc123.png' };
+const EXT_RESOURCES = { 'work-agasti-s': '/images/17320eecd2.jpg' };
 
 // Every assertion below pins the ENTIRE converted fragment with assert.equal
 // instead of matching a substring/regex. A substring check can pass while
@@ -99,6 +100,32 @@ test('an unmappable internal link is reported, not silently passed through', () 
     () => convert('<a href="Arohance%20Nonexistent.html">x</a>', ASSETS),
     /Arohance%20Nonexistent\.html/,
     'the thrown error should name the specific unresolved href',
+  );
+});
+
+// Task 8, fix round 1 (Concern 2): a second class of asset reference,
+// discovered only once initVideo (lib/behaviors/video.ts) was ported and
+// found to depend on window.__resources, which does not exist here. The
+// bundler's `ext_resources` table maps a human-readable id to a public
+// path -- the same shape of value the bare-uuid `assets` map above already
+// resolves -- but templates reference it as `assets/<id>.<ext>` (the
+// testimonial reel's `data-vt-poster="assets/work-agasti-s.jpg"`), never as
+// a bare uuid sitting alone as the whole attribute value, so `assets[v]`
+// (an exact-value lookup) can never match it; it needs its own regex-based
+// lookup keyed by the captured id.
+test('an assets/<id>.<ext> reference is rewritten to its mapped path', () => {
+  const out = convert('<div data-vt-poster="assets/work-agasti-s.jpg"></div>', ASSETS, EXT_RESOURCES);
+  assert.equal(out, '<div data-vt-poster="/images/17320eecd2.jpg"></div>');
+});
+
+// Mirrors the unmappable-internal-link test above: an assets/<id> reference
+// this converter cannot resolve must fail loudly, not ship as a dead path
+// that only surfaces later as a broken <img> in the browser.
+test('an unresolvable assets/<id> reference is reported, not silently passed through', () => {
+  assert.throws(
+    () => convert('<div data-vt-poster="assets/does-not-exist.jpg"></div>', ASSETS, EXT_RESOURCES),
+    /unmapped asset reference: assets\/does-not-exist\.jpg/,
+    'the thrown error should name the specific unresolved asset reference',
   );
 });
 

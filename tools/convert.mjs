@@ -58,7 +58,7 @@ const NUMERIC_ATTRS = ['rows', 'cols', 'span', 'colSpan', 'rowSpan', 'maxLength'
 // reported, not shipped -- see the guard after the main loop below.
 const KNOWN_TAGS = new Set(['x-dc']);
 
-export function convert(html, assets) {
+export function convert(html, assets, extResources = {}) {
   const root = parse(html, { lowerCaseTagName: false, comment: false });
   // Diagnostics collected across the whole document and reported together
   // in one throw, rather than on the first hit: an internal link this
@@ -106,6 +106,21 @@ export function convert(html, assets) {
     for (const [name, value] of Object.entries({ ...el.attributes })) {
       let v = value;
       if (assets[v]) v = assets[v];
+      // Task 8, fix round 1 (Concern 2): a second class of asset reference,
+      // alongside the bare-uuid one handled above. The bundler's
+      // `ext_resources` table maps a human-readable id to the same kind of
+      // public path, but templates reference it as `assets/<id>.<ext>` (the
+      // testimonial reel's `data-vt-poster="assets/work-agasti-s.jpg"`),
+      // never as a bare uuid, so it needs its own lookup keyed by that id.
+      // Unresolvable is reported the same way as an unmapped internal link
+      // below -- a converter that silently ships a dead reference is how it
+      // reaches a later task as an unexplained bug.
+      const assetRef = /^assets\/(.+)\.\w+$/.exec(v);
+      if (assetRef) {
+        const resolved = extResources[assetRef[1]];
+        if (resolved === undefined) problems.add(`unmapped asset reference: ${v}`);
+        else v = resolved;
+      }
       if (name.toLowerCase() === 'href' && v.startsWith('Arohance')) {
         const route = toRoute(v);
         if (route === null) problems.add(`unmapped internal link: ${v}`);
@@ -217,13 +232,14 @@ if (process.argv[1]?.endsWith('convert.mjs')) {
   const slug = process.argv[2];
   if (!slug) { console.error('usage: node tools/convert.mjs <slug>'); process.exit(1); }
   const assets = JSON.parse(readFileSync('.source/assets.json', 'utf8'));
+  const extResources = JSON.parse(readFileSync('.source/ext-resources.json', 'utf8'));
   const html = readFileSync(`.source/templates/${slug}.html`, 'utf8');
   // Strip everything up to and including </helmet>, and the trailing logic script.
   const body = html.slice(html.indexOf('</helmet>') + 9).split('<script type="text/x-dc"')[0];
   mkdirSync('.source/jsx', { recursive: true });
   let jsx;
   try {
-    jsx = convert(body, assets);
+    jsx = convert(body, assets, extResources);
   } catch (err) {
     console.error(`convert failed for ${slug}: ${err.message}`);
     process.exit(1);

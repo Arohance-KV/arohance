@@ -41,6 +41,7 @@ const blockAfter = (lines, kind) => {
 
 const byHash = new Map(); // content hash -> public path
 const assetMap = {};      // uuid -> public path
+const extResources = {};  // human-readable id -> public path
 
 // Pass 1: every asset from every bundle, deduplicated by content.
 for (const file of readdirSync('.')) {
@@ -78,6 +79,23 @@ for (const file of readdirSync('.')) {
     byHash.set(hash, out);
     assetMap[uuid] = out;
   }
+
+  // ext_resources is a second reference table, alongside the manifest
+  // above: a human-readable id (referenced in templates as
+  // `assets/<id>.<ext>`, e.g. the testimonial reel's
+  // data-vt-poster="assets/work-agasti-s.jpg") mapped to a uuid from this
+  // same bundle's manifest, just resolved above. An id whose uuid maps to
+  // null (a font, or page-logic JS the manifest loop discards) is skipped
+  // rather than written as a null path.
+  for (const { id, uuid } of blockAfter(lines, 'ext_resources')) {
+    const path = assetMap[uuid];
+    if (path == null) continue;
+    if (id in extResources && extResources[id] !== path) {
+      console.warn(`ext-resource conflict ignored: ${id} differs between bundles; keeping first`);
+      continue;
+    }
+    extResources[id] = path;
+  }
 }
 
 // Pass 2: templates.
@@ -87,5 +105,6 @@ for (const [file, slug] of Object.entries(SLUGS)) {
 }
 
 writeFileSync('.source/assets.json', JSON.stringify(assetMap, null, 2));
+writeFileSync('.source/ext-resources.json', JSON.stringify(extResources, null, 2));
 const written = new Set(Object.values(assetMap).filter(Boolean));
-console.log(`templates: 7  assets: ${written.size}`);
+console.log(`templates: 7  assets: ${written.size}  ext-resources: ${Object.keys(extResources).length}`);
