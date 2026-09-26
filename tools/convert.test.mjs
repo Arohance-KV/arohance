@@ -168,3 +168,112 @@ test('braces in text are escaped for JSX', () => {
   const out = convert('<p>a { b } c</p>', ASSETS);
   assert.equal(out, "<p>a {'{'} b {'}'} c</p>");
 });
+
+// Task 7, fix round 1, finding 1: node-html-parser's own setAttribute /
+// removeAttribute re-quote *every* attribute on the element each time they
+// touch any one of them, and the quoting helper they share collapses a
+// value to a bare token whenever that value is the empty string -- the
+// same collapse it applies to a source attribute that was genuinely
+// valueless. Critically, this only fires as a side effect of some *other*
+// attribute on the same element going through setAttribute/removeAttribute
+// (e.g. `style` being merged into `className`, below) -- an element whose
+// only attribute is the empty one never touches that code path at all, so
+// a test without a triggering sibling attribute cannot tell the fixed
+// converter from the broken one (confirmed by mutation: removing the fix
+// left such a test passing anyway). `style` here is exactly what triggers
+// it on every real occurrence: the 22 real `alt=""` attributes (4
+// testimonial thumbnails, 18 content-studio stream cards) all sit next to
+// a `style` attribute of their own. Pre-fix, this input produced
+// `<img src="x" alt className="block" />` (no `=""` at all); JSX reads
+// that bare `alt` as `alt={true}`, and `boolean` is not assignable to
+// `alt`'s `string` type.
+test('an empty attribute value is emitted explicitly, not collapsed to a bare token', () => {
+  const out = convert('<img src="x" alt="" style="display:block">', ASSETS);
+  assert.equal(out, '<img src="x" alt="" className="block" />');
+});
+
+// Same hazard, deliberately on an attribute that is not alt (per the fix
+// instructions), and again with a `style` sibling so the collapse actually
+// has a chance to fire: the real nav logo carries `data-ag-logo=""` in the
+// source, which is not `alt` and has no string-typed React prop backing
+// it, but a mutation that reverted the general fix to "just special-case
+// alt" would still leave this one bare -- this test exists specifically so
+// that narrower fix would fail it.
+test('the empty-attribute fix is general, not special-cased to alt', () => {
+  const out = convert('<img data-ag-logo="" src="x" alt="y" style="display:block">', ASSETS);
+  assert.equal(out, '<img data-ag-logo="" src="x" alt="y" className="block" />');
+});
+
+// Conservative-ness check: a source attribute with genuinely no value at
+// all (no `=`, e.g. a real HTML boolean attribute) must stay bare -- JSX's
+// `{true}` reading of a bare attribute is *correct* for this case. A
+// mutation that "fixed" the empty-string hazard by quoting every attribute
+// unconditionally (including a true `null`) would fail this test.
+test('a genuinely valueless source attribute is left bare', () => {
+  const out = convert('<input disabled>', ASSETS);
+  assert.equal(out, '<input disabled />');
+});
+
+// Task 7, fix round 1, finding 2: React types rows/cols/span/colSpan/
+// rowSpan/maxLength/minLength/size/start `number`, not `string | number`,
+// so the literal JSX string the converter emits for every other attribute
+// fails to type-check even though it was valid HTML (the real template's
+// `rows="3"` is the case that surfaced this). Covers all five
+// not-otherwise-renamed names in one element set, so dropping any single
+// entry from the numeric-attribute list fails this one assertion.
+test('numeric attributes become JSX number expressions', () => {
+  const out = convert(
+    '<textarea rows="3"></textarea><textarea cols="40"></textarea><col span="2"></col><input size="20"><ol start="5"></ol>',
+    ASSETS,
+  );
+  assert.equal(
+    out,
+    '<textarea rows={3}></textarea><textarea cols={40}></textarea><col span={2} /><input size={20} /><ol start={5}></ol>',
+  );
+});
+
+// The remaining four numeric names only exist in JSX after the existing
+// html-attribute rename table upper-cases them (colspan -> colSpan, etc.)
+// -- this pins that the numeric coercion runs *after* that rename, on the
+// renamed name, rather than missing them because it only ever looked for
+// the lowercase HTML spelling.
+test('numeric coercion applies after the html-attribute rename, not before', () => {
+  const cells = convert('<td colspan="2" rowspan="3">x</td>', ASSETS);
+  assert.equal(cells, '<td colSpan={2} rowSpan={3}>x</td>');
+  const lengths = convert('<input maxlength="10" minlength="2">', ASSETS);
+  assert.equal(lengths, '<input maxLength={10} minLength={2} />');
+});
+
+// Deliberate exclusion: width/height are not in the numeric-attribute list.
+// React accepts them as strings, and they appear on SVG elements where a
+// blind numeric coercion could silently change a percentage value's
+// meaning. A well-meaning future addition of these to the list would fail
+// this test.
+test('width and height are left as JSX strings, not coerced to numbers', () => {
+  const out = convert('<svg width="100" height="50"></svg><img src="x" width="24" height="24">', ASSETS);
+  assert.equal(out, '<svg width="100" height="50"></svg><img src="x" width="24" height="24" />');
+});
+
+// Task 7, fix round 1, finding 3: a literal apostrophe, straight double
+// quote or '>' in JSX text content fails eslint-config-next's
+// react/no-unescaped-entities rule as a *build* error (not caught by tsc,
+// only by `next build`'s lint pass) -- the real "DON'T", "can't", "We'll",
+// "you're" and "don't" copy across the homepage all hit this. JSX decodes
+// named entities in text (the converter already relies on this for
+// `&amp;`), so `&apos;`/`&quot;`/`&gt;` render as the original characters --
+// verified separately by compiling this exact JSX through TypeScript's own
+// transform and confirming the emitted string literal is unchanged.
+test('apostrophes, quotes and > in text are escaped for JSX', () => {
+  const out = convert('<p>Don\'t say "hi" if a > b</p>', ASSETS);
+  assert.equal(out, '<p>Don&apos;t say &quot;hi&quot; if a &gt; b</p>');
+});
+
+// Guards the same single-pass-replacer requirement the brace-escaping test
+// above already documents, now that the replacer also handles three more
+// characters: braces, an apostrophe, a quote and '>' all in one text node
+// must not corrupt each other (e.g. the apostrophe inside the brace
+// replacement text `{'{'}` must not be re-escaped by a second pass).
+test('mixed braces and entities in one text node are not corrupted', () => {
+  const out = convert('<p>a { b } c\'s "d" > e</p>', ASSETS);
+  assert.equal(out, "<p>a {'{'} b {'}'} c&apos;s &quot;d&quot; &gt; e</p>");
+});

@@ -1,23 +1,20 @@
-'use client';
-
 import Image from 'next/image';
-import AgRuntime from '@/components/AgRuntime';
 import ContactPill from '@/components/ContactPill';
-import { HOME_MODULES } from './modules';
+import HomeRuntime from './home-runtime';
 
 export default function Home() {
   return (
-<div data-ag-root className="bg-[#0C0B0A] text-[#F5F2ED] relative overflow-clip">
-<svg data-ag-trail aria-hidden="true" className="absolute left-0 top-0 w-full h-full z-[0] pointer-events-none overflow-visible"><path data-ag-trail-ghost fill="none" stroke="rgba(245,242,237,.07)" strokeWidth="2" strokeLinecap="round"></path><path data-ag-trail-line fill="none" stroke="var(--ag-accent,#F2600C)" strokeWidth="2.4" strokeLinecap="round"></path><circle data-ag-trail-dot="" r="6" fill="var(--ag-accent,#F2600C)"></circle><circle data-ag-trail-halo r="18" fill="none" stroke="var(--ag-accent,#F2600C)" strokeOpacity=".35" strokeWidth="1.5"></circle></svg>
+<div data-ag-root="" className="bg-[#0C0B0A] text-[#F5F2ED] relative overflow-clip">
+<svg data-ag-trail="" aria-hidden="true" className="absolute left-0 top-0 w-full h-full z-[0] pointer-events-none overflow-visible"><path data-ag-trail-ghost="" fill="none" stroke="rgba(245,242,237,.07)" strokeWidth="2" strokeLinecap="round"></path><path data-ag-trail-line="" fill="none" stroke="var(--ag-accent,#F2600C)" strokeWidth="2.4" strokeLinecap="round"></path><circle data-ag-trail-dot="" r="6" fill="var(--ag-accent,#F2600C)"></circle><circle data-ag-trail-halo="" r="18" fill="none" stroke="var(--ag-accent,#F2600C)" strokeOpacity=".35" strokeWidth="1.5"></circle></svg>
 
-<nav data-ag-nav className="fixed top-0 left-0 right-0 z-[70] flex items-start justify-between gap-4 py-4 px-[clamp(20px,4.4vw,64px)] [transition:padding_.45s_ease]">
-  <a href="#top" className="flex items-center"><Image data-ag-logo src="/images/93c7aab596.png" alt="Arohance, Tech &amp; Marketing" width={422} height={133} priority className="h-[46px] w-auto block [filter:none] [transition:filter_.45s_ease,height_.45s_ease]" /></a>
+<nav data-ag-nav="" className="fixed top-0 left-0 right-0 z-[70] flex items-start justify-between gap-4 py-4 px-[clamp(20px,4.4vw,64px)] [transition:padding_.45s_ease]">
+  <a href="#top" className="flex items-center"><Image data-ag-logo="" src="/images/93c7aab596.png" alt="Arohance, Tech &amp; Marketing" width={422} height={133} priority className="h-[46px] w-auto block [filter:none] [transition:filter_.45s_ease,height_.45s_ease]" /></a>
   <div className="flex items-center gap-2.5">
-    <button data-ag-news-btn type="button" aria-label="Studio news" className="w-[46px] h-[46px] border-0 rounded-[15px] bg-[#1F1E1C] text-[#EDE9E1] flex items-center justify-center cursor-pointer shadow-[0_10px_26px_rgba(0,0,0,.5)] [transition:background_.35s_ease,transform_.5s_cubic-bezier(.16,1,.3,1)] hover:bg-[var(--ag-accent,#F2600C)] hover:[transform:translate3d(0,-2px,0)]">
+    <button data-ag-news-btn="" type="button" aria-label="Studio news" className="w-[46px] h-[46px] border-0 rounded-[15px] bg-[#1F1E1C] text-[#EDE9E1] flex items-center justify-center cursor-pointer shadow-[0_10px_26px_rgba(0,0,0,.5)] [transition:background_.35s_ease,transform_.5s_cubic-bezier(.16,1,.3,1)] hover:bg-[var(--ag-accent,#F2600C)] hover:[transform:translate3d(0,-2px,0)]">
       <svg width="21" height="21" fill="none" stroke="currentColor" aria-hidden="true" viewBox="0 0 24 24" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 13c2.5 0 3-6 5.5-6S11 17 13.5 17 17 11 21 11"></path></svg>
     </button>
-    <button data-ag-menu-btn type="button" aria-label="Menu" className="w-[46px] h-[46px] border-0 rounded-[15px] bg-[#1F1E1C] text-[#EDE9E1] flex items-center justify-center cursor-pointer shadow-[0_10px_26px_rgba(0,0,0,.5)] [transition:background_.35s_ease,transform_.5s_cubic-bezier(.16,1,.3,1)] hover:bg-[var(--ag-accent,#F2600C)] hover:[transform:translate3d(0,-2px,0)]">
-      <span data-ag-burger className="flex flex-col gap-[5px] w-[19px]">
+    <button data-ag-menu-btn="" type="button" aria-label="Menu" className="w-[46px] h-[46px] border-0 rounded-[15px] bg-[#1F1E1C] text-[#EDE9E1] flex items-center justify-center cursor-pointer shadow-[0_10px_26px_rgba(0,0,0,.5)] [transition:background_.35s_ease,transform_.5s_cubic-bezier(.16,1,.3,1)] hover:bg-[var(--ag-accent,#F2600C)] hover:[transform:translate3d(0,-2px,0)]">
+      <span data-ag-burger="" className="flex flex-col gap-[5px] w-[19px]">
         <span className="block h-0.5 bg-[currentColor] rounded-[2px] [transition:transform_.45s_cubic-bezier(.16,1,.3,1),opacity_.3s]"></span>
         <span className="block h-0.5 bg-[currentColor] rounded-[2px] [transition:transform_.45s_cubic-bezier(.16,1,.3,1),opacity_.3s]"></span>
       </span>
@@ -25,10 +22,10 @@ export default function Home() {
   </div>
 </nav>
 
-<div data-ag-overlay className="fixed inset-0 z-[65] bg-[rgba(14,13,12,.58)] [backdrop-filter:blur(18px)] [-webkit-backdrop-filter:blur(18px)] opacity-[0] invisible pointer-events-none [transition:opacity_.5s_ease,visibility_.5s_ease]">
+<div data-ag-overlay="" className="fixed inset-0 z-[65] bg-[rgba(14,13,12,.58)] [backdrop-filter:blur(18px)] [-webkit-backdrop-filter:blur(18px)] opacity-[0] invisible pointer-events-none [transition:opacity_.5s_ease,visibility_.5s_ease]">
   <div className="absolute inset-0 flex items-start justify-end gap-3.5 pt-[clamp(72px,10vh,86px)] px-[clamp(16px,4.4vw,64px)] pb-[clamp(20px,4vh,40px)] overflow-auto">
 
-    <div data-ag-news-panel className="[flex:0_1_min(100%,430px)] flex flex-col gap-3 opacity-[0] [transform:translate3d(28px,0,0)] [transition:opacity_.5s_ease,transform_.6s_cubic-bezier(.16,1,.3,1)] pointer-events-none">
+    <div data-ag-news-panel="" className="[flex:0_1_min(100%,430px)] flex flex-col gap-3 opacity-[0] [transform:translate3d(28px,0,0)] [transition:opacity_.5s_ease,transform_.6s_cubic-bezier(.16,1,.3,1)] pointer-events-none">
       <article className="flex gap-4 justify-between bg-[#1F1E1C] rounded-[16px] pt-[18px] px-[18px] pb-3.5 text-[#EDE9E1]">
         <div className="flex flex-col justify-between gap-[18px] min-w-0">
           <div>
@@ -62,20 +59,20 @@ export default function Home() {
       <a href="/studio" className="flex items-center justify-between gap-4 bg-[#F5F2ED] text-[#0A0A0A] rounded-[16px] py-4 px-5 [font-family:'Archivo',sans-serif] font-semibold text-[16px] [transition:background_.35s_ease] hover:bg-[var(--ag-accent,#F2600C)]">More news <span>→</span></a>
     </div>
 
-    <div data-ag-menu-panel className="[flex:0_1_min(100%,420px)] flex flex-col justify-between gap-[clamp(30px,6vh,64px)] min-h-[min(560px,76vh)] bg-[#1F1E1C] text-[#EDE9E1] rounded-[16px] pt-5 px-[clamp(20px,2.4vw,30px)] pb-[clamp(24px,3vh,34px)] opacity-[0] [transform:translate3d(28px,0,0)] [transition:opacity_.5s_ease,transform_.6s_cubic-bezier(.16,1,.3,1)] pointer-events-none">
+    <div data-ag-menu-panel="" className="[flex:0_1_min(100%,420px)] flex flex-col justify-between gap-[clamp(30px,6vh,64px)] min-h-[min(560px,76vh)] bg-[#1F1E1C] text-[#EDE9E1] rounded-[16px] pt-5 px-[clamp(20px,2.4vw,30px)] pb-[clamp(24px,3vh,34px)] opacity-[0] [transform:translate3d(28px,0,0)] [transition:opacity_.5s_ease,transform_.6s_cubic-bezier(.16,1,.3,1)] pointer-events-none">
       <div>
         <div className="flex items-center justify-between gap-4 text-[#8A857B]">
           <span className="text-[17px]">→</span>
-          <button data-ag-close type="button" aria-label="Close menu" className="w-[30px] h-[30px] border-0 bg-[transparent] text-[#B7B1A6] flex items-center justify-center cursor-pointer text-[19px] leading-[1] [transition:color_.3s] hover:text-[#EDE9E1]">✕</button>
+          <button data-ag-close="" type="button" aria-label="Close menu" className="w-[30px] h-[30px] border-0 bg-[transparent] text-[#B7B1A6] flex items-center justify-center cursor-pointer text-[19px] leading-[1] [transition:color_.3s] hover:text-[#EDE9E1]">✕</button>
         </div>
         <div className="flex flex-col mt-[clamp(12px,2vh,22px)]">
-          <a data-ag-mlink href="#top" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">Home <span className="text-[.5em] text-[#8A857B]">→</span></a>
-          <a data-ag-mlink href="#work" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">Work <span className="text-[.5em] text-[#8A857B]">→</span></a>
-          <a data-ag-mlink href="/about" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">About <span className="text-[.5em] text-[#8A857B]">→</span></a>
-          <a data-ag-mlink href="/services" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">Services <span className="text-[.5em] text-[#8A857B]">→</span></a>
-          <a data-ag-mlink href="/studio" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">Studio <span className="text-[.5em] text-[#8A857B]">→</span></a>
-          <a data-ag-mlink href="/careers" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#F5F2ED] hover:pl-2.5">Careers <span className="text-[.5em] text-[#8A857B]">→</span></a>
-          <a data-ag-mlink href="/contact" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">Contact <span className="text-[.5em] text-[#8A857B]">→</span></a>
+          <a data-ag-mlink="" href="#top" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">Home <span className="text-[.5em] text-[#8A857B]">→</span></a>
+          <a data-ag-mlink="" href="#work" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">Work <span className="text-[.5em] text-[#8A857B]">→</span></a>
+          <a data-ag-mlink="" href="/about" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">About <span className="text-[.5em] text-[#8A857B]">→</span></a>
+          <a data-ag-mlink="" href="/services" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">Services <span className="text-[.5em] text-[#8A857B]">→</span></a>
+          <a data-ag-mlink="" href="/studio" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">Studio <span className="text-[.5em] text-[#8A857B]">→</span></a>
+          <a data-ag-mlink="" href="/careers" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#F5F2ED] hover:pl-2.5">Careers <span className="text-[.5em] text-[#8A857B]">→</span></a>
+          <a data-ag-mlink="" href="/contact" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">Contact <span className="text-[.5em] text-[#8A857B]">→</span></a>
         </div>
       </div>
       <div>
@@ -92,19 +89,19 @@ export default function Home() {
 </div>
 
 <header id="top" className="relative z-[2] min-h-[100svh] flex items-end pt-[clamp(104px,14vh,160px)] px-[clamp(20px,4.4vw,64px)] pb-[clamp(26px,4vh,48px)] overflow-hidden">
-  <div data-ag-ether className="absolute inset-0 z-[0] bg-[#0C0B0A] overflow-hidden"></div>
+  <div data-ag-ether="" className="absolute inset-0 z-[0] bg-[#0C0B0A] overflow-hidden"></div>
 
   <div className="absolute left-0 top-0 bottom-0 w-[min(78%,1100px)] z-[1] bg-[linear-gradient(100deg,rgba(12,11,10,.72)_0%,rgba(12,11,10,.38)_45%,rgba(12,11,10,0)_80%)] pointer-events-none"></div>
 
   <div className="relative z-[2] [flex:1_1_auto] max-w-[min(62%,880px)] flex flex-col gap-[clamp(26px,4vh,52px)]">
   <h1 className="m-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(2.5rem,8vw,9.5rem)] leading-[.86] tracking-[-0.048em] [font-variation-settings:'wdth'_106]">
-    <span data-reveal data-delay="0" className="block whitespace-nowrap">WE MAKE</span>
-    <span data-reveal data-delay="90" className="block whitespace-nowrap">YOU</span>
-    <span data-reveal data-delay="180" className="block whitespace-nowrap"><span data-ag-magnet className="inline-block text-[var(--ag-accent,#F2600C)] [will-change:transform]">MAGNETIC.</span></span>
+    <span data-reveal="" data-delay="0" className="block whitespace-nowrap">WE MAKE</span>
+    <span data-reveal="" data-delay="90" className="block whitespace-nowrap">YOU</span>
+    <span data-reveal="" data-delay="180" className="block whitespace-nowrap"><span data-ag-magnet="" className="inline-block text-[var(--ag-accent,#F2600C)] [will-change:transform]">MAGNETIC.</span></span>
   </h1>
 
   <div className="flex justify-between items-end gap-[clamp(20px,5vw,60px)] flex-wrap">
-    <p data-reveal className="m-0 max-w-[44ch] text-[clamp(15px,1.35vw,19px)] leading-[1.5] text-[#A9A39A]">An independent studio for brands, products and the technology underneath them. Strategy, creative, film, design and engineering, all of it in one room, none of it outsourced.</p>
+    <p data-reveal="" className="m-0 max-w-[44ch] text-[clamp(15px,1.35vw,19px)] leading-[1.5] text-[#A9A39A]">An independent studio for brands, products and the technology underneath them. Strategy, creative, film, design and engineering, all of it in one room, none of it outsourced.</p>
     <a href="#work" className="flex items-center gap-2.5 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E]">Selected work <span className="inline-block text-[var(--ag-accent,#F2600C)]">↓</span></a>
   </div>
   </div>
@@ -114,7 +111,7 @@ export default function Home() {
   <div className="flex gap-[clamp(26px,5vw,90px)] flex-wrap items-start">
     <div className="[flex:1_1_min(100%,190px)] [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E] pt-2.5">+ (Studio)</div>
     <div className="[flex:4_1_min(100%,520px)]">
-      <p data-reveal className="m-0 [font-family:'Archivo',sans-serif] font-medium text-[clamp(1.55rem,3.9vw,3.5rem)] leading-[1.08] tracking-[-0.03em] [font-variation-settings:'wdth'_100] [text-wrap:pretty]">We are designers, developers, strategists, filmmakers and producers working as one team, so the idea that survives the pitch is the same one that ships.</p>
+      <p data-reveal="" className="m-0 [font-family:'Archivo',sans-serif] font-medium text-[clamp(1.55rem,3.9vw,3.5rem)] leading-[1.08] tracking-[-0.03em] [font-variation-settings:'wdth'_100] [text-wrap:pretty]">We are designers, developers, strategists, filmmakers and producers working as one team, so the idea that survives the pitch is the same one that ships.</p>
       <div className="flex flex-wrap gap-[0_clamp(24px,5vw,72px)] mt-[clamp(36px,6vw,80px)]">
         <div className="[flex:1_1_min(100%,220px)] [border-top:1px_solid_rgba(245,242,237,.15)] pt-3.5 px-0 pb-[22px]">
           <div className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] text-[#8C877E] mb-2.5">01</div>
@@ -137,7 +134,7 @@ export default function Home() {
   <div className="relative h-[clamp(132px,15vw,220px)]">
     <div className="absolute left-[-6%] right-[-6%] top-[50%] [transform:translateY(-50%)_rotate(-5deg)]">
       <div className="overflow-hidden bg-[var(--ag-accent,#F2600C)] text-[#0A0A0A] py-[clamp(9px,1.1vw,15px)] px-0 shadow-[0_22px_50px_rgba(0,0,0,.55)]">
-        <div data-ag-ribbon className="flex w-max [animation:ag-marquee_32s_linear_infinite] [font-family:'Archivo',sans-serif] font-bold text-[clamp(15px,1.6vw,26px)] tracking-[.06em] uppercase whitespace-nowrap">
+        <div data-ag-ribbon="" className="flex w-max [animation:ag-marquee_32s_linear_infinite] [font-family:'Archivo',sans-serif] font-bold text-[clamp(15px,1.6vw,26px)] tracking-[.06em] uppercase whitespace-nowrap">
           <span className="pr-[34px]">Social — Content — Creative direction — Photography — Film — Brand &nbsp;</span>
           <span className="pr-[34px]">Websites — Commerce — Custom software — Platforms — Product — Launch &nbsp;</span>
           <span className="pr-[34px]">Social — Content — Creative direction — Photography — Film — Brand &nbsp;</span>
@@ -147,7 +144,7 @@ export default function Home() {
     </div>
     <div className="absolute left-[-6%] right-[-6%] top-[50%] [transform:translateY(-50%)_rotate(5deg)]">
       <div className="overflow-hidden bg-[#F5F2ED] text-[#0A0A0A] py-[clamp(9px,1.1vw,15px)] px-0 shadow-[0_22px_50px_rgba(0,0,0,.55)]">
-        <div data-ag-ribbon className="flex w-max [animation:ag-marquee-rev_32s_linear_infinite] [font-family:'Archivo',sans-serif] font-bold text-[clamp(15px,1.6vw,26px)] tracking-[.06em] uppercase whitespace-nowrap">
+        <div data-ag-ribbon="" className="flex w-max [animation:ag-marquee-rev_32s_linear_infinite] [font-family:'Archivo',sans-serif] font-bold text-[clamp(15px,1.6vw,26px)] tracking-[.06em] uppercase whitespace-nowrap">
           <span className="pr-[34px]">One team — No handoffs — In-house crew — Zero to launch &nbsp;</span>
           <span className="pr-[34px]">Strategy — Design — Engineering — Growth &nbsp;</span>
           <span className="pr-[34px]">One team — No handoffs — In-house crew — Zero to launch &nbsp;</span>
@@ -164,19 +161,19 @@ export default function Home() {
     <span>Four of forty, 2024–2026</span>
   </div>
   <div className="flex flex-wrap gap-[clamp(20px,4vw,64px)] items-end justify-between mt-[clamp(30px,4.5vw,64px)] mx-0 mb-[clamp(34px,5vw,80px)]">
-    <h2 data-reveal className="m-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(2.4rem,10vw,10rem)] leading-[.86] tracking-[-0.05em] [font-variation-settings:'wdth'_106]">THE <span className="text-[var(--ag-accent,#F2600C)]">WORK.</span></h2>
+    <h2 data-reveal="" className="m-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(2.4rem,10vw,10rem)] leading-[.86] tracking-[-0.05em] [font-variation-settings:'wdth'_106]">THE <span className="text-[var(--ag-accent,#F2600C)]">WORK.</span></h2>
     <p className="m-0 max-w-[38ch] text-[clamp(15px,1.3vw,18px)] leading-[1.6] text-[#A9A39A]">Every project below was strategised, shot, designed and engineered in the same building.</p>
   </div>
-  <a href="/case-study" data-hover-group data-cursor="View" className="flex flex-col gap-3.5 text-[#F5F2ED]">
+  <a href="/case-study" data-hover-group="" data-cursor="View" className="flex flex-col gap-3.5 text-[#F5F2ED]">
       <div className="relative overflow-hidden w-[85%] [aspect-ratio:16/8] rounded-[6px] bg-[#1A1815]">
-        <div data-hover-img data-parallax="0.18" className="absolute left-0 right-0 top-[-6%] h-[112%] [transition:transform_.9s_cubic-bezier(.16,1,.3,1)]"><Image src="/images/ff551cbd9d.png" alt="Agasti Realty key visual" width={868} height={488} priority className="h-full w-full object-cover" /></div>
+        <div data-hover-img="" data-parallax="0.18" className="absolute left-0 right-0 top-[-6%] h-[112%] [transition:transform_.9s_cubic-bezier(.16,1,.3,1)]"><Image src="/images/ff551cbd9d.png" alt="Agasti Realty key visual" width={868} height={488} priority className="h-full w-full object-cover" /></div>
         <span className="absolute left-[clamp(12px,1.6vw,20px)] top-[clamp(12px,1.6vw,20px)] [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#0A0A0A] bg-[#F5F2ED] rounded-[999px] py-1.5 px-[11px]">Brand, Web platform, Film</span>
       </div>
       <div className="flex justify-between items-start gap-[18px] [border-top:1px_solid_rgba(245,242,237,.15)] pt-3">
         <div className="flex gap-[clamp(12px,1.6vw,22px)] items-baseline min-w-0">
           <span className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.12em] text-[var(--ag-accent,#F2600C)]">01</span>
           <div className="min-w-0">
-            <div data-hover-title className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(1.3rem,2.6vw,2.4rem)] leading-[1] tracking-[-0.035em] uppercase [transition:transform_.6s_cubic-bezier(.16,1,.3,1)]">Agasti Realty</div>
+            <div data-hover-title="" className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(1.3rem,2.6vw,2.4rem)] leading-[1] tracking-[-0.035em] uppercase [transition:transform_.6s_cubic-bezier(.16,1,.3,1)]">Agasti Realty</div>
             <p className="mt-[9px] mx-0 mb-0 max-w-[44ch] text-[clamp(14px,1.15vw,16px)] leading-[1.5] text-[#A9A39A]">A sales office that fits in a browser tab. Walkthroughs, inventory and bookings in one place.</p>
           </div>
         </div>
@@ -184,32 +181,32 @@ export default function Home() {
       </div>
     </a>
   <div className="flex flex-wrap gap-[clamp(20px,3vw,48px)] mt-[clamp(44px,6vw,96px)] items-start">
-    <a href="/case-study" data-hover-group data-cursor="View" className="flex flex-col gap-3.5 text-[#F5F2ED] [flex:1_1_min(100%,320px)]">
+    <a href="/case-study" data-hover-group="" data-cursor="View" className="flex flex-col gap-3.5 text-[#F5F2ED] [flex:1_1_min(100%,320px)]">
       <div className="relative overflow-hidden w-[85%] [aspect-ratio:4/5] rounded-[6px] bg-[#1A1815]">
-        <div data-hover-img data-parallax="0.18" className="absolute left-0 right-0 top-[-6%] h-[112%] [transition:transform_.9s_cubic-bezier(.16,1,.3,1)]"><Image src="/images/17320eecd2.jpg" alt="Redpanda Outdoor key visual" width={1920} height={1080} className="h-full w-full object-cover" /></div>
+        <div data-hover-img="" data-parallax="0.18" className="absolute left-0 right-0 top-[-6%] h-[112%] [transition:transform_.9s_cubic-bezier(.16,1,.3,1)]"><Image src="/images/17320eecd2.jpg" alt="Redpanda Outdoor key visual" width={1920} height={1080} className="h-full w-full object-cover" /></div>
         <span className="absolute left-[clamp(12px,1.6vw,20px)] top-[clamp(12px,1.6vw,20px)] [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#0A0A0A] bg-[#F5F2ED] rounded-[999px] py-1.5 px-[11px]">Campaign, Commerce</span>
       </div>
       <div className="flex justify-between items-start gap-[18px] [border-top:1px_solid_rgba(245,242,237,.15)] pt-3">
         <div className="flex gap-[clamp(12px,1.6vw,22px)] items-baseline min-w-0">
           <span className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.12em] text-[var(--ag-accent,#F2600C)]">02</span>
           <div className="min-w-0">
-            <div data-hover-title className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(1.3rem,2.6vw,2.4rem)] leading-[1] tracking-[-0.035em] uppercase [transition:transform_.6s_cubic-bezier(.16,1,.3,1)]">Redpanda Outdoor</div>
+            <div data-hover-title="" className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(1.3rem,2.6vw,2.4rem)] leading-[1] tracking-[-0.035em] uppercase [transition:transform_.6s_cubic-bezier(.16,1,.3,1)]">Redpanda Outdoor</div>
             <p className="mt-[9px] mx-0 mb-0 max-w-[44ch] text-[clamp(14px,1.15vw,16px)] leading-[1.5] text-[#A9A39A]">A campaign shot on Tuesday and a store live on Friday.</p>
           </div>
         </div>
         <span className="[flex:0_0_auto] [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.12em] text-[#8C877E]">2025 ↗</span>
       </div>
     </a>
-    <a href="/case-study" data-hover-group data-cursor="View" className="flex flex-col gap-3.5 text-[#F5F2ED] [flex:1_1_min(100%,320px)] mt-[clamp(0px,9vw,160px)]">
+    <a href="/case-study" data-hover-group="" data-cursor="View" className="flex flex-col gap-3.5 text-[#F5F2ED] [flex:1_1_min(100%,320px)] mt-[clamp(0px,9vw,160px)]">
       <div className="relative overflow-hidden w-[85%] [aspect-ratio:4/5] rounded-[6px] bg-[#1A1815]">
-        <div data-hover-img data-parallax="0.18" className="absolute left-0 right-0 top-[-6%] h-[112%] [transition:transform_.9s_cubic-bezier(.16,1,.3,1)]"><Image src="/images/8dc8938ce7.jpg" alt="Orbital key visual" width={1920} height={1080} className="h-full w-full object-cover" /></div>
+        <div data-hover-img="" data-parallax="0.18" className="absolute left-0 right-0 top-[-6%] h-[112%] [transition:transform_.9s_cubic-bezier(.16,1,.3,1)]"><Image src="/images/8dc8938ce7.jpg" alt="Orbital key visual" width={1920} height={1080} className="h-full w-full object-cover" /></div>
         <span className="absolute left-[clamp(12px,1.6vw,20px)] top-[clamp(12px,1.6vw,20px)] [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#0A0A0A] bg-[#F5F2ED] rounded-[999px] py-1.5 px-[11px]">Product, Engineering</span>
       </div>
       <div className="flex justify-between items-start gap-[18px] [border-top:1px_solid_rgba(245,242,237,.15)] pt-3">
         <div className="flex gap-[clamp(12px,1.6vw,22px)] items-baseline min-w-0">
           <span className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.12em] text-[var(--ag-accent,#F2600C)]">03</span>
           <div className="min-w-0">
-            <div data-hover-title className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(1.3rem,2.6vw,2.4rem)] leading-[1] tracking-[-0.035em] uppercase [transition:transform_.6s_cubic-bezier(.16,1,.3,1)]">Orbital</div>
+            <div data-hover-title="" className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(1.3rem,2.6vw,2.4rem)] leading-[1] tracking-[-0.035em] uppercase [transition:transform_.6s_cubic-bezier(.16,1,.3,1)]">Orbital</div>
             <p className="mt-[9px] mx-0 mb-0 max-w-[44ch] text-[clamp(14px,1.15vw,16px)] leading-[1.5] text-[#A9A39A]">A fintech dashboard where the design survived contact with production.</p>
           </div>
         </div>
@@ -218,16 +215,16 @@ export default function Home() {
     </a>
   </div>
   <div className="flex flex-wrap gap-[clamp(20px,3vw,48px)] mt-[clamp(44px,6vw,96px)] items-end">
-    <a href="/case-study" data-hover-group data-cursor="View" className="flex flex-col gap-3.5 text-[#F5F2ED] [flex:2_1_min(100%,420px)]">
+    <a href="/case-study" data-hover-group="" data-cursor="View" className="flex flex-col gap-3.5 text-[#F5F2ED] [flex:2_1_min(100%,420px)]">
       <div className="relative overflow-hidden w-[85%] [aspect-ratio:16/10] rounded-[6px] bg-[#1A1815]">
-        <div data-hover-img data-parallax="0.18" className="absolute left-0 right-0 top-[-6%] h-[112%] [transition:transform_.9s_cubic-bezier(.16,1,.3,1)]"><Image src="/images/f1d945b460.jpg" alt="Margin Press key visual" width={1920} height={1080} className="h-full w-full object-cover" /></div>
+        <div data-hover-img="" data-parallax="0.18" className="absolute left-0 right-0 top-[-6%] h-[112%] [transition:transform_.9s_cubic-bezier(.16,1,.3,1)]"><Image src="/images/f1d945b460.jpg" alt="Margin Press key visual" width={1920} height={1080} className="h-full w-full object-cover" /></div>
         <span className="absolute left-[clamp(12px,1.6vw,20px)] top-[clamp(12px,1.6vw,20px)] [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#0A0A0A] bg-[#F5F2ED] rounded-[999px] py-1.5 px-[11px]">Identity, Publishing platform</span>
       </div>
       <div className="flex justify-between items-start gap-[18px] [border-top:1px_solid_rgba(245,242,237,.15)] pt-3">
         <div className="flex gap-[clamp(12px,1.6vw,22px)] items-baseline min-w-0">
           <span className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.12em] text-[var(--ag-accent,#F2600C)]">04</span>
           <div className="min-w-0">
-            <div data-hover-title className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(1.3rem,2.6vw,2.4rem)] leading-[1] tracking-[-0.035em] uppercase [transition:transform_.6s_cubic-bezier(.16,1,.3,1)]">Margin Press</div>
+            <div data-hover-title="" className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(1.3rem,2.6vw,2.4rem)] leading-[1] tracking-[-0.035em] uppercase [transition:transform_.6s_cubic-bezier(.16,1,.3,1)]">Margin Press</div>
             <p className="mt-[9px] mx-0 mb-0 max-w-[44ch] text-[clamp(14px,1.15vw,16px)] leading-[1.5] text-[#A9A39A]">Eleven print titles, one platform, every cover shot in-house.</p>
           </div>
         </div>
@@ -246,126 +243,126 @@ export default function Home() {
     <span>(02) Clients</span>
     <span>Selected, 2021–2026</span>
   </div>
-  <h2 data-reveal className="mt-0 mx-0 mb-[clamp(28px,4vw,56px)] [font-family:'Archivo',sans-serif] font-bold text-[clamp(1.9rem,6.4vw,5.6rem)] leading-[.94] tracking-[-0.045em] max-w-[20ch]">BRANDS WE MADE <span className="text-[var(--ag-accent,#F2600C)]">MAGNETIC.</span></h2>
+  <h2 data-reveal="" className="mt-0 mx-0 mb-[clamp(28px,4vw,56px)] [font-family:'Archivo',sans-serif] font-bold text-[clamp(1.9rem,6.4vw,5.6rem)] leading-[.94] tracking-[-0.045em] max-w-[20ch]">BRANDS WE MADE <span className="text-[var(--ag-accent,#F2600C)]">MAGNETIC.</span></h2>
   <div className="grid grid-cols-[repeat(auto-fill,minmax(min(100%,180px),1fr))] [border-bottom:1px_solid_rgba(245,242,237,.15)]">
-      <div data-hover-group className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
-        <img data-hover-img src="/images/9fcd96b10a.png" alt="Diadora" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
+      <div data-hover-group="" className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
+        <img data-hover-img="" src="/images/9fcd96b10a.png" alt="Diadora" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
       </div>
-      <div data-hover-group className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
-        <img data-hover-img src="/images/d0569aa348.png" alt="Mountain Dew" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
+      <div data-hover-group="" className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
+        <img data-hover-img="" src="/images/d0569aa348.png" alt="Mountain Dew" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
       </div>
-      <div data-hover-group className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
-        <img data-hover-img src="/images/31d793b210.png" alt="Justin Bieber" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
+      <div data-hover-group="" className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
+        <img data-hover-img="" src="/images/31d793b210.png" alt="Justin Bieber" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
       </div>
-      <div data-hover-group className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
-        <img data-hover-img src="/images/fc59ba71ce.png" alt="Under Armour" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
+      <div data-hover-group="" className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
+        <img data-hover-img="" src="/images/fc59ba71ce.png" alt="Under Armour" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
       </div>
-      <div data-hover-group className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
-        <img data-hover-img src="/images/21267148b3.png" alt="Pepsi" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
+      <div data-hover-group="" className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
+        <img data-hover-img="" src="/images/21267148b3.png" alt="Pepsi" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
       </div>
-      <div data-hover-group className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
-        <img data-hover-img src="/images/1383b4b3b1.png" alt="Dove" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
+      <div data-hover-group="" className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
+        <img data-hover-img="" src="/images/1383b4b3b1.png" alt="Dove" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
       </div>
-      <div data-hover-group className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
-        <img data-hover-img src="/images/8e3b2eaad5.png" alt="Disney" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
+      <div data-hover-group="" className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
+        <img data-hover-img="" src="/images/8e3b2eaad5.png" alt="Disney" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
       </div>
-      <div data-hover-group className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
-        <img data-hover-img src="/images/81404900fd.png" alt="Twitch" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
+      <div data-hover-group="" className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
+        <img data-hover-img="" src="/images/81404900fd.png" alt="Twitch" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
       </div>
-      <div data-hover-group className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
-        <img data-hover-img src="/images/622209aa27.png" alt="Dude Perfect" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
+      <div data-hover-group="" className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
+        <img data-hover-img="" src="/images/622209aa27.png" alt="Dude Perfect" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
       </div>
-      <div data-hover-group className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
-        <img data-hover-img src="/images/d0c48a6eef.png" alt="Sony" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
+      <div data-hover-group="" className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
+        <img data-hover-img="" src="/images/d0c48a6eef.png" alt="Sony" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
       </div>
-      <div data-hover-group className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
-        <img data-hover-img src="/images/cbef105623.png" alt="Nokia" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
+      <div data-hover-group="" className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
+        <img data-hover-img="" src="/images/cbef105623.png" alt="Nokia" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
       </div>
-      <div data-hover-group className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
-        <img data-hover-img src="/images/9174328433.png" alt="Universal" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
+      <div data-hover-group="" className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
+        <img data-hover-img="" src="/images/9174328433.png" alt="Universal" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
       </div>
-      <div data-hover-group className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
-        <img data-hover-img src="/images/3b648b62d6.png" alt="Taco Bell" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
+      <div data-hover-group="" className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
+        <img data-hover-img="" src="/images/3b648b62d6.png" alt="Taco Bell" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
       </div>
   </div>
   <p className="mt-[clamp(24px,3.5vw,44px)] mx-0 mb-0 max-w-[46ch] text-[clamp(15px,1.3vw,18px)] leading-[1.6] text-[#A9A39A]">Most came back for a second engagement. Several started as a single shoot and ended up as the whole platform.</p>
 </section>
 
-<section id="testimonials" data-dark className="relative z-[1] bg-[#131110] text-[#F7F4EF] py-[clamp(70px,11vw,160px)] px-[clamp(20px,4.4vw,64px)]">
+<section id="testimonials" data-dark="" className="relative z-[1] bg-[#131110] text-[#F7F4EF] py-[clamp(70px,11vw,160px)] px-[clamp(20px,4.4vw,64px)]">
   <div className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(237,233,225,.18)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B]">
     <span>(03) Testimonials</span>
     <span>On camera, unscripted</span>
   </div>
 
   <div className="flex flex-wrap gap-[clamp(24px,4vw,64px)] items-end mt-[clamp(30px,4.5vw,64px)]">
-    <h2 data-reveal className="[flex:2_1_min(100%,340px)] m-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(1.9rem,6vw,5.2rem)] leading-[.94] tracking-[-0.045em]">DON'T TAKE OUR <span className="text-[var(--ag-accent,#F2600C)]">WORD</span> FOR IT.</h2>
+    <h2 data-reveal="" className="[flex:2_1_min(100%,340px)] m-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(1.9rem,6vw,5.2rem)] leading-[.94] tracking-[-0.045em]">DON&apos;T TAKE OUR <span className="text-[var(--ag-accent,#F2600C)]">WORD</span> FOR IT.</h2>
     <p className="[flex:1_1_min(100%,260px)] m-0 max-w-[40ch] text-[clamp(15px,1.3vw,18px)] leading-[1.6] text-[#B7B1A6]">We film every wrap-up conversation in the studio. No script, no approval round, press play.</p>
   </div>
 
-  <div data-vt-reel className="flex flex-wrap gap-[clamp(18px,2.6vw,40px)] mt-[clamp(30px,5vw,70px)] items-stretch">
-    <div data-vt-stage className="[flex:3_1_min(100%,560px)] relative overflow-hidden [aspect-ratio:16/10] max-h-[78vh] bg-[#1A1815] rounded-[6px]">
-      <div data-vt-layer data-vt-card data-vt-poster="assets/work-agasti-s.jpg" data-vt-name="Priya Ravindran, Managing Director, Agasti Realty" data-vt-quote="“We came for a website. What we got was a sales engine, a film crew and a brand that finally looks like the buildings we put up.”" data-vt-dur="134" data-cursor="Play" className="absolute inset-0 opacity-[1] [transition:opacity_1s_ease] cursor-pointer">
-        <div data-vt-kb className="absolute inset-[-4%] [will-change:transform]"><img src="/images/df2ee54140.jpg" alt="Testimonial still" className="h-full w-full object-cover" /></div>
+  <div data-vt-reel="" className="flex flex-wrap gap-[clamp(18px,2.6vw,40px)] mt-[clamp(30px,5vw,70px)] items-stretch">
+    <div data-vt-stage="" className="[flex:3_1_min(100%,560px)] relative overflow-hidden [aspect-ratio:16/10] max-h-[78vh] bg-[#1A1815] rounded-[6px]">
+      <div data-vt-layer="" data-vt-card="" data-vt-poster="assets/work-agasti-s.jpg" data-vt-name="Priya Ravindran, Managing Director, Agasti Realty" data-vt-quote="“We came for a website. What we got was a sales engine, a film crew and a brand that finally looks like the buildings we put up.”" data-vt-dur="134" data-cursor="Play" className="absolute inset-0 opacity-[1] [transition:opacity_1s_ease] cursor-pointer">
+        <div data-vt-kb="" className="absolute inset-[-4%] [will-change:transform]"><img src="/images/df2ee54140.jpg" alt="Testimonial still" className="h-full w-full object-cover" /></div>
       </div>
-      <div data-vt-layer data-vt-card data-vt-poster="assets/work-redpanda-s.jpg" data-vt-name="Ananya Rao, Founder, Redpanda Outdoor" data-vt-quote="“They shot the campaign on Tuesday and the store was live on Friday. I still do not fully understand how.”" data-vt-dur="98" data-cursor="Play" className="absolute inset-0 opacity-[0] [transition:opacity_1s_ease] cursor-pointer">
-        <div data-vt-kb className="absolute inset-[-4%] [will-change:transform]"><img src="/images/ce6c217cd9.jpg" alt="Testimonial still" className="h-full w-full object-cover" /></div>
+      <div data-vt-layer="" data-vt-card="" data-vt-poster="assets/work-redpanda-s.jpg" data-vt-name="Ananya Rao, Founder, Redpanda Outdoor" data-vt-quote="“They shot the campaign on Tuesday and the store was live on Friday. I still do not fully understand how.”" data-vt-dur="98" data-cursor="Play" className="absolute inset-0 opacity-[0] [transition:opacity_1s_ease] cursor-pointer">
+        <div data-vt-kb="" className="absolute inset-[-4%] [will-change:transform]"><img src="/images/ce6c217cd9.jpg" alt="Testimonial still" className="h-full w-full object-cover" /></div>
       </div>
-      <div data-vt-layer data-vt-card data-vt-poster="assets/work-social-s.jpg" data-vt-name="Dev Menon, CTO, Orbital" data-vt-quote="“The rare agency where the engineers were in the first meeting and the design survived contact with production.”" data-vt-dur="122" data-cursor="Play" className="absolute inset-0 opacity-[0] [transition:opacity_1s_ease] cursor-pointer">
-        <div data-vt-kb className="absolute inset-[-4%] [will-change:transform]"><img src="/images/3143905490.jpg" alt="Testimonial still" className="h-full w-full object-cover" /></div>
+      <div data-vt-layer="" data-vt-card="" data-vt-poster="assets/work-social-s.jpg" data-vt-name="Dev Menon, CTO, Orbital" data-vt-quote="“The rare agency where the engineers were in the first meeting and the design survived contact with production.”" data-vt-dur="122" data-cursor="Play" className="absolute inset-0 opacity-[0] [transition:opacity_1s_ease] cursor-pointer">
+        <div data-vt-kb="" className="absolute inset-[-4%] [will-change:transform]"><img src="/images/3143905490.jpg" alt="Testimonial still" className="h-full w-full object-cover" /></div>
       </div>
-      <div data-vt-layer data-vt-card data-vt-poster="assets/work-identity-s.jpg" data-vt-name="Leela Fernandes, Publisher, Margin Press" data-vt-quote="“Eleven print titles onto one platform, and the covers were shot in the same building. That is the whole pitch.”" data-vt-dur="72" data-cursor="Play" className="absolute inset-0 opacity-[0] [transition:opacity_1s_ease] cursor-pointer">
-        <div data-vt-kb className="absolute inset-[-4%] [will-change:transform]"><img src="/images/b7afa59dc4.jpg" alt="Testimonial still" className="h-full w-full object-cover" /></div>
+      <div data-vt-layer="" data-vt-card="" data-vt-poster="assets/work-identity-s.jpg" data-vt-name="Leela Fernandes, Publisher, Margin Press" data-vt-quote="“Eleven print titles onto one platform, and the covers were shot in the same building. That is the whole pitch.”" data-vt-dur="72" data-cursor="Play" className="absolute inset-0 opacity-[0] [transition:opacity_1s_ease] cursor-pointer">
+        <div data-vt-kb="" className="absolute inset-[-4%] [will-change:transform]"><img src="/images/b7afa59dc4.jpg" alt="Testimonial still" className="h-full w-full object-cover" /></div>
       </div>
       <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(180deg,rgba(12,11,10,.55)_0%,rgba(12,11,10,0)_22%,rgba(12,11,10,0)_48%,rgba(12,11,10,.88)_100%)]"></div>
       <div className="absolute left-[clamp(14px,2vw,26px)] right-[clamp(14px,2vw,26px)] top-[clamp(14px,2vw,22px)] flex gap-1.5 pointer-events-none">
-        <span data-vt-bar className="[flex:1_1_0] h-[3px] rounded-[3px] bg-[rgba(245,242,237,.25)] overflow-hidden"><span className="block h-full w-0 bg-[var(--ag-accent,#F2600C)]"></span></span>
-        <span data-vt-bar className="[flex:1_1_0] h-[3px] rounded-[3px] bg-[rgba(245,242,237,.25)] overflow-hidden"><span className="block h-full w-0 bg-[var(--ag-accent,#F2600C)]"></span></span>
-        <span data-vt-bar className="[flex:1_1_0] h-[3px] rounded-[3px] bg-[rgba(245,242,237,.25)] overflow-hidden"><span className="block h-full w-0 bg-[var(--ag-accent,#F2600C)]"></span></span>
-        <span data-vt-bar className="[flex:1_1_0] h-[3px] rounded-[3px] bg-[rgba(245,242,237,.25)] overflow-hidden"><span className="block h-full w-0 bg-[var(--ag-accent,#F2600C)]"></span></span>
+        <span data-vt-bar="" className="[flex:1_1_0] h-[3px] rounded-[3px] bg-[rgba(245,242,237,.25)] overflow-hidden"><span className="block h-full w-0 bg-[var(--ag-accent,#F2600C)]"></span></span>
+        <span data-vt-bar="" className="[flex:1_1_0] h-[3px] rounded-[3px] bg-[rgba(245,242,237,.25)] overflow-hidden"><span className="block h-full w-0 bg-[var(--ag-accent,#F2600C)]"></span></span>
+        <span data-vt-bar="" className="[flex:1_1_0] h-[3px] rounded-[3px] bg-[rgba(245,242,237,.25)] overflow-hidden"><span className="block h-full w-0 bg-[var(--ag-accent,#F2600C)]"></span></span>
+        <span data-vt-bar="" className="[flex:1_1_0] h-[3px] rounded-[3px] bg-[rgba(245,242,237,.25)] overflow-hidden"><span className="block h-full w-0 bg-[var(--ag-accent,#F2600C)]"></span></span>
       </div>
       <div className="absolute left-[clamp(14px,2vw,26px)] right-[clamp(14px,2vw,26px)] top-[clamp(28px,3.4vw,40px)] flex justify-between gap-3 [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#F5F2ED] pointer-events-none">
         <span className="flex items-center gap-2"><span className="w-2 h-2 rounded-[50%] bg-[var(--ag-accent,#F2600C)] [animation:ag-pulse_1.4s_ease-in-out_infinite]"></span>Rec · Studio A</span>
         <span data-vt-time="">00:00 / 02:14</span>
       </div>
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <span data-vt-play className="w-[clamp(64px,7vw,96px)] h-[clamp(64px,7vw,96px)] rounded-[50%] bg-[var(--ag-accent,#F2600C)] flex items-center justify-center shadow-[0_0_0_0_rgba(242,96,12,.5)] [transition:transform_.5s_cubic-bezier(.16,1,.3,1)]"><img src="/images/c51e877a13.svg" alt="Play" className="w-[40%] h-[40%] block" /></span>
+        <span data-vt-play="" className="w-[clamp(64px,7vw,96px)] h-[clamp(64px,7vw,96px)] rounded-[50%] bg-[var(--ag-accent,#F2600C)] flex items-center justify-center shadow-[0_0_0_0_rgba(242,96,12,.5)] [transition:transform_.5s_cubic-bezier(.16,1,.3,1)]"><img src="/images/c51e877a13.svg" alt="Play" className="w-[40%] h-[40%] block" /></span>
       </div>
       <div className="absolute left-[clamp(16px,2.4vw,34px)] right-[clamp(16px,2.4vw,34px)] bottom-[clamp(16px,2.4vw,32px)] pointer-events-none">
-        <p data-vt-caption className="m-0 max-w-[30ch] [font-family:'Archivo',sans-serif] font-semibold text-[clamp(1.1rem,2.4vw,2.2rem)] leading-[1.14] tracking-[-0.025em] text-[#F5F2ED] [text-wrap:pretty]">“We came for a website. What we got was a sales engine, a film crew and a brand that finally looks like the buildings we put up.”</p>
-        <div data-vt-now className="mt-3 [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#D9D3C8]">Priya Ravindran — Managing Director, Agasti Realty</div>
+        <p data-vt-caption="" className="m-0 max-w-[30ch] [font-family:'Archivo',sans-serif] font-semibold text-[clamp(1.1rem,2.4vw,2.2rem)] leading-[1.14] tracking-[-0.025em] text-[#F5F2ED] [text-wrap:pretty]">“We came for a website. What we got was a sales engine, a film crew and a brand that finally looks like the buildings we put up.”</p>
+        <div data-vt-now="" className="mt-3 [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#D9D3C8]">Priya Ravindran — Managing Director, Agasti Realty</div>
       </div>
     </div>
     <div className="[flex:1_1_min(100%,260px)] flex flex-col [border-top:1px_solid_rgba(237,233,225,.18)]">
-      <button data-vt-item type="button" className="flex items-center gap-3.5 w-full text-left bg-[transparent] border-0 [border-bottom:1px_solid_rgba(237,233,225,.18)] py-3.5 px-0 cursor-pointer [transition:padding-left_.5s_cubic-bezier(.16,1,.3,1)] hover:pl-2">
-        <span data-vt-idx className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.12em] text-[var(--ag-accent,#F2600C)] w-[22px]">01</span>
-        <span className="[flex:0_0_auto] w-16 h-11 rounded-[4px] overflow-hidden bg-[#1A1815]"><img src="/images/df2ee54140.jpg" alt className="w-full h-full object-cover block" /></span>
+      <button data-vt-item="" type="button" className="flex items-center gap-3.5 w-full text-left bg-[transparent] border-0 [border-bottom:1px_solid_rgba(237,233,225,.18)] py-3.5 px-0 cursor-pointer [transition:padding-left_.5s_cubic-bezier(.16,1,.3,1)] hover:pl-2">
+        <span data-vt-idx="" className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.12em] text-[var(--ag-accent,#F2600C)] w-[22px]">01</span>
+        <span className="[flex:0_0_auto] w-16 h-11 rounded-[4px] overflow-hidden bg-[#1A1815]"><img src="/images/df2ee54140.jpg" alt="" className="w-full h-full object-cover block" /></span>
         <span className="[flex:1_1_auto] min-w-0">
           <span className="block [font-family:'Archivo',sans-serif] font-bold text-[clamp(14px,1.25vw,17px)] tracking-[-0.02em] text-[#F5F2ED]">Priya Ravindran</span>
           <span className="block [font-family:'JetBrains_Mono',monospace] text-[10px] tracking-[.12em] uppercase text-[#8A857B] mt-1">Managing Director, Agasti Realty</span>
         </span>
         <span className="[font-family:'JetBrains_Mono',monospace] text-[10px] tracking-[.12em] text-[#8A857B]">02:14</span>
       </button>
-      <button data-vt-item type="button" className="flex items-center gap-3.5 w-full text-left bg-[transparent] border-0 [border-bottom:1px_solid_rgba(237,233,225,.18)] py-3.5 px-0 cursor-pointer [transition:padding-left_.5s_cubic-bezier(.16,1,.3,1)] hover:pl-2">
-        <span data-vt-idx className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.12em] text-[#8A857B] w-[22px]">02</span>
-        <span className="[flex:0_0_auto] w-16 h-11 rounded-[4px] overflow-hidden bg-[#1A1815]"><img src="/images/ce6c217cd9.jpg" alt className="w-full h-full object-cover block" /></span>
+      <button data-vt-item="" type="button" className="flex items-center gap-3.5 w-full text-left bg-[transparent] border-0 [border-bottom:1px_solid_rgba(237,233,225,.18)] py-3.5 px-0 cursor-pointer [transition:padding-left_.5s_cubic-bezier(.16,1,.3,1)] hover:pl-2">
+        <span data-vt-idx="" className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.12em] text-[#8A857B] w-[22px]">02</span>
+        <span className="[flex:0_0_auto] w-16 h-11 rounded-[4px] overflow-hidden bg-[#1A1815]"><img src="/images/ce6c217cd9.jpg" alt="" className="w-full h-full object-cover block" /></span>
         <span className="[flex:1_1_auto] min-w-0">
           <span className="block [font-family:'Archivo',sans-serif] font-bold text-[clamp(14px,1.25vw,17px)] tracking-[-0.02em] text-[#F5F2ED]">Ananya Rao</span>
           <span className="block [font-family:'JetBrains_Mono',monospace] text-[10px] tracking-[.12em] uppercase text-[#8A857B] mt-1">Founder, Redpanda Outdoor</span>
         </span>
         <span className="[font-family:'JetBrains_Mono',monospace] text-[10px] tracking-[.12em] text-[#8A857B]">01:38</span>
       </button>
-      <button data-vt-item type="button" className="flex items-center gap-3.5 w-full text-left bg-[transparent] border-0 [border-bottom:1px_solid_rgba(237,233,225,.18)] py-3.5 px-0 cursor-pointer [transition:padding-left_.5s_cubic-bezier(.16,1,.3,1)] hover:pl-2">
-        <span data-vt-idx className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.12em] text-[#8A857B] w-[22px]">03</span>
-        <span className="[flex:0_0_auto] w-16 h-11 rounded-[4px] overflow-hidden bg-[#1A1815]"><img src="/images/3143905490.jpg" alt className="w-full h-full object-cover block" /></span>
+      <button data-vt-item="" type="button" className="flex items-center gap-3.5 w-full text-left bg-[transparent] border-0 [border-bottom:1px_solid_rgba(237,233,225,.18)] py-3.5 px-0 cursor-pointer [transition:padding-left_.5s_cubic-bezier(.16,1,.3,1)] hover:pl-2">
+        <span data-vt-idx="" className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.12em] text-[#8A857B] w-[22px]">03</span>
+        <span className="[flex:0_0_auto] w-16 h-11 rounded-[4px] overflow-hidden bg-[#1A1815]"><img src="/images/3143905490.jpg" alt="" className="w-full h-full object-cover block" /></span>
         <span className="[flex:1_1_auto] min-w-0">
           <span className="block [font-family:'Archivo',sans-serif] font-bold text-[clamp(14px,1.25vw,17px)] tracking-[-0.02em] text-[#F5F2ED]">Dev Menon</span>
           <span className="block [font-family:'JetBrains_Mono',monospace] text-[10px] tracking-[.12em] uppercase text-[#8A857B] mt-1">CTO, Orbital</span>
         </span>
         <span className="[font-family:'JetBrains_Mono',monospace] text-[10px] tracking-[.12em] text-[#8A857B]">02:02</span>
       </button>
-      <button data-vt-item type="button" className="flex items-center gap-3.5 w-full text-left bg-[transparent] border-0 [border-bottom:1px_solid_rgba(237,233,225,.18)] py-3.5 px-0 cursor-pointer [transition:padding-left_.5s_cubic-bezier(.16,1,.3,1)] hover:pl-2">
-        <span data-vt-idx className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.12em] text-[#8A857B] w-[22px]">04</span>
-        <span className="[flex:0_0_auto] w-16 h-11 rounded-[4px] overflow-hidden bg-[#1A1815]"><img src="/images/b7afa59dc4.jpg" alt className="w-full h-full object-cover block" /></span>
+      <button data-vt-item="" type="button" className="flex items-center gap-3.5 w-full text-left bg-[transparent] border-0 [border-bottom:1px_solid_rgba(237,233,225,.18)] py-3.5 px-0 cursor-pointer [transition:padding-left_.5s_cubic-bezier(.16,1,.3,1)] hover:pl-2">
+        <span data-vt-idx="" className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.12em] text-[#8A857B] w-[22px]">04</span>
+        <span className="[flex:0_0_auto] w-16 h-11 rounded-[4px] overflow-hidden bg-[#1A1815]"><img src="/images/b7afa59dc4.jpg" alt="" className="w-full h-full object-cover block" /></span>
         <span className="[flex:1_1_auto] min-w-0">
           <span className="block [font-family:'Archivo',sans-serif] font-bold text-[clamp(14px,1.25vw,17px)] tracking-[-0.02em] text-[#F5F2ED]">Leela Fernandes</span>
           <span className="block [font-family:'JetBrains_Mono',monospace] text-[10px] tracking-[.12em] uppercase text-[#8A857B] mt-1">Publisher, Margin Press</span>
@@ -384,13 +381,13 @@ export default function Home() {
   </div>
 
   <div data-ag-services="">
-    <div data-svc className="[border-top:1px_solid_rgba(245,242,237,.15)]">
-      <div data-svc-head className="flex items-baseline gap-[clamp(12px,2.4vw,34px)] py-[clamp(14px,1.8vw,24px)] px-0 cursor-pointer">
-        <span data-svc-idx className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.1em] text-[#8C877E] [transition:color_.35s]">01</span>
+    <div data-svc="" className="[border-top:1px_solid_rgba(245,242,237,.15)]">
+      <div data-svc-head="" className="flex items-baseline gap-[clamp(12px,2.4vw,34px)] py-[clamp(14px,1.8vw,24px)] px-0 cursor-pointer">
+        <span data-svc-idx="" className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.1em] text-[#8C877E] [transition:color_.35s]">01</span>
         <h3 className="m-0 [flex:1] [font-family:'Archivo',sans-serif] font-bold text-[clamp(1.7rem,5.4vw,4.4rem)] leading-[1] tracking-[-0.042em] [font-variation-settings:'wdth'_104]">SOCIAL &amp; CONTENT</h3>
-        <span data-svc-sign className="text-[clamp(14px,1.4vw,20px)] [transition:transform_.45s_cubic-bezier(.16,1,.3,1)]">+</span>
+        <span data-svc-sign="" className="text-[clamp(14px,1.4vw,20px)] [transition:transform_.45s_cubic-bezier(.16,1,.3,1)]">+</span>
       </div>
-      <div data-svc-panel className="grid [grid-template-rows:0fr] opacity-[0] [transition:grid-template-rows_.6s_cubic-bezier(.16,1,.3,1),opacity_.45s_ease]">
+      <div data-svc-panel="" className="grid [grid-template-rows:0fr] opacity-[0] [transition:grid-template-rows_.6s_cubic-bezier(.16,1,.3,1),opacity_.45s_ease]">
         <div className="overflow-hidden">
           <div className="flex flex-wrap gap-[clamp(20px,4vw,64px)] pt-0 pr-0 pb-[clamp(26px,3.5vw,48px)] pl-[clamp(24px,5vw,86px)]">
             <p className="[flex:2_1_min(100%,300px)] m-0 max-w-[46ch] text-[clamp(15px,1.3vw,18px)] leading-[1.55] text-[#A9A39A]">Always-on content built by the people who shoot it. Monthly creative direction, a production calendar, and enough footage that the feed never runs dry.</p>
@@ -402,13 +399,13 @@ export default function Home() {
       </div>
     </div>
 
-    <div data-svc className="[border-top:1px_solid_rgba(245,242,237,.15)]">
-      <div data-svc-head className="flex items-baseline gap-[clamp(12px,2.4vw,34px)] py-[clamp(14px,1.8vw,24px)] px-0 cursor-pointer">
-        <span data-svc-idx className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.1em] text-[#8C877E] [transition:color_.35s]">02</span>
+    <div data-svc="" className="[border-top:1px_solid_rgba(245,242,237,.15)]">
+      <div data-svc-head="" className="flex items-baseline gap-[clamp(12px,2.4vw,34px)] py-[clamp(14px,1.8vw,24px)] px-0 cursor-pointer">
+        <span data-svc-idx="" className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.1em] text-[#8C877E] [transition:color_.35s]">02</span>
         <h3 className="m-0 [flex:1] [font-family:'Archivo',sans-serif] font-bold text-[clamp(1.7rem,5.4vw,4.4rem)] leading-[1] tracking-[-0.042em] [font-variation-settings:'wdth'_104]">CREATIVE DIRECTION</h3>
-        <span data-svc-sign className="text-[clamp(14px,1.4vw,20px)] [transition:transform_.45s_cubic-bezier(.16,1,.3,1)]">+</span>
+        <span data-svc-sign="" className="text-[clamp(14px,1.4vw,20px)] [transition:transform_.45s_cubic-bezier(.16,1,.3,1)]">+</span>
       </div>
-      <div data-svc-panel className="grid [grid-template-rows:0fr] opacity-[0] [transition:grid-template-rows_.6s_cubic-bezier(.16,1,.3,1),opacity_.45s_ease]">
+      <div data-svc-panel="" className="grid [grid-template-rows:0fr] opacity-[0] [transition:grid-template-rows_.6s_cubic-bezier(.16,1,.3,1),opacity_.45s_ease]">
         <div className="overflow-hidden">
           <div className="flex flex-wrap gap-[clamp(20px,4vw,64px)] pt-0 pr-0 pb-[clamp(26px,3.5vw,48px)] pl-[clamp(24px,5vw,86px)]">
             <p className="[flex:2_1_min(100%,300px)] m-0 max-w-[46ch] text-[clamp(15px,1.3vw,18px)] leading-[1.55] text-[#A9A39A]">One director across the campaign, the shoot and the site, so the brand reads the same on a billboard, a phone and a checkout page.</p>
@@ -420,13 +417,13 @@ export default function Home() {
       </div>
     </div>
 
-    <div data-svc className="[border-top:1px_solid_rgba(245,242,237,.15)]">
-      <div data-svc-head className="flex items-baseline gap-[clamp(12px,2.4vw,34px)] py-[clamp(14px,1.8vw,24px)] px-0 cursor-pointer">
-        <span data-svc-idx className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.1em] text-[#8C877E] [transition:color_.35s]">03</span>
+    <div data-svc="" className="[border-top:1px_solid_rgba(245,242,237,.15)]">
+      <div data-svc-head="" className="flex items-baseline gap-[clamp(12px,2.4vw,34px)] py-[clamp(14px,1.8vw,24px)] px-0 cursor-pointer">
+        <span data-svc-idx="" className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.1em] text-[#8C877E] [transition:color_.35s]">03</span>
         <h3 className="m-0 [flex:1] [font-family:'Archivo',sans-serif] font-bold text-[clamp(1.7rem,5.4vw,4.4rem)] leading-[1] tracking-[-0.042em] [font-variation-settings:'wdth'_104]">BRAND</h3>
-        <span data-svc-sign className="text-[clamp(14px,1.4vw,20px)] [transition:transform_.45s_cubic-bezier(.16,1,.3,1)]">+</span>
+        <span data-svc-sign="" className="text-[clamp(14px,1.4vw,20px)] [transition:transform_.45s_cubic-bezier(.16,1,.3,1)]">+</span>
       </div>
-      <div data-svc-panel className="grid [grid-template-rows:0fr] opacity-[0] [transition:grid-template-rows_.6s_cubic-bezier(.16,1,.3,1),opacity_.45s_ease]">
+      <div data-svc-panel="" className="grid [grid-template-rows:0fr] opacity-[0] [transition:grid-template-rows_.6s_cubic-bezier(.16,1,.3,1),opacity_.45s_ease]">
         <div className="overflow-hidden">
           <div className="flex flex-wrap gap-[clamp(20px,4vw,64px)] pt-0 pr-0 pb-[clamp(26px,3.5vw,48px)] pl-[clamp(24px,5vw,86px)]">
             <p className="[flex:2_1_min(100%,300px)] m-0 max-w-[46ch] text-[clamp(15px,1.3vw,18px)] leading-[1.55] text-[#A9A39A]">Identity built to be used, not presented. Every system ships with the templates, type licences and working files the team needs on Monday.</p>
@@ -438,13 +435,13 @@ export default function Home() {
       </div>
     </div>
 
-    <div data-svc className="[border-top:1px_solid_rgba(245,242,237,.15)]">
-      <div data-svc-head className="flex items-baseline gap-[clamp(12px,2.4vw,34px)] py-[clamp(14px,1.8vw,24px)] px-0 cursor-pointer">
-        <span data-svc-idx className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.1em] text-[#8C877E] [transition:color_.35s]">04</span>
+    <div data-svc="" className="[border-top:1px_solid_rgba(245,242,237,.15)]">
+      <div data-svc-head="" className="flex items-baseline gap-[clamp(12px,2.4vw,34px)] py-[clamp(14px,1.8vw,24px)] px-0 cursor-pointer">
+        <span data-svc-idx="" className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.1em] text-[#8C877E] [transition:color_.35s]">04</span>
         <h3 className="m-0 [flex:1] [font-family:'Archivo',sans-serif] font-bold text-[clamp(1.7rem,5.4vw,4.4rem)] leading-[1] tracking-[-0.042em] [font-variation-settings:'wdth'_104]">DIGITAL</h3>
-        <span data-svc-sign className="text-[clamp(14px,1.4vw,20px)] [transition:transform_.45s_cubic-bezier(.16,1,.3,1)]">+</span>
+        <span data-svc-sign="" className="text-[clamp(14px,1.4vw,20px)] [transition:transform_.45s_cubic-bezier(.16,1,.3,1)]">+</span>
       </div>
-      <div data-svc-panel className="grid [grid-template-rows:0fr] opacity-[0] [transition:grid-template-rows_.6s_cubic-bezier(.16,1,.3,1),opacity_.45s_ease]">
+      <div data-svc-panel="" className="grid [grid-template-rows:0fr] opacity-[0] [transition:grid-template-rows_.6s_cubic-bezier(.16,1,.3,1),opacity_.45s_ease]">
         <div className="overflow-hidden">
           <div className="flex flex-wrap gap-[clamp(20px,4vw,64px)] pt-0 pr-0 pb-[clamp(26px,3.5vw,48px)] pl-[clamp(24px,5vw,86px)]">
             <p className="[flex:2_1_min(100%,300px)] m-0 max-w-[46ch] text-[clamp(15px,1.3vw,18px)] leading-[1.55] text-[#A9A39A]">Sites and storefronts that load fast, rank, and hold their art direction on a three-year-old phone.</p>
@@ -456,13 +453,13 @@ export default function Home() {
       </div>
     </div>
 
-    <div data-svc className="[border-top:1px_solid_rgba(245,242,237,.15)]">
-      <div data-svc-head className="flex items-baseline gap-[clamp(12px,2.4vw,34px)] py-[clamp(14px,1.8vw,24px)] px-0 cursor-pointer">
-        <span data-svc-idx className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.1em] text-[#8C877E] [transition:color_.35s]">05</span>
+    <div data-svc="" className="[border-top:1px_solid_rgba(245,242,237,.15)]">
+      <div data-svc-head="" className="flex items-baseline gap-[clamp(12px,2.4vw,34px)] py-[clamp(14px,1.8vw,24px)] px-0 cursor-pointer">
+        <span data-svc-idx="" className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.1em] text-[#8C877E] [transition:color_.35s]">05</span>
         <h3 className="m-0 [flex:1] [font-family:'Archivo',sans-serif] font-bold text-[clamp(1.7rem,5.4vw,4.4rem)] leading-[1] tracking-[-0.042em] [font-variation-settings:'wdth'_104]">SOFTWARE</h3>
-        <span data-svc-sign className="text-[clamp(14px,1.4vw,20px)] [transition:transform_.45s_cubic-bezier(.16,1,.3,1)]">+</span>
+        <span data-svc-sign="" className="text-[clamp(14px,1.4vw,20px)] [transition:transform_.45s_cubic-bezier(.16,1,.3,1)]">+</span>
       </div>
-      <div data-svc-panel className="grid [grid-template-rows:0fr] opacity-[0] [transition:grid-template-rows_.6s_cubic-bezier(.16,1,.3,1),opacity_.45s_ease]">
+      <div data-svc-panel="" className="grid [grid-template-rows:0fr] opacity-[0] [transition:grid-template-rows_.6s_cubic-bezier(.16,1,.3,1),opacity_.45s_ease]">
         <div className="overflow-hidden">
           <div className="flex flex-wrap gap-[clamp(20px,4vw,64px)] pt-0 pr-0 pb-[clamp(26px,3.5vw,48px)] pl-[clamp(24px,5vw,86px)]">
             <p className="[flex:2_1_min(100%,300px)] m-0 max-w-[46ch] text-[clamp(15px,1.3vw,18px)] leading-[1.55] text-[#A9A39A]">The part clients usually have to go elsewhere for. Applications, internal tools and the integrations that quietly keep a business running.</p>
@@ -474,13 +471,13 @@ export default function Home() {
       </div>
     </div>
 
-    <div data-svc className="[border-top:1px_solid_rgba(245,242,237,.15)] [border-bottom:1px_solid_rgba(245,242,237,.15)]">
-      <div data-svc-head className="flex items-baseline gap-[clamp(12px,2.4vw,34px)] py-[clamp(14px,1.8vw,24px)] px-0 cursor-pointer">
-        <span data-svc-idx className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.1em] text-[#8C877E] [transition:color_.35s]">06</span>
+    <div data-svc="" className="[border-top:1px_solid_rgba(245,242,237,.15)] [border-bottom:1px_solid_rgba(245,242,237,.15)]">
+      <div data-svc-head="" className="flex items-baseline gap-[clamp(12px,2.4vw,34px)] py-[clamp(14px,1.8vw,24px)] px-0 cursor-pointer">
+        <span data-svc-idx="" className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.1em] text-[#8C877E] [transition:color_.35s]">06</span>
         <h3 className="m-0 [flex:1] [font-family:'Archivo',sans-serif] font-bold text-[clamp(1.7rem,5.4vw,4.4rem)] leading-[1] tracking-[-0.042em] [font-variation-settings:'wdth'_104]">PRODUCT</h3>
-        <span data-svc-sign className="text-[clamp(14px,1.4vw,20px)] [transition:transform_.45s_cubic-bezier(.16,1,.3,1)]">+</span>
+        <span data-svc-sign="" className="text-[clamp(14px,1.4vw,20px)] [transition:transform_.45s_cubic-bezier(.16,1,.3,1)]">+</span>
       </div>
-      <div data-svc-panel className="grid [grid-template-rows:0fr] opacity-[0] [transition:grid-template-rows_.6s_cubic-bezier(.16,1,.3,1),opacity_.45s_ease]">
+      <div data-svc-panel="" className="grid [grid-template-rows:0fr] opacity-[0] [transition:grid-template-rows_.6s_cubic-bezier(.16,1,.3,1),opacity_.45s_ease]">
         <div className="overflow-hidden">
           <div className="flex flex-wrap gap-[clamp(20px,4vw,64px)] pt-0 pr-0 pb-[clamp(26px,3.5vw,48px)] pl-[clamp(24px,5vw,86px)]">
             <p className="[flex:2_1_min(100%,300px)] m-0 max-w-[46ch] text-[clamp(15px,1.3vw,18px)] leading-[1.55] text-[#A9A39A]">For founders: the shortest honest route from an idea to something real people can pay for. We build the first version and the story around it.</p>
@@ -498,55 +495,55 @@ export default function Home() {
   <div className="flex flex-wrap gap-[clamp(24px,5vw,80px)] items-start mb-[clamp(36px,6vw,80px)]">
     <div className="[flex:1_1_min(100%,260px)]">
       <div className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E] [border-top:1px_solid_rgba(245,242,237,.15)] pt-3">(05) In-house</div>
-      <h2 data-reveal className="mt-[clamp(18px,2.4vw,32px)] mx-0 mb-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(2.1rem,6vw,5.4rem)] leading-[.92] tracking-[-0.045em]">ONE TEAM.<br />SEVEN ROOMS.<br /><span className="text-[var(--ag-accent,#F2600C)]">NO HANDOFFS.</span></h2>
+      <h2 data-reveal="" className="mt-[clamp(18px,2.4vw,32px)] mx-0 mb-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(2.1rem,6vw,5.4rem)] leading-[.92] tracking-[-0.045em]">ONE TEAM.<br />SEVEN ROOMS.<br /><span className="text-[var(--ag-accent,#F2600C)]">NO HANDOFFS.</span></h2>
     </div>
-    <p className="[flex:1_1_min(100%,280px)] m-0 [align-self:flex-end] max-w-[44ch] text-[clamp(15px,1.3vw,18px)] leading-[1.55] text-[#A9A39A]">Most agencies subcontract the half they can't do. Every stage below happens under one roof, with the same people accountable from the first conversation to the thing being live.</p>
+    <p className="[flex:1_1_min(100%,280px)] m-0 [align-self:flex-end] max-w-[44ch] text-[clamp(15px,1.3vw,18px)] leading-[1.55] text-[#A9A39A]">Most agencies subcontract the half they can&apos;t do. Every stage below happens under one roof, with the same people accountable from the first conversation to the thing being live.</p>
   </div>
 
   <div data-ag-process="">
-    <div data-step className="[border-top:1px_solid_rgba(245,242,237,.15)] pl-[0%] [transition:padding-left_.6s_cubic-bezier(.16,1,.3,1)]">
+    <div data-step="" className="[border-top:1px_solid_rgba(245,242,237,.15)] pl-[0%] [transition:padding-left_.6s_cubic-bezier(.16,1,.3,1)]">
       <div className="flex items-baseline gap-[clamp(12px,2vw,28px)] py-[clamp(10px,1.2vw,16px)] px-0">
         <span className="[font-family:'JetBrains_Mono',monospace] text-[11px] text-[#8C877E] min-w-6">01</span>
         <span className="[flex:1] [font-family:'Archivo',sans-serif] font-semibold text-[clamp(1.3rem,3.4vw,2.9rem)] leading-[1] tracking-[-0.035em]">STRATEGY</span>
         <span className="[flex:0_1_auto] text-right text-[clamp(12px,1vw,14px)] text-[#8C877E] max-w-[30ch]">What are we actually trying to move</span>
       </div>
     </div>
-    <div data-step className="[border-top:1px_solid_rgba(245,242,237,.15)] pl-[2.4%] [transition:padding-left_.6s_cubic-bezier(.16,1,.3,1)]">
+    <div data-step="" className="[border-top:1px_solid_rgba(245,242,237,.15)] pl-[2.4%] [transition:padding-left_.6s_cubic-bezier(.16,1,.3,1)]">
       <div className="flex items-baseline gap-[clamp(12px,2vw,28px)] py-[clamp(10px,1.2vw,16px)] px-0">
         <span className="[font-family:'JetBrains_Mono',monospace] text-[11px] text-[#8C877E] min-w-6">02</span>
         <span className="[flex:1] [font-family:'Archivo',sans-serif] font-semibold text-[clamp(1.3rem,3.4vw,2.9rem)] leading-[1] tracking-[-0.035em]">CREATIVE</span>
         <span className="[flex:0_1_auto] text-right text-[clamp(12px,1vw,14px)] text-[#8C877E] max-w-[30ch]">The idea, and the reason it holds</span>
       </div>
     </div>
-    <div data-step className="[border-top:1px_solid_rgba(245,242,237,.15)] pl-[4.8%] [transition:padding-left_.6s_cubic-bezier(.16,1,.3,1)]">
+    <div data-step="" className="[border-top:1px_solid_rgba(245,242,237,.15)] pl-[4.8%] [transition:padding-left_.6s_cubic-bezier(.16,1,.3,1)]">
       <div className="flex items-baseline gap-[clamp(12px,2vw,28px)] py-[clamp(10px,1.2vw,16px)] px-0">
         <span className="[font-family:'JetBrains_Mono',monospace] text-[11px] text-[#8C877E] min-w-6">03</span>
         <span className="[flex:1] [font-family:'Archivo',sans-serif] font-semibold text-[clamp(1.3rem,3.4vw,2.9rem)] leading-[1] tracking-[-0.035em]">SHOOT</span>
         <span className="[flex:0_1_auto] text-right text-[clamp(12px,1vw,14px)] text-[#8C877E] max-w-[30ch]">Our studio, our crew, our kit</span>
       </div>
     </div>
-    <div data-step className="[border-top:1px_solid_rgba(245,242,237,.15)] pl-[7.2%] [transition:padding-left_.6s_cubic-bezier(.16,1,.3,1)]">
+    <div data-step="" className="[border-top:1px_solid_rgba(245,242,237,.15)] pl-[7.2%] [transition:padding-left_.6s_cubic-bezier(.16,1,.3,1)]">
       <div className="flex items-baseline gap-[clamp(12px,2vw,28px)] py-[clamp(10px,1.2vw,16px)] px-0">
         <span className="[font-family:'JetBrains_Mono',monospace] text-[11px] text-[#8C877E] min-w-6">04</span>
         <span className="[flex:1] [font-family:'Archivo',sans-serif] font-semibold text-[clamp(1.3rem,3.4vw,2.9rem)] leading-[1] tracking-[-0.035em]">CONTENT</span>
         <span className="[flex:0_1_auto] text-right text-[clamp(12px,1vw,14px)] text-[#8C877E] max-w-[30ch]">Cut for every place it will live</span>
       </div>
     </div>
-    <div data-step className="[border-top:1px_solid_rgba(245,242,237,.15)] pl-[9.6%] [transition:padding-left_.6s_cubic-bezier(.16,1,.3,1)]">
+    <div data-step="" className="[border-top:1px_solid_rgba(245,242,237,.15)] pl-[9.6%] [transition:padding-left_.6s_cubic-bezier(.16,1,.3,1)]">
       <div className="flex items-baseline gap-[clamp(12px,2vw,28px)] py-[clamp(10px,1.2vw,16px)] px-0">
         <span className="[font-family:'JetBrains_Mono',monospace] text-[11px] text-[#8C877E] min-w-6">05</span>
         <span className="[flex:1] [font-family:'Archivo',sans-serif] font-semibold text-[clamp(1.3rem,3.4vw,2.9rem)] leading-[1] tracking-[-0.035em]">DESIGN</span>
         <span className="[flex:0_1_auto] text-right text-[clamp(12px,1vw,14px)] text-[#8C877E] max-w-[30ch]">Drawn against the real build</span>
       </div>
     </div>
-    <div data-step className="[border-top:1px_solid_rgba(245,242,237,.15)] pl-[12%] [transition:padding-left_.6s_cubic-bezier(.16,1,.3,1)]">
+    <div data-step="" className="[border-top:1px_solid_rgba(245,242,237,.15)] pl-[12%] [transition:padding-left_.6s_cubic-bezier(.16,1,.3,1)]">
       <div className="flex items-baseline gap-[clamp(12px,2vw,28px)] py-[clamp(10px,1.2vw,16px)] px-0">
         <span className="[font-family:'JetBrains_Mono',monospace] text-[11px] text-[#8C877E] min-w-6">06</span>
         <span className="[flex:1] [font-family:'Archivo',sans-serif] font-semibold text-[clamp(1.3rem,3.4vw,2.9rem)] leading-[1] tracking-[-0.035em]">DEVELOPMENT</span>
         <span className="[flex:0_1_auto] text-right text-[clamp(12px,1vw,14px)] text-[#8C877E] max-w-[30ch]">Engineers who were in the kickoff</span>
       </div>
     </div>
-    <div data-step className="[border-top:1px_solid_rgba(245,242,237,.15)] [border-bottom:1px_solid_rgba(245,242,237,.15)] pl-[14.4%] [transition:padding-left_.6s_cubic-bezier(.16,1,.3,1)]">
+    <div data-step="" className="[border-top:1px_solid_rgba(245,242,237,.15)] [border-bottom:1px_solid_rgba(245,242,237,.15)] pl-[14.4%] [transition:padding-left_.6s_cubic-bezier(.16,1,.3,1)]">
       <div className="flex items-baseline gap-[clamp(12px,2vw,28px)] py-[clamp(10px,1.2vw,16px)] px-0">
         <span className="[font-family:'JetBrains_Mono',monospace] text-[11px] text-[#8C877E] min-w-6">07</span>
         <span className="[flex:1] [font-family:'Archivo',sans-serif] font-semibold text-[clamp(1.3rem,3.4vw,2.9rem)] leading-[1] tracking-[-0.035em] text-[var(--ag-accent,#F2600C)]">LAUNCH</span>
@@ -556,37 +553,37 @@ export default function Home() {
   </div>
 </section>
 
-<section data-dark data-ag-flip className="relative z-[1] text-[#F7F4EF] pt-[clamp(60px,9vw,130px)] px-0 pb-[clamp(70px,10vw,150px)]">
+<section data-dark="" data-ag-flip="" className="relative z-[1] text-[#F7F4EF] pt-[clamp(60px,9vw,130px)] px-0 pb-[clamp(70px,10vw,150px)]">
   <div className="py-0 px-[clamp(20px,4.4vw,64px)]">
     <div className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(247,244,239,.18)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B]">
       <span>(06) Content studio</span>
       <span className="text-[var(--ag-accent,#F2600C)]">Shot in-house</span>
     </div>
-    <h2 data-reveal className="mt-[clamp(22px,3vw,44px)] mx-0 mb-[clamp(18px,2.4vw,32px)] [font-family:'Archivo',sans-serif] font-bold text-[clamp(2rem,7.4vw,6.6rem)] leading-[.92] tracking-[-0.045em] max-w-[16ch]">THE <span className="text-[var(--ag-accent,#F2600C)]">CAMERA</span> NEVER LEAVES THE BUILDING.</h2>
+    <h2 data-reveal="" className="mt-[clamp(22px,3vw,44px)] mx-0 mb-[clamp(18px,2.4vw,32px)] [font-family:'Archivo',sans-serif] font-bold text-[clamp(2rem,7.4vw,6.6rem)] leading-[.92] tracking-[-0.045em] max-w-[16ch]">THE <span className="text-[var(--ag-accent,#F2600C)]">CAMERA</span> NEVER LEAVES THE BUILDING.</h2>
     <p className="m-0 max-w-[52ch] text-[clamp(15px,1.3vw,18px)] leading-[1.6] text-[#B7B1A6]">A permanent studio, a standing crew and an edit suite down the hall. A campaign can be conceived on Monday, shot on Wednesday and running by Friday, without a single external booking.</p>
   </div>
 
-  <div data-ag-stream className="relative mt-[clamp(34px,5vw,70px)] h-[clamp(320px,62vh,680px)] overflow-hidden [container-type:inline-size]">
+  <div data-ag-stream="" className="relative mt-[clamp(34px,5vw,70px)] h-[clamp(320px,62vh,680px)] overflow-hidden [container-type:inline-size]">
     <div aria-hidden="true" className="absolute inset-0 pointer-events-none [perspective:30cqw] [perspective-origin:50%_50%]">
       <div className="absolute inset-0 [transform-style:preserve-3d]">
-        <div data-ag-card className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-r_18s_linear_infinite] [animation-delay:-0.00s]"><img src="/images/df2ee54140.jpg" alt loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
-        <div data-ag-card className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-r_18s_linear_infinite] [animation-delay:-2.00s]"><img src="/images/b7afa59dc4.jpg" alt loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
-        <div data-ag-card className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-r_18s_linear_infinite] [animation-delay:-4.00s]"><img src="/images/3143905490.jpg" alt loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
-        <div data-ag-card className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-r_18s_linear_infinite] [animation-delay:-6.00s]"><img src="/images/ce6c217cd9.jpg" alt loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
-        <div data-ag-card className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-r_18s_linear_infinite] [animation-delay:-8.00s]"><img src="/images/df2ee54140.jpg" alt loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
-        <div data-ag-card className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-r_18s_linear_infinite] [animation-delay:-10.00s]"><img src="/images/b7afa59dc4.jpg" alt loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
-        <div data-ag-card className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-r_18s_linear_infinite] [animation-delay:-12.00s]"><img src="/images/3143905490.jpg" alt loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
-        <div data-ag-card className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-r_18s_linear_infinite] [animation-delay:-14.00s]"><img src="/images/ce6c217cd9.jpg" alt loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
-        <div data-ag-card className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-r_18s_linear_infinite] [animation-delay:-16.00s]"><img src="/images/df2ee54140.jpg" alt loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
-        <div data-ag-card className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-l_18s_linear_infinite] [animation-delay:-0.00s]"><img src="/images/df2ee54140.jpg" alt loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
-        <div data-ag-card className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-l_18s_linear_infinite] [animation-delay:-2.00s]"><img src="/images/b7afa59dc4.jpg" alt loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
-        <div data-ag-card className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-l_18s_linear_infinite] [animation-delay:-4.00s]"><img src="/images/3143905490.jpg" alt loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
-        <div data-ag-card className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-l_18s_linear_infinite] [animation-delay:-6.00s]"><img src="/images/ce6c217cd9.jpg" alt loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
-        <div data-ag-card className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-l_18s_linear_infinite] [animation-delay:-8.00s]"><img src="/images/df2ee54140.jpg" alt loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
-        <div data-ag-card className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-l_18s_linear_infinite] [animation-delay:-10.00s]"><img src="/images/b7afa59dc4.jpg" alt loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
-        <div data-ag-card className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-l_18s_linear_infinite] [animation-delay:-12.00s]"><img src="/images/3143905490.jpg" alt loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
-        <div data-ag-card className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-l_18s_linear_infinite] [animation-delay:-14.00s]"><img src="/images/ce6c217cd9.jpg" alt loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
-        <div data-ag-card className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-l_18s_linear_infinite] [animation-delay:-16.00s]"><img src="/images/df2ee54140.jpg" alt loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
+        <div data-ag-card="" className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-r_18s_linear_infinite] [animation-delay:-0.00s]"><img src="/images/df2ee54140.jpg" alt="" loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
+        <div data-ag-card="" className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-r_18s_linear_infinite] [animation-delay:-2.00s]"><img src="/images/b7afa59dc4.jpg" alt="" loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
+        <div data-ag-card="" className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-r_18s_linear_infinite] [animation-delay:-4.00s]"><img src="/images/3143905490.jpg" alt="" loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
+        <div data-ag-card="" className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-r_18s_linear_infinite] [animation-delay:-6.00s]"><img src="/images/ce6c217cd9.jpg" alt="" loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
+        <div data-ag-card="" className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-r_18s_linear_infinite] [animation-delay:-8.00s]"><img src="/images/df2ee54140.jpg" alt="" loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
+        <div data-ag-card="" className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-r_18s_linear_infinite] [animation-delay:-10.00s]"><img src="/images/b7afa59dc4.jpg" alt="" loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
+        <div data-ag-card="" className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-r_18s_linear_infinite] [animation-delay:-12.00s]"><img src="/images/3143905490.jpg" alt="" loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
+        <div data-ag-card="" className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-r_18s_linear_infinite] [animation-delay:-14.00s]"><img src="/images/ce6c217cd9.jpg" alt="" loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
+        <div data-ag-card="" className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-r_18s_linear_infinite] [animation-delay:-16.00s]"><img src="/images/df2ee54140.jpg" alt="" loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
+        <div data-ag-card="" className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-l_18s_linear_infinite] [animation-delay:-0.00s]"><img src="/images/df2ee54140.jpg" alt="" loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
+        <div data-ag-card="" className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-l_18s_linear_infinite] [animation-delay:-2.00s]"><img src="/images/b7afa59dc4.jpg" alt="" loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
+        <div data-ag-card="" className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-l_18s_linear_infinite] [animation-delay:-4.00s]"><img src="/images/3143905490.jpg" alt="" loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
+        <div data-ag-card="" className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-l_18s_linear_infinite] [animation-delay:-6.00s]"><img src="/images/ce6c217cd9.jpg" alt="" loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
+        <div data-ag-card="" className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-l_18s_linear_infinite] [animation-delay:-8.00s]"><img src="/images/df2ee54140.jpg" alt="" loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
+        <div data-ag-card="" className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-l_18s_linear_infinite] [animation-delay:-10.00s]"><img src="/images/b7afa59dc4.jpg" alt="" loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
+        <div data-ag-card="" className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-l_18s_linear_infinite] [animation-delay:-12.00s]"><img src="/images/3143905490.jpg" alt="" loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
+        <div data-ag-card="" className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-l_18s_linear_infinite] [animation-delay:-14.00s]"><img src="/images/ce6c217cd9.jpg" alt="" loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
+        <div data-ag-card="" className="absolute left-[50%] top-[50%] w-[18cqw] h-[25cqw] ml-[-9cqw] mt-[-12.5cqw] rounded-[.4cqw] overflow-hidden [backface-visibility:hidden] [animation:ag-rail-l_18s_linear_infinite] [animation-delay:-16.00s]"><img src="/images/df2ee54140.jpg" alt="" loading="lazy" decoding="async" draggable="false" className="w-full h-full object-cover block" /></div>
       </div>
     </div>
     <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_34%_42%_at_50%_50%,rgba(12,11,10,.92)_0%,rgba(12,11,10,.55)_45%,rgba(12,11,10,0)_72%)]"></div>
@@ -594,13 +591,13 @@ export default function Home() {
   </div>
 </section>
 
-<section data-dark className="relative z-[1] text-[#F7F4EF] py-[clamp(72px,11vw,170px)] px-[clamp(20px,4.4vw,64px)]">
+<section data-dark="" className="relative z-[1] text-[#F7F4EF] py-[clamp(72px,11vw,170px)] px-[clamp(20px,4.4vw,64px)]">
   <div className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(237,233,225,.18)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B]">
     <span>(07) Technology</span>
     <span>Built, not assembled</span>
   </div>
 
-  <h2 data-reveal className="mt-[clamp(26px,4vw,60px)] mx-0 mb-[clamp(34px,5vw,80px)] [font-family:'Archivo',sans-serif] font-bold text-[clamp(2rem,6.6vw,6rem)] leading-[.94] tracking-[-0.045em] max-w-[18ch]">WE DON'T JUST DESIGN THE INTERFACE. WE BUILD THE <span className="text-[var(--ag-accent,#F2600C)]">MACHINE</span> BEHIND IT.</h2>
+  <h2 data-reveal="" className="mt-[clamp(26px,4vw,60px)] mx-0 mb-[clamp(34px,5vw,80px)] [font-family:'Archivo',sans-serif] font-bold text-[clamp(2rem,6.6vw,6rem)] leading-[.94] tracking-[-0.045em] max-w-[18ch]">WE DON&apos;T JUST DESIGN THE INTERFACE. WE BUILD THE <span className="text-[var(--ag-accent,#F2600C)]">MACHINE</span> BEHIND IT.</h2>
 
   <div className="flex flex-wrap gap-[0_clamp(28px,6vw,100px)]">
     <div className="[flex:1_1_min(100%,280px)]">
@@ -617,38 +614,38 @@ export default function Home() {
     </div>
   </div>
 
-  <p className="mt-[clamp(30px,4vw,56px)] mx-0 mb-0 max-w-[52ch] text-[clamp(15px,1.3vw,18px)] leading-[1.6] text-[#B7B1A6]">We'll happily talk through the stack if you want to, but you're buying an outcome that works in three years, not a list of frameworks.</p>
+  <p className="mt-[clamp(30px,4vw,56px)] mx-0 mb-0 max-w-[52ch] text-[clamp(15px,1.3vw,18px)] leading-[1.6] text-[#B7B1A6]">We&apos;ll happily talk through the stack if you want to, but you&apos;re buying an outcome that works in three years, not a list of frameworks.</p>
 </section>
 
-<section data-dark className="relative z-[1] text-[#F7F4EF] py-[clamp(70px,10vw,150px)] px-[clamp(20px,4.4vw,64px)]">
+<section data-dark="" className="relative z-[1] text-[#F7F4EF] py-[clamp(70px,10vw,150px)] px-[clamp(20px,4.4vw,64px)]">
   <div className="flex flex-wrap gap-[clamp(26px,5vw,90px)] items-start">
     <div className="[flex:1_1_min(100%,280px)] sticky top-[110px]">
       <div className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B] [border-top:1px_solid_rgba(247,244,239,.16)] pt-3">(08) For founders</div>
-      <h2 data-reveal className="mt-[clamp(18px,2.4vw,32px)] mx-0 mb-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(2rem,5.2vw,4.6rem)] leading-[.92] tracking-[-0.045em]">ZERO<br />TO<br /><span className="text-[var(--ag-accent,#F2600C)]">LAUNCH.</span></h2>
-      <p className="mt-[clamp(18px,2.4vw,30px)] mx-0 mb-0 max-w-[40ch] text-[clamp(15px,1.3vw,18px)] leading-[1.55] text-[#B7B1A6]">Founders don't need six suppliers and a project manager to coordinate them. They need one team that can name the thing, build it, film it and put it in front of people, in weeks.</p>
+      <h2 data-reveal="" className="mt-[clamp(18px,2.4vw,32px)] mx-0 mb-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(2rem,5.2vw,4.6rem)] leading-[.92] tracking-[-0.045em]">ZERO<br />TO<br /><span className="text-[var(--ag-accent,#F2600C)]">LAUNCH.</span></h2>
+      <p className="mt-[clamp(18px,2.4vw,30px)] mx-0 mb-0 max-w-[40ch] text-[clamp(15px,1.3vw,18px)] leading-[1.55] text-[#B7B1A6]">Founders don&apos;t need six suppliers and a project manager to coordinate them. They need one team that can name the thing, build it, film it and put it in front of people, in weeks.</p>
       <a href="#contact" className="inline-flex items-center gap-2.5 mt-[clamp(22px,3vw,38px)] [font-family:'Archivo',sans-serif] font-semibold text-[clamp(15px,1.4vw,19px)] [border-bottom:1px_solid_currentColor] pb-[3px]">Start something <span>→</span></a>
     </div>
     <div className="[flex:1_1_min(100%,300px)]">
-      <div data-reveal className="[border-top:1px_solid_rgba(247,244,239,.16)] py-[clamp(10px,1.2vw,16px)] px-0 ml-[0%]"><span className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(1.6rem,4.6vw,3.6rem)] tracking-[-0.04em] leading-[1]">IDEA</span><span className="[font-family:'JetBrains_Mono',monospace] text-[11px] text-[#8A857B] ml-3.5">Week 00</span></div>
-      <div data-reveal className="[border-top:1px_solid_rgba(247,244,239,.16)] py-[clamp(10px,1.2vw,16px)] px-0 ml-[6%]"><span className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(1.6rem,4.6vw,3.6rem)] tracking-[-0.04em] leading-[1]">BRAND</span><span className="[font-family:'JetBrains_Mono',monospace] text-[11px] text-[#8A857B] ml-3.5">Week 02</span></div>
-      <div data-reveal className="[border-top:1px_solid_rgba(247,244,239,.16)] py-[clamp(10px,1.2vw,16px)] px-0 ml-[12%]"><span className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(1.6rem,4.6vw,3.6rem)] tracking-[-0.04em] leading-[1]">PRODUCT</span><span className="[font-family:'JetBrains_Mono',monospace] text-[11px] text-[#8A857B] ml-3.5">Week 04</span></div>
-      <div data-reveal className="[border-top:1px_solid_rgba(247,244,239,.16)] py-[clamp(10px,1.2vw,16px)] px-0 ml-[18%]"><span className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(1.6rem,4.6vw,3.6rem)] tracking-[-0.04em] leading-[1]">CONTENT</span><span className="[font-family:'JetBrains_Mono',monospace] text-[11px] text-[#8A857B] ml-3.5">Week 08</span></div>
-      <div data-reveal className="[border-top:1px_solid_rgba(247,244,239,.16)] py-[clamp(10px,1.2vw,16px)] px-0 ml-[24%]"><span className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(1.6rem,4.6vw,3.6rem)] tracking-[-0.04em] leading-[1] text-[var(--ag-accent,#F2600C)]">LAUNCH</span><span className="[font-family:'JetBrains_Mono',monospace] text-[11px] text-[#8A857B] ml-3.5">Week 10</span></div>
-      <div data-reveal className="[border-top:1px_solid_rgba(247,244,239,.16)] [border-bottom:1px_solid_rgba(247,244,239,.16)] py-[clamp(10px,1.2vw,16px)] px-0 ml-[30%]"><span className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(1.6rem,4.6vw,3.6rem)] tracking-[-0.04em] leading-[1]">GROWTH</span><span className="[font-family:'JetBrains_Mono',monospace] text-[11px] text-[#8A857B] ml-3.5">Ongoing</span></div>
+      <div data-reveal="" className="[border-top:1px_solid_rgba(247,244,239,.16)] py-[clamp(10px,1.2vw,16px)] px-0 ml-[0%]"><span className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(1.6rem,4.6vw,3.6rem)] tracking-[-0.04em] leading-[1]">IDEA</span><span className="[font-family:'JetBrains_Mono',monospace] text-[11px] text-[#8A857B] ml-3.5">Week 00</span></div>
+      <div data-reveal="" className="[border-top:1px_solid_rgba(247,244,239,.16)] py-[clamp(10px,1.2vw,16px)] px-0 ml-[6%]"><span className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(1.6rem,4.6vw,3.6rem)] tracking-[-0.04em] leading-[1]">BRAND</span><span className="[font-family:'JetBrains_Mono',monospace] text-[11px] text-[#8A857B] ml-3.5">Week 02</span></div>
+      <div data-reveal="" className="[border-top:1px_solid_rgba(247,244,239,.16)] py-[clamp(10px,1.2vw,16px)] px-0 ml-[12%]"><span className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(1.6rem,4.6vw,3.6rem)] tracking-[-0.04em] leading-[1]">PRODUCT</span><span className="[font-family:'JetBrains_Mono',monospace] text-[11px] text-[#8A857B] ml-3.5">Week 04</span></div>
+      <div data-reveal="" className="[border-top:1px_solid_rgba(247,244,239,.16)] py-[clamp(10px,1.2vw,16px)] px-0 ml-[18%]"><span className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(1.6rem,4.6vw,3.6rem)] tracking-[-0.04em] leading-[1]">CONTENT</span><span className="[font-family:'JetBrains_Mono',monospace] text-[11px] text-[#8A857B] ml-3.5">Week 08</span></div>
+      <div data-reveal="" className="[border-top:1px_solid_rgba(247,244,239,.16)] py-[clamp(10px,1.2vw,16px)] px-0 ml-[24%]"><span className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(1.6rem,4.6vw,3.6rem)] tracking-[-0.04em] leading-[1] text-[var(--ag-accent,#F2600C)]">LAUNCH</span><span className="[font-family:'JetBrains_Mono',monospace] text-[11px] text-[#8A857B] ml-3.5">Week 10</span></div>
+      <div data-reveal="" className="[border-top:1px_solid_rgba(247,244,239,.16)] [border-bottom:1px_solid_rgba(247,244,239,.16)] py-[clamp(10px,1.2vw,16px)] px-0 ml-[30%]"><span className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(1.6rem,4.6vw,3.6rem)] tracking-[-0.04em] leading-[1]">GROWTH</span><span className="[font-family:'JetBrains_Mono',monospace] text-[11px] text-[#8A857B] ml-3.5">Ongoing</span></div>
     </div>
   </div>
 </section>
 
-<section id="contact" data-dark className="relative z-[1] text-[#F7F4EF] pt-[clamp(72px,11vw,170px)] px-[clamp(20px,4.4vw,64px)] pb-0">
+<section id="contact" data-dark="" className="relative z-[1] text-[#F7F4EF] pt-[clamp(72px,11vw,170px)] px-[clamp(20px,4.4vw,64px)] pb-0">
   <div className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(247,244,239,.18)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B]">
     <span>(10), Contact</span>
     <span>Taking projects for Q1 2027</span>
   </div>
 
-  <h2 data-reveal className="mt-[clamp(34px,6vw,90px)] mx-0 mb-[clamp(30px,4vw,60px)] [font-family:'Archivo',sans-serif] font-bold text-[clamp(2.4rem,9.6vw,9.5rem)] leading-[.88] tracking-[-0.048em] [font-variation-settings:'wdth'_104]">HAVE A THING<br />WORTH <span className="text-[var(--ag-accent,#F2600C)]">BUILDING?</span></h2>
+  <h2 data-reveal="" className="mt-[clamp(34px,6vw,90px)] mx-0 mb-[clamp(30px,4vw,60px)] [font-family:'Archivo',sans-serif] font-bold text-[clamp(2.4rem,9.6vw,9.5rem)] leading-[.88] tracking-[-0.048em] [font-variation-settings:'wdth'_104]">HAVE A THING<br />WORTH <span className="text-[var(--ag-accent,#F2600C)]">BUILDING?</span></h2>
 
   <div className="flex flex-wrap gap-[clamp(30px,6vw,110px)] items-start pb-[clamp(50px,8vw,110px)]">
-    <form data-ag-form className="[flex:2_1_min(100%,320px)] flex flex-col gap-[clamp(18px,2.4vw,30px)]">
+    <form data-ag-form="" className="[flex:2_1_min(100%,320px)] flex flex-col gap-[clamp(18px,2.4vw,30px)]">
       <label className="flex flex-col gap-[9px]">
         <span className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8A857B]">Name</span>
         <input type="text" name="name" placeholder="Your name" className="bg-[transparent] border-0 [border-bottom:1px_solid_rgba(237,233,225,.28)] py-2 px-0 text-[clamp(16px,1.5vw,20px)] [outline:none] focus:[border-bottom-color:var(--ag-accent,#F2600C)]" />
@@ -659,9 +656,9 @@ export default function Home() {
       </label>
       <label className="flex flex-col gap-[9px]">
         <span className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8A857B]">What are you building</span>
-        <textarea name="brief" rows="3" placeholder="A sentence is enough." className="bg-[transparent] border-0 [border-bottom:1px_solid_rgba(237,233,225,.28)] py-2 px-0 text-[clamp(16px,1.5vw,20px)] [outline:none] [resize:vertical] [font-family:inherit] focus:[border-bottom-color:var(--ag-accent,#F2600C)]"></textarea>
+        <textarea name="brief" rows={3} placeholder="A sentence is enough." className="bg-[transparent] border-0 [border-bottom:1px_solid_rgba(237,233,225,.28)] py-2 px-0 text-[clamp(16px,1.5vw,20px)] [outline:none] [resize:vertical] [font-family:inherit] focus:[border-bottom-color:var(--ag-accent,#F2600C)]"></textarea>
       </label>
-      <button data-ag-submit type="submit" className="[align-self:flex-start] mt-1.5 bg-[transparent] border-0 [border-bottom:1px_solid_currentColor] pt-0 px-0 pb-1 [font-family:'Archivo',sans-serif] font-semibold text-[clamp(17px,2vw,26px)] tracking-[-0.02em] cursor-pointer [transition:color_.3s] hover:text-[var(--ag-accent,#F2600C)]">Send it →</button>
+      <button data-ag-submit="" type="submit" className="[align-self:flex-start] mt-1.5 bg-[transparent] border-0 [border-bottom:1px_solid_currentColor] pt-0 px-0 pb-1 [font-family:'Archivo',sans-serif] font-semibold text-[clamp(17px,2vw,26px)] tracking-[-0.02em] cursor-pointer [transition:color_.3s] hover:text-[var(--ag-accent,#F2600C)]">Send it →</button>
     </form>
 
     <div className="[flex:1_1_min(100%,240px)] flex flex-col gap-[clamp(20px,3vw,34px)]">
@@ -689,23 +686,23 @@ export default function Home() {
       <span className="flex gap-[18px]"><a href="#contact">Privacy</a><a href="#contact">Terms</a><a href="#top">Back to top ↑</a></span>
     </div>
     <div className="pt-[clamp(10px,2vw,28px)] px-0 pb-[clamp(14px,2.4vw,34px)]">
-      <div data-ag-stroke aria-label="AROHANCE" className="block w-full min-h-[clamp(60px,16vw,260px)]"></div>
+      <div data-ag-stroke="" aria-label="AROHANCE" className="block w-full min-h-[clamp(60px,16vw,260px)]"></div>
     </div>
   </footer>
 </section>
 
-<div data-ag-lightbox className="fixed inset-0 z-[92] bg-[rgba(10,10,9,.95)] flex items-center justify-center p-[clamp(20px,5vw,80px)] opacity-[0] invisible pointer-events-none [transition:opacity_.4s_ease] cursor-pointer">
+<div data-ag-lightbox="" className="fixed inset-0 z-[92] bg-[rgba(10,10,9,.95)] flex items-center justify-center p-[clamp(20px,5vw,80px)] opacity-[0] invisible pointer-events-none [transition:opacity_.4s_ease] cursor-pointer">
   <div className="w-full max-w-[min(1120px,100%)] flex flex-col gap-[clamp(14px,2.2vw,28px)]">
-    <img data-lb-img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Testimonial" className="w-full [aspect-ratio:16/9] object-cover block bg-[#1d1c1a]" />
+    <img data-lb-img="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Testimonial" className="w-full [aspect-ratio:16/9] object-cover block bg-[#1d1c1a]" />
     <div className="flex justify-between items-start gap-[clamp(18px,4vw,50px)] flex-wrap">
-      <p data-lb-quote className="[flex:2_1_min(100%,320px)] m-0 [font-family:'Archivo',sans-serif] font-medium text-[clamp(1.1rem,2.2vw,1.9rem)] leading-[1.18] tracking-[-0.025em] text-[#EDE9E1]"></p>
-      <div className="[flex:1_1_min(100%,200px)] text-right [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.12em] uppercase text-[#8A857B] leading-[1.9]"><span data-lb-name className="text-[#EDE9E1]"></span><br />Click anywhere or press esc to close</div>
+      <p data-lb-quote="" className="[flex:2_1_min(100%,320px)] m-0 [font-family:'Archivo',sans-serif] font-medium text-[clamp(1.1rem,2.2vw,1.9rem)] leading-[1.18] tracking-[-0.025em] text-[#EDE9E1]"></p>
+      <div className="[flex:1_1_min(100%,200px)] text-right [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.12em] uppercase text-[#8A857B] leading-[1.9]"><span data-lb-name="" className="text-[#EDE9E1]"></span><br />Click anywhere or press esc to close</div>
     </div>
   </div>
 </div>
 
 <ContactPill />
-<AgRuntime modules={HOME_MODULES} />
+<HomeRuntime />
 </div>
   );
 }

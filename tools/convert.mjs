@@ -24,7 +24,7 @@ const toRoute = (href) => {
 
 const ATTRS = {
   class: 'className', for: 'htmlFor', tabindex: 'tabIndex',
-  colspan: 'colSpan', rowspan: 'rowSpan', maxlength: 'maxLength',
+  colspan: 'colSpan', rowspan: 'rowSpan', maxlength: 'maxLength', minlength: 'minLength',
   autocomplete: 'autoComplete', readonly: 'readOnly', contenteditable: 'contentEditable',
   srcset: 'srcSet', crossorigin: 'crossOrigin', 'stroke-width': 'strokeWidth',
   'stroke-linecap': 'strokeLinecap', 'stroke-linejoin': 'strokeLinejoin',
@@ -38,6 +38,14 @@ const ATTRS = {
 };
 
 const VOID = new Set(['area','base','br','col','embed','hr','img','input','link','meta','source','track','wbr']);
+
+// React types these DOM attributes `number`, not `string | number`, so a
+// literal JSX string value (what the converter emits for every other
+// attribute) fails to type-check even though it was valid HTML. Kept
+// deliberately small and explicit -- `width`/`height` are NOT here: React
+// accepts those as strings, and they also appear on SVG elements where a
+// blind numeric coercion could change meaning (e.g. a percentage).
+const NUMERIC_ATTRS = ['rows', 'cols', 'span', 'colSpan', 'rowSpan', 'maxLength', 'minLength', 'size', 'start'];
 
 // Completeness guard: the full census of hyphenated custom tags found in
 // the real templates is image-slot, sc-raw-select, and x-dc -- nothing
@@ -125,6 +133,30 @@ export function convert(html, assets) {
         problems.add(`unhandled attribute: ${name}`);
       }
     }
+
+    // 3c. Force every attribute to serialize with an explicit value, even an
+    // empty one. node-html-parser's own setAttribute/removeAttribute (called
+    // throughout this loop) re-quote *every* attribute on the element each
+    // time, via a helper that collapses a value to a bare token whenever
+    // `quoteAttribute(value)` comes back as `"null"` or `'""'` -- i.e. it
+    // treats a source attribute that was genuinely valueless (parsed as JS
+    // `null`, e.g. a bare `<input disabled>`) and one that was explicitly
+    // `attr=""` (parsed as `''`) identically, printing both bare. That is
+    // indistinguishable from a real HTML boolean attribute once it reaches
+    // JSX, which reads a bare attribute as `{true}` -- fine for an actual
+    // boolean prop, but a type error for any prop typed `string`/`number`
+    // (`alt=""`, the 22 occurrences that triggered this fix, or a future
+    // `title=""`/`placeholder=""`/etc.). Rebuilding rawAttrs here, once all
+    // the rules above have finished touching this element, keeps `null`
+    // (genuinely bare in the source) bare -- matching the library's own
+    // semantics for real boolean attributes -- while forcing every other
+    // value, including '', through quoteAttribute's normal quoted path.
+    const finalAttrs = el.rawAttributes;
+    el.rawAttrs = Object.keys(finalAttrs).map((name) => {
+      const v = finalAttrs[name];
+      return v == null ? name : `${name}=${el.quoteAttribute(v)}`;
+    }).join(' ');
+    delete el._rawAttrs;
   }
 
   if (problems.size) {
@@ -140,17 +172,40 @@ export function convert(html, assets) {
     out = out.replace(new RegExp(`</${tag}>`, 'gi'), '');
   }
 
-  // 5. escape braces in text so JSX does not read them as expressions.
-  // This must be a single regex pass with a replacer function, not a
-  // `.replace(/\{/g, "{'{'}").replace(/\}/g, "{'}'}")` chain: each
-  // replacement string contains one literal '{' and one literal '}', so a
-  // second, separate .replace() call would re-scan and mangle the braces
-  // the first call just inserted (e.g. "a { b } c" would become the
-  // corrupted "a {'{'{'}'} b {'}'} c" instead of "a {'{'} b {'}'} c").
-  // Doing both characters in one pass avoids reprocessing inserted output.
+  // 4b. coerce known numeric attributes from a quoted JSX string to a JSX
+  // number expression (`rows="3"` -> `rows={3}`). Only a plain digit run is
+  // converted -- anything else (empty, non-numeric) is left as a quoted
+  // string, unconverted, rather than risk emitting a broken expression; that
+  // would still fail to type-check exactly as before, which is the
+  // conservative failure mode. `\b` keeps this from matching a numeric name
+  // as the tail of an unrelated, longer attribute (e.g. a hypothetical
+  // `aria-rowspan`, which is a distinct, string-typed ARIA attribute this
+  // rule must not touch).
+  const numericAttrPattern = new RegExp(`\\b(${NUMERIC_ATTRS.join('|')})="(\\d+)"`, 'g');
+  out = out.replace(numericAttrPattern, (_m, name, digits) => `${name}={${digits}}`);
+
+  // 5. escape braces, quotes and '>' in text so JSX does not read them as
+  // expressions or unescaped-entity lint errors. This must be a single regex
+  // pass with a replacer function, not a chain of separate `.replace()`
+  // calls: each replacement string for '{'/'}' contains one literal '{' and
+  // one literal '}', so a second, separate .replace() call would re-scan and
+  // mangle the braces the first call just inserted (e.g. "a { b } c" would
+  // become the corrupted "a {'{'{'}'} b {'}'} c" instead of "a {'{'} b {'}'}
+  // c"). Doing every character in one pass avoids reprocessing inserted
+  // output. The named entities below (`&apos;`, `&quot;`, `&gt;`) are JSX
+  // text content, not raw HTML, but JSX decodes the standard HTML5 named
+  // entity table in text same as HTML does, so the rendered character is
+  // unchanged -- only the source representation changes, exactly like the
+  // `&amp;` the converter's input already relies on elsewhere.
   out = out.replace(/>([^<]*)</g, (m, text) => {
-    if (!text.includes('{') && !text.includes('}')) return m;
-    const escaped = text.replace(/[{}]/g, (c) => (c === '{' ? "{'{'}" : "{'}'}"));
+    if (!/[{}'">]/.test(text)) return m;
+    const escaped = text.replace(/[{}'">]/g, (c) => {
+      if (c === '{') return "{'{'}";
+      if (c === '}') return "{'}'}";
+      if (c === "'") return '&apos;';
+      if (c === '"') return '&quot;';
+      return '&gt;';
+    });
     return '>' + escaped + '<';
   });
 
