@@ -29,7 +29,8 @@ test('reported asset count matches files actually written', () => {
   const paths = new Set(Object.values(map).filter(Boolean));
   const images = readdirSync('public/images').length;
   const vendor = readdirSync('.source/vendor').length;
-  assert.equal(paths.size, images + vendor,
+  const fonts = readdirSync('public/fonts').length;
+  assert.equal(paths.size, images + vendor + fonts,
     'assets.json distinct paths must equal files on disk');
 });
 
