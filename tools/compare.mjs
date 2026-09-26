@@ -204,12 +204,37 @@ function comparePage(slug) {
   }
 
   if (o.bodyBackgroundColor !== p.bodyBackgroundColor) {
-    // Known-acceptable on Contact only (see the classification comment
-    // above) — Contact is the one page whose body background sits behind
-    // an always-opaque foreground layer, on both targets. Any OTHER page
-    // showing this diff is not this case and is not marked acceptable.
+    // Known-acceptable on Contact only, and ONLY for this exact, fixed pair
+    // of CSS literals — re-review finding: `slug === 'contact'` alone was a
+    // bare page-identity exemption, asymmetric with the rigour just below
+    // (the text path requires the masked values to match exactly, not just
+    // "this page is allowed to differ"). original=rgb(19, 17, 16) is
+    // `Arohance Contact.html`'s own occluded `<body>` background;
+    // port=rgb(12, 11, 10) is `app/globals.css`'s `body { background:
+    // #0C0B0A }` — both fixed design constants, not measurements that can
+    // legitimately vary run to run (unlike the clock/timer text), so they
+    // are exactly as hardcodable as CLOCK_TEXT/TIMER_TEXT above. Gating on
+    // the value pair (not just the slug) means ANY other original/port
+    // pair on Contact — a real regression, whatever its value — is NOT
+    // marked acceptable and surfaces as residual. Re-derive both literals
+    // from a fresh capture (`node tools/shoot.mjs original/port 1440 900`)
+    // if this page's design ever legitimately changes; do not loosen this
+    // back to a bare slug check.
+    //
+    // Known harness limitation (not fixed here — out of scope for this
+    // guard): `bodyBackgroundColor` only ever measures `<body>` itself,
+    // never the opaque `[data-ag-root]` layer actually visible on top of
+    // it. That visible layer is where a real, user-facing regression on
+    // Contact would have to show up, and nothing in this harness measures
+    // it — this line only ever catches a change to the hidden `<body>`
+    // colour underneath. See README, "Verifying fidelity", for the
+    // README-level note.
+    const acceptable =
+      slug === 'contact' &&
+      o.bodyBackgroundColor === 'rgb(19, 17, 16)' &&
+      p.bodyBackgroundColor === 'rgb(12, 11, 10)';
     add(`body background-color differs: original=${o.bodyBackgroundColor} port=${p.bodyBackgroundColor}`, {
-      acceptable: slug === 'contact',
+      acceptable,
     });
   }
 

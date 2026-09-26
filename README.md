@@ -37,6 +37,19 @@ read from `.source/` (gitignored, produced by the unbundler; see "The
 tooling" below), so the suite fails until that's been generated at least
 once. `npm test` does not do this for you.
 
+**Sequencing note for the fidelity harness:** `npm test` re-runs the real
+unbundler (`unbundle.test.mjs` spawns `node tools/unbundle.mjs`), which
+rewrites every file under `public/images/` and `public/fonts/` with a fresh
+mtime — same bytes, new timestamp. `tools/shoot.mjs`'s `port` target
+refuses to run against a `.next` build older than the newest file under
+`app/`, `lib/`, `components/`, `public/` (see "Verifying fidelity"), so
+running `npm test` *after* `npm run build` can make the very next
+`node tools/shoot.mjs port ...` refuse, correctly, citing a stale build —
+nothing meaningful changed, but the build genuinely now predates
+`public/`. The guard is fail-closed and doing its job; it just means the
+order matters: build immediately before shooting, and if `npm test` runs
+in between, rebuild again first.
+
 ## The tooling (`tools/`)
 
 These are one-shot / verification scripts. None of them run as part of
@@ -140,11 +153,24 @@ README:
 
 Any other difference, or a different total, is a real regression — go find
 it, don't wave it through. Concretely: `compare.mjs` masks out only the
-literal clock/timer text shape and only Contact's own background-color line
-before deciding pass/fail, so a genuine regression that happens to land on
-the same page (even the same line) as one of the four clock captures is
-still caught and still named in a `RESIDUAL` section — the verdict was
-never "the total is still 5," it's "everything is accounted for."
+literal clock/timer text shape and only Contact's own specific, hardcoded
+background-color *value pair* before deciding pass/fail (not just "Contact
+is allowed to differ here") — so a genuine regression that happens to land
+on the same page (even the same line) as one of the four clock captures,
+or that changes Contact's background to any value other than the two known
+ones, is still caught and still named in a `RESIDUAL` section. The verdict
+was never "the total is still 5," it's "everything is accounted for."
+
+**Known limitation of the Contact background-color check:** it measures
+`getComputedStyle(document.body).backgroundColor` only. On Contact, `<body>`
+sits underneath an opaque `[data-ag-root]` layer that is what a visitor
+actually sees — the same layer that makes this diff acceptable in the first
+place (see above). That means this check only ever catches a change to the
+*hidden* `<body>` colour; a real, user-visible regression on the *visible*
+root layer's own background would not be measured by this line at all, on
+either target. Widening the harness to also measure `[data-ag-root]` is
+out of scope for this fix wave — recorded here so the gap is visible
+without having to read `tools/compare.mjs`'s comments.
 
 Mobile, at 390 and 768:
 
