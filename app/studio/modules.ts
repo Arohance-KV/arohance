@@ -44,11 +44,14 @@ import {
  *   7. the `[data-ag-clock]` interval -> `clock` (unmodified, reused —
  *      identical Intl options and 'IST' suffix)
  *
- *  Studio has NO form: grepped the whole template for `data-ag-form` —
- *  zero hits, neither a call site nor a markup element (unlike Case
- *  Study, which has a dead call site with no markup — see
- *  case-study/modules.ts). So `form`/`formWorkingDay` is not in this list
- *  at all, not even dormant.
+ *  Studio has NO form (Task 13 fix round 1, re-confirmed): grepped the
+ *  whole template for `data-ag-form`, `data-ag-submit`, `<form` and
+ *  `submit` — zero hits for all four, neither a call site nor a markup
+ *  element nor even a "Thanks" success string (unlike Case Study, which
+ *  has a dead call site with no markup — see case-study/modules.ts). So
+ *  `form`/`makeForm` is not in this list at all, not even dormant —
+ *  confirmed this was already correct in the original submission, not a
+ *  fix made this round.
  *
  *  Confirmed absent from Studio's source entirely (zero grep hits for the
  *  method name or its target data-attribute): `initServices`/`data-svc`,

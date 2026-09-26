@@ -1,6 +1,6 @@
 import {
   applyTheme, reveal, cursor, clock,
-  shellMinimal, navPad, formWorkingDay, type Behavior,
+  shellMinimal, navPad, makeForm, type Behavior,
 } from '@/lib/behaviors';
 
 /** Contact page behaviour set, in the verified componentDidMount order
@@ -33,14 +33,19 @@ import {
  *      running that same loop over an empty NodeList is a no-op —
  *      provably equivalent, not merely assumed so.
  *   6. `[data-ag-clock]` interval -> `clock` (unmodified, reused)
- *   7. `[data-ag-form]` submit handler -> `formWorkingDay` (page-specific
- *      port, NOT `form.ts` — Contact's confirmation message is "Thanks —
- *      we reply within a **working** day", matching the promise already
- *      made in the page's own intro copy; `form.ts` hardcodes "a day"
- *      with no "working", verified correct for Home/About/Services by
- *      direct grep. This one has a real, wired-up `<form data-ag-form>`
- *      in the markup — not dormant like Case Study's. See
- *      formWorkingDay.ts.)
+ *   7. `[data-ag-form]` submit handler -> `makeForm('Thanks — we reply
+ *      within a working day')` (Task 13 fix round 1: `form.ts` is now a
+ *      factory, `makeForm(message)` — Contact's confirmation message is
+ *      "Thanks — we reply within a **working** day", matching the promise
+ *      already made in the page's own intro copy; the shared `form`
+ *      instance carries "a day" with no "working", verified correct for
+ *      Home/About/Services/Case Study by direct grep. Every other
+ *      statement (preventDefault, find `[data-ag-submit]`, set color,
+ *      disable) is identical to the shared instance, so only the message
+ *      needed parameterising — this page's previous dedicated
+ *      `formWorkingDay.ts` module is deleted. This one has a real,
+ *      wired-up `<form data-ag-form>` in the markup — not dormant like
+ *      Case Study's.)
  *
  *  Contact has NO parallax: grepped the whole template for
  *  `data-parallax` — zero hits, and the source's own P object has no `a`
@@ -58,5 +63,5 @@ import {
  *  Must stay a module-level constant: AgRuntime's effect deps are
  *  [modules], so a fresh array each render would remount every behaviour. */
 export const CONTACT_MODULES: Behavior[] = [
-  applyTheme, shellMinimal, reveal, navPad, cursor, clock, formWorkingDay,
+  applyTheme, shellMinimal, reveal, navPad, cursor, clock, makeForm('Thanks — we reply within a working day'),
 ];

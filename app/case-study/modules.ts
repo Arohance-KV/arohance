@@ -51,11 +51,22 @@ import {
  *  call is real but permanently dormant. Included here anyway, per
  *  Ruling 2's instruction to derive the list from what componentDidMount
  *  actually calls: the block genuinely exists in source and is textually
- *  identical to `form.ts`, so including it is a faithful port of that
- *  call site, and it is provably harmless (`form.ts`'s own `if (!el)
- *  return () => {}` guard no-ops it, identical to omitting it). Reported
- *  here for the reviewer to override if a stricter "only what can
- *  possibly run" reading is preferred.
+ *  identical to the default `form` instance, so including it is a
+ *  faithful port of that call site, and it is provably harmless
+ *  (`makeForm`'s `if (!el) return () => {}` guard — read directly in
+ *  `form.ts` — fires immediately with no `<form data-ag-form>` present,
+ *  identical to omitting it entirely). Kept on reviewer instruction (Task
+ *  13 fix round 1): source calls it, so include it; the message matches
+ *  the default anyway, so there is nothing to parameterise here.
+ *
+ *  (Task 13 fix round 1: `form.ts` was refactored into a `makeForm(message)`
+ *  factory so Careers and Contact — whose own success messages read
+ *  "Thanks, we reply within a week" and "Thanks — we reply within a
+ *  working day" respectively, confirmed by grepping each template
+ *  directly — no longer show the wrong text by reusing this page's
+ *  instance. `form` itself, imported below, is unchanged: it is still
+ *  `makeForm('Thanks — we reply within a day')`, so this page's behaviour
+ *  and this list are unaffected by that fix.)
  *
  *  Confirmed absent from Case Study's source entirely, same census as
  *  Studio: `initServices`/`data-svc`, `initMagnet`/`data-ag-magnet`,

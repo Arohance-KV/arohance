@@ -1,5 +1,5 @@
 import {
-  applyTheme, reveal, navCareers, shell, roles, form, type Behavior,
+  applyTheme, reveal, navCareers, shell, roles, makeForm, type Behavior,
 } from '@/lib/behaviors';
 
 /** Careers page behaviour set, in the verified componentDidMount order from
@@ -30,6 +30,19 @@ import {
  *     the full reasoning and diff.
  *   - `roles` in place of `initRoles`, also folding in `applyPay` (ported
  *     always-on per Ruling 2 — see `roles.ts`).
+ *   - `makeForm('Thanks, we reply within a week')` in place of the shared
+ *     `form` instance (Task 13 fix round 1): careers' own `initForm`
+ *     (lines 730-743) sets `btn.textContent = 'Thanks, we reply within a
+ *     week'` on submit — confirmed by grepping this template directly, not
+ *     assumed from another page's copy. The shared `form` module hardcodes
+ *     "Thanks — we reply within a day" (home/about/services/case-study's
+ *     text), which is what this page shipped showing until this fix — a
+ *     user-visible copy defect nobody had caught because Task 12's review
+ *     focused on `roles.ts`/`navCareers.ts`, not `form`'s reuse. `form.ts`
+ *     now exports `makeForm(message)`; every other statement (preventDefault,
+ *     find `[data-ag-submit]`, set color, disable) is identical to careers'
+ *     own source, so only the message needed parameterising, not a new
+ *     module (Ruling: a datum, not a behaviour).
  *
  *  `fanPointer` was checked too: careers.html has no reference to it at
  *  all, not even a dead method definition (unlike services/about) — and it
@@ -39,5 +52,5 @@ import {
  *  Must stay a module-level constant: AgRuntime's effect deps are
  *  [modules], so a fresh array each render would remount every behaviour. */
 export const CAREERS_MODULES: Behavior[] = [
-  applyTheme, reveal, navCareers, shell, roles, form,
+  applyTheme, reveal, navCareers, shell, roles, makeForm('Thanks, we reply within a week'),
 ];
