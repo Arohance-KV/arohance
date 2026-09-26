@@ -122,3 +122,32 @@ the converted markup references these families by their real CSS names
 everywhere (because that's exactly what the original's own inline styles do),
 and `next/font` only ever exposes a font under its own hashed internal name,
 which nothing in this markup looks up.
+
+## Lint warnings you'll see
+
+`npm run lint` is 0 errors, but not 0 warnings (67, as of this writing) —
+that's expected, not a backlog to clear:
+
+- **Most of them** (`@next/next/no-img-element`, on `app/page.tsx`,
+  `app/services/page.tsx`, `app/about/page.tsx`) are decorative or fill
+  images — client-logo grids, animated 3D rail cards — left as plain
+  `<img>` on purpose. Only the measurable key visuals (hero art, work-card
+  thumbnails, the logo) were converted to `next/image` with real, known
+  width/height; the rest don't have a meaningful fixed intrinsic size to
+  give it. The warning is a real performance hint being knowingly declined
+  here, not a defect.
+- **The rest** (`@typescript-eslint/no-unused-vars`,
+  `no-unused-expressions`, in `lib/behaviors/reel.ts`,
+  `lib/liquid-ether.ts`, `lib/stroke-text.ts`) are unused catch bindings and
+  one dead computation, inherited from near-verbatim ports of the original
+  page scripts — matching the source exactly was chosen over tidying up
+  code this project doesn't otherwise touch. `tools/shoot.mjs` has one more
+  (an `eslint-disable` comment for a function only ever invoked indirectly,
+  via `page.evaluate()`, which the linter can't see).
+
+No rule is disabled repo-wide or per file to make any of these go away —
+a warning that's explained is more useful than one that's hidden, and
+turning off `no-img-element` here would also hide a genuine finding on a
+real photo added later. `.source/**` (vendored third-party bundles, not
+this project's code) is excluded from lint entirely, the same as
+`node_modules/**`/`.next/**`/`out/**`/`build/**`.
