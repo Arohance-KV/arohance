@@ -15,11 +15,14 @@ import { magnet } from './magnet';
 import { stroke } from './stroke';
 import { reel } from './reel';
 import { trail } from './trail';
+import { roles } from './roles';
+import { navCta } from './navCta';
 import type { Behavior } from './types';
 
 export * from './types';
 export { applyTheme, reveal, parallax, nav, shell, clock, form };
 export { services, hovers, cursor, flags, video, ether, magnet, stroke, reel, trail };
+export { roles, navCta };
 
 /** Behaviours every page mounts, in the original componentDidMount order. */
 export const SHARED: Behavior[] = [applyTheme, reveal, parallax, nav, shell, clock, form];
