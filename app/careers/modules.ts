@@ -1,5 +1,5 @@
 import {
-  applyTheme, reveal, nav, navCta, shell, roles, form, type Behavior,
+  applyTheme, reveal, navCareers, shell, roles, form, type Behavior,
 } from '@/lib/behaviors';
 
 /** Careers page behaviour set, in the verified componentDidMount order from
@@ -16,10 +16,18 @@ import {
  *  form]`) — that would pull in two behaviours careers never mounted and
  *  has no matching markup for. Built explicitly instead, keeping only what
  *  careers' own source actually calls, in that order, plus:
- *   - `navCta` immediately after `nav` (Ruling 1): careers' bespoke
- *     `initNav` is `nav.ts`'s logic plus toggling `[data-ag-navcta]`, split
- *     into its own module rather than a conditional in the shared `nav.ts`
- *     every other page also mounts. See `navCta.ts` for the full diff.
+ *   - `navCareers` in place of `nav` for `initNav` (Ruling, fix round 1):
+ *     careers' bespoke `initNav` does padding/logo-height/CTA-toggle only
+ *     and never touches `<button>`. The shared `nav.ts` also loops over
+ *     every nav `<button>` setting inline `background`/`color` — careers'
+ *     menu button's values already match, but the write is inline, and an
+ *     inline style beats the button's own `hover:bg-[var(--ag-accent,...)]`
+ *     class regardless of specificity. Composing `nav` in would silently
+ *     kill that hover after the first scroll event, a behaviour careers'
+ *     original never had. So careers gets a verbatim port of its own
+ *     `initNav` (`navCareers.ts`) instead of `nav` plus a delta module —
+ *     `nav` is dropped from this list entirely. See `navCareers.ts` for
+ *     the full reasoning and diff.
  *   - `roles` in place of `initRoles`, also folding in `applyPay` (ported
  *     always-on per Ruling 2 — see `roles.ts`).
  *
@@ -31,5 +39,5 @@ import {
  *  Must stay a module-level constant: AgRuntime's effect deps are
  *  [modules], so a fresh array each render would remount every behaviour. */
 export const CAREERS_MODULES: Behavior[] = [
-  applyTheme, reveal, nav, navCta, shell, roles, form,
+  applyTheme, reveal, navCareers, shell, roles, form,
 ];
