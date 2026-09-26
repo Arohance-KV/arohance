@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import ContactPill from '@/components/ContactPill';
 import HomeRuntime from './home-runtime';
 
@@ -56,7 +57,7 @@ export default function Home() {
         </div>
         <div className="[flex:0_0_auto] w-[84px] h-[84px] rounded-[13px] bg-[#2A2825] flex items-center justify-center [font-family:'Archivo',sans-serif] font-bold text-[20px] text-[#EDE9E1]">Mint</div>
       </article>
-      <a href="/studio" className="flex items-center justify-between gap-4 bg-[#F5F2ED] text-[#0A0A0A] rounded-[16px] py-4 px-5 [font-family:'Archivo',sans-serif] font-semibold text-[16px] [transition:background_.35s_ease] hover:bg-[var(--ag-accent,#F2600C)]">More news <span>→</span></a>
+      <Link href="/studio" className="flex items-center justify-between gap-4 bg-[#F5F2ED] text-[#0A0A0A] rounded-[16px] py-4 px-5 [font-family:'Archivo',sans-serif] font-semibold text-[16px] [transition:background_.35s_ease] hover:bg-[var(--ag-accent,#F2600C)]">More news <span>→</span></Link>
     </div>
 
     <div data-ag-menu-panel="" className="[flex:0_1_min(100%,420px)] flex flex-col justify-between gap-[clamp(30px,6vh,64px)] min-h-[min(560px,76vh)] bg-[#1F1E1C] text-[#EDE9E1] rounded-[16px] pt-5 px-[clamp(20px,2.4vw,30px)] pb-[clamp(24px,3vh,34px)] opacity-[0] [transform:translate3d(28px,0,0)] [transition:opacity_.5s_ease,transform_.6s_cubic-bezier(.16,1,.3,1)] pointer-events-none">
@@ -68,19 +69,19 @@ export default function Home() {
         <div className="flex flex-col mt-[clamp(12px,2vh,22px)]">
           <a data-ag-mlink="" href="#top" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">Home <span className="text-[.5em] text-[#8A857B]">→</span></a>
           <a data-ag-mlink="" href="#work" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">Work <span className="text-[.5em] text-[#8A857B]">→</span></a>
-          <a data-ag-mlink="" href="/about" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">About <span className="text-[.5em] text-[#8A857B]">→</span></a>
-          <a data-ag-mlink="" href="/services" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">Services <span className="text-[.5em] text-[#8A857B]">→</span></a>
-          <a data-ag-mlink="" href="/studio" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">Studio <span className="text-[.5em] text-[#8A857B]">→</span></a>
-          <a data-ag-mlink="" href="/careers" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#F5F2ED] hover:pl-2.5">Careers <span className="text-[.5em] text-[#8A857B]">→</span></a>
-          <a data-ag-mlink="" href="/contact" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">Contact <span className="text-[.5em] text-[#8A857B]">→</span></a>
+          <Link data-ag-mlink="" href="/about" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">About <span className="text-[.5em] text-[#8A857B]">→</span></Link>
+          <Link data-ag-mlink="" href="/services" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">Services <span className="text-[.5em] text-[#8A857B]">→</span></Link>
+          <Link data-ag-mlink="" href="/studio" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">Studio <span className="text-[.5em] text-[#8A857B]">→</span></Link>
+          <Link data-ag-mlink="" href="/careers" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#F5F2ED] hover:pl-2.5">Careers <span className="text-[.5em] text-[#8A857B]">→</span></Link>
+          <Link data-ag-mlink="" href="/contact" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">Contact <span className="text-[.5em] text-[#8A857B]">→</span></Link>
         </div>
       </div>
       <div>
         <div className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8A857B] mb-3.5">Media</div>
         <div className="flex flex-col gap-[7px] text-[14.5px] font-medium">
-          <a href="/contact">LinkedIn</a>
-          <a href="/contact">Instagram</a>
-          <a href="/contact">X / Twitter</a>
+          <Link href="/contact">LinkedIn</Link>
+          <Link href="/contact">Instagram</Link>
+          <Link href="/contact">X / Twitter</Link>
         </div>
       </div>
     </div>
@@ -164,7 +165,7 @@ export default function Home() {
     <h2 data-reveal="" className="m-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(2.4rem,10vw,10rem)] leading-[.86] tracking-[-0.05em] [font-variation-settings:'wdth'_106]">THE <span className="text-[var(--ag-accent,#F2600C)]">WORK.</span></h2>
     <p className="m-0 max-w-[38ch] text-[clamp(15px,1.3vw,18px)] leading-[1.6] text-[#A9A39A]">Every project below was strategised, shot, designed and engineered in the same building.</p>
   </div>
-  <a href="/case-study" data-hover-group="" data-cursor="View" className="flex flex-col gap-3.5 text-[#F5F2ED]">
+  <Link href="/case-study" data-hover-group="" data-cursor="View" className="flex flex-col gap-3.5 text-[#F5F2ED]">
       <div className="relative overflow-hidden w-[85%] [aspect-ratio:16/8] rounded-[6px] bg-[#1A1815]">
         <div data-hover-img="" data-parallax="0.18" className="absolute left-0 right-0 top-[-6%] h-[112%] [transition:transform_.9s_cubic-bezier(.16,1,.3,1)]"><Image src="/images/ff551cbd9d.png" alt="Agasti Realty key visual" width={868} height={488} priority className="h-full w-full object-cover" /></div>
         <span className="absolute left-[clamp(12px,1.6vw,20px)] top-[clamp(12px,1.6vw,20px)] [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#0A0A0A] bg-[#F5F2ED] rounded-[999px] py-1.5 px-[11px]">Brand, Web platform, Film</span>
@@ -179,9 +180,9 @@ export default function Home() {
         </div>
         <span className="[flex:0_0_auto] [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.12em] text-[#8C877E]">2026 ↗</span>
       </div>
-    </a>
+    </Link>
   <div className="flex flex-wrap gap-[clamp(20px,3vw,48px)] mt-[clamp(44px,6vw,96px)] items-start">
-    <a href="/case-study" data-hover-group="" data-cursor="View" className="flex flex-col gap-3.5 text-[#F5F2ED] [flex:1_1_min(100%,320px)]">
+    <Link href="/case-study" data-hover-group="" data-cursor="View" className="flex flex-col gap-3.5 text-[#F5F2ED] [flex:1_1_min(100%,320px)]">
       <div className="relative overflow-hidden w-[85%] [aspect-ratio:4/5] rounded-[6px] bg-[#1A1815]">
         <div data-hover-img="" data-parallax="0.18" className="absolute left-0 right-0 top-[-6%] h-[112%] [transition:transform_.9s_cubic-bezier(.16,1,.3,1)]"><Image src="/images/17320eecd2.jpg" alt="Redpanda Outdoor key visual" width={1920} height={1080} className="h-full w-full object-cover" /></div>
         <span className="absolute left-[clamp(12px,1.6vw,20px)] top-[clamp(12px,1.6vw,20px)] [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#0A0A0A] bg-[#F5F2ED] rounded-[999px] py-1.5 px-[11px]">Campaign, Commerce</span>
@@ -196,8 +197,8 @@ export default function Home() {
         </div>
         <span className="[flex:0_0_auto] [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.12em] text-[#8C877E]">2025 ↗</span>
       </div>
-    </a>
-    <a href="/case-study" data-hover-group="" data-cursor="View" className="flex flex-col gap-3.5 text-[#F5F2ED] [flex:1_1_min(100%,320px)] mt-[clamp(0px,9vw,160px)]">
+    </Link>
+    <Link href="/case-study" data-hover-group="" data-cursor="View" className="flex flex-col gap-3.5 text-[#F5F2ED] [flex:1_1_min(100%,320px)] mt-[clamp(0px,9vw,160px)]">
       <div className="relative overflow-hidden w-[85%] [aspect-ratio:4/5] rounded-[6px] bg-[#1A1815]">
         <div data-hover-img="" data-parallax="0.18" className="absolute left-0 right-0 top-[-6%] h-[112%] [transition:transform_.9s_cubic-bezier(.16,1,.3,1)]"><Image src="/images/8dc8938ce7.jpg" alt="Orbital key visual" width={1920} height={1080} className="h-full w-full object-cover" /></div>
         <span className="absolute left-[clamp(12px,1.6vw,20px)] top-[clamp(12px,1.6vw,20px)] [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#0A0A0A] bg-[#F5F2ED] rounded-[999px] py-1.5 px-[11px]">Product, Engineering</span>
@@ -212,10 +213,10 @@ export default function Home() {
         </div>
         <span className="[flex:0_0_auto] [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.12em] text-[#8C877E]">2025 ↗</span>
       </div>
-    </a>
+    </Link>
   </div>
   <div className="flex flex-wrap gap-[clamp(20px,3vw,48px)] mt-[clamp(44px,6vw,96px)] items-end">
-    <a href="/case-study" data-hover-group="" data-cursor="View" className="flex flex-col gap-3.5 text-[#F5F2ED] [flex:2_1_min(100%,420px)]">
+    <Link href="/case-study" data-hover-group="" data-cursor="View" className="flex flex-col gap-3.5 text-[#F5F2ED] [flex:2_1_min(100%,420px)]">
       <div className="relative overflow-hidden w-[85%] [aspect-ratio:16/10] rounded-[6px] bg-[#1A1815]">
         <div data-hover-img="" data-parallax="0.18" className="absolute left-0 right-0 top-[-6%] h-[112%] [transition:transform_.9s_cubic-bezier(.16,1,.3,1)]"><Image src="/images/f1d945b460.jpg" alt="Margin Press key visual" width={1920} height={1080} className="h-full w-full object-cover" /></div>
         <span className="absolute left-[clamp(12px,1.6vw,20px)] top-[clamp(12px,1.6vw,20px)] [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#0A0A0A] bg-[#F5F2ED] rounded-[999px] py-1.5 px-[11px]">Identity, Publishing platform</span>
@@ -230,10 +231,10 @@ export default function Home() {
         </div>
         <span className="[flex:0_0_auto] [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.12em] text-[#8C877E]">2024 ↗</span>
       </div>
-    </a>
+    </Link>
     <div className="[flex:1_1_min(100%,240px)] flex flex-col gap-[18px] pb-[clamp(10px,2vw,30px)]">
       <p className="m-0 [font-family:'Archivo',sans-serif] font-medium text-[clamp(1.2rem,2.2vw,2rem)] leading-[1.12] tracking-[-0.025em]">Thirty-six more where these came from.</p>
-      <a href="/case-study" className="[align-self:flex-start] inline-flex items-center gap-3 bg-[var(--ag-accent,#F2600C)] text-[#0A0A0A] rounded-[999px] py-3.5 px-6 [font-family:'Archivo',sans-serif] font-semibold text-[clamp(15px,1.3vw,18px)] [transition:background_.35s_ease] hover:bg-[#F5F2ED] hover:text-[#0A0A0A]">See all work →</a>
+      <Link href="/case-study" className="[align-self:flex-start] inline-flex items-center gap-3 bg-[var(--ag-accent,#F2600C)] text-[#0A0A0A] rounded-[999px] py-3.5 px-6 [font-family:'Archivo',sans-serif] font-semibold text-[clamp(15px,1.3vw,18px)] [transition:background_.35s_ease] hover:bg-[#F5F2ED] hover:text-[#0A0A0A]">See all work →</Link>
     </div>
   </div>
 </section>

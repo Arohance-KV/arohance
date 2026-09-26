@@ -53,9 +53,12 @@ test('void elements are self-closed', () => {
   assert.equal(out, '<div><br /><img src="x" /></div>');
 });
 
+// Fix round 1 (Ruling): a resolved internal link is real cross-page
+// navigation, so it becomes next/link's <Link>, not a plain <a> -- see the
+// dedicated Link-vs-<a> tests below for the discriminating cases.
 test('internal artifact links become routes', () => {
   const out = convert('<a href="Arohance%20About.dc.html">About</a>', ASSETS);
-  assert.equal(out, '<a href="/about">About</a>');
+  assert.equal(out, '<Link href="/about">About</Link>');
 });
 
 // Fix round 1: the real templates do not agree on a link suffix. Only
@@ -67,11 +70,57 @@ test('internal artifact links become routes', () => {
 // suffix spellings and preserve any fragment.
 test('internal links convert from both suffix spellings, preserving fragments', () => {
   const t = (href) => convert(`<a href="${href}">x</a>`, ASSETS);
-  assert.equal(t('Arohance%20About.dc.html'), '<a href="/about">x</a>');
-  assert.equal(t('Arohance%20About.html'), '<a href="/about">x</a>');
-  assert.equal(t('Arohance%20Case%20Study.html'), '<a href="/case-study">x</a>');
-  assert.equal(t('Arohance%20Homepage.html'), '<a href="/">x</a>');
-  assert.equal(t('Arohance%20Homepage.html#work'), '<a href="/#work">x</a>');
+  assert.equal(t('Arohance%20About.dc.html'), '<Link href="/about">x</Link>');
+  assert.equal(t('Arohance%20About.html'), '<Link href="/about">x</Link>');
+  assert.equal(t('Arohance%20Case%20Study.html'), '<Link href="/case-study">x</Link>');
+  assert.equal(t('Arohance%20Homepage.html'), '<Link href="/">x</Link>');
+  assert.equal(t('Arohance%20Homepage.html#work'), '<Link href="/#work">x</Link>');
+});
+
+// Fix round 1 (Ruling): plain <a href="/about"> triggers a full document
+// reload, which quietly defeats several already-shipped decisions --
+// AgRuntime's mount/dispose lifecycle, shell.ts's overflow-lock reset on
+// navigation, ContactPill's per-visit replay -- none of which would ever
+// run again after the first page load. <Link> renders as an <a> with the
+// same attributes in the DOM (verified: shell.ts's own `ov.querySelectorAll
+// ('a')` link-close wiring still matches it), so this is a zero-visual-
+// change, tag-name-only fix. Every other attribute -- data-ag-mlink here,
+// but the same code path handles className, data-ag-navcta, aria-* etc --
+// must survive untouched.
+test('an internal artifact link becomes a Link, with every other attribute preserved', () => {
+  const out = convert(
+    '<a data-ag-mlink="" href="Arohance%20About.dc.html" style="color:#fff">About</a>',
+    ASSETS,
+  );
+  assert.equal(
+    out,
+    '<Link data-ag-mlink="" href="/about" className="text-[#fff]">About</Link>',
+  );
+});
+
+// The trickiest edge case, called out explicitly because it is the one
+// place the resulting *string* still looks like it could be mistaken for
+// "just an anchor": a route-plus-fragment link (home's own "Work" nav item,
+// which points at another page's #work section) is still real cross-page
+// navigation, because toRoute() is the thing that resolved it -- gating on
+// "did toRoute() resolve this" rather than "does the output contain a bare
+// #fragment" is exactly what makes this case come out right.
+test('a route-plus-fragment link also becomes a Link', () => {
+  const out = convert('<a href="Arohance%20Homepage.html#work">Work</a>', ASSETS);
+  assert.equal(out, '<Link href="/#work">Work</Link>');
+});
+
+// The converse direction: a bare same-page anchor never starts with
+// "Arohance", so it never reaches toRoute() at all, and must stay a plain
+// <a> -- there is no other page being navigated to, so promoting it to
+// <Link> would be wrong (and, depending on next/link's own validation,
+// potentially a broken href). This is the case an over-broad
+// implementation -- one that pattern-matches on a leading "/" or a "#" in
+// the output instead of gating on toRoute()'s own resolution -- would get
+// wrong.
+test('a bare same-page fragment link stays an <a>, not a Link', () => {
+  const out = convert('<a href="#work">Selected work</a>', ASSETS);
+  assert.equal(out, '<a href="#work">Selected work</a>');
 });
 
 // Guards the scoping of the new href handling: it must only ever act on the

@@ -123,8 +123,44 @@ export function convert(html, assets, extResources = {}) {
       }
       if (name.toLowerCase() === 'href' && v.startsWith('Arohance')) {
         const route = toRoute(v);
-        if (route === null) problems.add(`unmapped internal link: ${v}`);
-        else v = route;
+        if (route === null) {
+          problems.add(`unmapped internal link: ${v}`);
+        } else {
+          v = route;
+          // Fix round 1 (Ruling): a link toRoute() actually resolved is real
+          // cross-page navigation -- the artifact's own "Arohance <Page>.html"
+          // reference syntax -- as opposed to a same-page `#fragment` anchor
+          // (e.g. "#contact", "#work"; never Arohance-prefixed, so it never
+          // reaches this branch) or an external href such as "mailto:..."
+          // (same reason). Checked against all seven real templates: there is
+          // no literal "/"-prefixed href anywhere in the source at all --
+          // every slash-rooted href reaching JSX comes from this exact
+          // resolution, so gating on it does not miss anything real. Only
+          // this resolved set is promoted from <a> to next/link's <Link>, so
+          // client-side navigation between pages actually happens: a full
+          // document reload would otherwise defeat AgRuntime's mount/dispose
+          // lifecycle, shell.ts's overflow-lock reset on navigation, and
+          // ContactPill's per-visit replay, none of which would ever run
+          // again after the first load. Gated on toRoute()'s own resolution,
+          // not on the shape of the resulting string, so a route-plus-
+          // fragment result (e.g. "/#work") still qualifies -- it is exactly
+          // as much real navigation as a fragment-free route.
+          //
+          // Renamed to a placeholder here, NOT directly to 'Link': confirmed
+          // by direct testing that node-html-parser's own serializer decides
+          // whether a tag is "void" by lower-casing it first, so a literal
+          // 'Link' collides with the real HTML5 void element <link> --
+          // node-html-parser then silently drops every child (the link text,
+          // any nested <span>) and never emits a closing tag at all, before
+          // this function ever gets a chance to touch the output string.
+          // 'agnextlink' shares no name with any real HTML tag, so it
+          // serializes as an ordinary paired element with its children
+          // intact; the placeholder is swapped for 'Link' in one exact
+          // string replace right after root.toString() (see step 3d below).
+          if (el.rawTagName && el.rawTagName.toLowerCase() === 'a') {
+            el.rawTagName = 'agnextlink';
+          }
+        }
       }
       const renamed = ATTRS[name.toLowerCase()];
       if (renamed) { el.removeAttribute(name); el.setAttribute(renamed, v); }
@@ -186,6 +222,22 @@ export function convert(html, assets, extResources = {}) {
       (_m, attrs = '') => `<${tag}${attrs || ''} />`);
     out = out.replace(new RegExp(`</${tag}>`, 'gi'), '');
   }
+
+  // 4a. swap the internal-navigation placeholder tag for the real `Link`
+  // name (see the comment at the `agnextlink` assignment above for why this
+  // cannot be done by setting rawTagName to 'Link' directly). This must run
+  // AFTER step 4, not before: step 4's void-collapsing regexes match
+  // case-insensitively (tag name 'link' is in VOID, for the real HTML5
+  // <link> element), so renaming to 'Link' any earlier would let that same
+  // step re-mangle it right back into a self-closed, childless `<link ...
+  // />` on its very next pass. The placeholder is a lookahead-guarded
+  // prefix match on the opening tag (followed by whitespace or the closing
+  // '>', so it cannot partially match some unrelated longer tag name) plus
+  // an exact match on the closing tag; both are safe because 'agnextlink'
+  // does not occur anywhere else in this converter's output.
+  out = out
+    .replace(/<agnextlink(?=[\s>])/g, '<Link')
+    .replace(/<\/agnextlink>/g, '</Link>');
 
   // 4b. coerce known numeric attributes from a quoted JSX string to a JSX
   // number expression (`rows="3"` -> `rows={3}`). Only a plain digit run is
