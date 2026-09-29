@@ -120,8 +120,8 @@ export default function Services() {
   <div className="relative z-[2] [flex:1_1_auto] flex flex-col gap-[clamp(26px,4vh,52px)] pointer-events-none">
     <div className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E]">+ (Services)</div>
     <h1 className="m-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(2.5rem,9vw,10rem)] leading-[.86] tracking-[-0.048em] [font-variation-settings:'wdth'_106]">
-      <span data-reveal="" data-delay="0" className="block">SIX DISCIPLINES.</span>
-      <span data-reveal="" data-delay="90" className="block text-[var(--ag-accent,#F2600C)]">ONE ROOM.</span>
+      <span className="block">SIX DISCIPLINES.</span>
+      <span className="block text-[var(--ag-accent,#F2600C)]">ONE ROOM.</span>
     </h1>
     <div className="flex justify-between items-end gap-[clamp(20px,5vw,60px)] flex-wrap">
       <p data-reveal="" className="m-0 max-w-[50ch] text-[clamp(15px,1.35vw,19px)] leading-[1.55] text-[#A9A39A]">Strategy, creative, film, design, engineering and growth. Hire us for one, or for the whole thing, it&apos;s the same team either way.</p>
@@ -131,7 +131,7 @@ export default function Services() {
 </header>
 
 <section id="services" className="relative z-[1] py-[clamp(70px,10vw,150px)] px-[clamp(20px,4.4vw,64px)]">
-  <div className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(245,242,237,.15)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E] mb-[clamp(30px,5vw,64px)]">
+  <div data-eyebrow="" className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(245,242,237,.15)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E] mb-[clamp(30px,5vw,64px)]">
     <span>(01) What we do</span>
     <span>Six disciplines, one team</span>
   </div>
@@ -250,8 +250,8 @@ export default function Services() {
 <section className="relative z-[1] py-[clamp(70px,10vw,150px)] px-[clamp(20px,4.4vw,64px)]">
   <div className="flex flex-wrap gap-[clamp(24px,5vw,80px)] items-start mb-[clamp(36px,6vw,80px)]">
     <div className="[flex:1_1_min(100%,260px)]">
-      <div className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E] [border-top:1px_solid_rgba(245,242,237,.15)] pt-3">(02) In-house</div>
-      <h2 data-reveal="" className="mt-[clamp(18px,2.4vw,32px)] mx-0 mb-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(2.1rem,6vw,5.4rem)] leading-[.92] tracking-[-0.045em]">ONE TEAM.<br />SEVEN ROOMS.<br /><span className="text-[var(--ag-accent,#F2600C)]">NO HANDOFFS.</span></h2>
+      <div data-eyebrow="" className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E] [border-top:1px_solid_rgba(245,242,237,.15)] pt-3">(02) In-house</div>
+      <h2 className="mt-[clamp(18px,2.4vw,32px)] mx-0 mb-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(2.1rem,6vw,5.4rem)] leading-[.92] tracking-[-0.045em]">ONE TEAM.<br />SEVEN ROOMS.<br /><span className="text-[var(--ag-accent,#F2600C)]">NO HANDOFFS.</span></h2>
     </div>
     <p className="[flex:1_1_min(100%,280px)] m-0 [align-self:flex-end] max-w-[44ch] text-[clamp(15px,1.3vw,18px)] leading-[1.55] text-[#A9A39A]">Most agencies subcontract the half they can&apos;t do. Every stage below happens under one roof, with the same people accountable from the first conversation to the thing being live.</p>
   </div>
@@ -311,11 +311,11 @@ export default function Services() {
 
 <section data-dark="" data-ag-flip="" className="relative z-[1] text-[#F7F4EF] pt-[clamp(60px,9vw,130px)] px-0 pb-[clamp(70px,10vw,150px)]">
   <div className="py-0 px-[clamp(20px,4.4vw,64px)]">
-    <div className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(247,244,239,.18)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B]">
+    <div data-eyebrow="" className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(247,244,239,.18)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B]">
       <span>(03) Content studio</span>
       <span className="text-[var(--ag-accent,#F2600C)]">Shot in-house</span>
     </div>
-    <h2 data-reveal="" className="mt-[clamp(22px,3vw,44px)] mx-0 mb-[clamp(18px,2.4vw,32px)] [font-family:'Archivo',sans-serif] font-bold text-[clamp(2rem,7.4vw,6.6rem)] leading-[.92] tracking-[-0.045em] max-w-[16ch]">THE <span className="text-[var(--ag-accent,#F2600C)]">CAMERA</span> NEVER LEAVES THE BUILDING.</h2>
+    <h2 className="mt-[clamp(22px,3vw,44px)] mx-0 mb-[clamp(18px,2.4vw,32px)] [font-family:'Archivo',sans-serif] font-bold text-[clamp(2rem,7.4vw,6.6rem)] leading-[.92] tracking-[-0.045em] max-w-[16ch]">THE <span className="text-[var(--ag-accent,#F2600C)]">CAMERA</span> NEVER LEAVES THE BUILDING.</h2>
     <p className="m-0 max-w-[52ch] text-[clamp(15px,1.3vw,18px)] leading-[1.6] text-[#B7B1A6]">A permanent studio, a standing crew and an edit suite down the hall. A campaign can be conceived on Monday, shot on Wednesday and running by Friday, without a single external booking.</p>
   </div>
 
@@ -348,12 +348,12 @@ export default function Services() {
 </section>
 
 <section data-dark="" className="relative z-[1] text-[#F7F4EF] py-[clamp(72px,11vw,170px)] px-[clamp(20px,4.4vw,64px)]">
-  <div className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(237,233,225,.18)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B]">
+  <div data-eyebrow="" className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(237,233,225,.18)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B]">
     <span>(04) Technology</span>
     <span>Built, not assembled</span>
   </div>
 
-  <h2 data-reveal="" className="mt-[clamp(26px,4vw,60px)] mx-0 mb-[clamp(34px,5vw,80px)] [font-family:'Archivo',sans-serif] font-bold text-[clamp(2rem,6.6vw,6rem)] leading-[.94] tracking-[-0.045em] max-w-[18ch]">WE DON&apos;T JUST DESIGN THE INTERFACE. WE BUILD THE <span className="text-[var(--ag-accent,#F2600C)]">MACHINE</span> BEHIND IT.</h2>
+  <h2 className="mt-[clamp(26px,4vw,60px)] mx-0 mb-[clamp(34px,5vw,80px)] [font-family:'Archivo',sans-serif] font-bold text-[clamp(2rem,6.6vw,6rem)] leading-[.94] tracking-[-0.045em] max-w-[18ch]">WE DON&apos;T JUST DESIGN THE INTERFACE. WE BUILD THE <span className="text-[var(--ag-accent,#F2600C)]">MACHINE</span> BEHIND IT.</h2>
 
   <div className="flex flex-wrap gap-[0_clamp(28px,6vw,100px)]">
     <div className="[flex:1_1_min(100%,280px)]">
@@ -376,8 +376,8 @@ export default function Services() {
 <section data-dark="" className="relative z-[1] text-[#F7F4EF] py-[clamp(70px,10vw,150px)] px-[clamp(20px,4.4vw,64px)]">
   <div className="flex flex-wrap gap-[clamp(26px,5vw,90px)] items-start">
     <div className="[flex:1_1_min(100%,280px)] sticky top-[110px]">
-      <div className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B] [border-top:1px_solid_rgba(247,244,239,.16)] pt-3">(05) For founders</div>
-      <h2 data-reveal="" className="mt-[clamp(18px,2.4vw,32px)] mx-0 mb-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(2rem,5.2vw,4.6rem)] leading-[.92] tracking-[-0.045em]">ZERO<br />TO<br /><span className="text-[var(--ag-accent,#F2600C)]">LAUNCH.</span></h2>
+      <div data-eyebrow="" className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B] [border-top:1px_solid_rgba(247,244,239,.16)] pt-3">(05) For founders</div>
+      <h2 className="mt-[clamp(18px,2.4vw,32px)] mx-0 mb-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(2rem,5.2vw,4.6rem)] leading-[.92] tracking-[-0.045em]">ZERO<br />TO<br /><span className="text-[var(--ag-accent,#F2600C)]">LAUNCH.</span></h2>
       <p className="mt-[clamp(18px,2.4vw,30px)] mx-0 mb-0 max-w-[40ch] text-[clamp(15px,1.3vw,18px)] leading-[1.55] text-[#B7B1A6]">Founders don&apos;t need six suppliers and a project manager to coordinate them. They need one team that can name the thing, build it, film it and put it in front of people, in weeks.</p>
       <a href="#contact" className="inline-flex items-center gap-2.5 mt-[clamp(22px,3vw,38px)] [font-family:'Archivo',sans-serif] font-semibold text-[clamp(15px,1.4vw,19px)] [border-bottom:1px_solid_currentColor] pb-[3px] max-lg:py-3">Start something <span>→</span></a>
     </div>
@@ -393,12 +393,12 @@ export default function Services() {
 </section>
 
 <section id="contact" data-dark="" className="relative z-[1] text-[#F7F4EF] pt-[clamp(72px,11vw,170px)] px-[clamp(20px,4.4vw,64px)] pb-0">
-  <div className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(247,244,239,.18)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B]">
+  <div data-eyebrow="" className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(247,244,239,.18)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B]">
     <span>(06) Contact</span>
     <span>Taking projects for Q1 2027</span>
   </div>
 
-  <h2 data-reveal="" className="mt-[clamp(34px,6vw,90px)] mx-0 mb-[clamp(30px,4vw,60px)] [font-family:'Archivo',sans-serif] font-bold text-[clamp(2.4rem,9.6vw,9.5rem)] leading-[.88] tracking-[-0.048em] [font-variation-settings:'wdth'_104]">HAVE A THING<br />WORTH <span className="text-[var(--ag-accent,#F2600C)]">BUILDING?</span></h2>
+  <h2 className="mt-[clamp(34px,6vw,90px)] mx-0 mb-[clamp(30px,4vw,60px)] [font-family:'Archivo',sans-serif] font-bold text-[clamp(2.4rem,9.6vw,9.5rem)] leading-[.88] tracking-[-0.048em] [font-variation-settings:'wdth'_104]">HAVE A THING<br />WORTH <span className="text-[var(--ag-accent,#F2600C)]">BUILDING?</span></h2>
 
   <div className="flex flex-wrap gap-[clamp(30px,6vw,110px)] items-start pb-[clamp(50px,8vw,110px)]">
     <form data-ag-form="" className="[flex:2_1_min(100%,320px)] flex flex-col gap-[clamp(18px,2.4vw,30px)]">

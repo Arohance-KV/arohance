@@ -18,7 +18,8 @@
 // converter", for the actual procedure.
 //
 // Content update: the hero (`header#top`), `section#intro`,
-// `section#verticals` and `section#work` (header zoom, accent case-study grid)
+// `section#verticals` and `section#work` (header zoom, accent case-study grid
+// rendered from lib/work.ts by `WorkCard` below)
 // are hand-written to the new content brief, not converter output, so they deliberately no longer match
 // `Arohance Homepage.html`; the What we do, In-house and Technology sections
 // are commented out below, and the visible eyebrows renumbered (01)-(06). A
@@ -28,6 +29,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import ContactPill from '@/components/ContactPill';
 import { VERTICALS, verticalHref, serviceHref } from '@/lib/verticals';
+import { WORK, workHref, type Work } from '@/lib/work';
 import HomeRuntime from './home-runtime';
 
 // Home keeps the site's own canonical title (also the logo's alt text,
@@ -132,9 +134,9 @@ export default function Home() {
   <div className="relative z-[2] max-w-[min(62%,880px)] flex flex-col gap-[clamp(22px,3.4vh,40px)] max-lg:max-w-none">
   {/* Read as one heading: the letters of MAGNETIC are separate spans for the magnet effect. */}
   <h1 aria-label="We make you magnetic" className="m-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(2.5rem,8vw,9.5rem)] leading-[.86] tracking-[-0.048em] [font-variation-settings:'wdth'_106] max-lg:text-[clamp(2.5rem,13vw,5.5rem)]">
-    <span aria-hidden="true" data-reveal="" data-delay="0" className="block whitespace-nowrap">WE MAKE</span>
-    <span aria-hidden="true" data-reveal="" data-delay="90" className="block whitespace-nowrap">YOU</span>
-    <span aria-hidden="true" data-reveal="" data-delay="180" className="block whitespace-nowrap"><span data-ag-magnet="" className="inline-block text-[var(--ag-accent,#F2600C)]">{[...'MAGNETIC'].map((letter, i) => <span key={i} data-ag-magnet-letter="" className="inline-block [will-change:transform]">{letter}</span>)}</span></span>
+    <span aria-hidden="true" className="block whitespace-nowrap">WE MAKE</span>
+    <span aria-hidden="true" className="block whitespace-nowrap">YOU</span>
+    <span aria-hidden="true" className="block whitespace-nowrap"><span data-ag-magnet="" className="inline-block text-[var(--ag-accent,#F2600C)]">{[...'MAGNETIC'].map((letter, i) => <span key={i} data-ag-magnet-letter="" className="inline-block [will-change:transform]">{letter}</span>)}</span></span>
   </h1>
   <p data-reveal="" data-delay="270" className="m-0 max-w-[44ch] text-[clamp(15px,1.35vw,19px)] leading-[1.5] text-[#D9D3C8]">One accountable team behind every step, from strategy and creative to film, design and technology.</p>
   </div>
@@ -152,16 +154,16 @@ export default function Home() {
 
 <section id="intro" className="relative z-[1] pt-[clamp(70px,11vw,170px)] px-[clamp(20px,4.4vw,64px)] pb-[clamp(56px,8vw,120px)]">
   <div className="flex gap-[clamp(26px,5vw,90px)] flex-wrap items-start">
-    <div className="[flex:1_1_min(100%,190px)] [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E] pt-2.5">+ (Who we are)</div>
+    <div data-eyebrow="" className="[flex:1_1_min(100%,190px)] [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E] pt-2.5">+ (Who we are)</div>
     <div className="[flex:4_1_min(100%,520px)]">
-      <h2 data-reveal="" className="m-0 [font-family:'Archivo',sans-serif] font-medium text-[clamp(1.55rem,3.9vw,3.5rem)] leading-[1.08] tracking-[-0.03em] [font-variation-settings:'wdth'_100] [text-wrap:pretty]">We don&apos;t market brands. We make them <em className="text-[var(--ag-accent,#F2600C)]">magnetic</em>, on screen, on ground and everywhere in between.</h2>
+      <h2 className="m-0 [font-family:'Archivo',sans-serif] font-medium text-[clamp(1.55rem,3.9vw,3.5rem)] leading-[1.08] tracking-[-0.03em] [font-variation-settings:'wdth'_100] [text-wrap:pretty]">We don&apos;t market brands. We make them <em className="text-[var(--ag-accent,#F2600C)]">magnetic</em>, on screen, on ground and everywhere in between.</h2>
       <p data-reveal="" className="mt-[clamp(24px,3.4vw,44px)] mx-0 mb-0 max-w-[46ch] text-[clamp(15px,1.3vw,18px)] leading-[1.6] text-[#A9A39A]">Five specialised verticals, one in-house team, working together from first idea to final launch.</p>
     </div>
   </div>
 </section>
 
 <section id="verticals" className="relative z-[1] pt-0 px-[clamp(20px,4.4vw,64px)] pb-[clamp(70px,11vw,170px)]">
-  <h2 data-reveal="" className="mt-0 mx-0 mb-[clamp(30px,4.4vw,64px)] [font-family:'Archivo',sans-serif] font-bold text-[clamp(1.9rem,4.4vw,4rem)] leading-[.94] tracking-[-0.045em]">FIVE VERTICALS.<br />ONE TEAM.<br /><span className="text-[var(--ag-accent,#F2600C)]">ONE RESPONSIBILITY.</span></h2>
+  <h2 className="mt-0 mx-0 mb-[clamp(30px,4.4vw,64px)] [font-family:'Archivo',sans-serif] font-bold text-[clamp(1.9rem,4.4vw,4rem)] leading-[.94] tracking-[-0.045em]">FIVE VERTICALS.<br />ONE TEAM.<br /><span className="text-[var(--ag-accent,#F2600C)]">ONE RESPONSIBILITY.</span></h2>
 
   {/* Rows open one at a time (lib/behaviors/verticals.ts sets `data-open`); everything below styles off it. */}
   <div data-ag-verticals="" className="[border-bottom:1px_solid_rgba(245,242,237,.15)]">
@@ -240,98 +242,42 @@ export default function Home() {
     landing in the accent case-study grid below. */}
 <div data-ag-zoom="">
   <div data-ag-zoom-pin="" className="pt-[clamp(70px,10vw,150px)] px-[clamp(20px,4.4vw,64px)] pb-[clamp(34px,5vw,80px)]">
-    <div data-ag-zoom-fade="" className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(245,242,237,.15)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E]">
+    <div data-ag-zoom-fade="" data-eyebrow="" className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(245,242,237,.15)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E]">
       <span>(01) Selected work</span>
-      <span>Four of forty, 2024–2026</span>
+      <span>Four case studies</span>
     </div>
     <div className="flex flex-wrap gap-[clamp(20px,4vw,64px)] items-end justify-between mt-[clamp(30px,4.5vw,64px)]">
       <h2 data-ag-zoom-frame="" className="m-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(2.4rem,10vw,10rem)] leading-[.86] tracking-[-0.05em] [font-variation-settings:'wdth'_106]">THE <span className="text-[var(--ag-accent,#F2600C)]">WORK<span data-ag-zoom-dot="">.</span></span></h2>
-      <p data-ag-zoom-fade="" className="m-0 max-w-[38ch] text-[clamp(15px,1.3vw,18px)] leading-[1.6] text-[#A9A39A]">Every project below was strategised, shot, designed and engineered in the same building.</p>
+      <p data-ag-zoom-fade="" className="m-0 max-w-[38ch] text-[clamp(15px,1.3vw,18px)] leading-[1.6] text-[#A9A39A]">Every project below was strategised, made and delivered by one in-house team.</p>
     </div>
   </div>
 </div>
 <div className="bg-[var(--ag-accent,#F2600C)] text-[#0A0A0A] pt-[clamp(60px,8vw,120px)] px-[clamp(20px,4.4vw,64px)] pb-[clamp(60px,8vw,120px)]">
-  <Link href="/case-study" data-hover-group="" data-cursor="View" className="flex flex-col gap-3.5 text-[#0A0A0A]">
-      <div className="relative overflow-hidden w-[85%] [aspect-ratio:16/8] rounded-[6px] bg-[#1A1815]">
-        <div data-hover-img="" data-parallax="0.18" className="absolute left-0 right-0 top-[-6%] h-[112%] [transition:transform_.9s_cubic-bezier(.16,1,.3,1)]"><Image src="/images/ff551cbd9d.png" alt="Agasti Realty key visual" width={868} height={488} priority className="h-full w-full object-cover" /></div>
-        <span className="absolute left-[clamp(12px,1.6vw,20px)] top-[clamp(12px,1.6vw,20px)] [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#0A0A0A] bg-[#F5F2ED] rounded-[999px] py-1.5 px-[11px]">Brand, Web platform, Film</span>
-      </div>
-      <div className="flex justify-between items-start gap-[18px] [border-top:1px_solid_rgba(10,10,10,.2)] pt-3">
-        <div className="flex gap-[clamp(12px,1.6vw,22px)] items-baseline min-w-0">
-          <span className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.12em] text-[#0A0A0A]">01</span>
-          <div className="min-w-0">
-            <div data-hover-title="" className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(1.3rem,2.6vw,2.4rem)] leading-[1] tracking-[-0.035em] uppercase [transition:transform_.6s_cubic-bezier(.16,1,.3,1)]">Agasti Realty</div>
-            <p className="mt-[9px] mx-0 mb-0 max-w-[44ch] text-[clamp(14px,1.15vw,16px)] leading-[1.5] text-[#0A0A0A]/80">A sales office that fits in a browser tab. Walkthroughs, inventory and bookings in one place.</p>
-          </div>
+  {/* Cards render from lib/work.ts: a lead card, then rows of two that
+      alternate a staggered tall pair with a wide + side pair; the call to
+      action takes the slot after the last card. */}
+  <WorkCard w={WORK[0]} n={1} shape="lead" />
+  {WORK_ROWS.map((row, r) => (
+    <div key={r} className={`flex flex-wrap gap-[clamp(20px,3vw,48px)] mt-[clamp(44px,6vw,96px)] ${r % 2 ? 'items-end' : 'items-start'}`}>
+      {row.map((w, j) => w ? (
+        <WorkCard key={w.slug} w={w} n={2 + r * 2 + j} shape={ROW_SHAPES[r % 2][j]} />
+      ) : (
+        <div key="cta" className={`${SHAPES[ROW_SHAPES[r % 2][j]][0]} flex flex-col gap-[18px] pb-[clamp(10px,2vw,30px)]`}>
+          <p data-split="" className="m-0 [font-family:'Archivo',sans-serif] font-medium text-[clamp(1.2rem,2.2vw,2rem)] leading-[1.12] tracking-[-0.025em]">Your brand could be next.</p>
+          <a href="#contact" className="group [align-self:flex-start] inline-flex items-center gap-3 bg-[#0A0A0A] rounded-[999px] py-3.5 px-6 [font-family:'Archivo',sans-serif] font-semibold text-[clamp(15px,1.3vw,18px)] [transition:background_.35s_ease] hover:bg-[#F5F2ED]">{/* Colour on the span: the sitewide unlayered `a { color: inherit }` beats utilities on <a>. */}<span className="text-[#F5F2ED] [transition:color_.35s_ease] group-hover:text-[#0A0A0A]">Start a project →</span></a>
         </div>
-        <span className="[flex:0_0_auto] [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.12em] text-[#0A0A0A]/80">2026 ↗</span>
-      </div>
-    </Link>
-  <div className="flex flex-wrap gap-[clamp(20px,3vw,48px)] mt-[clamp(44px,6vw,96px)] items-start">
-    <Link href="/case-study" data-hover-group="" data-cursor="View" className="flex flex-col gap-3.5 text-[#0A0A0A] [flex:1_1_min(100%,320px)]">
-      <div className="relative overflow-hidden w-[85%] [aspect-ratio:4/5] rounded-[6px] bg-[#1A1815]">
-        <div data-hover-img="" data-parallax="0.18" className="absolute left-0 right-0 top-[-6%] h-[112%] [transition:transform_.9s_cubic-bezier(.16,1,.3,1)]"><Image src="/images/17320eecd2.jpg" alt="Redpanda Outdoor key visual" width={1920} height={1080} className="h-full w-full object-cover" /></div>
-        <span className="absolute left-[clamp(12px,1.6vw,20px)] top-[clamp(12px,1.6vw,20px)] [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#0A0A0A] bg-[#F5F2ED] rounded-[999px] py-1.5 px-[11px]">Campaign, Commerce</span>
-      </div>
-      <div className="flex justify-between items-start gap-[18px] [border-top:1px_solid_rgba(10,10,10,.2)] pt-3">
-        <div className="flex gap-[clamp(12px,1.6vw,22px)] items-baseline min-w-0">
-          <span className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.12em] text-[#0A0A0A]">02</span>
-          <div className="min-w-0">
-            <div data-hover-title="" className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(1.3rem,2.6vw,2.4rem)] leading-[1] tracking-[-0.035em] uppercase [transition:transform_.6s_cubic-bezier(.16,1,.3,1)]">Redpanda Outdoor</div>
-            <p className="mt-[9px] mx-0 mb-0 max-w-[44ch] text-[clamp(14px,1.15vw,16px)] leading-[1.5] text-[#0A0A0A]/80">A campaign shot on Tuesday and a store live on Friday.</p>
-          </div>
-        </div>
-        <span className="[flex:0_0_auto] [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.12em] text-[#0A0A0A]/80">2025 ↗</span>
-      </div>
-    </Link>
-    <Link href="/case-study" data-hover-group="" data-cursor="View" className="flex flex-col gap-3.5 text-[#0A0A0A] [flex:1_1_min(100%,320px)] mt-[clamp(0px,9vw,160px)]">
-      <div className="relative overflow-hidden w-[85%] [aspect-ratio:4/5] rounded-[6px] bg-[#1A1815]">
-        <div data-hover-img="" data-parallax="0.18" className="absolute left-0 right-0 top-[-6%] h-[112%] [transition:transform_.9s_cubic-bezier(.16,1,.3,1)]"><Image src="/images/8dc8938ce7.jpg" alt="Orbital key visual" width={1920} height={1080} className="h-full w-full object-cover" /></div>
-        <span className="absolute left-[clamp(12px,1.6vw,20px)] top-[clamp(12px,1.6vw,20px)] [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#0A0A0A] bg-[#F5F2ED] rounded-[999px] py-1.5 px-[11px]">Product, Engineering</span>
-      </div>
-      <div className="flex justify-between items-start gap-[18px] [border-top:1px_solid_rgba(10,10,10,.2)] pt-3">
-        <div className="flex gap-[clamp(12px,1.6vw,22px)] items-baseline min-w-0">
-          <span className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.12em] text-[#0A0A0A]">03</span>
-          <div className="min-w-0">
-            <div data-hover-title="" className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(1.3rem,2.6vw,2.4rem)] leading-[1] tracking-[-0.035em] uppercase [transition:transform_.6s_cubic-bezier(.16,1,.3,1)]">Orbital</div>
-            <p className="mt-[9px] mx-0 mb-0 max-w-[44ch] text-[clamp(14px,1.15vw,16px)] leading-[1.5] text-[#0A0A0A]/80">A fintech dashboard where the design survived contact with production.</p>
-          </div>
-        </div>
-        <span className="[flex:0_0_auto] [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.12em] text-[#0A0A0A]/80">2025 ↗</span>
-      </div>
-    </Link>
-  </div>
-  <div className="flex flex-wrap gap-[clamp(20px,3vw,48px)] mt-[clamp(44px,6vw,96px)] items-end">
-    <Link href="/case-study" data-hover-group="" data-cursor="View" className="flex flex-col gap-3.5 text-[#0A0A0A] [flex:2_1_min(100%,420px)]">
-      <div className="relative overflow-hidden w-[85%] [aspect-ratio:16/10] rounded-[6px] bg-[#1A1815]">
-        <div data-hover-img="" data-parallax="0.18" className="absolute left-0 right-0 top-[-6%] h-[112%] [transition:transform_.9s_cubic-bezier(.16,1,.3,1)]"><Image src="/images/f1d945b460.jpg" alt="Margin Press key visual" width={1920} height={1080} className="h-full w-full object-cover" /></div>
-        <span className="absolute left-[clamp(12px,1.6vw,20px)] top-[clamp(12px,1.6vw,20px)] [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#0A0A0A] bg-[#F5F2ED] rounded-[999px] py-1.5 px-[11px]">Identity, Publishing platform</span>
-      </div>
-      <div className="flex justify-between items-start gap-[18px] [border-top:1px_solid_rgba(10,10,10,.2)] pt-3">
-        <div className="flex gap-[clamp(12px,1.6vw,22px)] items-baseline min-w-0">
-          <span className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.12em] text-[#0A0A0A]">04</span>
-          <div className="min-w-0">
-            <div data-hover-title="" className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(1.3rem,2.6vw,2.4rem)] leading-[1] tracking-[-0.035em] uppercase [transition:transform_.6s_cubic-bezier(.16,1,.3,1)]">Margin Press</div>
-            <p className="mt-[9px] mx-0 mb-0 max-w-[44ch] text-[clamp(14px,1.15vw,16px)] leading-[1.5] text-[#0A0A0A]/80">Eleven print titles, one platform, every cover shot in-house.</p>
-          </div>
-        </div>
-        <span className="[flex:0_0_auto] [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.12em] text-[#0A0A0A]/80">2024 ↗</span>
-      </div>
-    </Link>
-    <div className="[flex:1_1_min(100%,240px)] flex flex-col gap-[18px] pb-[clamp(10px,2vw,30px)]">
-      <p className="m-0 [font-family:'Archivo',sans-serif] font-medium text-[clamp(1.2rem,2.2vw,2rem)] leading-[1.12] tracking-[-0.025em]">Thirty-six more where these came from.</p>
-      <Link href="/case-study" className="group [align-self:flex-start] inline-flex items-center gap-3 bg-[#0A0A0A] rounded-[999px] py-3.5 px-6 [font-family:'Archivo',sans-serif] font-semibold text-[clamp(15px,1.3vw,18px)] [transition:background_.35s_ease] hover:bg-[#F5F2ED]">{/* Colour on the span: the sitewide unlayered `a { color: inherit }` beats utilities on <a>. */}<span className="text-[#F5F2ED] [transition:color_.35s_ease] group-hover:text-[#0A0A0A]">See all work →</span></Link>
+      ))}
     </div>
-  </div>
+  ))}
 </div>
 </section>
 
 <section id="clients" className="relative z-[1] py-[clamp(60px,9vw,130px)] px-[clamp(20px,4.4vw,64px)]">
-  <div className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(245,242,237,.15)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E] mb-[clamp(26px,4vw,56px)]">
+  <div data-eyebrow="" className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(245,242,237,.15)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E] mb-[clamp(26px,4vw,56px)]">
     <span>(02) Clients</span>
     <span>Selected, 2021–2026</span>
   </div>
-  <h2 data-reveal="" className="mt-0 mx-0 mb-[clamp(28px,4vw,56px)] [font-family:'Archivo',sans-serif] font-bold text-[clamp(1.9rem,6.4vw,5.6rem)] leading-[.94] tracking-[-0.045em] max-w-[20ch]">BRANDS WE MADE <span className="text-[var(--ag-accent,#F2600C)]">MAGNETIC.</span></h2>
+  <h2 className="mt-0 mx-0 mb-[clamp(28px,4vw,56px)] [font-family:'Archivo',sans-serif] font-bold text-[clamp(1.9rem,6.4vw,5.6rem)] leading-[.94] tracking-[-0.045em] max-w-[20ch]">BRANDS WE MADE <span className="text-[var(--ag-accent,#F2600C)]">MAGNETIC.</span></h2>
   <div className="grid grid-cols-[repeat(auto-fill,minmax(min(100%,180px),1fr))] [border-bottom:1px_solid_rgba(245,242,237,.15)]">
       <div data-hover-group="" className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
         <img data-hover-img="" src="/images/9fcd96b10a.png" alt="Diadora" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
@@ -377,13 +323,13 @@ export default function Home() {
 </section>
 
 <section id="testimonials" data-dark="" className="relative z-[1] bg-[#131110] text-[#F7F4EF] py-[clamp(70px,11vw,160px)] px-[clamp(20px,4.4vw,64px)]">
-  <div className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(237,233,225,.18)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B]">
+  <div data-eyebrow="" className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(237,233,225,.18)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B]">
     <span>(03) Testimonials</span>
     <span>On camera, unscripted</span>
   </div>
 
   <div className="flex flex-wrap gap-[clamp(24px,4vw,64px)] items-end mt-[clamp(30px,4.5vw,64px)]">
-    <h2 data-reveal="" className="[flex:2_1_min(100%,340px)] m-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(1.9rem,6vw,5.2rem)] leading-[.94] tracking-[-0.045em]">DON&apos;T TAKE OUR <span className="text-[var(--ag-accent,#F2600C)]">WORD</span> FOR IT.</h2>
+    <h2 className="[flex:2_1_min(100%,340px)] m-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(1.9rem,6vw,5.2rem)] leading-[.94] tracking-[-0.045em]">DON&apos;T TAKE OUR <span className="text-[var(--ag-accent,#F2600C)]">WORD</span> FOR IT.</h2>
     <p className="[flex:1_1_min(100%,260px)] m-0 max-w-[40ch] text-[clamp(15px,1.3vw,18px)] leading-[1.6] text-[#B7B1A6]">We film every wrap-up conversation in the studio. No script, no approval round, press play.</p>
   </div>
 
@@ -647,11 +593,11 @@ export default function Home() {
 
 <section data-dark="" data-ag-flip="" className="relative z-[1] text-[#F7F4EF] pt-[clamp(60px,9vw,130px)] px-0 pb-[clamp(70px,10vw,150px)]">
   <div className="py-0 px-[clamp(20px,4.4vw,64px)]">
-    <div className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(247,244,239,.18)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B]">
+    <div data-eyebrow="" className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(247,244,239,.18)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B]">
       <span>(04) Content studio</span>
       <span className="text-[var(--ag-accent,#F2600C)]">Shot in-house</span>
     </div>
-    <h2 data-reveal="" className="mt-[clamp(22px,3vw,44px)] mx-0 mb-[clamp(18px,2.4vw,32px)] [font-family:'Archivo',sans-serif] font-bold text-[clamp(2rem,7.4vw,6.6rem)] leading-[.92] tracking-[-0.045em] max-w-[16ch]">THE <span className="text-[var(--ag-accent,#F2600C)]">CAMERA</span> NEVER LEAVES THE BUILDING.</h2>
+    <h2 className="mt-[clamp(22px,3vw,44px)] mx-0 mb-[clamp(18px,2.4vw,32px)] [font-family:'Archivo',sans-serif] font-bold text-[clamp(2rem,7.4vw,6.6rem)] leading-[.92] tracking-[-0.045em] max-w-[16ch]">THE <span className="text-[var(--ag-accent,#F2600C)]">CAMERA</span> NEVER LEAVES THE BUILDING.</h2>
     <p className="m-0 max-w-[52ch] text-[clamp(15px,1.3vw,18px)] leading-[1.6] text-[#B7B1A6]">A permanent studio, a standing crew and an edit suite down the hall. A campaign can be conceived on Monday, shot on Wednesday and running by Friday, without a single external booking.</p>
   </div>
 
@@ -714,8 +660,8 @@ export default function Home() {
 <section data-dark="" className="relative z-[1] text-[#F7F4EF] py-[clamp(70px,10vw,150px)] px-[clamp(20px,4.4vw,64px)]">
   <div className="flex flex-wrap gap-[clamp(26px,5vw,90px)] items-start">
     <div className="[flex:1_1_min(100%,280px)] sticky top-[110px]">
-      <div className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B] [border-top:1px_solid_rgba(247,244,239,.16)] pt-3">(05) For founders</div>
-      <h2 data-reveal="" className="mt-[clamp(18px,2.4vw,32px)] mx-0 mb-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(2rem,5.2vw,4.6rem)] leading-[.92] tracking-[-0.045em]">ZERO<br />TO<br /><span className="text-[var(--ag-accent,#F2600C)]">LAUNCH.</span></h2>
+      <div data-eyebrow="" className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B] [border-top:1px_solid_rgba(247,244,239,.16)] pt-3">(05) For founders</div>
+      <h2 className="mt-[clamp(18px,2.4vw,32px)] mx-0 mb-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(2rem,5.2vw,4.6rem)] leading-[.92] tracking-[-0.045em]">ZERO<br />TO<br /><span className="text-[var(--ag-accent,#F2600C)]">LAUNCH.</span></h2>
       <p className="mt-[clamp(18px,2.4vw,30px)] mx-0 mb-0 max-w-[40ch] text-[clamp(15px,1.3vw,18px)] leading-[1.55] text-[#B7B1A6]">Founders don&apos;t need six suppliers and a project manager to coordinate them. They need one team that can name the thing, build it, film it and put it in front of people, in weeks.</p>
       <a href="#contact" className="inline-flex items-center gap-2.5 mt-[clamp(22px,3vw,38px)] [font-family:'Archivo',sans-serif] font-semibold text-[clamp(15px,1.4vw,19px)] [border-bottom:1px_solid_currentColor] pb-[3px] max-lg:py-3">Start something <span>→</span></a>
     </div>
@@ -731,12 +677,12 @@ export default function Home() {
 </section>
 
 <section id="contact" data-dark="" className="relative z-[1] text-[#F7F4EF] pt-[clamp(72px,11vw,170px)] px-[clamp(20px,4.4vw,64px)] pb-0">
-  <div className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(247,244,239,.18)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B]">
+  <div data-eyebrow="" className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(247,244,239,.18)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B]">
     <span>(06) Contact</span>
     <span>Taking projects for Q1 2027</span>
   </div>
 
-  <h2 data-reveal="" className="mt-[clamp(34px,6vw,90px)] mx-0 mb-[clamp(30px,4vw,60px)] [font-family:'Archivo',sans-serif] font-bold text-[clamp(2.4rem,9.6vw,9.5rem)] leading-[.88] tracking-[-0.048em] [font-variation-settings:'wdth'_104]">HAVE A THING<br />WORTH <span className="text-[var(--ag-accent,#F2600C)]">BUILDING?</span></h2>
+  <h2 className="mt-[clamp(34px,6vw,90px)] mx-0 mb-[clamp(30px,4vw,60px)] [font-family:'Archivo',sans-serif] font-bold text-[clamp(2.4rem,9.6vw,9.5rem)] leading-[.88] tracking-[-0.048em] [font-variation-settings:'wdth'_104]">HAVE A THING<br />WORTH <span className="text-[var(--ag-accent,#F2600C)]">BUILDING?</span></h2>
 
   <div className="flex flex-wrap gap-[clamp(30px,6vw,110px)] items-start pb-[clamp(50px,8vw,110px)]">
     <form data-ag-form="" className="[flex:2_1_min(100%,320px)] flex flex-col gap-[clamp(18px,2.4vw,30px)]">
@@ -798,5 +744,41 @@ export default function Home() {
 <ContactPill />
 <HomeRuntime />
 </div>
+  );
+}
+
+/** The cards after the lead one, then the call to action (`null`), in rows of two. */
+const REST = [...WORK.slice(1), null];
+const WORK_ROWS = Array.from({ length: Math.ceil(REST.length / 2) }, (_, r) => REST.slice(r * 2, r * 2 + 2));
+const ROW_SHAPES = [['tall', 'drop'], ['wide', 'side']] as const;
+
+/** Card shape: [flex sizing in its row, image aspect]. */
+const SHAPES = {
+  lead: ['', '[aspect-ratio:16/8]'],
+  tall: ['[flex:1_1_min(100%,320px)]', '[aspect-ratio:4/5]'],
+  drop: ['[flex:1_1_min(100%,320px)] mt-[clamp(0px,9vw,160px)]', '[aspect-ratio:4/5]'],
+  wide: ['[flex:2_1_min(100%,420px)]', '[aspect-ratio:16/10]'],
+  side: ['[flex:1_1_min(100%,240px)]', '[aspect-ratio:4/5]'],
+} as const;
+
+function WorkCard({ w, n, shape }: { w: Work; n: number; shape: keyof typeof SHAPES }) {
+  const [flex, aspect] = SHAPES[shape];
+  return (
+    <Link href={workHref(w)} data-hover-group="" data-cursor="View" className={`flex flex-col gap-3.5 text-[#0A0A0A] ${flex}`}>
+      <div className={`relative overflow-hidden w-[85%] ${aspect} rounded-[6px] bg-[#1A1815]`}>
+        <div data-hover-img="" data-parallax="0.18" className="absolute left-0 right-0 top-[-6%] h-[112%] [transition:transform_.9s_cubic-bezier(.16,1,.3,1)]"><Image src={w.image.src} alt={w.image.alt} width={w.image.width} height={w.image.height} priority={n === 1} className="h-full w-full object-cover" /></div>
+        <span className="absolute left-[clamp(12px,1.6vw,20px)] top-[clamp(12px,1.6vw,20px)] [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#0A0A0A] bg-[#F5F2ED] rounded-[999px] py-1.5 px-[11px]">{w.tags}</span>
+      </div>
+      <div className="flex justify-between items-start gap-[18px] [border-top:1px_solid_rgba(10,10,10,.2)] pt-3">
+        <div className="flex gap-[clamp(12px,1.6vw,22px)] items-baseline min-w-0">
+          <span className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.12em] text-[#0A0A0A]">{String(n).padStart(2, '0')}</span>
+          <div className="min-w-0">
+            <div data-hover-title="" data-split="" className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(1.3rem,2.6vw,2.4rem)] leading-[1] tracking-[-0.035em] uppercase [transition:transform_.6s_cubic-bezier(.16,1,.3,1)]">{w.client}</div>
+            <p className="mt-[9px] mx-0 mb-0 max-w-[44ch] text-[clamp(14px,1.15vw,16px)] leading-[1.5] text-[#0A0A0A]/80">{w.summary}</p>
+          </div>
+        </div>
+        <span aria-hidden="true" className="[flex:0_0_auto] [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.12em] text-[#0A0A0A]/80">↗</span>
+      </div>
+    </Link>
   );
 }

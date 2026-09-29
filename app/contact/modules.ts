@@ -1,6 +1,6 @@
 import {
   applyTheme, reveal, cursor, clock,
-  shellMinimal, navPad, makeForm, type Behavior,
+  shellMinimal, navPad, makeForm, text, type Behavior,
 } from '@/lib/behaviors';
 
 /** Contact page behaviour set, in the verified componentDidMount order
@@ -60,8 +60,10 @@ import {
  *  page). Does not spread `SHARED` (would pull in `nav`, `parallax` and
  *  `form`, none of which match this page).
  *
+ *  `text` (last, not in the original) runs the heading and eyebrow entrances,
+ *  lib/behaviors/text.ts.
  *  Must stay a module-level constant: AgRuntime's effect deps are
  *  [modules], so a fresh array each render would remount every behaviour. */
 export const CONTACT_MODULES: Behavior[] = [
-  applyTheme, shellMinimal, reveal, navPad, cursor, clock, makeForm('Thanks — we reply within a working day'),
+  applyTheme, shellMinimal, reveal, navPad, cursor, clock, makeForm('Thanks — we reply within a working day'), text,
 ];

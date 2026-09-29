@@ -52,7 +52,8 @@ const PAGES = [
   { slug: 'studio', original: 'Arohance Studio.html', route: '/studio' },
   { slug: 'careers', original: 'Arohance Careers.html', route: '/careers' },
   { slug: 'contact', original: 'Arohance Contact.html', route: '/contact' },
-  { slug: 'case-study', original: 'Arohance Case Study.html', route: '/case-study' },
+  // One project stands in for the lib/work.ts case study template.
+  { slug: 'case-study', original: 'Arohance Case Study.html', route: '/case-study/daadis-on-screen-and-on-ground' },
 ];
 
 const MIME = {

@@ -56,7 +56,7 @@ export default function Careers() {
         </div>
         <div className="flex flex-col mt-[clamp(12px,2vh,22px)]">
           <Link data-ag-mlink="" href="/" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#F5F2ED] hover:pl-2.5">Home <span className="text-[.5em] text-[#8A857B]">→</span></Link>
-          <Link data-ag-mlink="" href="/case-study" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#F5F2ED] hover:pl-2.5">Work <span className="text-[.5em] text-[#8A857B]">→</span></Link>
+          <Link data-ag-mlink="" href="/#work" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#F5F2ED] hover:pl-2.5">Work <span className="text-[.5em] text-[#8A857B]">→</span></Link>
           <Link data-ag-mlink="" href="/about" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">About <span className="text-[.5em] text-[#8A857B]">→</span></Link>
           <Link data-ag-mlink="" href="/services" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">Services <span className="text-[.5em] text-[#8A857B]">→</span></Link>
           <Link data-ag-mlink="" href="/studio" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#F5F2ED] hover:pl-2.5">Studio <span className="text-[.5em] text-[#8A857B]">→</span></Link>
@@ -76,15 +76,15 @@ export default function Careers() {
 </div>
 
 <header className="relative min-h-[88svh] flex flex-col justify-end pt-[clamp(104px,14vh,170px)] px-[clamp(20px,4.4vw,64px)] pb-[clamp(30px,4.5vw,60px)]">
-  <div className="flex justify-between items-baseline gap-4 flex-wrap [border-top:1px_solid_rgba(245,242,237,.15)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E]">
+  <div data-eyebrow="" className="flex justify-between items-baseline gap-4 flex-wrap [border-top:1px_solid_rgba(245,242,237,.15)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E]">
     <span>Careers</span>
     <span className="flex items-center gap-[9px]"><span className="w-1.5 h-1.5 bg-[var(--ag-accent,#F2600C)] rounded-[50%] [animation:ag-pulse_2.6s_infinite]"></span><span data-ag-count="">Six roles open</span>, Bengaluru</span>
   </div>
 
   <h1 className="mt-[clamp(26px,4vw,58px)] mx-0 mb-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(2.4rem,8.4vw,9.5rem)] leading-[.87] tracking-[-0.048em] [font-variation-settings:'wdth'_106]">
-    <span data-reveal="" data-delay="0" className="block">COME MAKE</span>
-    <span data-reveal="" data-delay="90" className="block">THE WHOLE</span>
-    <span data-reveal="" data-delay="180" className="block text-[var(--ag-accent,#F2600C)]">THING.</span>
+    <span className="block">COME MAKE</span>
+    <span className="block">THE WHOLE</span>
+    <span className="block text-[var(--ag-accent,#F2600C)]">THING.</span>
   </h1>
 
   <div className="flex justify-between items-end gap-[clamp(20px,5vw,60px)] flex-wrap mt-[clamp(28px,4vw,58px)]">
@@ -119,7 +119,7 @@ export default function Careers() {
 </div>
 
 <section className="py-[clamp(60px,9vw,140px)] px-[clamp(20px,4.4vw,64px)]">
-  <div className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(245,242,237,.15)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E] mb-[clamp(26px,4vw,56px)]">
+  <div data-eyebrow="" className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(245,242,237,.15)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E] mb-[clamp(26px,4vw,56px)]">
     <span>(01) Why here</span>
     <span>Four honest reasons</span>
   </div>
@@ -160,7 +160,7 @@ export default function Careers() {
 </section>
 
 <section id="roles" className="pt-[clamp(40px,6vw,90px)] px-[clamp(20px,4.4vw,64px)] pb-[clamp(70px,10vw,150px)]">
-  <div className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(245,242,237,.15)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E] mb-[clamp(30px,5vw,64px)]">
+  <div data-eyebrow="" className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(245,242,237,.15)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E] mb-[clamp(30px,5vw,64px)]">
     <span>(02) Open roles</span>
     <span>Bengaluru, hybrid</span>
   </div>
@@ -291,7 +291,7 @@ export default function Careers() {
 </section>
 
 <section id="process" className="py-[clamp(60px,9vw,140px)] px-[clamp(20px,4.4vw,64px)]">
-  <div className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(245,242,237,.15)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E] mb-[clamp(30px,5vw,64px)]">
+  <div data-eyebrow="" className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(245,242,237,.15)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E] mb-[clamp(30px,5vw,64px)]">
     <span>(03) How we hire</span>
     <span>Two weeks, four steps</span>
   </div>
@@ -320,12 +320,12 @@ export default function Careers() {
 </section>
 
 <section id="apply" className="pt-[clamp(60px,9vw,140px)] px-[clamp(20px,4.4vw,64px)] pb-0">
-  <div className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(245,242,237,.15)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E]">
+  <div data-eyebrow="" className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(245,242,237,.15)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E]">
     <span>(04) Apply</span>
     <span>We reply to everyone</span>
   </div>
 
-  <h2 data-reveal="" className="mt-[clamp(30px,5vw,80px)] mx-0 mb-[clamp(28px,4vw,58px)] [font-family:'Archivo',sans-serif] font-bold text-[clamp(2.2rem,8.4vw,8.4rem)] leading-[.89] tracking-[-0.048em] [font-variation-settings:'wdth'_104]">SHOW US<br />SOMETHING<br />YOU <span className="text-[var(--ag-accent,#F2600C)]">MADE.</span></h2>
+  <h2 className="mt-[clamp(30px,5vw,80px)] mx-0 mb-[clamp(28px,4vw,58px)] [font-family:'Archivo',sans-serif] font-bold text-[clamp(2.2rem,8.4vw,8.4rem)] leading-[.89] tracking-[-0.048em] [font-variation-settings:'wdth'_104]">SHOW US<br />SOMETHING<br />YOU <span className="text-[var(--ag-accent,#F2600C)]">MADE.</span></h2>
 
   <div className="flex flex-wrap gap-[clamp(30px,6vw,110px)] items-start pb-[clamp(50px,8vw,110px)]">
     <form data-ag-form="" className="[flex:2_1_min(100%,320px)] flex flex-col gap-[clamp(18px,2.4vw,30px)]">

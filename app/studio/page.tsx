@@ -93,7 +93,7 @@ export default function Studio() {
         </div>
         <div className="flex flex-col mt-[clamp(12px,2vh,22px)]">
           <Link data-ag-mlink="" href="/" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">Home <span className="text-[.5em] text-[#8A857B]">→</span></Link>
-          <Link data-ag-mlink="" href="/case-study" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">Work <span className="text-[.5em] text-[#8A857B]">→</span></Link>
+          <Link data-ag-mlink="" href="/#work" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">Work <span className="text-[.5em] text-[#8A857B]">→</span></Link>
           <Link data-ag-mlink="" href="/services" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">Services <span className="text-[.5em] text-[#8A857B]">→</span></Link>
           <Link data-ag-mlink="" href="/about" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">About <span className="text-[.5em] text-[#8A857B]">→</span></Link>
           <Link data-ag-mlink="" href="/studio" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">Studio <span className="text-[.5em] text-[#8A857B]">→</span></Link>
@@ -115,16 +115,16 @@ export default function Studio() {
 </div>
 
 <header className="pt-[clamp(100px,15vh,170px)] px-[clamp(20px,4.4vw,64px)] pb-[clamp(30px,4.5vw,60px)]">
-  <div className="flex justify-between items-baseline gap-4 flex-wrap [border-top:1px_solid_rgba(245,242,237,.15)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E]">
+  <div data-eyebrow="" className="flex justify-between items-baseline gap-4 flex-wrap [border-top:1px_solid_rgba(245,242,237,.15)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E]">
     <span>The studio</span>
     <span className="flex items-center gap-[9px]"><span className="w-1.5 h-1.5 bg-[var(--ag-accent,#F2600C)] rounded-[50%] [animation:ag-pulse_2.6s_infinite]"></span>14 people, India</span>
     <span data-ag-clock="">00:00</span>
   </div>
 
   <h1 className="mt-[clamp(30px,5vw,70px)] mx-0 mb-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(2.9rem,12.4vw,12.5rem)] leading-[.86] tracking-[-0.05em] [font-variation-settings:'wdth'_106]">
-    <span data-reveal="" className="block">A STUDIO,</span>
-    <span data-reveal="" data-delay="90" className="block">NOT A</span>
-    <span data-reveal="" data-delay="180" className="block">SUPPLY CHAIN.</span>
+    <span className="block">A STUDIO,</span>
+    <span className="block">NOT A</span>
+    <span className="block">SUPPLY CHAIN.</span>
   </h1>
 
   <div className="flex justify-between gap-[clamp(20px,5vw,70px)] flex-wrap mt-[clamp(28px,4vw,56px)]">
@@ -140,29 +140,29 @@ export default function Studio() {
 </section>
 
 <section className="py-[clamp(60px,9vw,140px)] px-[clamp(20px,4.4vw,64px)]">
-  <div className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(245,242,237,.15)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E] mb-[clamp(26px,4vw,56px)]">
+  <div data-eyebrow="" className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(245,242,237,.15)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E] mb-[clamp(26px,4vw,56px)]">
     <span>(01) How we think</span>
     <span>Four positions</span>
   </div>
 
   <div className="flex justify-between items-baseline gap-[clamp(14px,3vw,40px)] [border-top:1px_solid_rgba(245,242,237,.15)] py-[clamp(16px,2vw,26px)] px-0 flex-wrap">
     <span className="[font-family:'JetBrains_Mono',monospace] text-[11px] text-[#8C877E]">01</span>
-    <h3 data-reveal="" className="[flex:1_1_min(100%,240px)] m-0 [font-family:'Archivo',sans-serif] font-semibold text-[clamp(1.4rem,3.4vw,2.9rem)] leading-[1.04] tracking-[-0.035em]">The idea has to survive the build.</h3>
+    <h3 className="[flex:1_1_min(100%,240px)] m-0 [font-family:'Archivo',sans-serif] font-semibold text-[clamp(1.4rem,3.4vw,2.9rem)] leading-[1.04] tracking-[-0.035em]">The idea has to survive the build.</h3>
     <p className="[flex:1_1_min(100%,280px)] m-0 max-w-[44ch] text-[15px] leading-[1.6] text-[#A9A39A]">Concepts that can&apos;t be engineered aren&apos;t concepts, they&apos;re decks. Ours are pressure-tested by the people who will have to ship them.</p>
   </div>
   <div className="flex justify-between items-baseline gap-[clamp(14px,3vw,40px)] [border-top:1px_solid_rgba(245,242,237,.15)] py-[clamp(16px,2vw,26px)] px-0 flex-wrap">
     <span className="[font-family:'JetBrains_Mono',monospace] text-[11px] text-[#8C877E]">02</span>
-    <h3 data-reveal="" className="[flex:1_1_min(100%,240px)] m-0 [font-family:'Archivo',sans-serif] font-semibold text-[clamp(1.4rem,3.4vw,2.9rem)] leading-[1.04] tracking-[-0.035em]">Small team, senior hands.</h3>
+    <h3 className="[flex:1_1_min(100%,240px)] m-0 [font-family:'Archivo',sans-serif] font-semibold text-[clamp(1.4rem,3.4vw,2.9rem)] leading-[1.04] tracking-[-0.035em]">Small team, senior hands.</h3>
     <p className="[flex:1_1_min(100%,280px)] m-0 max-w-[44ch] text-[15px] leading-[1.6] text-[#A9A39A]">Fourteen people, no account layer. The person who answers your email is the person doing the work.</p>
   </div>
   <div className="flex justify-between items-baseline gap-[clamp(14px,3vw,40px)] [border-top:1px_solid_rgba(245,242,237,.15)] py-[clamp(16px,2vw,26px)] px-0 flex-wrap">
     <span className="[font-family:'JetBrains_Mono',monospace] text-[11px] text-[#8C877E]">03</span>
-    <h3 data-reveal="" className="[flex:1_1_min(100%,240px)] m-0 [font-family:'Archivo',sans-serif] font-semibold text-[clamp(1.4rem,3.4vw,2.9rem)] leading-[1.04] tracking-[-0.035em]">Own the whole pipeline.</h3>
+    <h3 className="[flex:1_1_min(100%,240px)] m-0 [font-family:'Archivo',sans-serif] font-semibold text-[clamp(1.4rem,3.4vw,2.9rem)] leading-[1.04] tracking-[-0.035em]">Own the whole pipeline.</h3>
     <p className="[flex:1_1_min(100%,280px)] m-0 max-w-[44ch] text-[15px] leading-[1.6] text-[#A9A39A]">Camera, edit, design, code, deploy. Owning every stage is what makes an eleven-week launch possible.</p>
   </div>
   <div className="flex justify-between items-baseline gap-[clamp(14px,3vw,40px)] [border-top:1px_solid_rgba(245,242,237,.15)] [border-bottom:1px_solid_rgba(245,242,237,.15)] py-[clamp(16px,2vw,26px)] px-0 flex-wrap">
     <span className="[font-family:'JetBrains_Mono',monospace] text-[11px] text-[#8C877E]">04</span>
-    <h3 data-reveal="" className="[flex:1_1_min(100%,240px)] m-0 [font-family:'Archivo',sans-serif] font-semibold text-[clamp(1.4rem,3.4vw,2.9rem)] leading-[1.04] tracking-[-0.035em]">Hand it over properly.</h3>
+    <h3 className="[flex:1_1_min(100%,240px)] m-0 [font-family:'Archivo',sans-serif] font-semibold text-[clamp(1.4rem,3.4vw,2.9rem)] leading-[1.04] tracking-[-0.035em]">Hand it over properly.</h3>
     <p className="[flex:1_1_min(100%,280px)] m-0 max-w-[44ch] text-[15px] leading-[1.6] text-[#A9A39A]">Your accounts, your repositories, your files, documented. No hostage infrastructure, ever.</p>
   </div>
 </section>
@@ -170,8 +170,8 @@ export default function Studio() {
 <section data-dark="" className="bg-[#131110] text-[#EDE9E1] py-[clamp(70px,11vw,170px)] px-[clamp(20px,4.4vw,64px)]">
   <div className="flex flex-wrap gap-[clamp(26px,5vw,90px)] items-start">
     <div className="[flex:1_1_min(100%,280px)]">
-      <div className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B] [border-top:1px_solid_rgba(237,233,225,.18)] pt-3">(02) Under one roof</div>
-      <h2 data-reveal="" className="mt-[clamp(20px,3vw,40px)] mx-0 mb-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(1.9rem,5.4vw,4.8rem)] leading-[.96] tracking-[-0.045em]">FOUR ROOMS.<br /><span className="text-[var(--ag-accent,#F2600C)]">ONE FLOOR.</span></h2>
+      <div data-eyebrow="" className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B] [border-top:1px_solid_rgba(237,233,225,.18)] pt-3">(02) Under one roof</div>
+      <h2 className="mt-[clamp(20px,3vw,40px)] mx-0 mb-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(1.9rem,5.4vw,4.8rem)] leading-[.96] tracking-[-0.045em]">FOUR ROOMS.<br /><span className="text-[var(--ag-accent,#F2600C)]">ONE FLOOR.</span></h2>
       <p className="mt-[clamp(18px,2.4vw,30px)] mx-0 mb-0 max-w-[42ch] text-[clamp(15px,1.3vw,18px)] leading-[1.6] text-[#B7B1A6]">There is no handover email between these rooms, because there is no wall between them. A shoot can be reframed at 3pm because the developer said the hero needs vertical room.</p>
     </div>
     <div className="[flex:1_1_min(100%,300px)]">
@@ -193,7 +193,7 @@ export default function Studio() {
 </section>
 
 <section className="py-[clamp(60px,9vw,140px)] px-[clamp(20px,4.4vw,64px)]">
-  <div className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(245,242,237,.15)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E] mb-[clamp(30px,4.5vw,64px)]">
+  <div data-eyebrow="" className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(245,242,237,.15)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E] mb-[clamp(30px,4.5vw,64px)]">
     <span>(03) The team</span>
     <span>Hover for the long version</span>
   </div>
@@ -286,7 +286,7 @@ export default function Studio() {
 </section>
 
 <section className="pt-0 px-[clamp(20px,4.4vw,64px)] pb-[clamp(60px,9vw,140px)]">
-  <div className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(245,242,237,.15)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E] mb-[clamp(24px,3.5vw,48px)]">
+  <div data-eyebrow="" className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(245,242,237,.15)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E] mb-[clamp(24px,3.5vw,48px)]">
     <span>(04) Selected clients</span>
     <span>2021–2026</span>
   </div>
@@ -313,7 +313,7 @@ export default function Studio() {
   <footer className="[border-top:1px_solid_rgba(237,233,225,.18)] mt-[clamp(50px,8vw,110px)]">
     <div className="flex justify-between gap-4 flex-wrap py-4 px-0 [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.12em] uppercase text-[#8A857B] max-lg:items-center">
       <span>© 2026 Arohance</span>
-      <span className="flex gap-[18px]"><Link href="/case-study" className="max-lg:px-2 max-lg:py-4">Work</Link><Link href="/contact" className="max-lg:px-2 max-lg:py-4">Contact</Link><Link href="/" className="max-lg:px-2 max-lg:py-4">Home</Link></span>
+      <span className="flex gap-[18px]"><Link href="/#work" className="max-lg:px-2 max-lg:py-4">Work</Link><Link href="/contact" className="max-lg:px-2 max-lg:py-4">Contact</Link><Link href="/" className="max-lg:px-2 max-lg:py-4">Home</Link></span>
     </div>
     <div className="overflow-hidden leading-[.74] mb-[-0.09em]">
       <span className="block [font-family:'Archivo',sans-serif] font-bold text-[clamp(3.4rem,19.2vw,20rem)] tracking-[-0.05em] [font-variation-settings:'wdth'_104] whitespace-nowrap">AROHANCE®</span>

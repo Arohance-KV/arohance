@@ -26,7 +26,7 @@ npm test
 ```
 
 Runs `node --test` over the working glob (`tools/*.test.mjs lib/*.test.mjs
-lib/behaviors/*.test.mjs`) — 59 tests. The obvious fallback, `node --test
+lib/behaviors/*.test.mjs`) — 61 tests. The obvious fallback, `node --test
 tools/ lib/` (letting Node discover files under a directory itself), fails
 on Node 22; only the explicit glob form works, which is why it's a script
 instead of something left for each developer to remember.

@@ -93,7 +93,7 @@ export default function Contact() {
         </div>
         <div className="flex flex-col mt-[clamp(12px,2vh,22px)]">
           <Link data-ag-mlink="" href="/" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">Home <span className="text-[.5em] text-[#8A857B]">→</span></Link>
-          <Link data-ag-mlink="" href="/case-study" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">Work <span className="text-[.5em] text-[#8A857B]">→</span></Link>
+          <Link data-ag-mlink="" href="/#work" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">Work <span className="text-[.5em] text-[#8A857B]">→</span></Link>
           <Link data-ag-mlink="" href="/services" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">Services <span className="text-[.5em] text-[#8A857B]">→</span></Link>
           <Link data-ag-mlink="" href="/about" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">About <span className="text-[.5em] text-[#8A857B]">→</span></Link>
           <Link data-ag-mlink="" href="/studio" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">Studio <span className="text-[.5em] text-[#8A857B]">→</span></Link>
@@ -115,15 +115,15 @@ export default function Contact() {
 </div>
 
 <header className="pt-[clamp(100px,15vh,170px)] px-[clamp(20px,4.4vw,64px)] pb-[clamp(30px,4vw,56px)]">
-  <div className="flex justify-between items-baseline gap-4 flex-wrap [border-top:1px_solid_rgba(237,233,225,.18)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B]">
+  <div data-eyebrow="" className="flex justify-between items-baseline gap-4 flex-wrap [border-top:1px_solid_rgba(237,233,225,.18)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B]">
     <span>Contact</span>
     <span className="flex items-center gap-[9px]"><span className="w-1.5 h-1.5 bg-[var(--ag-accent,#F2600C)] rounded-[50%] [animation:ag-pulse_2.6s_infinite]"></span>Taking projects for Q1 2027</span>
     <span data-ag-clock="">00:00</span>
   </div>
 
   <h1 className="mt-[clamp(34px,6vw,84px)] mx-0 mb-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(2.6rem,10.4vw,10.5rem)] leading-[.87] tracking-[-0.05em] [font-variation-settings:'wdth'_104]">
-    <span data-reveal="" className="block">HAVE A THING</span>
-    <span data-reveal="" data-delay="100" className="block">WORTH <span className="text-[var(--ag-accent,#F2600C)]">BUILDING?</span></span>
+    <span className="block">HAVE A THING</span>
+    <span className="block">WORTH <span className="text-[var(--ag-accent,#F2600C)]">BUILDING?</span></span>
   </h1>
 
   <p data-reveal="" className="mt-[clamp(24px,3.5vw,44px)] mx-0 mb-0 max-w-[50ch] text-[clamp(15px,1.4vw,19px)] leading-[1.55] text-[#B7B1A6]">A paragraph is plenty. Tell us what it is, roughly when, and we&apos;ll come back within a working day with either a plan or an honest no.</p>
@@ -187,24 +187,24 @@ export default function Contact() {
 </section>
 
 <section className="pt-0 px-[clamp(20px,4.4vw,64px)] pb-[clamp(60px,9vw,140px)]">
-  <div className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(237,233,225,.18)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B] mb-[clamp(26px,4vw,52px)]">
+  <div data-eyebrow="" className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(237,233,225,.18)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B] mb-[clamp(26px,4vw,52px)]">
     <span>What happens next</span>
     <span>Three steps, no deck</span>
   </div>
   <div className="flex flex-wrap gap-[clamp(20px,4vw,60px)]">
     <div className="[flex:1_1_min(100%,250px)] [border-top:1px_solid_rgba(237,233,225,.18)] pt-4">
       <div className="[font-family:'JetBrains_Mono',monospace] text-[11px] text-[#8A857B] mb-3.5">01</div>
-      <h3 data-reveal="" className="m-0 [font-family:'Archivo',sans-serif] font-semibold text-[clamp(1.3rem,2.6vw,2.1rem)] leading-[1.05] tracking-[-0.03em]">A 30-minute call</h3>
+      <h3 className="m-0 [font-family:'Archivo',sans-serif] font-semibold text-[clamp(1.3rem,2.6vw,2.1rem)] leading-[1.05] tracking-[-0.03em]">A 30-minute call</h3>
       <p className="mt-3 mx-0 mb-0 text-[15px] leading-[1.6] text-[#B7B1A6]">With the people who&apos;d actually do the work. No sales team, no capabilities deck.</p>
     </div>
     <div className="[flex:1_1_min(100%,250px)] [border-top:1px_solid_rgba(237,233,225,.18)] pt-4">
       <div className="[font-family:'JetBrains_Mono',monospace] text-[11px] text-[#8A857B] mb-3.5">02</div>
-      <h3 data-reveal="" data-delay="90" className="m-0 [font-family:'Archivo',sans-serif] font-semibold text-[clamp(1.3rem,2.6vw,2.1rem)] leading-[1.05] tracking-[-0.03em]">A one-page plan</h3>
+      <h3 className="m-0 [font-family:'Archivo',sans-serif] font-semibold text-[clamp(1.3rem,2.6vw,2.1rem)] leading-[1.05] tracking-[-0.03em]">A one-page plan</h3>
       <p className="mt-3 mx-0 mb-0 text-[15px] leading-[1.6] text-[#B7B1A6]">Scope, sequence, team and a fixed number. Usually within four working days.</p>
     </div>
     <div className="[flex:1_1_min(100%,250px)] [border-top:1px_solid_rgba(237,233,225,.18)] pt-4">
       <div className="[font-family:'JetBrains_Mono',monospace] text-[11px] text-[#8A857B] mb-3.5">03</div>
-      <h3 data-reveal="" data-delay="180" className="m-0 [font-family:'Archivo',sans-serif] font-semibold text-[clamp(1.3rem,2.6vw,2.1rem)] leading-[1.05] tracking-[-0.03em]">We start</h3>
+      <h3 className="m-0 [font-family:'Archivo',sans-serif] font-semibold text-[clamp(1.3rem,2.6vw,2.1rem)] leading-[1.05] tracking-[-0.03em]">We start</h3>
       <p className="mt-3 mx-0 mb-0 text-[15px] leading-[1.6] text-[#B7B1A6]">Kickoff inside two weeks, with the strategy, studio and engineering rooms all in it.</p>
     </div>
   </div>
@@ -213,7 +213,7 @@ export default function Contact() {
 <footer className="py-0 px-[clamp(20px,4.4vw,64px)] [border-top:1px_solid_rgba(237,233,225,.18)]">
   <div className="flex justify-between gap-4 flex-wrap py-4 px-0 [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.12em] uppercase text-[#8A857B] max-lg:items-center">
     <span>© 2026 Arohance, Tech &amp; Marketing</span>
-    <span className="flex gap-[18px]"><Link href="/case-study" className="max-lg:px-2 max-lg:py-4">Work</Link><Link href="/studio" className="max-lg:px-2 max-lg:py-4">Studio</Link><Link href="/" className="max-lg:px-2 max-lg:py-4">Home</Link></span>
+    <span className="flex gap-[18px]"><Link href="/#work" className="max-lg:px-2 max-lg:py-4">Work</Link><Link href="/studio" className="max-lg:px-2 max-lg:py-4">Studio</Link><Link href="/" className="max-lg:px-2 max-lg:py-4">Home</Link></span>
   </div>
   <div className="overflow-hidden leading-[.74] mb-[-0.09em]">
     <span className="block [font-family:'Archivo',sans-serif] font-bold text-[clamp(3.4rem,19.2vw,20rem)] tracking-[-0.05em] [font-variation-settings:'wdth'_104] whitespace-nowrap">AROHANCE®</span>

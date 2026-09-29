@@ -1,5 +1,5 @@
 import {
-  applyTheme, reveal, navCareers, shell, roles, makeForm, type Behavior,
+  applyTheme, reveal, navCareers, shell, roles, makeForm, text, type Behavior,
 } from '@/lib/behaviors';
 
 /** Careers page behaviour set, in the verified componentDidMount order from
@@ -49,8 +49,10 @@ import {
  *  cannot appear here regardless, since it was deleted from `lib/behaviors`
  *  entirely in Task 8.
  *
+ *  `text` (last, not in the original) runs the heading and eyebrow entrances,
+ *  lib/behaviors/text.ts.
  *  Must stay a module-level constant: AgRuntime's effect deps are
  *  [modules], so a fresh array each render would remount every behaviour. */
 export const CAREERS_MODULES: Behavior[] = [
-  applyTheme, reveal, navCareers, shell, roles, makeForm('Thanks, we reply within a week'),
+  applyTheme, reveal, navCareers, shell, roles, makeForm('Thanks, we reply within a week'), text,
 ];

@@ -1,6 +1,6 @@
 import {
   SHARED, services, hovers, cursor, flags, video, ether, magnet,
-  stroke, reel, type Behavior,
+  stroke, reel, text, type Behavior,
 } from '@/lib/behaviors';
 
 /** About page behaviour set: SHARED plus the page-specific effects, in the
@@ -32,9 +32,11 @@ import {
  *  `initFanPointer` was deleted from `lib/behaviors` entirely in Task 8, so
  *  it cannot be imported regardless.
  *
+ *  `text` (last, not in the original) runs the heading and eyebrow entrances,
+ *  lib/behaviors/text.ts.
  *  Must stay a module-level constant: AgRuntime's effect deps are
  *  [modules], so a fresh array each render would remount every behaviour. */
 export const ABOUT_MODULES: Behavior[] = [
   ...SHARED, services, hovers, cursor, flags, video,
-  ether, magnet, stroke, reel,
+  ether, magnet, stroke, reel, text,
 ];

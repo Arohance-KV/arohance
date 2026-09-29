@@ -133,7 +133,7 @@ export default function About() {
         </div>
         <div className="flex flex-col mt-[clamp(12px,2vh,22px)]">
           <Link data-ag-mlink="" href="/" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">Home <span className="text-[.5em] text-[#8A857B]">→</span></Link>
-          <Link data-ag-mlink="" href="/case-study" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">Work <span className="text-[.5em] text-[#8A857B]">→</span></Link>
+          <Link data-ag-mlink="" href="/#work" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">Work <span className="text-[.5em] text-[#8A857B]">→</span></Link>
           <Link data-ag-mlink="" href="/about" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">About <span className="text-[.5em] text-[#8A857B]">→</span></Link>
           <Link data-ag-mlink="" href="/services" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">Services <span className="text-[.5em] text-[#8A857B]">→</span></Link>
           <Link data-ag-mlink="" href="/studio" className="flex items-baseline justify-between gap-4 py-[clamp(8px,1.4vh,14px)] px-0 [border-bottom:1px_solid_rgba(237,233,225,.16)] [font-family:'Archivo',sans-serif] font-medium text-[clamp(2rem,4.6vw,2.9rem)] leading-[1.08] tracking-[-0.035em] text-[#77726A] [transition:color_.35s_ease,padding-left_.4s_cubic-bezier(.16,1,.3,1)] hover:text-[#EDE9E1] hover:pl-2.5">Studio <span className="text-[.5em] text-[#8A857B]">→</span></Link>
@@ -159,9 +159,9 @@ export default function About() {
   <div className="relative z-[2] [flex:1_1_auto] flex flex-col gap-[clamp(26px,4vh,52px)] pointer-events-none">
     <div className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E]">+ (About us)</div>
     <h1 className="m-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(2.5rem,9vw,10rem)] leading-[.86] tracking-[-0.048em] [font-variation-settings:'wdth'_106]">
-      <span data-reveal="" data-delay="0" className="block">ATTENTION IS</span>
-      <span data-reveal="" data-delay="90" className="block">THE NEW</span>
-      <span data-reveal="" data-delay="180" className="block text-[var(--ag-accent,#F2600C)]">CURRENCY.</span>
+      <span className="block">ATTENTION IS</span>
+      <span className="block">THE NEW</span>
+      <span className="block text-[var(--ag-accent,#F2600C)]">CURRENCY.</span>
     </h1>
     <p data-reveal="" className="m-0 max-w-[52ch] text-[clamp(15px,1.35vw,19px)] leading-[1.55] text-[#A9A39A]">We exist to make businesses impossible to ignore, and impossible to leave.</p>
   </div>
@@ -170,7 +170,7 @@ export default function About() {
 {/* The belief reads as problem, then answer: the first paragraph muted, a rule, the second in full white. */}
 <section id="belief" className="py-[clamp(70px,11vw,170px)] px-[clamp(20px,4.4vw,64px)]">
   <div className="flex gap-[clamp(26px,5vw,90px)] flex-wrap items-start">
-    <h2 className="m-0 [flex:1_1_min(100%,190px)] [font-family:'JetBrains_Mono',monospace] font-normal text-[11px] tracking-[.14em] uppercase text-[#8C877E] pt-2.5">+ (Our belief)</h2>
+    <h2 data-eyebrow="" className="m-0 [flex:1_1_min(100%,190px)] [font-family:'JetBrains_Mono',monospace] font-normal text-[11px] tracking-[.14em] uppercase text-[#8C877E] pt-2.5">+ (Our belief)</h2>
     <div className="[flex:4_1_min(100%,520px)]">
       <p data-reveal="" className="m-0 [font-family:'Archivo',sans-serif] font-medium text-[clamp(1.55rem,3.9vw,3.5rem)] leading-[1.08] tracking-[-0.03em] [font-variation-settings:'wdth'_100] [text-wrap:pretty] text-[#8C877E]">Arohance was built on one belief: great businesses don&apos;t fail because of bad ideas. They fail because their brand, product, marketing and technology pull in different directions.</p>
       <hr className="my-[clamp(34px,5vw,72px)] mx-0 border-0 [border-top:1px_solid_rgba(245,242,237,.15)]" />
@@ -180,7 +180,7 @@ export default function About() {
 </section>
 
 <section id="studio" data-dark="" className="bg-[#0C0B0A] text-[#F7F4EF] pt-[clamp(60px,9vw,130px)] px-[clamp(20px,4.4vw,64px)] pb-[clamp(70px,10vw,150px)]">
-  <div className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(247,244,239,.16)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B] mb-[clamp(26px,4vw,56px)]">
+  <div data-eyebrow="" className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(247,244,239,.16)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B] mb-[clamp(26px,4vw,56px)]">
     <span>(01) The studio</span>
     <span>15+ people, India</span>
   </div>
@@ -271,7 +271,7 @@ export default function About() {
 
 <section id="intro" className="py-[clamp(70px,11vw,170px)] px-[clamp(20px,4.4vw,64px)]">
   <div className="flex gap-[clamp(26px,5vw,90px)] flex-wrap items-start">
-    <h2 className="m-0 [flex:1_1_min(100%,190px)] [font-family:'JetBrains_Mono',monospace] font-normal text-[11px] tracking-[.14em] uppercase text-[#8C877E] pt-2.5">+ (How we work)</h2>
+    <h2 data-eyebrow="" className="m-0 [flex:1_1_min(100%,190px)] [font-family:'JetBrains_Mono',monospace] font-normal text-[11px] tracking-[.14em] uppercase text-[#8C877E] pt-2.5">+ (How we work)</h2>
     <ol className="[flex:4_1_min(100%,520px)] m-0 p-0 list-none grid grid-cols-2 gap-x-[clamp(24px,5vw,72px)] max-md:grid-cols-1">
       {HOW_WE_WORK.map(([title, text], i) => (
         <li key={title} data-reveal="" data-delay={String(i * 90)} className="[border-top:1px_solid_rgba(245,242,237,.15)] pt-3.5 pb-[clamp(28px,3.4vw,48px)]">
@@ -286,7 +286,7 @@ export default function About() {
 
 <section id="numbers" className="pt-0 px-[clamp(20px,4.4vw,64px)] pb-[clamp(70px,11vw,170px)]">
   <div className="flex gap-[clamp(26px,5vw,90px)] flex-wrap items-start">
-    <h2 className="m-0 [flex:1_1_min(100%,190px)] [font-family:'JetBrains_Mono',monospace] font-normal text-[11px] tracking-[.14em] uppercase text-[#8C877E] pt-2.5">+ (Numbers)</h2>
+    <h2 data-eyebrow="" className="m-0 [flex:1_1_min(100%,190px)] [font-family:'JetBrains_Mono',monospace] font-normal text-[11px] tracking-[.14em] uppercase text-[#8C877E] pt-2.5">+ (Numbers)</h2>
     <ul className="[flex:4_1_min(100%,520px)] m-0 p-0 list-none grid grid-cols-3 gap-x-[clamp(24px,5vw,72px)] max-md:grid-cols-2">
       {NUMBERS.map(([value, suffix, label], i) => (
         <li key={label} data-reveal="" data-delay={String(i * 70)} className="flex flex-col gap-[clamp(10px,1.2vw,16px)] [border-top:1px_solid_rgba(245,242,237,.15)] pt-3.5 pb-[clamp(30px,4vw,56px)]">
@@ -333,12 +333,12 @@ export default function About() {
 </WordPortal>
 
 <section id="contact" data-dark=""className="bg-[#0C0B0A] text-[#F7F4EF] pt-[clamp(72px,11vw,170px)] px-[clamp(20px,4.4vw,64px)] pb-0">
-  <div className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(247,244,239,.18)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B]">
+  <div data-eyebrow="" className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(247,244,239,.18)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B]">
     <span>(02) Contact</span>
     <span>Taking projects for Q1 2027</span>
   </div>
 
-  <h2 data-reveal="" className="mt-[clamp(34px,6vw,90px)] mx-0 mb-[clamp(30px,4vw,60px)] [font-family:'Archivo',sans-serif] font-bold text-[clamp(2.4rem,9.6vw,9.5rem)] leading-[.88] tracking-[-0.048em] [font-variation-settings:'wdth'_104]">HAVE A THING<br />WORTH <span className="text-[var(--ag-accent,#F2600C)]">BUILDING?</span></h2>
+  <h2 className="mt-[clamp(34px,6vw,90px)] mx-0 mb-[clamp(30px,4vw,60px)] [font-family:'Archivo',sans-serif] font-bold text-[clamp(2.4rem,9.6vw,9.5rem)] leading-[.88] tracking-[-0.048em] [font-variation-settings:'wdth'_104]">HAVE A THING<br />WORTH <span className="text-[var(--ag-accent,#F2600C)]">BUILDING?</span></h2>
 
   <div className="flex flex-wrap gap-[clamp(30px,6vw,110px)] items-start pb-[clamp(50px,8vw,110px)]">
     <form data-ag-form="" className="[flex:2_1_min(100%,320px)] flex flex-col gap-[clamp(18px,2.4vw,30px)]">
