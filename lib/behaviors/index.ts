@@ -21,6 +21,9 @@ import { shellMinimal } from './shellMinimal';
 import { navOnDark } from './navOnDark';
 import { navPad } from './navPad';
 import { hoverLift } from './hoverLift';
+import { showreel } from './showreel';
+import { verticals } from './verticals';
+import { zoom } from './zoom';
 import type { Behavior } from './types';
 
 export * from './types';
@@ -28,6 +31,7 @@ export { applyTheme, reveal, parallax, nav, shell, clock, form, makeForm };
 export { services, hovers, cursor, flags, video, ether, magnet, stroke, reel, trail };
 export { roles, navCareers };
 export { shellMinimal, navOnDark, navPad, hoverLift };
+export { showreel, verticals, zoom };
 
 /** Behaviours every page mounts, in the original componentDidMount order. */
 export const SHARED: Behavior[] = [applyTheme, reveal, parallax, nav, shell, clock, form];

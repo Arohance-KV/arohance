@@ -3,6 +3,7 @@ node_modules/
 .next/
 out/
 .superpowers/
+.graphify-out/
 .env*
 !.env.example
 

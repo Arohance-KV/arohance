@@ -264,3 +264,29 @@ a:hover { color: var(--ag-accent, #F2600C); }
   [data-ag-ribbon] { animation-duration: 1ms !important; animation-iteration-count: 1 !important; }
   [data-ag-card] { animation-play-state: paused; }
 }
+
+/* WordPortal (components/WordPortal.tsx). GlyphPortal's rules are
+ * unlayered and scoped with :where(), so this plain rule out-specifies them:
+ * caption onto the page gutters and clear of the fixed ContactPill, while
+ * pinned (the static, reduced-motion frame is too short for the offset). */
+.ag-portal[data-gp-motion=on] [data-gp-caption] { inset: auto clamp(20px,4.4vw,64px) clamp(104px,15vh,150px); }
+
+/* Timeline fades in, and the closing line rises, as each scrolls into view.
+ * No JS: the reveal behaviour can't do this (its 1.6s guard shows every
+ * [data-reveal] regardless of scroll). Unsupported browsers just show it. */
+@keyframes ag-story-in { from { opacity: 0; transform: translate3d(0,48px,0); } }
+@keyframes ag-story-rise { from { transform: scaleY(0); } }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    [data-story-in] { animation: ag-story-in both cubic-bezier(.16,1,.3,1); animation-timeline: view(); animation-range: entry 20% cover 30%; }
+    [data-story-rise] { animation: ag-story-rise both linear; animation-timeline: view(); animation-range: entry 0% cover 50%; }
+  }
+}
+
+/* Home "(01) Selected work" dive (lib/behaviors/zoom.ts). Pinned only once the
+ * behaviour sets data-ag-zoom="on": 180svh of scroll drives the zoom. */
+[data-ag-zoom=on] { height: 280svh; }
+[data-ag-zoom=on] > [data-ag-zoom-pin] { position: sticky; top: 0; height: 100svh; overflow: clip; display: flex; flex-direction: column; justify-content: center; padding-block: 0; }
+/* The case studies sit on the accent, where the sitewide orange a:hover would
+ * make their text vanish: keep links their own colour. */
+#work a:hover { color: inherit; }

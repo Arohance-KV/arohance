@@ -16,17 +16,58 @@
 // back to desktop-only, and neither `tools/compare.mjs` (checks 1440 only)
 // nor a passing build says anything. See README.md, "Changing the
 // converter", for the actual procedure.
+//
+// Content update: the hero, `section#belief`, `section#intro` (How we work),
+// `section#numbers` and the "Our story" portal (`WordPortal`) are
+// hand-written to the new content brief, not converter output, so they
+// deliberately no longer match
+// `Arohance About.html`. A regenerate-and-paste would silently revert them.
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import ContactPill from '@/components/ContactPill';
 import AboutRuntime from './about-runtime';
+import WordPortal from '@/components/WordPortal';
 
-// Derived from this page's own eyebrow ("+ (About us)") and h1 ("Small on
-// Purpose") — not invented marketing copy. `%s — Arohance` (root layout).
+// Derived from this page's own h1 ("Attention is the new currency") — not
+// invented marketing copy. `%s — Arohance` (root layout).
 export const metadata: Metadata = {
-  title: 'Small on Purpose',
+  title: 'Attention Is the New Currency',
 };
+
+// "How we work" points (01-04), per the content brief: title, description.
+const HOW_WE_WORK: [string, string][] = [
+  ['One team, one responsibility', 'Strategy, creative, film and technology under one roof, with no hand-offs and no finger-pointing.'],
+  ['Built from scratch, for you', 'Every strategy, campaign and product is shaped around your business, never pulled from a template.'],
+  ['Proof over noise', 'We chase results you can verify, not vanity numbers.'],
+  ['Partners, not vendors', "We grow with the brands we work with. That's why 92% of them stay."],
+];
+
+// Numbers, per the content brief: value, suffix (set in the accent), label.
+const NUMBERS: [string, string, string][] = [
+  ['103', '+', 'Brands'],
+  ['24', '', 'Industries'],
+  ['92', '%', 'Client retention'],
+  ['15', '+', 'In-house specialists'],
+  ['5', '', 'Verticals'],
+  ['3', '+', 'Years'],
+];
+
+// "Our story" timeline, per the content brief: year, title, paragraphs.
+const STORY: [string, string, string[]][] = [
+  ['2023', 'The Spark', [
+    "Two college friends, new to Bengaluru, on a black Honda CB Twister. Kaivaniya Bhandari and Neer Shah had no connections in the city and no safety net, only a restless need to build something. By the time the ride ended, they'd decided they would.",
+    'Months of chasing opportunities and trying everything showed them where they were strongest: Kaivaniya in technology and management, Neer in marketing and getting things done. So they started with what they knew best, tech and marketing.',
+  ]],
+  ['2024', 'Three Become One', [
+    'Brands kept coming back for more: the content, the films, the campaigns. We saw the gap, moved into our own office and brought production in-house. Marketing, technology and production became one craft.',
+    'As demand kept climbing, we added specialists and in-house teams. Founders could stop chasing vendors and work with one team instead.',
+  ]],
+  ['2026', 'Beyond', [
+    "From a new city with no connections to 103+ brands across 24 industries, built from scratch. Same trajectory, higher ambition, and we're just getting started.",
+    "Wherever your business is aiming, that's where we're headed next.",
+  ]],
+];
 
 export default function About() {
   return (
@@ -118,17 +159,30 @@ export default function About() {
   <div className="relative z-[2] [flex:1_1_auto] flex flex-col gap-[clamp(26px,4vh,52px)] pointer-events-none">
     <div className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E]">+ (About us)</div>
     <h1 className="m-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(2.5rem,9vw,10rem)] leading-[.86] tracking-[-0.048em] [font-variation-settings:'wdth'_106]">
-      <span data-reveal="" data-delay="0" className="block">SMALL ON</span>
-      <span data-reveal="" data-delay="90" className="block text-[var(--ag-accent,#F2600C)]">PURPOSE.</span>
+      <span data-reveal="" data-delay="0" className="block">ATTENTION IS</span>
+      <span data-reveal="" data-delay="90" className="block">THE NEW</span>
+      <span data-reveal="" data-delay="180" className="block text-[var(--ag-accent,#F2600C)]">CURRENCY.</span>
     </h1>
-    <p data-reveal="" className="m-0 max-w-[52ch] text-[clamp(15px,1.35vw,19px)] leading-[1.55] text-[#A9A39A]">Arohance is an independent tech and marketing studio in Bengaluru. Fourteen people across strategy, film, design and engineering, working as one team from the first call to launch day.</p>
+    <p data-reveal="" className="m-0 max-w-[52ch] text-[clamp(15px,1.35vw,19px)] leading-[1.55] text-[#A9A39A]">We exist to make businesses impossible to ignore, and impossible to leave.</p>
   </div>
 </header>
+
+{/* The belief reads as problem, then answer: the first paragraph muted, a rule, the second in full white. */}
+<section id="belief" className="py-[clamp(70px,11vw,170px)] px-[clamp(20px,4.4vw,64px)]">
+  <div className="flex gap-[clamp(26px,5vw,90px)] flex-wrap items-start">
+    <h2 className="m-0 [flex:1_1_min(100%,190px)] [font-family:'JetBrains_Mono',monospace] font-normal text-[11px] tracking-[.14em] uppercase text-[#8C877E] pt-2.5">+ (Our belief)</h2>
+    <div className="[flex:4_1_min(100%,520px)]">
+      <p data-reveal="" className="m-0 [font-family:'Archivo',sans-serif] font-medium text-[clamp(1.55rem,3.9vw,3.5rem)] leading-[1.08] tracking-[-0.03em] [font-variation-settings:'wdth'_100] [text-wrap:pretty] text-[#8C877E]">Arohance was built on one belief: great businesses don&apos;t fail because of bad ideas. They fail because their brand, product, marketing and technology pull in different directions.</p>
+      <hr className="my-[clamp(34px,5vw,72px)] mx-0 border-0 [border-top:1px_solid_rgba(245,242,237,.15)]" />
+      <p data-reveal="" className="m-0 [font-family:'Archivo',sans-serif] font-medium text-[clamp(1.55rem,3.9vw,3.5rem)] leading-[1.08] tracking-[-0.03em] [font-variation-settings:'wdth'_100] [text-wrap:pretty] text-[#F5F2ED]">So we put them all under one roof. The strategy, the story, the screens and the systems behind them are built by one team, moving in one direction.</p>
+    </div>
+  </div>
+</section>
 
 <section id="studio" data-dark="" className="bg-[#0C0B0A] text-[#F7F4EF] pt-[clamp(60px,9vw,130px)] px-[clamp(20px,4.4vw,64px)] pb-[clamp(70px,10vw,150px)]">
   <div className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(247,244,239,.16)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B] mb-[clamp(26px,4vw,56px)]">
     <span>(01) The studio</span>
-    <span>14 people, India</span>
+    <span>15+ people, India</span>
   </div>
 
   <div className="flex flex-wrap gap-[clamp(24px,4vw,70px)] items-end">
@@ -217,28 +271,68 @@ export default function About() {
 
 <section id="intro" className="py-[clamp(70px,11vw,170px)] px-[clamp(20px,4.4vw,64px)]">
   <div className="flex gap-[clamp(26px,5vw,90px)] flex-wrap items-start">
-    <div className="[flex:1_1_min(100%,190px)] [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E] pt-2.5">+ (How we work)</div>
-    <div className="[flex:4_1_min(100%,520px)]">
-      <p data-reveal="" className="m-0 [font-family:'Archivo',sans-serif] font-medium text-[clamp(1.55rem,3.9vw,3.5rem)] leading-[1.08] tracking-[-0.03em] [font-variation-settings:'wdth'_100] [text-wrap:pretty]">We are designers, developers, strategists, filmmakers and producers working as one team, so the idea that survives the pitch is the same one that ships.</p>
-      <div className="flex flex-wrap gap-[0_clamp(24px,5vw,72px)] mt-[clamp(36px,6vw,80px)]">
-        <div className="[flex:1_1_min(100%,220px)] [border-top:1px_solid_rgba(245,242,237,.15)] pt-3.5 px-0 pb-[22px]">
-          <div className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] text-[#8C877E] mb-2.5">01</div>
-          <div className="text-[clamp(15px,1.2vw,17px)] leading-[1.45]">In-house production. Our own cameras, our own edit, our own release calendar.</div>
-        </div>
-        <div className="[flex:1_1_min(100%,220px)] [border-top:1px_solid_rgba(245,242,237,.15)] pt-3.5 px-0 pb-[22px]">
-          <div className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] text-[#8C877E] mb-2.5">02</div>
-          <div className="text-[clamp(15px,1.2vw,17px)] leading-[1.45]">Design and engineering sit together. Nothing gets thrown over a wall.</div>
-        </div>
-        <div className="[flex:1_1_min(100%,220px)] [border-top:1px_solid_rgba(245,242,237,.15)] pt-3.5 px-0 pb-[22px]">
-          <div className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] text-[#8C877E] mb-2.5">03</div>
-          <div className="text-[clamp(15px,1.2vw,17px)] leading-[1.45]">Zero to launch. A small senior team that can take an idea all the way out.</div>
-        </div>
-      </div>
-    </div>
+    <h2 className="m-0 [flex:1_1_min(100%,190px)] [font-family:'JetBrains_Mono',monospace] font-normal text-[11px] tracking-[.14em] uppercase text-[#8C877E] pt-2.5">+ (How we work)</h2>
+    <ol className="[flex:4_1_min(100%,520px)] m-0 p-0 list-none grid grid-cols-2 gap-x-[clamp(24px,5vw,72px)] max-md:grid-cols-1">
+      {HOW_WE_WORK.map(([title, text], i) => (
+        <li key={title} data-reveal="" data-delay={String(i * 90)} className="[border-top:1px_solid_rgba(245,242,237,.15)] pt-3.5 pb-[clamp(28px,3.4vw,48px)]">
+          <span className="block [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] text-[#8C877E] mb-[clamp(14px,1.6vw,22px)]">{String(i + 1).padStart(2, '0')}</span>
+          <h3 className="m-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(1.35rem,2.4vw,2.2rem)] leading-[1.05] tracking-[-0.03em]">{title}</h3>
+          <p className="mt-[clamp(10px,1.2vw,16px)] mx-0 mb-0 max-w-[40ch] text-[clamp(15px,1.2vw,17px)] leading-[1.5] text-[#A9A39A]">{text}</p>
+        </li>
+      ))}
+    </ol>
   </div>
 </section>
 
-<section id="contact" data-dark="" className="bg-[#0C0B0A] text-[#F7F4EF] pt-[clamp(72px,11vw,170px)] px-[clamp(20px,4.4vw,64px)] pb-0">
+<section id="numbers" className="pt-0 px-[clamp(20px,4.4vw,64px)] pb-[clamp(70px,11vw,170px)]">
+  <div className="flex gap-[clamp(26px,5vw,90px)] flex-wrap items-start">
+    <h2 className="m-0 [flex:1_1_min(100%,190px)] [font-family:'JetBrains_Mono',monospace] font-normal text-[11px] tracking-[.14em] uppercase text-[#8C877E] pt-2.5">+ (Numbers)</h2>
+    <ul className="[flex:4_1_min(100%,520px)] m-0 p-0 list-none grid grid-cols-3 gap-x-[clamp(24px,5vw,72px)] max-md:grid-cols-2">
+      {NUMBERS.map(([value, suffix, label], i) => (
+        <li key={label} data-reveal="" data-delay={String(i * 70)} className="flex flex-col gap-[clamp(10px,1.2vw,16px)] [border-top:1px_solid_rgba(245,242,237,.15)] pt-3.5 pb-[clamp(30px,4vw,56px)]">
+          <span className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(3rem,7vw,7rem)] leading-[.9] tracking-[-0.05em] [font-variation-settings:'wdth'_106]">{value}{suffix && <span className="text-[var(--ag-accent,#F2600C)]">{suffix}</span>}</span>
+          <span className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E]">{label}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+{/* Opening frame: label and headline sit above the word (GlyphPortal's
+    `--gp-word-top`); scrolling dives through a letter into the accent field,
+    where the timeline fades in. `[data-story-in]` / `[data-story-rise]` are
+    CSS scroll-driven animations, globals.css. */}
+<WordPortal word="STORY" enterLabel="Read the story" front={
+  <div className="absolute inset-x-[clamp(20px,4.4vw,64px)] bottom-[calc(100%_-_var(--gp-word-top,35%)_+_clamp(20px,3.5vh,40px))] flex flex-col items-center gap-3.5 text-center">
+    <h2 className="m-0 font-normal text-[11px]">+ (Our story)</h2>
+    <p className="m-0 [font-family:'Archivo',sans-serif] font-bold normal-case tracking-[-0.03em] text-[clamp(1.45rem,3vw,2.6rem)] leading-[1.05] text-[#F5F2ED] [text-wrap:balance]">From a new city to 103<span className="text-[var(--ag-accent,#F2600C)]">+</span> brands.</p>
+  </div>
+}>
+  <div className="normal-case tracking-normal [font-family:'Instrument_Sans',system-ui,sans-serif]">
+    <ol className="m-0 p-0 list-none">
+      {STORY.map(([year, title, body]) => (
+        <li key={year} className="flex flex-wrap gap-x-[clamp(24px,5vw,90px)] gap-y-[clamp(14px,2vw,24px)] [border-top:1px_solid_rgba(12,11,10,.22)] pt-3.5 pb-[clamp(56px,8vw,130px)]">
+          <span data-story-in="" className="[flex:1_1_min(100%,300px)] whitespace-nowrap [font-family:'Archivo',sans-serif] font-bold text-[clamp(4.5rem,13vw,13rem)] leading-[.82] tracking-[-0.05em] [font-variation-settings:'wdth'_106]">{year}</span>
+          <div className="[flex:1.3_1_min(100%,440px)] flex flex-col gap-[clamp(14px,1.4vw,20px)] pt-[clamp(4px,1vw,14px)]">
+            <h3 data-story-in="" className="m-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(1.5rem,2.6vw,2.4rem)] leading-[1.05] tracking-[-0.03em]">{title}</h3>
+            {body.map((text, i) => (
+              <p key={i} data-story-in="" className="m-0 max-w-[52ch] text-[clamp(16px,1.25vw,19px)] leading-[1.55]">{text}</p>
+            ))}
+            {/* Unsplash stock photo (not the founders' bike) until there is a real one of them or their CB Twister. */}
+            {year === '2023' && <Image data-story-in="" src="/photos/story-2023.jpg" alt="A rider on a black motorcycle at dusk" width={1600} height={1067} sizes="(max-width: 1024px) 100vw, 50vw" className="block w-full h-auto mt-[clamp(10px,2vw,28px)]" />}
+          </div>
+        </li>
+      ))}
+    </ol>
+    {/* 2026 ends on one rising line, leading into "The Name" (next section, not built yet). */}
+    <div aria-hidden="true" className="flex flex-col items-center w-7">
+      <svg width="28" height="15" viewBox="0 0 28 15" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M1 14 14 1l13 13" /></svg>
+      <span data-story-rise="" className="block w-px h-[clamp(140px,26vh,300px)] -mt-px bg-current origin-bottom" />
+    </div>
+  </div>
+</WordPortal>
+
+<section id="contact" data-dark=""className="bg-[#0C0B0A] text-[#F7F4EF] pt-[clamp(72px,11vw,170px)] px-[clamp(20px,4.4vw,64px)] pb-0">
   <div className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(247,244,239,.18)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B]">
     <span>(02) Contact</span>
     <span>Taking projects for Q1 2027</span>
