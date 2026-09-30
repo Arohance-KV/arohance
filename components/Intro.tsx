@@ -14,7 +14,7 @@ const wordAt = (n: number) => (n <= 33 ? 0 : n <= 66 ? 1 : 2);
  * one word at a time over a 000→100 counter that follows real loading (fonts,
  * the page's eager images, window load), then the screen slides up. Rendered
  * covering; app/layout.tsx's head script hides it before first paint unless
- * this tab's visit started here, and the root element's own
+ * this full page load is `/`, and the root element's own
  * `[data-intro-seen]` variant keeps it hidden after.
  */
 export default function Intro() {

@@ -17,7 +17,7 @@ played underneath an overlay.
 
 | Question | Answer |
 |---|---|
-| Entrance frequency | Once per visit (per tab session), only when the visit starts on `/` |
+| Entrance frequency | Every full page load of `/` (refresh, typed URL, new tab); reaching `/` by a link from another page gets the curtain (changed 2026-09-30 from once per tab session, at the user's request) |
 | Transition look | Accent-orange curtain, destination name large in the middle |
 | Entrance look | One huge word at a time sliding up out of a mask; big counter bottom-right; screen slides up at 100 |
 | Approach | One persistent transition layer in the root layout that intercepts link clicks |
@@ -104,16 +104,14 @@ Counter:
   the home page is revisited by client navigation).
 - Locks scroll on `<html>` while playing, like the curtain.
 
-### Once-per-visit gate (inline script in `app/layout.tsx` `<head>`)
+### Entrance gate (inline script in `app/layout.tsx` `<head>`)
 
-Runs before first paint:
+Runs before first paint: every full load of a page other than `/` marks the
+intro as seen, so it only ever plays when the document itself loads on `/`.
+Client navigations to `/` never replay it (the attribute persists on `<html>`).
 
 ```js
-try {
-  var s = sessionStorage, k = 'ag-visit';
-  if (s.getItem(k) || location.pathname !== '/') document.documentElement.setAttribute('data-intro-seen', '');
-  s.setItem(k, '1');
-} catch (e) { document.documentElement.setAttribute('data-intro-seen', ''); }
+if (location.pathname !== '/') document.documentElement.setAttribute('data-intro-seen', '');
 ```
 
 `<html>` is rendered with `data-ag-covered=""` (so `whenRevealed()` waits
@@ -145,7 +143,6 @@ without the slide; the counter still runs.
 
 - JavaScript off: the `<noscript>` rule hides both overlays.
 - A stuck asset: the 4s (transition) and 8s (intro) caps.
-- `sessionStorage` blocked: the gate's `catch` skips the intro.
 - A navigation that never changes the pathname (e.g. an error): the 4s cap
   still runs the exit.
 
