@@ -24,10 +24,12 @@
 // `Arohance Homepage.html`; the What we do, In-house and Technology sections
 // are commented out below, and the visible eyebrows renumbered (01)-(06). A
 // regenerate-and-paste would silently revert all of it.
+// Also hand-added: `<Intro />` (components/Intro.tsx, the first-visit entrance) before the root.
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import ContactPill from '@/components/ContactPill';
+import Intro from '@/components/Intro';
 import { VERTICALS, verticalHref, serviceHref } from '@/lib/verticals';
 import { WORK, workHref, type Work } from '@/lib/work';
 import HomeRuntime from './home-runtime';
@@ -42,6 +44,8 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
+<>
+<Intro />
 <div data-ag-root="" className="bg-[#0C0B0A] text-[#F5F2ED] relative overflow-clip">
 <svg data-ag-trail="" aria-hidden="true" className="absolute left-0 top-0 w-full h-full z-[0] pointer-events-none overflow-visible"><path data-ag-trail-ghost="" fill="none" stroke="rgba(245,242,237,.07)" strokeWidth="2" strokeLinecap="round"></path><path data-ag-trail-line="" fill="none" stroke="var(--ag-accent,#F2600C)" strokeWidth="2.4" strokeLinecap="round"></path><circle data-ag-trail-dot="" r="6" fill="var(--ag-accent,#F2600C)"></circle><circle data-ag-trail-halo="" r="18" fill="none" stroke="var(--ag-accent,#F2600C)" strokeOpacity=".35" strokeWidth="1.5"></circle></svg>
 
@@ -744,6 +748,7 @@ export default function Home() {
 <ContactPill />
 <HomeRuntime />
 </div>
+</>
   );
 }
 
