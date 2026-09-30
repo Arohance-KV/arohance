@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import PageTransition from '@/components/PageTransition';
+import { WORK, workHref } from '@/lib/work';
 
 // No next/font here (Task 9 fix-round 4 reversal of the Task 2 decision):
 // next/font/google defines faces under hashed internal names, reachable
@@ -32,11 +34,30 @@ export const metadata: Metadata = {
     'An independent studio for brands, products and the technology underneath them.',
 };
 
+/** The curtain's page names, built here so lib/work.ts stays out of the client bundle. */
+const LABELS: Record<string, string> = {
+  '/': 'Home', '/about': 'About', '/services': 'Services', '/studio': 'Studio',
+  '/careers': 'Careers', '/contact': 'Contact',
+  ...Object.fromEntries(WORK.map((w) => [workHref(w), w.client])),
+};
+
+/** Runs before first paint: the home entrance (components/Intro.tsx) plays
+ *  once per tab session, and only when that session starts on `/`. */
+const INTRO_GATE =
+  "try{var s=sessionStorage,k='ag-visit';if(s.getItem(k)||location.pathname!=='/')document.documentElement.setAttribute('data-intro-seen','');s.setItem(k,'1')}catch(e){document.documentElement.setAttribute('data-intro-seen','')}";
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    // data-ag-covered: every first load starts under an overlay (lib/curtain.ts).
+    // suppressHydrationWarning: INTRO_GATE and the curtain change <html>'s attributes around hydration.
+    <html lang="en" data-ag-covered="" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: INTRO_GATE }} />
+        <noscript dangerouslySetInnerHTML={{ __html: '<style>[data-ag-intro],[data-ag-curtain]{display:none}</style>' }} />
+      </head>
       <body>
         {children}
+        <PageTransition labels={LABELS} />
       </body>
     </html>
   );
