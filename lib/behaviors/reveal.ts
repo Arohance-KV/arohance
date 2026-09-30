@@ -1,3 +1,4 @@
+import { whenRevealed } from '../curtain';
 import { MOTION, type Behavior } from './types';
 
 export const reveal: Behavior = (root) => {
@@ -28,14 +29,22 @@ export const reveal: Behavior = (root) => {
     },
     { rootMargin: '0px 0px -12% 0px', threshold: 0.08 },
   );
-  els.forEach((el) => io.observe(el));
-  const guard = setTimeout(() => {
-    els.forEach((el) => {
-      el.style.opacity = '1';
-      el.style.transform = 'none';
-    });
-  }, 1600);
+  // Start once the page transition's curtain is off (lib/curtain.ts), so the
+  // entrances are seen rather than played underneath it.
+  let disposed = false;
+  let guard: ReturnType<typeof setTimeout> | undefined;
+  whenRevealed().then(() => {
+    if (disposed) return;
+    els.forEach((el) => io.observe(el));
+    guard = setTimeout(() => {
+      els.forEach((el) => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
+    }, 1600);
+  });
   cleanups.push(() => {
+    disposed = true;
     io.disconnect();
     clearTimeout(guard);
   });

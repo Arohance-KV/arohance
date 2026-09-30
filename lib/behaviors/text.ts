@@ -1,4 +1,5 @@
 import type { gsap as Gsap } from 'gsap';
+import { whenRevealed } from '../curtain';
 import type { Behavior } from './types';
 
 /**
@@ -167,7 +168,8 @@ export const text: Behavior = (root) => {
       if (play) ready.then((gsap) => { if (!disposed) live.push(play(gsap)); });
     }
   }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
-  plays.forEach((_, el) => io.observe(el));
+  // After the page transition's curtain is off (lib/curtain.ts), so the entrances are seen.
+  whenRevealed().then(() => { if (!disposed) plays.forEach((_, el) => io.observe(el)); });
   ready.catch(() => { if (!disposed) { io.disconnect(); restore(); } });
 
   return () => {
