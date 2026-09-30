@@ -24,6 +24,7 @@ export default function Intro() {
 
   useEffect(() => {
     const html = document.documentElement;
+    if (html.hasAttribute('data-ag-failsafe')) { html.setAttribute('data-intro-seen', ''); return; } // failsafe already fired: never plays, stays hidden once PageTransition clears the attribute
     if (html.hasAttribute('data-intro-seen')) return;
     const el = box.current!, counter = count.current!;
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -52,11 +53,11 @@ export default function Intro() {
     const finish = async () => {
       await wait(200);
       reveal();
+      lockScroll(false); // right after reveal(), not after the slide: the page is already visible, so unlock while still covered by the intro
       await (reduce
         ? tween(el, [{ opacity: 1 }, { opacity: 0 }], 200)
         : tween(el, [{ transform: 'translateY(0)' }, { transform: 'translateY(-100%)' }], 900));
       html.setAttribute('data-intro-seen', '');
-      lockScroll(false);
     };
     const tick = (now: number) => {
       if (dead) return;
@@ -75,7 +76,7 @@ export default function Intro() {
   }, []);
 
   return (
-    <div ref={box} data-ag-intro="" aria-hidden="true" className="fixed inset-0 z-[101] flex flex-col bg-[#0C0B0A] text-[#F5F2ED] pt-4 px-[clamp(20px,4.4vw,64px)] pb-[clamp(20px,4vh,48px)] [[data-intro-seen]_&]:hidden">
+    <div ref={box} data-ag-intro="" aria-hidden="true" className="fixed inset-0 z-[101] flex flex-col bg-[#0C0B0A] text-[#F5F2ED] pt-4 px-[clamp(20px,4.4vw,64px)] pb-[clamp(20px,4vh,48px)] [[data-intro-seen]_&]:hidden [[data-ag-failsafe]_&]:hidden">
       <Image src="/images/93c7aab596.png" alt="" width={422} height={133} priority className="h-[46px] w-auto self-start" />
       <div className="flex-1 flex items-center">
         <span className="relative block overflow-hidden [font-family:'Archivo',sans-serif] font-bold uppercase text-[clamp(3rem,12vw,11rem)] leading-[.9] tracking-[-0.045em] [font-variation-settings:'wdth'_106]">

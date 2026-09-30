@@ -42,9 +42,16 @@ const LABELS: Record<string, string> = {
 };
 
 /** Runs before first paint: the home entrance (components/Intro.tsx) plays
- *  once per tab session, and only when that session starts on `/`. */
+ *  once per tab session, and only when that session starts on `/`. Also a
+ *  failsafe for JS that boots but whose chunks never finish loading:
+ *  PageTransition.tsx sets `window.agUp` at hydration, well under 10s on a
+ *  working site, so this timer only ever fires when hydration didn't happen
+ *  in time -- it then flags `<html>` so both overlays' `[[data-ag-failsafe]_&]:hidden`
+ *  variant (in PageTransition.tsx and Intro.tsx) hides them, covering the
+ *  case `<noscript>` alone doesn't: JS on, but its bundle blocked or broken. */
 const INTRO_GATE =
-  "try{var s=sessionStorage,k='ag-visit';if(s.getItem(k)||location.pathname!=='/')document.documentElement.setAttribute('data-intro-seen','');s.setItem(k,'1')}catch(e){document.documentElement.setAttribute('data-intro-seen','')}";
+  "try{var s=sessionStorage,k='ag-visit';if(s.getItem(k)||location.pathname!=='/')document.documentElement.setAttribute('data-intro-seen','');s.setItem(k,'1')}catch(e){document.documentElement.setAttribute('data-intro-seen','')}" +
+  "setTimeout(function(){if(!window.agUp)document.documentElement.setAttribute('data-ag-failsafe','')},10000);";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
