@@ -32,6 +32,8 @@ export const shell: Behavior = (root) => {
     ov.style.opacity = open ? '1' : '0';
     ov.style.visibility = open ? 'visible' : 'hidden';
     ov.style.pointerEvents = open ? 'auto' : 'none';
+    // Kept through the fade-out so the stacked (below lg) layout doesn't jump; see globals.css.
+    if (state) ov.dataset.show = state;
     const panels: Array<[HTMLElement, boolean]> = news
       ? [
           [news, state === 'news' || state === 'menu'],

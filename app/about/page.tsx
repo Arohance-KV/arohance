@@ -18,7 +18,7 @@
 // converter", for the actual procedure.
 //
 // Content update: the hero, `section#belief`, `section#intro` (How we work),
-// `section#numbers` and the "Our story" portal (`WordPortal`) are
+// `section#numbers` and the "Our story" timeline (`components/ui/timeline.tsx`) are
 // hand-written to the new content brief, not converter output, so they
 // deliberately no longer match
 // `Arohance About.html`. A regenerate-and-paste would silently revert them.
@@ -27,7 +27,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import ContactPill from '@/components/ContactPill';
 import AboutRuntime from './about-runtime';
-import WordPortal from '@/components/WordPortal';
+import Timeline, { type TimelineItem } from '@/components/ui/timeline';
 
 // Derived from this page's own h1 ("Attention is the new currency") — not
 // invented marketing copy. `%s — Arohance` (root layout).
@@ -53,20 +53,15 @@ const NUMBERS: [string, string, string][] = [
   ['3', '+', 'Years'],
 ];
 
-// "Our story" timeline, per the content brief: year, title, paragraphs.
-const STORY: [string, string, string[]][] = [
-  ['2023', 'The Spark', [
-    "Two college friends, new to Bengaluru, on a black Honda CB Twister. Kaivaniya Bhandari and Neer Shah had no connections in the city and no safety net, only a restless need to build something. By the time the ride ended, they'd decided they would.",
-    'Months of chasing opportunities and trying everything showed them where they were strongest: Kaivaniya in technology and management, Neer in marketing and getting things done. So they started with what they knew best, tech and marketing.',
-  ]],
-  ['2024', 'Three Become One', [
-    'Brands kept coming back for more: the content, the films, the campaigns. We saw the gap, moved into our own office and brought production in-house. Marketing, technology and production became one craft.',
-    'As demand kept climbing, we added specialists and in-house teams. Founders could stop chasing vendors and work with one team instead.',
-  ]],
-  ['2026', 'Beyond', [
-    "From a new city with no connections to 103+ brands across 24 industries, built from scratch. Same trajectory, higher ambition, and we're just getting started.",
-    "Wherever your business is aiming, that's where we're headed next.",
-  ]],
+// "Our story", per the content brief, told as the timeline's milestones
+// (components/ui/timeline.tsx): year, chapter, one line each.
+const STORY: TimelineItem[] = [
+  { id: 'spark', year: '2023', title: 'The Spark', content: 'Two college friends, new to Bengaluru, with no connections and no safety net, decide to build something.' },
+  { id: 'start', year: '2023', title: 'Strengths', content: 'Kaivaniya Bhandari in tech and management, Neer Shah in marketing: they start with what they know best.' },
+  { id: 'three', year: '2024', title: 'Three Become One', content: 'Brands keep coming back for the content, the films and the campaigns, so we move into our own office.' },
+  { id: 'craft', year: '2024', title: 'One craft', content: 'Production comes in-house. Marketing, technology and production become one craft, under one team.' },
+  { id: 'beyond', year: '2026', title: 'Beyond', content: '103+ brands across 24 industries, built from scratch in a city where we had no connections.' },
+  { id: 'next', year: '2026', title: "What's next", content: "Same trajectory, higher ambition. Wherever your business is aiming, that's where we're headed next." },
 ];
 
 export default function About() {
@@ -192,9 +187,9 @@ export default function About() {
     </div>
   </div>
 
-  <div className="flex flex-wrap gap-[clamp(14px,2vw,28px)] mt-[clamp(44px,7vw,110px)]">
+  <div className="flex flex-wrap gap-[clamp(14px,2vw,28px)] mt-[clamp(44px,7vw,110px)] max-sm:grid max-sm:grid-cols-2">
     <div data-hover-group="" className="[flex:1_1_min(100%,210px)]">
-      <div className="relative overflow-hidden h-[clamp(300px,52vh,520px)]">
+      <div className="relative overflow-hidden h-[clamp(300px,52vh,520px)] max-sm:h-auto max-sm:aspect-[3/4]">
         <div data-hover-img="" className="absolute inset-0 [transition:transform_.9s_cubic-bezier(.16,1,.3,1)]"><Image src="/images/29a3935bff.jpg" alt="Portrait, tall" width={700} height={900} className="h-full w-full object-cover" /></div>
       </div>
       <div className="flex justify-between items-baseline gap-2.5 [border-top:1px_solid_rgba(247,244,239,.16)] mt-3 pt-[11px]">
@@ -206,7 +201,7 @@ export default function About() {
       </div>
     </div>
     <div data-hover-group="" className="[flex:1_1_min(100%,210px)] mt-[clamp(0px,3vw,48px)]">
-      <div className="relative overflow-hidden h-[clamp(300px,52vh,520px)]">
+      <div className="relative overflow-hidden h-[clamp(300px,52vh,520px)] max-sm:h-auto max-sm:aspect-[3/4]">
         <div data-hover-img="" className="absolute inset-0 [transition:transform_.9s_cubic-bezier(.16,1,.3,1)]"><Image src="/images/64f3340595.jpg" alt="Portrait, tall" width={700} height={900} className="h-full w-full object-cover" /></div>
       </div>
       <div className="flex justify-between items-baseline gap-2.5 [border-top:1px_solid_rgba(247,244,239,.16)] mt-3 pt-[11px]">
@@ -218,7 +213,7 @@ export default function About() {
       </div>
     </div>
     <div data-hover-group="" className="[flex:1_1_min(100%,210px)]">
-      <div className="relative overflow-hidden h-[clamp(300px,52vh,520px)]">
+      <div className="relative overflow-hidden h-[clamp(300px,52vh,520px)] max-sm:h-auto max-sm:aspect-[3/4]">
         <div data-hover-img="" className="absolute inset-0 [transition:transform_.9s_cubic-bezier(.16,1,.3,1)]"><Image src="/images/fb23c7b2c7.jpg" alt="Portrait, tall" width={700} height={900} className="h-full w-full object-cover" /></div>
       </div>
       <div className="flex justify-between items-baseline gap-2.5 [border-top:1px_solid_rgba(247,244,239,.16)] mt-3 pt-[11px]">
@@ -230,7 +225,7 @@ export default function About() {
       </div>
     </div>
     <div data-hover-group="" className="[flex:1_1_min(100%,210px)] mt-[clamp(0px,3vw,48px)]">
-      <div className="relative overflow-hidden h-[clamp(300px,52vh,520px)]">
+      <div className="relative overflow-hidden h-[clamp(300px,52vh,520px)] max-sm:h-auto max-sm:aspect-[3/4]">
         <div data-hover-img="" className="absolute inset-0 [transition:transform_.9s_cubic-bezier(.16,1,.3,1)]"><Image src="/images/234f5a93d8.jpg" alt="Portrait, tall" width={700} height={900} className="h-full w-full object-cover" /></div>
       </div>
       <div className="flex justify-between items-baseline gap-2.5 [border-top:1px_solid_rgba(247,244,239,.16)] mt-3 pt-[11px]">
@@ -298,39 +293,22 @@ export default function About() {
   </div>
 </section>
 
-{/* Opening frame: label and headline sit above the word (GlyphPortal's
-    `--gp-word-top`); scrolling dives through a letter into the accent field,
-    where the timeline fades in. `[data-story-in]` / `[data-story-rise]` are
-    CSS scroll-driven animations, globals.css. */}
-<WordPortal word="STORY" enterLabel="Read the story" front={
-  <div className="absolute inset-x-[clamp(20px,4.4vw,64px)] bottom-[calc(100%_-_var(--gp-word-top,35%)_+_clamp(20px,3.5vh,40px))] flex flex-col items-center gap-3.5 text-center">
-    <h2 className="m-0 font-normal text-[11px]">+ (Our story)</h2>
-    <p className="m-0 [font-family:'Archivo',sans-serif] font-bold normal-case tracking-[-0.03em] text-[clamp(1.45rem,3vw,2.6rem)] leading-[1.05] text-[#F5F2ED] [text-wrap:balance]">From a new city to 103<span className="text-[var(--ag-accent,#F2600C)]">+</span> brands.</p>
-  </div>
-}>
-  <div className="normal-case tracking-normal [font-family:'Instrument_Sans',system-ui,sans-serif]">
-    <ol className="m-0 p-0 list-none">
-      {STORY.map(([year, title, body]) => (
-        <li key={year} className="flex flex-wrap gap-x-[clamp(24px,5vw,90px)] gap-y-[clamp(14px,2vw,24px)] [border-top:1px_solid_rgba(12,11,10,.22)] pt-3.5 pb-[clamp(56px,8vw,130px)]">
-          <span data-story-in="" className="[flex:1_1_min(100%,300px)] whitespace-nowrap [font-family:'Archivo',sans-serif] font-bold text-[clamp(4.5rem,13vw,13rem)] leading-[.82] tracking-[-0.05em] [font-variation-settings:'wdth'_106]">{year}</span>
-          <div className="[flex:1.3_1_min(100%,440px)] flex flex-col gap-[clamp(14px,1.4vw,20px)] pt-[clamp(4px,1vw,14px)]">
-            <h3 data-story-in="" className="m-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(1.5rem,2.6vw,2.4rem)] leading-[1.05] tracking-[-0.03em]">{title}</h3>
-            {body.map((text, i) => (
-              <p key={i} data-story-in="" className="m-0 max-w-[52ch] text-[clamp(16px,1.25vw,19px)] leading-[1.55]">{text}</p>
-            ))}
-            {/* Unsplash stock photo (not the founders' bike) until there is a real one of them or their CB Twister. */}
-            {year === '2023' && <Image data-story-in="" src="/photos/story-2023.jpg" alt="A rider on a black motorcycle at dusk" width={1600} height={1067} sizes="(max-width: 1024px) 100vw, 50vw" className="block w-full h-auto mt-[clamp(10px,2vw,28px)]" />}
-          </div>
-        </li>
-      ))}
-    </ol>
-    {/* 2026 ends on one rising line, leading into "The Name" (next section, not built yet). */}
-    <div aria-hidden="true" className="flex flex-col items-center w-7">
-      <svg width="28" height="15" viewBox="0 0 28 15" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M1 14 14 1l13 13" /></svg>
-      <span data-story-rise="" className="block w-px h-[clamp(140px,26vh,300px)] -mt-px bg-current origin-bottom" />
-    </div>
-  </div>
-</WordPortal>
+{/* "Our story": the frame pins and the milestones slide past as the page
+    scrolls, each drawing its stem and revealing its copy
+    (components/ui/timeline.tsx). The photo is Unsplash stock (not the
+    founders' bike) until there is a real one of them or their CB Twister. */}
+<Timeline
+  items={STORY}
+  title="From a new city to 103+ brands."
+  periodLabel="(Our story) 2023–2026"
+  textColor="#F5F2ED"
+  mutedTextColor="#A9A39A"
+  activeColor="var(--ag-accent,#F2600C)"
+  backgroundColor="#0C0B0A"
+  imageSrc="/photos/story-2023.jpg"
+  imageAlt="A rider on a black motorcycle at dusk"
+  duration={1.4}
+/>
 
 <section id="contact" data-dark=""className="bg-[#0C0B0A] text-[#F7F4EF] pt-[clamp(72px,11vw,170px)] px-[clamp(20px,4.4vw,64px)] pb-0">
   <div data-eyebrow="" className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(247,244,239,.18)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B]">

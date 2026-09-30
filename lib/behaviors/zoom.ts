@@ -8,9 +8,9 @@ const smooth = (a: number, b: number, n: number) => {
 
 /** Home, "(01) Selected work": scrolling dives the camera into the full stop
  *  of THE WORK. until its ink fills the viewport, then the accent work grid
- *  follows. The same move as GlyphPortal (components/ui/glyph-portal.tsx:
- *  log-eased zoom, a small roll, handover once ink covers the view), done on
- *  the real heading so it keeps its size and design.
+ *  follows. The GlyphPortal move (log-eased zoom, a small roll, handover once
+ *  ink covers the view), done on the real heading so it keeps its size and
+ *  design.
  *
  *  Markup: [data-ag-zoom] track > [data-ag-zoom-pin] > ... >
  *  [data-ag-zoom-frame] (the h2, scaled) > [data-ag-zoom-dot] (the "."),

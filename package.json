@@ -10,7 +10,7 @@
     "test": "node --test tools/*.test.mjs lib/*.test.mjs lib/behaviors/*.test.mjs"
   },
   "dependencies": {
-    "gsap": "^3.12.5",
+    "gsap": "^3.15.0",
     "next": "15.5.26",
     "react": "19.1.0",
     "react-dom": "19.1.0",

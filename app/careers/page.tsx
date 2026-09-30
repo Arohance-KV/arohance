@@ -377,8 +377,8 @@ export default function Careers() {
       <span>© 2026 Arohance</span>
       <span className="flex gap-[18px]"><Link href="/" className="max-lg:px-2 max-lg:py-4">Home</Link><Link href="/studio" className="max-lg:px-2 max-lg:py-4">Studio</Link><Link href="/contact" className="max-lg:px-2 max-lg:py-4">Contact</Link></span>
     </div>
-    <div className="overflow-hidden leading-[.74] mb-[-0.09em]">
-      <span className="block [font-family:'Archivo',sans-serif] font-bold text-[clamp(3.4rem,19.2vw,20rem)] tracking-[-0.05em] [font-variation-settings:'wdth'_104] whitespace-nowrap">CAREERS®</span>
+    <div className="overflow-hidden leading-[.74] mb-[-0.09em] [container-type:inline-size]">
+      <span className="block [font-family:'Archivo',sans-serif] font-bold text-[17.8cqw] tracking-[-0.05em] [font-variation-settings:'wdth'_104] whitespace-nowrap">CAREERS®</span>
     </div>
   </footer>
 </section>

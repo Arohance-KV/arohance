@@ -198,9 +198,9 @@ export default function Studio() {
     <span>Hover for the long version</span>
   </div>
 
-  <div className="flex flex-wrap gap-[clamp(14px,2vw,28px)]">
+  <div className="flex flex-wrap gap-[clamp(14px,2vw,28px)] max-sm:grid max-sm:grid-cols-2">
     <div data-hover-group="" className="[flex:1_1_min(100%,220px)]">
-      <div className="relative overflow-hidden h-[clamp(300px,54vh,540px)]">
+      <div className="relative overflow-hidden h-[clamp(300px,54vh,540px)] max-sm:h-auto max-sm:aspect-[3/4]">
         <div data-hover-img="" className="absolute inset-0"><Image src="/images/38e05568d7.jpg" alt="NEER, portrait" width={700} height={900} className="h-full w-full object-cover" /></div>
       </div>
       <div className="[border-top:1px_solid_rgba(245,242,237,.15)] mt-3 pt-[11px]">
@@ -213,7 +213,7 @@ export default function Studio() {
       </div>
     </div>
     <div data-hover-group="" className="[flex:1_1_min(100%,220px)] mt-[clamp(0px,3vw,48px)]">
-      <div className="relative overflow-hidden h-[clamp(300px,54vh,540px)]">
+      <div className="relative overflow-hidden h-[clamp(300px,54vh,540px)] max-sm:h-auto max-sm:aspect-[3/4]">
         <div data-hover-img="" className="absolute inset-0"><Image src="/images/e268c52122.jpg" alt="KV, portrait" width={700} height={900} className="h-full w-full object-cover" /></div>
       </div>
       <div className="[border-top:1px_solid_rgba(245,242,237,.15)] mt-3 pt-[11px]">
@@ -226,7 +226,7 @@ export default function Studio() {
       </div>
     </div>
     <div data-hover-group="" className="[flex:1_1_min(100%,220px)]">
-      <div className="relative overflow-hidden h-[clamp(300px,54vh,540px)]">
+      <div className="relative overflow-hidden h-[clamp(300px,54vh,540px)] max-sm:h-auto max-sm:aspect-[3/4]">
         <div data-hover-img="" className="absolute inset-0"><Image src="/images/70cc6c9b51.jpg" alt="Rohan Sunwar, portrait" width={700} height={900} className="h-full w-full object-cover" /></div>
       </div>
       <div className="[border-top:1px_solid_rgba(245,242,237,.15)] mt-3 pt-[11px]">
@@ -239,7 +239,7 @@ export default function Studio() {
       </div>
     </div>
     <div data-hover-group="" className="[flex:1_1_min(100%,220px)] mt-[clamp(0px,3vw,48px)]">
-      <div className="relative overflow-hidden h-[clamp(300px,54vh,540px)]">
+      <div className="relative overflow-hidden h-[clamp(300px,54vh,540px)] max-sm:h-auto max-sm:aspect-[3/4]">
         <div data-hover-img="" className="absolute inset-0"><Image src="/images/987a91d473.jpg" alt="Portrait" width={700} height={900} className="h-full w-full object-cover" /></div>
       </div>
       <div className="[border-top:1px_solid_rgba(245,242,237,.15)] mt-3 pt-[11px]">
@@ -253,9 +253,9 @@ export default function Studio() {
     </div>
   </div>
 
-  <div className="flex flex-wrap gap-[clamp(14px,2vw,28px)] mt-[clamp(20px,3vw,40px)]">
+  <div className="flex flex-wrap gap-[clamp(14px,2vw,28px)] mt-[clamp(20px,3vw,40px)] max-sm:grid max-sm:grid-cols-2">
     <div data-hover-group="" className="[flex:1_1_min(100%,220px)]">
-      <div className="relative overflow-hidden h-[clamp(260px,42vh,420px)]">
+      <div className="relative overflow-hidden h-[clamp(260px,42vh,420px)] max-sm:h-auto max-sm:aspect-[3/4]">
         <div data-hover-img="" className="absolute inset-0"><Image src="/images/1d4dca23b7.jpg" alt="Portrait" width={700} height={900} className="h-full w-full object-cover" /></div>
       </div>
       <div className="[border-top:1px_solid_rgba(245,242,237,.15)] mt-3 pt-[11px] flex justify-between items-baseline gap-2.5">
@@ -267,7 +267,7 @@ export default function Studio() {
       </div>
     </div>
     <div data-hover-group="" className="[flex:1_1_min(100%,220px)]">
-      <div className="relative overflow-hidden h-[clamp(260px,42vh,420px)]">
+      <div className="relative overflow-hidden h-[clamp(260px,42vh,420px)] max-sm:h-auto max-sm:aspect-[3/4]">
         <div data-hover-img="" className="absolute inset-0"><Image src="/images/4f6262c929.jpg" alt="Portrait" width={700} height={900} className="h-full w-full object-cover" /></div>
       </div>
       <div className="[border-top:1px_solid_rgba(245,242,237,.15)] mt-3 pt-[11px] flex justify-between items-baseline gap-2.5">
@@ -315,8 +315,8 @@ export default function Studio() {
       <span>© 2026 Arohance</span>
       <span className="flex gap-[18px]"><Link href="/#work" className="max-lg:px-2 max-lg:py-4">Work</Link><Link href="/contact" className="max-lg:px-2 max-lg:py-4">Contact</Link><Link href="/" className="max-lg:px-2 max-lg:py-4">Home</Link></span>
     </div>
-    <div className="overflow-hidden leading-[.74] mb-[-0.09em]">
-      <span className="block [font-family:'Archivo',sans-serif] font-bold text-[clamp(3.4rem,19.2vw,20rem)] tracking-[-0.05em] [font-variation-settings:'wdth'_104] whitespace-nowrap">AROHANCE®</span>
+    <div className="overflow-hidden leading-[.74] mb-[-0.09em] [container-type:inline-size]">
+      <span className="block [font-family:'Archivo',sans-serif] font-bold text-[15.2cqw] tracking-[-0.05em] [font-variation-settings:'wdth'_104] whitespace-nowrap">AROHANCE®</span>
     </div>
   </footer>
 </section>

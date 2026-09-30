@@ -282,7 +282,7 @@ export default function Home() {
     <span>Selected, 2021–2026</span>
   </div>
   <h2 className="mt-0 mx-0 mb-[clamp(28px,4vw,56px)] [font-family:'Archivo',sans-serif] font-bold text-[clamp(1.9rem,6.4vw,5.6rem)] leading-[.94] tracking-[-0.045em] max-w-[20ch]">BRANDS WE MADE <span className="text-[var(--ag-accent,#F2600C)]">MAGNETIC.</span></h2>
-  <div className="grid grid-cols-[repeat(auto-fill,minmax(min(100%,180px),1fr))] [border-bottom:1px_solid_rgba(245,242,237,.15)]">
+  <div className="grid grid-cols-[repeat(auto-fill,minmax(min(100%,180px),1fr))] max-sm:grid-cols-2 [border-bottom:1px_solid_rgba(245,242,237,.15)]">
       <div data-hover-group="" className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
         <img data-hover-img="" src="/images/9fcd96b10a.png" alt="Diadora" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
       </div>
@@ -663,7 +663,7 @@ export default function Home() {
 
 <section data-dark="" className="relative z-[1] text-[#F7F4EF] py-[clamp(70px,10vw,150px)] px-[clamp(20px,4.4vw,64px)]">
   <div className="flex flex-wrap gap-[clamp(26px,5vw,90px)] items-start">
-    <div className="[flex:1_1_min(100%,280px)] sticky top-[110px]">
+    <div className="[flex:1_1_min(100%,280px)] sticky top-[110px] max-lg:static">
       <div data-eyebrow="" className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B] [border-top:1px_solid_rgba(247,244,239,.16)] pt-3">(05) For founders</div>
       <h2 className="mt-[clamp(18px,2.4vw,32px)] mx-0 mb-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(2rem,5.2vw,4.6rem)] leading-[.92] tracking-[-0.045em]">ZERO<br />TO<br /><span className="text-[var(--ag-accent,#F2600C)]">LAUNCH.</span></h2>
       <p className="mt-[clamp(18px,2.4vw,30px)] mx-0 mb-0 max-w-[40ch] text-[clamp(15px,1.3vw,18px)] leading-[1.55] text-[#B7B1A6]">Founders don&apos;t need six suppliers and a project manager to coordinate them. They need one team that can name the thing, build it, film it and put it in front of people, in weeks.</p>
@@ -772,7 +772,7 @@ function WorkCard({ w, n, shape }: { w: Work; n: number; shape: keyof typeof SHA
     <Link href={workHref(w)} data-hover-group="" data-cursor="View" className={`flex flex-col gap-3.5 text-[#0A0A0A] ${flex}`}>
       <div className={`relative overflow-hidden w-[85%] ${aspect} rounded-[6px] bg-[#1A1815]`}>
         <div data-hover-img="" data-parallax="0.18" className="absolute left-0 right-0 top-[-6%] h-[112%] [transition:transform_.9s_cubic-bezier(.16,1,.3,1)]"><Image src={w.image.src} alt={w.image.alt} width={w.image.width} height={w.image.height} priority={n === 1} className="h-full w-full object-cover" /></div>
-        <span className="absolute left-[clamp(12px,1.6vw,20px)] top-[clamp(12px,1.6vw,20px)] [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#0A0A0A] bg-[#F5F2ED] rounded-[999px] py-1.5 px-[11px]">{w.tags}</span>
+        <span className="absolute left-[clamp(12px,1.6vw,20px)] top-[clamp(12px,1.6vw,20px)] [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#0A0A0A] bg-[#F5F2ED] rounded-[999px] py-1.5 px-[11px] max-lg:left-2 max-lg:top-2 max-lg:max-w-[calc(100%-16px)] max-lg:text-[9px] max-lg:tracking-[.06em] max-lg:py-1 max-lg:px-2">{w.tags}</span>
       </div>
       <div className="flex justify-between items-start gap-[18px] [border-top:1px_solid_rgba(10,10,10,.2)] pt-3">
         <div className="flex gap-[clamp(12px,1.6vw,22px)] items-baseline min-w-0">

@@ -21,14 +21,19 @@ export const trail: Behavior = (root) => {
   // (`if (!ov || !news || !menu) return;`).
   if (!line || !ghost || !dot || !halo) return () => {};
   const hero = root.querySelector<HTMLElement>('header');
-  let len = 0, y0 = 0, H = 0, tp = 0, cp = 0, raf: number | null = null;
+  let len = 0, y0 = 0, H = 0, tp = 0, cp = 0, k = 1, raf: number | null = null;
   const build = () => {
     const W = root.clientWidth; H = root.scrollHeight;
     svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
     y0 = hero ? hero.offsetHeight * 0.82 : 0;
+    // Below lg the content is full-bleed: swing gutter to gutter (smaller dot), so
+    // the line runs in the margins and only crosses the text on the diagonals.
+    k = W < 1024 ? 0.5 : 1;
+    dot.setAttribute('r', String(6 * k));
+    const g = (hero ? parseFloat(getComputedStyle(hero).paddingRight) : 20) / 2 / W;
     const step = Math.max(520, window.innerHeight * 0.95);
-    const xs = [0.86, 0.1, 0.72, 0.18, 0.92, 0.06, 0.64, 0.22];
-    let x = W * 0.94, y = y0, d = 'M' + x.toFixed(1) + ' ' + y.toFixed(1), i = 0;
+    const xs = k < 1 ? [1 - g, g] : [0.86, 0.1, 0.72, 0.18, 0.92, 0.06, 0.64, 0.22];
+    let x = W * (k < 1 ? 1 - g : 0.94), y = y0, d = 'M' + x.toFixed(1) + ' ' + y.toFixed(1), i = 0;
     while (y < H - 200) {
       const nx = W * xs[i % xs.length], ny = Math.min(H - 120, y + step);
       if (i % 3 === 1) {
@@ -62,7 +67,7 @@ export const trail: Behavior = (root) => {
     cp += (tp - cp) * 0.12;
     if (Math.abs(tp - cp) < 0.0005) cp = tp;
     draw(cp);
-    halo.setAttribute('r', (16 + Math.sin(performance.now() / 380) * 4).toFixed(1));
+    halo.setAttribute('r', ((16 + Math.sin(performance.now() / 380) * 4) * k).toFixed(1));
     raf = requestAnimationFrame(loop);
   };
   const update = () => target();

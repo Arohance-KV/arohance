@@ -10,14 +10,14 @@ import type { Behavior } from './types';
  *  - `h3` sub-headings and `[data-eyebrow]` labels (each child of the label,
  *    or the label itself) are uncovered by an accent block wiping across;
  *    `data-split` on an h3 gives it the slide instead.
- * Leaves alone the text other effects own: the Selected work zoom, the About
- * story portal, the menu overlay and live clocks. Off under reduced motion.
+ * Leaves alone the text other effects own: the Selected work zoom, the menu
+ * overlay and live clocks. Off under reduced motion.
  *
  * GSAP loads lazily, like the stroke and ether effects. The hidden starting
  * states are set here at mount without it, so only the tweens wait for the
  * chunk; if it fails to load, the text is put back as it was.
  */
-const SKIP = '[data-ag-zoom-frame], .ag-portal, [data-ag-overlay], [data-ag-clock]';
+const SKIP = '[data-ag-zoom-frame], [data-ag-overlay], [data-ag-clock]';
 /** Clip at the line box, with room below for descenders and to the sides for
  *  the tight tracking; lifted once the text has landed. */
 const MASK = 'clip-path:inset(-.1em -1em -.15em)';
