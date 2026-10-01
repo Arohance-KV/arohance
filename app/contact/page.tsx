@@ -134,7 +134,7 @@ export default function Contact() {
     <form data-ag-form="" className="[flex:2_1_min(100%,340px)] flex flex-col gap-[clamp(20px,2.6vw,32px)]">
       <label className="flex flex-col gap-[9px]">
         <span className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8A857B]">01, Name</span>
-        <input type="text" name="name" placeholder="Your name" className="bg-[transparent] border-0 [border-bottom:1px_solid_rgba(237,233,225,.28)] py-[9px] px-0 text-[clamp(16px,1.6vw,22px)] [outline:none] focus:[border-bottom-color:var(--ag-accent,#F2600C)] max-lg:py-3" />
+        <input type="text" name="name" required placeholder="Your name" className="bg-[transparent] border-0 [border-bottom:1px_solid_rgba(237,233,225,.28)] py-[9px] px-0 text-[clamp(16px,1.6vw,22px)] [outline:none] focus:[border-bottom-color:var(--ag-accent,#F2600C)] max-lg:py-3" />
       </label>
       <label className="flex flex-col gap-[9px]">
         <span className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8A857B]">02, Company</span>
@@ -142,7 +142,7 @@ export default function Contact() {
       </label>
       <label className="flex flex-col gap-[9px]">
         <span className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8A857B]">03, Email</span>
-        <input type="email" name="email" placeholder="you@company.com" className="bg-[transparent] border-0 [border-bottom:1px_solid_rgba(237,233,225,.28)] py-[9px] px-0 text-[clamp(16px,1.6vw,22px)] [outline:none] focus:[border-bottom-color:var(--ag-accent,#F2600C)] max-lg:py-3" />
+        <input type="email" name="email" required placeholder="you@company.com" className="bg-[transparent] border-0 [border-bottom:1px_solid_rgba(237,233,225,.28)] py-[9px] px-0 text-[clamp(16px,1.6vw,22px)] [outline:none] focus:[border-bottom-color:var(--ag-accent,#F2600C)] max-lg:py-3" />
       </label>
       <label className="flex flex-col gap-[9px]">
         <span className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8A857B]">04, What are you building</span>
@@ -164,8 +164,8 @@ export default function Contact() {
     <div className="[flex:1_1_min(100%,240px)] flex flex-col gap-[clamp(22px,3vw,38px)]">
       <div>
         <div className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8A857B] mb-2.5">Direct</div>
-        <a href="mailto:hello@arohance.com" className="inline-block text-[clamp(17px,1.7vw,23px)] [border-bottom:1px_solid_rgba(237,233,225,.3)] pb-[3px] max-lg:py-3">hello@arohance.com</a>
-        <div className="mt-3 text-[clamp(15px,1.4vw,19px)] text-[#B7B1A6]">+91 80 4000 1200</div>
+        <a href="mailto:info@arohance.com" className="inline-block text-[clamp(17px,1.7vw,23px)] [border-bottom:1px_solid_rgba(237,233,225,.3)] pb-[3px] max-lg:py-3">info@arohance.com</a>
+        <div className="mt-3 flex flex-col gap-1 text-[clamp(15px,1.4vw,19px)] text-[#B7B1A6]"><a href="tel:+919427673035" className="max-lg:py-3">+91 94276 73035</a><a href="tel:+919727361979" className="max-lg:py-3">+91 97273 61979</a></div>
       </div>
       <div>
         <div className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8A857B] mb-2.5">Elsewhere</div>
@@ -176,7 +176,7 @@ export default function Contact() {
       </div>
       <div>
         <div className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8A857B] mb-2.5">Studio</div>
-        <div className="text-[clamp(15px,1.4vw,19px)] leading-[1.5] text-[#B7B1A6]">Level 4, Prestige Atrium<br />Bengaluru 560001, India<br />Mon–Fri, 10:00–19:00 IST</div>
+        <div className="text-[clamp(15px,1.4vw,19px)] leading-[1.5] text-[#B7B1A6]">Jayanagar 9th Block, Bangalore<br />Karnataka, India, 560069<br />Mon–Fri, 10:00–19:00 IST</div>
       </div>
       <div>
         <div className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8A857B] mb-2.5">New business</div>

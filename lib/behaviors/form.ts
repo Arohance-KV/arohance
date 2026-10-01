@@ -24,13 +24,22 @@ export const makeForm = (message: string): Behavior => (root) => {
   const cleanups: (() => void)[] = [];
   const el = root.querySelector<HTMLFormElement>('[data-ag-form]');
   if (!el) return () => {};
-  const onSubmit = (e: Event) => {
+  // Posts the fields to app/api/contact/route.ts, which emails them to
+  // info@arohance.com. The confirmation only shows once that succeeds.
+  const onSubmit = async (e: Event) => {
     e.preventDefault();
     const btn = el.querySelector<HTMLButtonElement>('[data-ag-submit]');
     if (!btn) return;
-    btn.textContent = message;
-    btn.style.color = 'var(--ag-accent,#F2600C)';
     btn.disabled = true;
+    btn.textContent = 'Sending…';
+    const res = await fetch('/api/contact', { method: 'POST', body: new FormData(el) }).catch(() => null);
+    if (res?.ok) {
+      btn.textContent = message;
+      btn.style.color = 'var(--ag-accent,#F2600C)';
+    } else {
+      btn.textContent = 'Couldn’t send, email info@arohance.com';
+      btn.disabled = false;
+    }
   };
   el.addEventListener('submit', onSubmit);
   cleanups.push(() => el.removeEventListener('submit', onSubmit));

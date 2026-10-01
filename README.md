@@ -252,15 +252,17 @@ and re-run the full harness (`compare.mjs` at 1440, `mobile-audit.mjs` at
 390 and 768) before trusting the new build, rather than letting a `^`
 range pick it up silently on some future `npm install`.
 
-## Forms don't submit anywhere
+## Forms email info@arohance.com
 
-Contact's and Careers' forms (`[data-ag-form]`) do not send data anywhere,
-by design — matching the original static bundles exactly. On submit, the
-handler (`lib/behaviors/form.ts`) calls `preventDefault()`, swaps the
-button's text to a per-page confirmation message, and disables it. There is
-no `fetch`, no `mailto:`, no backend, nothing to configure. This is not a
-missing feature introduced by the port; the original `Arohance Contact.html`
-/ `Arohance Careers.html` never had one either.
+Every form (`[data-ag-form]`) posts its fields to `app/api/contact/route.ts`
+(handler: `lib/behaviors/form.ts`), which sends them as one plain-text email
+to info@arohance.com through Resend, with Reply-To set to the sender. The
+per-page confirmation only shows once the send succeeds; on failure the
+button says to email info@arohance.com directly.
+
+To make it work, set `RESEND_API_KEY` (see `.env.example`) in `.env.local`
+and in the host's environment variables, and verify arohance.com under
+Resend > Domains so it can send from `website@arohance.com`.
 
 ## Lint warnings you'll see
 
