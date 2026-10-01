@@ -104,9 +104,8 @@ export default function Studio() {
       <div>
         <div className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8A857B] mb-3.5">Media</div>
         <div className="flex flex-col gap-[7px] text-[14.5px] font-medium">
-          <Link href="/contact" className="max-lg:py-3">LinkedIn</Link>
-          <Link href="/contact" className="max-lg:py-3">Instagram</Link>
-          <Link href="/contact" className="max-lg:py-3">X / Twitter</Link>
+          <a href="https://www.linkedin.com/company/arohance-india/" target="_blank" rel="noopener noreferrer" className="max-lg:py-3">LinkedIn</a>
+          <a href="https://www.instagram.com/arohance" target="_blank" rel="noopener noreferrer" className="max-lg:py-3">Instagram</a>
         </div>
       </div>
     </div>
