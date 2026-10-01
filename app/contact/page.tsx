@@ -117,7 +117,7 @@ export default function Contact() {
 <header className="pt-[clamp(100px,15vh,170px)] px-[clamp(20px,4.4vw,64px)] pb-[clamp(30px,4vw,56px)]">
   <div data-eyebrow="" className="flex justify-between items-baseline gap-4 flex-wrap [border-top:1px_solid_rgba(237,233,225,.18)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B]">
     <span>Contact</span>
-    <span className="flex items-center gap-[9px]"><span className="w-1.5 h-1.5 bg-[var(--ag-accent,#F2600C)] rounded-[50%] [animation:ag-pulse_2.6s_infinite]"></span>Taking projects for Q1 2027</span>
+    <span className="flex items-center gap-[9px]"><span className="w-1.5 h-1.5 bg-[var(--ag-accent,#F2600C)] rounded-[50%] [animation:ag-pulse_2.6s_infinite]"></span>Taking new projects</span>
     <span data-ag-clock="">00:00</span>
   </div>
 
@@ -145,11 +145,15 @@ export default function Contact() {
         <input type="email" name="email" required placeholder="you@company.com" className="bg-[transparent] border-0 [border-bottom:1px_solid_rgba(237,233,225,.28)] py-[9px] px-0 text-[clamp(16px,1.6vw,22px)] [outline:none] focus:[border-bottom-color:var(--ag-accent,#F2600C)] max-lg:py-3" />
       </label>
       <label className="flex flex-col gap-[9px]">
-        <span className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8A857B]">04, What are you building</span>
+        <span className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8A857B]">04, Phone</span>
+        <input type="tel" name="phone" autoComplete="tel" required placeholder="+91 98765 43210" className="bg-[transparent] border-0 [border-bottom:1px_solid_rgba(237,233,225,.28)] py-[9px] px-0 text-[clamp(16px,1.6vw,22px)] [outline:none] focus:[border-bottom-color:var(--ag-accent,#F2600C)] max-lg:py-3" />
+      </label>
+      <label className="flex flex-col gap-[9px]">
+        <span className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8A857B]">05, What are you building</span>
         <textarea name="brief" rows={4} placeholder="A sentence is enough." className="bg-[transparent] border-0 [border-bottom:1px_solid_rgba(237,233,225,.28)] py-[9px] px-0 text-[clamp(16px,1.6vw,22px)] [outline:none] [resize:vertical] [font-family:inherit] focus:[border-bottom-color:var(--ag-accent,#F2600C)]"></textarea>
       </label>
       <label className="flex flex-col gap-[9px]">
-        <span className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8A857B]">05, Rough budget</span>
+        <span className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8A857B]">06, Rough budget</span>
         <select name="budget" className="bg-[transparent] border-0 [border-bottom:1px_solid_rgba(237,233,225,.28)] rounded-[0] py-[9px] px-0 text-[clamp(16px,1.6vw,22px)] [outline:none] [appearance:none] focus:[border-bottom-color:var(--ag-accent,#F2600C)] max-lg:py-3">
           <option>Not sure yet</option>
           <option>Under ₹5L</option>
@@ -177,10 +181,6 @@ export default function Contact() {
       <div>
         <div className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8A857B] mb-2.5">Studio</div>
         <div className="text-[clamp(15px,1.4vw,19px)] leading-[1.5] text-[#B7B1A6]">Jayanagar 9th Block, Bangalore<br />Karnataka, India, 560069<br />Mon–Fri, 10:00–19:00 IST</div>
-      </div>
-      <div>
-        <div className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8A857B] mb-2.5">New business</div>
-        <div className="text-[clamp(15px,1.4vw,19px)] leading-[1.5] text-[#B7B1A6]">KV, Chief Marketing Officer<br /><a href="mailto:kv@arohance.com" className="[border-bottom:1px_solid_rgba(237,233,225,.3)] max-lg:inline-block max-lg:py-3">kv@arohance.com</a></div>
       </div>
     </div>
   </div>

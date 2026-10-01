@@ -67,7 +67,7 @@ export default function Careers() {
       <div>
         <div className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8A857B] mb-3.5">Hiring</div>
         <div className="flex flex-col gap-[7px] text-[14.5px] font-medium">
-          <a href="mailto:careers@arohance.com" className="max-lg:py-3">careers@arohance.com</a>
+          <a href="mailto:info@arohance.com" className="max-lg:py-3">info@arohance.com</a>
           <a href="#process" className="max-lg:py-3">How we hire</a>
         </div>
       </div>
@@ -338,6 +338,10 @@ export default function Careers() {
         <input type="email" name="email" required placeholder="you@email.com" className="bg-[transparent] border-0 [border-bottom:1px_solid_rgba(245,242,237,.28)] py-2 px-0 text-[clamp(16px,1.5vw,20px)] [outline:none] focus:[border-bottom-color:var(--ag-accent,#F2600C)] max-lg:py-3" />
       </label>
       <label className="flex flex-col gap-[9px]">
+        <span className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8C877E]">Phone</span>
+        <input type="tel" name="phone" autoComplete="tel" required placeholder="+91 98765 43210" className="bg-[transparent] border-0 [border-bottom:1px_solid_rgba(245,242,237,.28)] py-2 px-0 text-[clamp(16px,1.5vw,20px)] [outline:none] focus:[border-bottom-color:var(--ag-accent,#F2600C)] max-lg:py-3" />
+      </label>
+      <label className="flex flex-col gap-[9px]">
         <span className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8C877E]">Role</span>
         <select name="role" className="bg-[#0C0B0A] border-0 [border-bottom:1px_solid_rgba(245,242,237,.28)] py-2 px-0 text-[clamp(16px,1.5vw,20px)] [outline:none] focus:[border-bottom-color:var(--ag-accent,#F2600C)] max-lg:py-3">
           <option>Senior product designer</option>
@@ -363,7 +367,7 @@ export default function Careers() {
     <div className="[flex:1_1_min(100%,240px)] flex flex-col gap-[clamp(20px,3vw,34px)]">
       <div>
         <div className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8C877E] mb-[9px]">Direct</div>
-        <a href="mailto:careers@arohance.com" className="text-[clamp(16px,1.5vw,21px)] [border-bottom:1px_solid_rgba(245,242,237,.3)] pb-0.5 max-lg:inline-block max-lg:py-3">careers@arohance.com</a>
+        <a href="mailto:info@arohance.com" className="text-[clamp(16px,1.5vw,21px)] [border-bottom:1px_solid_rgba(245,242,237,.3)] pb-0.5 max-lg:inline-block max-lg:py-3">info@arohance.com</a>
       </div>
       <div>
         <div className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8C877E] mb-[9px]">Studio</div>
