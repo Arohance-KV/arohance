@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import PageTransition from '@/components/PageTransition';
 import { WORK, workHref } from '@/lib/work';
+import { VERTICALS, verticalHref } from '@/lib/verticals';
 
 // No next/font here (Task 9 fix-round 4 reversal of the Task 2 decision):
 // next/font/google defines faces under hashed internal names, reachable
@@ -39,6 +40,7 @@ const LABELS: Record<string, string> = {
   '/': 'Home', '/about': 'About', '/services': 'Services', '/studio': 'Studio',
   '/careers': 'Careers', '/contact': 'Contact',
   ...Object.fromEntries(WORK.map((w) => [workHref(w), w.client])),
+  ...Object.fromEntries(VERTICALS.map((v) => [verticalHref(v), v.name])),
 };
 
 /** Runs before first paint: the home entrance (components/Intro.tsx) plays on

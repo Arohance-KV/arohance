@@ -1,11 +1,7 @@
 /**
- * The five Arohance verticals. The homepage's "Five verticals" rows render
- * from this list, and each vertical's own page should too, so names,
- * taglines and service anchors live in one place.
- *
- * The vertical pages are not built yet: `verticalHref` and `serviceHref`
- * are where they are expected to live, and until those routes exist these
- * links land on the 404 page.
+ * The five Arohance verticals. The homepage's "Five verticals" rows and each
+ * vertical's own page (app/services/[slug]/page.tsx) render from this list,
+ * so names, taglines and service anchors live in one place.
  */
 export type Vertical = {
   slug: string;
