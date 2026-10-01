@@ -34,7 +34,7 @@ export default function Careers() {
 <div data-ag-root="" className="bg-[#0C0B0A] text-[#F5F2ED] relative overflow-clip">
 
 <nav data-ag-nav="" className="fixed top-0 left-0 right-0 z-[70] flex items-start justify-between gap-4 py-4 px-[clamp(20px,4.4vw,64px)] [transition:padding_.45s_ease]">
-  <Link href="/" className="flex items-center"><Image data-ag-logo="" src="/images/93c7aab596.png" alt="Arohance, Tech &amp; Marketing" width={422} height={133} priority className="h-[46px] w-auto block [transition:height_.45s_ease]" /></Link>
+  <Link href="/" className="flex items-center"><Image data-ag-logo="" src="/images/logo.png" alt="Arohance, Tech &amp; Marketing" width={422} height={133} priority className="h-[46px] w-auto block [transition:height_.45s_ease]" /></Link>
   <div className="flex items-center gap-2.5">
     <a href="#roles" data-ag-navcta="" className="hidden items-center h-[46px] py-0 px-5 rounded-[15px] bg-[var(--ag-accent,#F2600C)] text-[#0A0A0A] [font-family:'Archivo',sans-serif] font-semibold text-[15px] [transition:transform_.5s_cubic-bezier(.16,1,.3,1)] hover:[transform:translate3d(0,-2px,0)] hover:text-[#0A0A0A]">Open roles</a>
     <button data-ag-menu-btn="" type="button" aria-label="Menu" className="w-[46px] h-[46px] border-0 rounded-[15px] bg-[#1A1815] text-[#F5F2ED] flex items-center justify-center cursor-pointer shadow-[0_10px_26px_rgba(0,0,0,.5)] [transition:background_.35s_ease,transform_.5s_cubic-bezier(.16,1,.3,1)] hover:bg-[var(--ag-accent,#F2600C)] hover:text-[#0A0A0A] hover:[transform:translate3d(0,-2px,0)]">

@@ -77,7 +77,7 @@ export default function Intro() {
 
   return (
     <div ref={box} data-ag-intro="" aria-hidden="true" className="fixed inset-0 z-[101] flex flex-col bg-[#0C0B0A] text-[#F5F2ED] pt-4 px-[clamp(20px,4.4vw,64px)] pb-[clamp(20px,4vh,48px)] [[data-intro-seen]_&]:hidden [[data-ag-failsafe]_&]:hidden">
-      <Image src="/images/93c7aab596.png" alt="" width={422} height={133} priority className="h-[46px] w-auto self-start" />
+      <Image src="/images/logo.png" alt="" width={422} height={133} priority className="h-[46px] w-auto self-start" />
       <div className="flex-1 flex items-center">
         <span className="relative block overflow-hidden [font-family:'Archivo',sans-serif] font-bold uppercase text-[clamp(3rem,12vw,11rem)] leading-[.9] tracking-[-0.045em] [font-variation-settings:'wdth'_106]">
           <span className="invisible">{WORDS[2]}</span>

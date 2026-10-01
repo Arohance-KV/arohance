@@ -27,6 +27,9 @@ import { VERTICALS, verticalHref } from '@/lib/verticals';
 // opts out of the template explicitly instead, see app/page.tsx), but it
 // stays as the documented safety net for any future route that forgets to.
 export const metadata: Metadata = {
+  // Absolute base for app/opengraph-image.png's og:image URL; Next falls
+  // back to localhost without it, which breaks link previews.
+  metadataBase: new URL('https://arohance.com'),
   title: {
     default: 'Arohance — Tech & Marketing',
     template: '%s — Arohance',
