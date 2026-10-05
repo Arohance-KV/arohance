@@ -273,10 +273,8 @@ a:hover { color: var(--ag-accent, #F2600C); }
  * make their text vanish: keep links their own colour. */
 #work a:hover { color: inherit; }
 
-/* Below lg the overlay stacks its panels (max-lg:flex-col): menu above news.
- * The news button alone (shell.ts/shellMinimal.ts set data-show) drops the
- * hidden menu, so its empty box doesn't push the news down. */
+/* Below lg the overlay stacks its panels (max-lg:flex-col): menu above the
+ * selected work. */
 @media (width < 64rem) {
   [data-ag-menu-panel] { order: -1; }
-  [data-ag-overlay][data-show=news] [data-ag-menu-panel] { display: none; }
 }

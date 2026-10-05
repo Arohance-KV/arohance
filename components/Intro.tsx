@@ -86,7 +86,7 @@ export default function Intro() {
           ))}
         </span>
       </div>
-      <span ref={count} data-intro-count="" className="self-end [font-family:'Archivo',sans-serif] font-bold text-[clamp(4rem,14vw,12rem)] leading-[.8] tracking-[-0.04em] tabular-nums">000</span>
+      <span ref={count} data-intro-count="" className="self-end [font-family:'Archivo',sans-serif] font-bold text-[clamp(4rem,14vw,12rem)] leading-[.8] tracking-[-0.04em] tabular-nums text-[var(--ag-accent,#F2600C)]">000</span>
     </div>
   );
 }

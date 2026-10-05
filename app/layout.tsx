@@ -55,6 +55,19 @@ const LABELS: Record<string, string> = {
  *  in time -- it then flags `<html>` so both overlays' `[[data-ag-failsafe]_&]:hidden`
  *  variant (in PageTransition.tsx and Intro.tsx) hides them, covering the
  *  case `<noscript>` alone doesn't: JS on, but its bundle blocked or broken. */
+/** schema.org markup: tells Google the site's name, logo and social profiles. */
+const JSON_LD = JSON.stringify([
+  { '@context': 'https://schema.org', '@type': 'WebSite', name: 'Arohance', url: 'https://arohance.com/' },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Arohance',
+    url: 'https://arohance.com/',
+    logo: 'https://arohance.com/images/logo.png',
+    sameAs: ['https://www.instagram.com/arohance', 'https://www.linkedin.com/company/arohance-india/'],
+  },
+]);
+
 const INTRO_GATE =
   "if(location.pathname!=='/')document.documentElement.setAttribute('data-intro-seen','');" +
   "setTimeout(function(){if(!window.agUp)document.documentElement.setAttribute('data-ag-failsafe','')},10000);";
@@ -66,6 +79,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" data-ag-covered="" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: INTRO_GATE }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON_LD }} />
         <noscript dangerouslySetInnerHTML={{ __html: '<style>[data-ag-intro],[data-ag-curtain]{display:none}</style>' }} />
       </head>
       <body>

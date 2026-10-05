@@ -1,6 +1,6 @@
 import {
   SHARED, services, hovers, cursor, flags, video, ether, magnet,
-  stroke, reel, trail, text, type Behavior,
+  stroke, reel, trail, text, stream, type Behavior,
 } from '@/lib/behaviors';
 
 /** Services page behaviour set: SHARED plus the page-specific effects, in
@@ -28,10 +28,11 @@ import {
  *  it cannot be imported regardless.
  *
  *  `text` (last, not in the original) runs the heading and eyebrow entrances,
- *  lib/behaviors/text.ts.
+ *  lib/behaviors/text.ts. `stream` (also new) is the Content studio rail's
+ *  hover-to-centre, lib/behaviors/stream.ts.
  *  Must stay a module-level constant: AgRuntime's effect deps are
  *  [modules], so a fresh array each render would remount every behaviour. */
 export const SERVICES_MODULES: Behavior[] = [
   ...SHARED, services, hovers, cursor, flags, video,
-  ether, magnet, stroke, reel, trail, text,
+  ether, magnet, stroke, reel, trail, text, stream,
 ];
