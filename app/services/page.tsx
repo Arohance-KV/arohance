@@ -22,6 +22,7 @@ import Link from 'next/link';
 import ContactPill from '@/components/ContactPill';
 import ServicesRuntime from './services-runtime';
 import WorksPanel from '@/components/WorksPanel';
+import SocialLinks from '@/components/SocialLinks';
 
 // Page name first so Google's sitelinks read "Services", then this page's own
 // h1 ("Six Disciplines. One Room."); description is the hero copy.
@@ -71,8 +72,7 @@ export default function Services() {
       <div>
         <div className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8A857B] mb-3.5">Media</div>
         <div className="flex flex-col gap-[7px] text-[14.5px] font-medium">
-          <a href="https://www.linkedin.com/company/arohance-india/" target="_blank" rel="noopener noreferrer" className="max-lg:py-3">LinkedIn</a>
-          <a href="https://www.instagram.com/arohance" target="_blank" rel="noopener noreferrer" className="max-lg:py-3">Instagram</a>
+          <SocialLinks />
         </div>
       </div>
     </div>
@@ -390,13 +390,12 @@ export default function Services() {
       <div>
         <div className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8A857B] mb-[9px]">Direct</div>
         <a href="mailto:info@arohance.com" className="text-[clamp(16px,1.5vw,21px)] [border-bottom:1px_solid_rgba(237,233,225,.3)] pb-0.5 max-lg:inline-block max-lg:py-3">info@arohance.com</a>
-        <div className="mt-3 flex flex-col gap-[7px] text-[clamp(15px,1.4vw,19px)]"><a href="tel:+919427673035" className="max-lg:py-3">+91 94276 73035</a><a href="tel:+919727361979" className="max-lg:py-3">+91 97273 61979</a></div>
+        <div className="mt-3 flex flex-col gap-[7px] text-[clamp(15px,1.4vw,19px)]"><a href="tel:+919427673035" className="max-lg:py-3">+91 94276 73035</a><a href="tel:+919327367979" className="max-lg:py-3">+91 93273 67979</a></div>
       </div>
       <div>
         <div className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8A857B] mb-[9px]">Elsewhere</div>
         <div className="flex flex-col gap-[7px] text-[clamp(15px,1.4vw,19px)]">
-          <a href="https://www.instagram.com/arohance" target="_blank" rel="noopener noreferrer" className="max-lg:py-3">Instagram, @arohance</a>
-          <a href="https://www.linkedin.com/company/arohance-india/" target="_blank" rel="noopener noreferrer" className="max-lg:py-3">LinkedIn, /company/arohance-india</a>
+          <SocialLinks />
         </div>
       </div>
       <div>

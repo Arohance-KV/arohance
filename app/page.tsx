@@ -7,6 +7,7 @@ import { VERTICALS, verticalHref, serviceHref } from '@/lib/verticals';
 import { WORK, workHref, type Work } from '@/lib/work';
 import HomeRuntime from './home-runtime';
 import WorksPanel from '@/components/WorksPanel';
+import SocialLinks from '@/components/SocialLinks';
 
 export const metadata: Metadata = {
   title: { absolute: 'Arohance — Tech & Marketing' },
@@ -54,8 +55,7 @@ export default function Home() {
               <div>
                 <div className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8A857B] mb-3.5">Media</div>
                 <div className="flex flex-col gap-[7px] text-[14.5px] font-medium">
-                  <a href="https://www.linkedin.com/company/arohance-india/" target="_blank" rel="noopener noreferrer" className="max-lg:py-3">LinkedIn</a>
-                  <a href="https://www.instagram.com/arohance" target="_blank" rel="noopener noreferrer" className="max-lg:py-3">Instagram</a>
+                  <SocialLinks />
                 </div>
               </div>
             </div>
@@ -107,8 +107,10 @@ export default function Home() {
                 <div data-vx-head="" className="grid grid-cols-[clamp(24px,2.6vw,40px)_auto_minmax(12ch,1fr)_auto] items-baseline gap-x-[clamp(12px,2.4vw,34px)] py-[clamp(16px,2vw,28px)] max-lg:grid-cols-[clamp(24px,2.6vw,40px)_minmax(0,1fr)_auto] max-lg:gap-y-2">
                   <span className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.1em] text-[#8C877E] [transition:color_.35s_ease] group-data-[open]:text-[var(--ag-accent,#F2600C)]">{String(i + 1).padStart(2, '0')}</span>
                   {/* The name link inherits its colour from the h3 (see the hero's note on link colours). */}
+                  {/* Below lg "Arohance" always takes its own line. Safari sizes this baseline-aligned row from the
+                      unwrapped name, so a width-dependent wrap pushed "Arohance" up over the row's top border. */}
                   <h3 className="m-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(2rem,4.8vw,5rem)] leading-[.95] tracking-[-0.045em] [font-variation-settings:'wdth'_104] uppercase group-data-[open]:text-[var(--ag-accent,#F2600C)] max-lg:text-[clamp(2rem,6.4vw,3.2rem)]">
-                    <Link href={verticalHref(v)} className="inline-block [transition:transform_.6s_cubic-bezier(.16,1,.3,1),color_.35s_ease] group-data-[open]:[transform:translate3d(clamp(6px,1vw,14px),0,0)] max-lg:min-h-11"><span className="text-[#6B665F]">Arohance</span> {v.name}</Link>
+                    <Link href={verticalHref(v)} className="inline-block [transition:transform_.6s_cubic-bezier(.16,1,.3,1),color_.35s_ease] group-data-[open]:[transform:translate3d(clamp(6px,1vw,14px),0,0)] max-lg:min-h-11"><span className="text-[#6B665F] max-lg:block">Arohance</span> {v.name}</Link>
                   </h3>
                   <p className="m-0 justify-self-end max-w-[30ch] text-right text-[clamp(14px,1.2vw,17px)] leading-[1.4] text-[#A9A39A] max-lg:col-start-2 max-lg:row-start-2 max-lg:justify-self-start max-lg:text-left">{v.tagline}</p>
                   <Link href={verticalHref(v)} data-vx-go="" aria-hidden="true" tabIndex={-1} className="self-center flex items-center justify-center w-[clamp(42px,3.6vw,52px)] h-[clamp(42px,3.6vw,52px)] rounded-[50%] [border:1px_solid_rgba(245,242,237,.22)] [transition:background_.35s_ease,border-color_.35s_ease] group-data-[open]:bg-[var(--ag-accent,#F2600C)] group-data-[open]:[border-color:var(--ag-accent,#F2600C)] max-lg:col-start-3 max-lg:row-start-1">
@@ -368,28 +370,9 @@ export default function Home() {
             <div className="absolute left-0 right-0 bottom-[clamp(14px,2.4vw,28px)] flex justify-center [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8A857B]">Selected frames, 2024–2026</div>
           </div>
         </section>
-        <section data-dark="" className="relative z-[1] text-[#F7F4EF] py-[clamp(70px,10vw,150px)] px-[clamp(20px,4.4vw,64px)]">
-          <div className="flex flex-wrap gap-[clamp(26px,5vw,90px)] items-start">
-            <div className="[flex:1_1_min(100%,280px)] sticky top-[110px] max-lg:static">
-              <div data-eyebrow="" className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B] [border-top:1px_solid_rgba(247,244,239,.16)] pt-3">(05) For founders</div>
-              <h2 className="mt-[clamp(18px,2.4vw,32px)] mx-0 mb-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(2rem,5.2vw,4.6rem)] leading-[.92] tracking-[-0.045em]">ZERO<br />TO<br /><span className="text-[var(--ag-accent,#F2600C)]">LAUNCH.</span></h2>
-              <p className="mt-[clamp(18px,2.4vw,30px)] mx-0 mb-0 max-w-[40ch] text-[clamp(15px,1.3vw,18px)] leading-[1.55] text-[#B7B1A6]">Founders don&apos;t need six suppliers and a project manager to coordinate them. They need one team that can name the thing, build it, film it and put it in front of people, in weeks.</p>
-              <a href="#contact" className="inline-flex items-center gap-2.5 mt-[clamp(22px,3vw,38px)] [font-family:'Archivo',sans-serif] font-semibold text-[clamp(15px,1.4vw,19px)] [border-bottom:1px_solid_currentColor] pb-[3px] max-lg:py-3">Start something <span>→</span></a>
-            </div>
-            <div className="[flex:1_1_min(100%,300px)]">
-              <div data-reveal="" className="[border-top:1px_solid_rgba(247,244,239,.16)] py-[clamp(10px,1.2vw,16px)] px-0 ml-[0%]"><span className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(1.6rem,4.6vw,3.6rem)] tracking-[-0.04em] leading-[1]">IDEA</span><span className="[font-family:'JetBrains_Mono',monospace] text-[11px] text-[#8A857B] ml-3.5">Week 00</span></div>
-              <div data-reveal="" className="[border-top:1px_solid_rgba(247,244,239,.16)] py-[clamp(10px,1.2vw,16px)] px-0 ml-[6%]"><span className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(1.6rem,4.6vw,3.6rem)] tracking-[-0.04em] leading-[1]">BRAND</span><span className="[font-family:'JetBrains_Mono',monospace] text-[11px] text-[#8A857B] ml-3.5">Week 02</span></div>
-              <div data-reveal="" className="[border-top:1px_solid_rgba(247,244,239,.16)] py-[clamp(10px,1.2vw,16px)] px-0 ml-[12%]"><span className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(1.6rem,4.6vw,3.6rem)] tracking-[-0.04em] leading-[1]">PRODUCT</span><span className="[font-family:'JetBrains_Mono',monospace] text-[11px] text-[#8A857B] ml-3.5">Week 04</span></div>
-              <div data-reveal="" className="[border-top:1px_solid_rgba(247,244,239,.16)] py-[clamp(10px,1.2vw,16px)] px-0 ml-[18%]"><span className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(1.6rem,4.6vw,3.6rem)] tracking-[-0.04em] leading-[1]">CONTENT</span><span className="[font-family:'JetBrains_Mono',monospace] text-[11px] text-[#8A857B] ml-3.5">Week 08</span></div>
-              <div data-reveal="" className="[border-top:1px_solid_rgba(247,244,239,.16)] py-[clamp(10px,1.2vw,16px)] px-0 ml-[24%]"><span className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(1.6rem,4.6vw,3.6rem)] tracking-[-0.04em] leading-[1] text-[var(--ag-accent,#F2600C)]">LAUNCH</span><span className="[font-family:'JetBrains_Mono',monospace] text-[11px] text-[#8A857B] ml-3.5">Week 10</span></div>
-              <div data-reveal="" className="[border-top:1px_solid_rgba(247,244,239,.16)] [border-bottom:1px_solid_rgba(247,244,239,.16)] py-[clamp(10px,1.2vw,16px)] px-0 ml-[30%]"><span className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(1.6rem,4.6vw,3.6rem)] tracking-[-0.04em] leading-[1]">GROWTH</span><span className="[font-family:'JetBrains_Mono',monospace] text-[11px] text-[#8A857B] ml-3.5">Ongoing</span></div>
-            </div>
-          </div>
-        </section>
-
         <section id="contact" data-dark="" className="relative z-[1] text-[#F7F4EF] pt-[clamp(72px,11vw,170px)] px-[clamp(20px,4.4vw,64px)] pb-0">
           <div data-eyebrow="" className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(247,244,239,.18)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8A857B]">
-            <span>(06) Contact</span>
+            <span>(05) Contact</span>
             <span>Taking new projects</span>
           </div>
 
@@ -420,13 +403,12 @@ export default function Home() {
               <div>
                 <div className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8A857B] mb-[9px]">Direct</div>
                 <a href="mailto:info@arohance.com" className="text-[clamp(16px,1.5vw,21px)] [border-bottom:1px_solid_rgba(237,233,225,.3)] pb-0.5 max-lg:inline-block max-lg:py-3">info@arohance.com</a>
-                <div className="mt-3 flex flex-col gap-[7px] text-[clamp(15px,1.4vw,19px)]"><a href="tel:+919427673035" className="max-lg:py-3">+91 94276 73035</a><a href="tel:+919727361979" className="max-lg:py-3">+91 97273 61979</a></div>
+                <div className="mt-3 flex flex-col gap-[7px] text-[clamp(15px,1.4vw,19px)]"><a href="tel:+919427673035" className="max-lg:py-3">+91 94276 73035</a><a href="tel:+919327367979" className="max-lg:py-3">+91 93273 67979</a></div>
               </div>
               <div>
                 <div className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8A857B] mb-[9px]">Elsewhere</div>
                 <div className="flex flex-col gap-[7px] text-[clamp(15px,1.4vw,19px)]">
-                  <a href="https://www.instagram.com/arohance" target="_blank" rel="noopener noreferrer" className="max-lg:py-3">Instagram, @arohance</a>
-                  <a href="https://www.linkedin.com/company/arohance-india/" target="_blank" rel="noopener noreferrer" className="max-lg:py-3">LinkedIn, /company/arohance-india</a>
+                  <SocialLinks />
                 </div>
               </div>
               <div>

@@ -14,6 +14,7 @@ import { VERTICALS, verticalHref, serviceAnchor } from '@/lib/verticals';
 // Same behaviour set a case study needs: nav over dark sections, clock, parallax, hover lift, text entrances.
 import CaseStudyRuntime from '../../case-study/case-study-runtime';
 import WorksPanel from '@/components/WorksPanel';
+import SocialLinks from '@/components/SocialLinks';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -77,8 +78,7 @@ export default async function VerticalPage({ params }: Props) {
       <div>
         <div className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8A857B] mb-3.5">Media</div>
         <div className="flex flex-col gap-[7px] text-[14.5px] font-medium">
-          <a href="https://www.linkedin.com/company/arohance-india/" target="_blank" rel="noopener noreferrer" className="max-lg:py-3">LinkedIn</a>
-          <a href="https://www.instagram.com/arohance" target="_blank" rel="noopener noreferrer" className="max-lg:py-3">Instagram</a>
+          <SocialLinks />
         </div>
       </div>
     </div>
