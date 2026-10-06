@@ -26,6 +26,7 @@ import { verticals } from './verticals';
 import { zoom } from './zoom';
 import { text } from './text';
 import { stream } from './stream';
+import { roll } from './roll';
 import type { Behavior } from './types';
 
 export * from './types';
@@ -33,7 +34,7 @@ export { applyTheme, reveal, parallax, nav, shell, clock, form, makeForm };
 export { services, hovers, cursor, flags, video, ether, magnet, stroke, reel, trail };
 export { roles, navCareers };
 export { shellMinimal, navOnDark, navPad, hoverLift };
-export { showreel, verticals, zoom, text, stream };
+export { showreel, verticals, zoom, text, stream, roll };
 
 /** Behaviours every page mounts, in the original componentDidMount order. */
 export const SHARED: Behavior[] = [applyTheme, reveal, parallax, nav, shell, clock, form];

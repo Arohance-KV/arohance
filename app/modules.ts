@@ -1,6 +1,6 @@
 import {
   SHARED, services, verticals, hovers, cursor, flags, video, ether, magnet,
-  stroke, reel, trail, zoom, text, stream, type Behavior,
+  stroke, reel, trail, zoom, text, stream, roll, type Behavior,
 } from '@/lib/behaviors';
 
 /** Homepage behaviour set: SHARED plus the page-specific effects, in the
@@ -17,10 +17,11 @@ import {
  *  here. `zoom` (also new) drives the Selected work header dive.
  *  `text` (last, not in the original) runs the heading and eyebrow entrances,
  *  lib/behaviors/text.ts. `stream` (also new) is the Content studio rail's
- *  hover-to-centre, lib/behaviors/stream.ts.
+ *  hover-to-centre, lib/behaviors/stream.ts. `roll` (also new) rolls the
+ *  letters of the hero and Contact headings, lib/behaviors/roll.ts.
  *  Must stay a module-level constant: AgRuntime's effect deps are [modules],
  *  so a fresh array each render would remount every behaviour. */
 export const HOME_MODULES: Behavior[] = [
   ...SHARED, services, verticals, hovers, cursor, flags, video,
-  ether, magnet, stroke, reel, trail, zoom, text, stream,
+  ether, magnet, stroke, reel, trail, zoom, text, stream, roll,
 ];

@@ -13,6 +13,14 @@ export const metadata: Metadata = {
   title: { absolute: 'Arohance — Tech & Marketing' },
 };
 
+/** A word whose letters roll (lib/behaviors/roll.ts, inside a `[data-ag-roll]` heading): it clips to
+ *  its capitals, and its text-shadow copy 1em below is what rolls into a rising letter's place. */
+const rollWord = (word: string) => (
+  <span aria-hidden="true" className="inline-block [clip-path:inset(.03em_-1em_.05em)] [text-shadow:0_1em_currentColor]">
+    {[...word].map((letter, i) => <span key={i} data-ag-roll-letter="" className="inline-block">{letter}</span>)}
+  </span>
+);
+
 export default function Home() {
   return (
     <>
@@ -69,10 +77,10 @@ export default function Home() {
           <div className="absolute left-0 top-0 bottom-0 w-[min(78%,1100px)] z-[1] bg-[linear-gradient(100deg,rgba(12,11,10,.72)_0%,rgba(12,11,10,.38)_45%,rgba(12,11,10,0)_80%)] pointer-events-none"></div>
 
           <div className="relative z-[2] max-w-[min(62%,880px)] flex flex-col gap-[clamp(22px,3.4vh,40px)] max-lg:max-w-none">
-            {/* Read as one heading: the letters of MAGNETIC are separate spans for the magnet effect. */}
-            <h1 aria-label="We make you magnetic" className="m-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(2.5rem,8vw,9.5rem)] leading-[.86] tracking-[-0.048em] [font-variation-settings:'wdth'_106] max-lg:text-[clamp(2.5rem,13vw,5.5rem)]">
-              <span aria-hidden="true" className="block whitespace-nowrap">WE MAKE</span>
-              <span aria-hidden="true" className="block whitespace-nowrap">YOU</span>
+            {/* Read as one heading: the letters are separate spans, for the roll and MAGNETIC's magnet effect. */}
+            <h1 data-ag-roll="" aria-label="We make you magnetic" className="m-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(2.5rem,8vw,9.5rem)] leading-[.86] tracking-[-0.048em] [font-variation-settings:'wdth'_106] max-lg:text-[clamp(2.5rem,13vw,5.5rem)]">
+              <span aria-hidden="true" className="block whitespace-nowrap">{rollWord('WE')} {rollWord('MAKE')}</span>
+              <span aria-hidden="true" className="block whitespace-nowrap">{rollWord('YOU')}</span>
               <span aria-hidden="true" className="block whitespace-nowrap"><span data-ag-magnet="" className="inline-block text-[var(--ag-accent,#F2600C)]">{[...'MAGNETIC'].map((letter, i) => <span key={i} data-ag-magnet-letter="" className="inline-block [will-change:transform]">{letter}</span>)}</span></span>
             </h1>
             <p data-reveal="" data-delay="270" className="m-0 max-w-[44ch] text-[clamp(15px,1.35vw,19px)] leading-[1.5] text-[#D9D3C8]">One accountable team behind every step, from strategy and creative to film, design and technology.</p>
@@ -376,7 +384,7 @@ export default function Home() {
             <span>Taking new projects</span>
           </div>
 
-          <h2 className="mt-[clamp(34px,6vw,90px)] mx-0 mb-[clamp(30px,4vw,60px)] [font-family:'Archivo',sans-serif] font-bold text-[clamp(2.4rem,9.6vw,9.5rem)] leading-[.88] tracking-[-0.048em] [font-variation-settings:'wdth'_104]">HAVE A THING<br />WORTH <span className="text-[var(--ag-accent,#F2600C)]">BUILDING?</span></h2>
+          <h2 className="mt-[clamp(34px,6vw,90px)] mx-0 mb-[clamp(30px,4vw,60px)] [font-family:'Archivo',sans-serif] font-bold text-[clamp(2.4rem,9.6vw,9.5rem)] leading-[.88] tracking-[-0.048em] [font-variation-settings:'wdth'_104]" data-ag-roll="" aria-label="Have a thing worth building?">{rollWord('HAVE')} {rollWord('A')} {rollWord('THING')}<br />{rollWord('WORTH')} <span className="text-[var(--ag-accent,#F2600C)]">{rollWord('BUILDING?')}</span></h2>
 
           <div className="flex flex-wrap gap-[clamp(30px,6vw,110px)] items-start pb-[clamp(50px,8vw,110px)]">
             <form data-ag-form="" className="[flex:2_1_min(100%,320px)] flex flex-col gap-[clamp(18px,2.4vw,30px)]">
