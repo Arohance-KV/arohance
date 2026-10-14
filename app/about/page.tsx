@@ -148,39 +148,39 @@ export default function About() {
 
   <div className="flex flex-wrap gap-[clamp(24px,4vw,70px)] items-end">
     <p data-reveal="" className="[flex:2_1_min(100%,340px)] m-0 [font-family:'Archivo',sans-serif] font-medium text-[clamp(1.4rem,3.4vw,3rem)] leading-[1.1] tracking-[-0.03em] [text-wrap:pretty]">Senior by default. The people you meet in the first call are the people who do the work.</p>
-    <div className="[flex:1_1_min(100%,260px)] relative overflow-hidden h-[clamp(240px,40vh,420px)]">
-      <div data-parallax="0.35" className="absolute left-0 right-0 top-[-8%] h-[116%]"><Image src="/images/b7afa59dc4.jpg" alt="The studio, wide" width={950} height={535} priority className="h-full w-full object-cover" /></div>
+    <div className="[flex:1_1_min(100%,260px)] flex items-center justify-center h-[clamp(240px,40vh,420px)] rounded-[6px] bg-[#161412] [border:1px_solid_rgba(247,244,239,.1)]">
+      <Image src="/images/logo.png" alt="Arohance, Tech &amp; Marketing" width={422} height={133} className="w-[min(70%,320px)] h-auto" />
     </div>
   </div>
 
   <div className="flex flex-wrap gap-[clamp(14px,2vw,28px)] mt-[clamp(44px,7vw,110px)] max-sm:grid max-sm:grid-cols-2">
     <div data-hover-group="" className="[flex:1_1_min(100%,210px)]">
       <div className="relative overflow-hidden h-[clamp(300px,52vh,520px)] max-sm:h-auto max-sm:aspect-[3/4]">
-        <div data-hover-img="" className="absolute inset-0 [transition:transform_.9s_cubic-bezier(.16,1,.3,1)]"><Image src="/images/29a3935bff.jpg" alt="Portrait, tall" width={700} height={900} className="h-full w-full object-cover" /></div>
+        <div data-hover-img="" className="absolute inset-0 [transition:transform_.9s_cubic-bezier(.16,1,.3,1)]"><Image src="/team/kv.jpeg" alt="Kaivanya Bhandari" width={1792} height={2060} sizes="(max-width: 640px) 50vw, 25vw" className="h-full w-full object-cover" /></div>
       </div>
       <div className="flex justify-between items-baseline gap-2.5 [border-top:1px_solid_rgba(247,244,239,.16)] mt-3 pt-[11px]">
         <div>
-          <div data-hover-title="" className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(15px,1.5vw,20px)] tracking-[-0.02em] [transition:transform_.6s_cubic-bezier(.16,1,.3,1)]">NEER</div>
-          <div className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.12em] uppercase text-[#8A857B] mt-[5px]">Founder &amp; CEO</div>
+          <div data-hover-title="" className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(15px,1.5vw,20px)] tracking-[-0.02em] [transition:transform_.6s_cubic-bezier(.16,1,.3,1)]">KAIVANYA BHANDARI</div>
+          <div className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.12em] uppercase text-[#8A857B] mt-[5px]">Co-founder</div>
         </div>
         <span className="text-[13px] text-[#8A857B]">↗</span>
       </div>
     </div>
     <div data-hover-group="" className="[flex:1_1_min(100%,210px)] mt-[clamp(0px,3vw,48px)]">
       <div className="relative overflow-hidden h-[clamp(300px,52vh,520px)] max-sm:h-auto max-sm:aspect-[3/4]">
-        <div data-hover-img="" className="absolute inset-0 [transition:transform_.9s_cubic-bezier(.16,1,.3,1)]"><Image src="/images/64f3340595.jpg" alt="Portrait, tall" width={700} height={900} className="h-full w-full object-cover" /></div>
+        <div data-hover-img="" className="absolute inset-0 [transition:transform_.9s_cubic-bezier(.16,1,.3,1)]"><Image src="/team/neer.jpeg" alt="Neer Shah" width={4584} height={5876} sizes="(max-width: 640px) 50vw, 25vw" className="h-full w-full object-cover" /></div>
       </div>
       <div className="flex justify-between items-baseline gap-2.5 [border-top:1px_solid_rgba(247,244,239,.16)] mt-3 pt-[11px]">
         <div>
-          <div data-hover-title="" className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(15px,1.5vw,20px)] tracking-[-0.02em] [transition:transform_.6s_cubic-bezier(.16,1,.3,1)]">KV</div>
-          <div className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.12em] uppercase text-[#8A857B] mt-[5px]">Chief Marketing Officer</div>
+          <div data-hover-title="" className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(15px,1.5vw,20px)] tracking-[-0.02em] [transition:transform_.6s_cubic-bezier(.16,1,.3,1)]">NEER SHAH</div>
+          <div className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.12em] uppercase text-[#8A857B] mt-[5px]">Co-founder</div>
         </div>
         <span className="text-[13px] text-[#8A857B]">↗</span>
       </div>
     </div>
     <div data-hover-group="" className="[flex:1_1_min(100%,210px)]">
       <div className="relative overflow-hidden h-[clamp(300px,52vh,520px)] max-sm:h-auto max-sm:aspect-[3/4]">
-        <div data-hover-img="" className="absolute inset-0 [transition:transform_.9s_cubic-bezier(.16,1,.3,1)]"><Image src="/images/fb23c7b2c7.jpg" alt="Portrait, tall" width={700} height={900} className="h-full w-full object-cover" /></div>
+        <div data-hover-img="" className="absolute inset-0 [transition:transform_.9s_cubic-bezier(.16,1,.3,1)]"><Image src="/team/rohan.png" alt="Rohan Sunwar" width={1254} height={1254} sizes="(max-width: 640px) 50vw, 25vw" className="h-full w-full object-cover" /></div>
       </div>
       <div className="flex justify-between items-baseline gap-2.5 [border-top:1px_solid_rgba(247,244,239,.16)] mt-3 pt-[11px]">
         <div>
@@ -192,11 +192,11 @@ export default function About() {
     </div>
     <div data-hover-group="" className="[flex:1_1_min(100%,210px)] mt-[clamp(0px,3vw,48px)]">
       <div className="relative overflow-hidden h-[clamp(300px,52vh,520px)] max-sm:h-auto max-sm:aspect-[3/4]">
-        <div data-hover-img="" className="absolute inset-0 [transition:transform_.9s_cubic-bezier(.16,1,.3,1)]"><Image src="/images/234f5a93d8.jpg" alt="Portrait, tall" width={700} height={900} className="h-full w-full object-cover" /></div>
+        <div data-hover-img="" className="absolute inset-0 [transition:transform_.9s_cubic-bezier(.16,1,.3,1)]"><Image src="/team/vidhi.jpg" alt="Vidhi Kataria" width={1667} height={1567} sizes="(max-width: 640px) 50vw, 25vw" className="h-full w-full object-cover" /></div>
       </div>
       <div className="flex justify-between items-baseline gap-2.5 [border-top:1px_solid_rgba(247,244,239,.16)] mt-3 pt-[11px]">
         <div>
-          <div data-hover-title="" className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(15px,1.5vw,20px)] tracking-[-0.02em] [transition:transform_.6s_cubic-bezier(.16,1,.3,1)]">AYESHA KHAN</div>
+          <div data-hover-title="" className="[font-family:'Archivo',sans-serif] font-bold text-[clamp(15px,1.5vw,20px)] tracking-[-0.02em] [transition:transform_.6s_cubic-bezier(.16,1,.3,1)]">VIDHI KATARIA</div>
           <div className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.12em] uppercase text-[#8A857B] mt-[5px]">Content &amp; Production</div>
         </div>
         <span className="text-[13px] text-[#8A857B]">↗</span>

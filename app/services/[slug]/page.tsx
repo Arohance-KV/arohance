@@ -10,7 +10,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import ContactPill from '@/components/ContactPill';
-import { VERTICALS, verticalHref, serviceAnchor } from '@/lib/verticals';
+import { VERTICALS, verticalHref, serviceAnchor, type Media } from '@/lib/verticals';
 // Same behaviour set a case study needs: nav over dark sections, clock, parallax, hover lift, text entrances.
 import CaseStudyRuntime from '../../case-study/case-study-runtime';
 import WorksPanel from '@/components/WorksPanel';
@@ -101,6 +101,13 @@ export default async function VerticalPage({ params }: Props) {
   </div>
 </header>
 
+<section data-reveal="" className="mt-[clamp(20px,4vw,60px)] px-[clamp(20px,4.4vw,64px)]">
+  <div className={`${RULE} pt-[clamp(24px,3.4vw,48px)] grid grid-cols-[minmax(0,1fr)_minmax(0,2fr)] gap-x-[clamp(20px,5vw,60px)] gap-y-5 max-lg:grid-cols-1`}>
+    {v.introTitle ? <h2 className="m-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(1.6rem,3.4vw,3rem)] leading-[.95] tracking-[-0.045em] uppercase max-w-[14ch]">{v.introTitle}</h2> : <span aria-hidden="true" className="max-lg:hidden" />}
+    <p className="m-0 max-w-[46ch] [font-family:'Archivo',sans-serif] font-medium text-[clamp(1.15rem,1.9vw,1.75rem)] leading-[1.3] tracking-[-0.02em]">{v.intro}</p>
+  </div>
+</section>
+
 <section className="mt-[clamp(40px,6vw,90px)] px-[clamp(20px,4.4vw,64px)]">
   <h2 data-eyebrow="" className="mt-0 mx-0 mb-[clamp(30px,4.4vw,64px)] [font-family:'JetBrains_Mono',monospace] font-normal text-[11px] tracking-[.14em] uppercase text-[#8C877E]">+ (What we do)</h2>
   {/* Each row's id is the anchor the homepage's service pills link to; scroll-mt clears the fixed nav. */}
@@ -114,12 +121,62 @@ export default async function VerticalPage({ params }: Props) {
   </ol>
 </section>
 
-{/* Capped near the previews' native width (868–1920px) so the smaller ones stay sharp. */}
-<section className="relative ml-auto mt-[clamp(50px,8vw,120px)] w-[min(100%-2*clamp(20px,4.4vw,64px),960px)] mr-[clamp(20px,4.4vw,64px)] [aspect-ratio:16/10] overflow-hidden rounded-[6px] bg-[#1A1815]">
-  <div data-parallax="0.5" className="absolute left-0 right-0 top-[-9%] h-[118%]">
-    <Image src={v.preview} alt="" fill sizes="(max-width: 1024px) 100vw, 960px" className="object-cover" />
+{v.media && v.layout === 'stack' && (
+<section className="mt-[clamp(50px,8vw,120px)] px-[clamp(20px,4.4vw,64px)]">
+  {/* Sticky deck: each window pins a step lower than the last, so the next one slides over it. */}
+  <ol className="m-0 mx-auto p-0 list-none max-w-[1100px]">
+    {v.media.map((m, k, all) => (
+      <li key={m.src} className="sticky mb-[clamp(36px,9vh,110px)] last:mb-0" style={{ top: `calc(clamp(84px,12vh,120px) + ${k} * clamp(6px,1vw,14px))` }}>
+        <figure className="m-0 overflow-hidden rounded-[10px] bg-[#1F1E1C] [border:1px_solid_rgba(245,242,237,.12)] shadow-[0_-18px_50px_rgba(0,0,0,.6)]">
+          <div className="flex items-center gap-[7px] py-2.5 px-3.5 [border-bottom:1px_solid_rgba(245,242,237,.08)]">
+            <span className="w-2.5 h-2.5 rounded-full bg-[var(--ag-accent,#F2600C)]" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#3A3834]" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#3A3834]" />
+            <span className="ml-auto [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] text-[#8C877E]">{String(k + 1).padStart(2, '0')} / {String(all.length).padStart(2, '0')}</span>
+          </div>
+          <MediaItem m={m} sizes="(max-width: 1140px) 100vw, 1100px" className="block w-full h-auto" />
+        </figure>
+      </li>
+    ))}
+  </ol>
+</section>
+)}
+
+{v.media && v.layout === 'feature' && (
+<section className="relative mt-[clamp(50px,8vw,120px)] overflow-hidden py-[clamp(40px,6vw,90px)]">
+  {/* The About page's crossed ribbons, carrying this vertical's services, behind the clip. */}
+  {([['-6deg', 'ag-marquee', 'bg-[var(--ag-accent,#F2600C)]'], ['5deg', 'ag-marquee-rev', 'bg-[#F5F2ED]']] as const).map(([tilt, anim, bg]) => (
+    <div key={tilt} aria-hidden="true" className={`absolute left-[-6%] right-[-6%] top-[50%] overflow-hidden ${bg} text-[#0A0A0A] py-[clamp(10px,1.3vw,18px)] shadow-[0_22px_50px_rgba(0,0,0,.55)]`} style={{ transform: `translateY(-50%) rotate(${tilt})` }}>
+      <div data-ag-ribbon="" className="flex w-max [font-family:'Archivo',sans-serif] font-bold text-[clamp(18px,2.4vw,36px)] tracking-[.04em] uppercase whitespace-nowrap" style={{ animation: `${anim} 40s linear infinite` }}>
+        {/* Two identical halves: the marquee keyframes slide by exactly -50%. */}
+        {[0, 1].map((c) => <span key={c} className="pr-[34px]">{v.services.join(' — ')} —</span>)}
+      </div>
+    </div>
+  ))}
+  <div className="relative mx-auto w-[min(70vw,340px)] rotate-[-3deg] rounded-[30px] bg-[#1F1E1C] p-2 [border:1px_solid_rgba(245,242,237,.14)] shadow-[0_40px_90px_rgba(0,0,0,.65)]">
+    <MediaItem m={v.media[0]} sizes="340px" className="block w-full h-auto rounded-[22px]" />
+    {/* Sound toggle, wired in lib/behaviors/autoplay.ts; aria-pressed swaps the icon. */}
+    <button data-ag-sound="" type="button" aria-pressed="false" aria-label="Sound" className="group absolute right-5 bottom-5 w-11 h-11 border-0 rounded-full bg-[rgba(12,11,10,.6)] [backdrop-filter:blur(8px)] [-webkit-backdrop-filter:blur(8px)] text-[#F5F2ED] flex items-center justify-center cursor-pointer [transition:background_.35s_ease] hover:bg-[var(--ag-accent,#F2600C)]">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M11 5 6 9H2v6h4l5 4V5z" />
+        <path className="group-aria-pressed:hidden" d="m22 9-6 6m0-6 6 6" />
+        <path className="hidden group-aria-pressed:block" d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14" />
+      </svg>
+    </button>
   </div>
 </section>
+)}
+
+{v.media && !v.layout && (
+<section className="mt-[clamp(50px,8vw,120px)] px-[clamp(20px,4.4vw,64px)]">
+  {/* Masonry via CSS columns. Landscape items take the full row on phones, where half-width is too small to read. */}
+  <div className="columns-2 lg:columns-3 gap-[clamp(10px,1.2vw,18px)]">
+    {v.media.map((m) => (
+      <MediaItem key={m.src} m={m} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className={`block w-full h-auto mb-[clamp(10px,1.2vw,18px)] break-inside-avoid rounded-[6px] bg-[#1A1815] ${m.w > m.h ? 'max-sm:[column-span:all]' : ''}`} />
+    ))}
+  </div>
+</section>
+)}
 
 <section className="mt-[clamp(50px,8vw,120px)] mb-[clamp(60px,9vw,140px)] px-[clamp(20px,4.4vw,64px)]">
   <div className="flex flex-wrap items-end justify-between gap-[clamp(20px,4vw,64px)]">
@@ -152,5 +209,14 @@ export default async function VerticalPage({ params }: Props) {
 <ContactPill />
 <CaseStudyRuntime />
 </div>
+  );
+}
+
+/** `.mp4` as a muted looping clip (played while on screen by lib/behaviors/autoplay.ts), anything else as an image. */
+function MediaItem({ m, sizes, className }: { m: Media; sizes: string; className: string }) {
+  return m.src.endsWith('.mp4') ? (
+    <video data-ag-autoplay="" src={m.src} width={m.w} height={m.h} style={{ aspectRatio: `${m.w} / ${m.h}` }} loop muted playsInline preload="metadata" className={`${className} object-cover`} />
+  ) : (
+    <Image src={m.src} alt="" width={m.w} height={m.h} sizes={sizes} className={className} />
   );
 }

@@ -1,6 +1,6 @@
 import {
   applyTheme, reveal, parallax, cursor, clock, form,
-  shellMinimal, navOnDark, hoverLift, text, type Behavior,
+  shellMinimal, navOnDark, hoverLift, text, autoplay, type Behavior,
 } from '@/lib/behaviors';
 
 /** Case Study page behaviour set, in the verified componentDidMount order
@@ -77,9 +77,10 @@ import {
  *  wrong for this page's live onDark logic).
  *
  *  `text` (last, not in the original) runs the heading and eyebrow entrances,
- *  lib/behaviors/text.ts.
+ *  lib/behaviors/text.ts. `autoplay` (also added) plays the vertical pages'
+ *  gallery videos, which mount this same list; no-op on case studies.
  *  Must stay a module-level constant: AgRuntime's effect deps are
  *  [modules], so a fresh array each render would remount every behaviour. */
 export const CASE_STUDY_MODULES: Behavior[] = [
-  applyTheme, shellMinimal, reveal, parallax, navOnDark, hoverLift, cursor, clock, form, text,
+  applyTheme, shellMinimal, reveal, parallax, navOnDark, hoverLift, cursor, clock, form, text, autoplay,
 ];

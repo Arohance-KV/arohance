@@ -224,33 +224,11 @@ export default function Home() {
           </div>
           <h2 className="mt-0 mx-0 mb-[clamp(28px,4vw,56px)] [font-family:'Archivo',sans-serif] font-bold text-[clamp(1.9rem,6.4vw,5.6rem)] leading-[.94] tracking-[-0.045em] max-w-[20ch]">BRANDS WE MADE <span className="text-[var(--ag-accent,#F2600C)]">MAGNETIC.</span></h2>
           <div className="grid grid-cols-[repeat(auto-fill,minmax(min(100%,180px),1fr))] max-sm:grid-cols-2 [border-bottom:1px_solid_rgba(245,242,237,.15)]">
-            <div data-hover-group="" className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
-              <img data-hover-img="" src="/client-logos/amwill.png" alt="AMWILL" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
-            </div>
-            <div data-hover-group="" className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
-              <img data-hover-img="" src="/client-logos/daadis.png" alt="Daadi&apos;s" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
-            </div>
-            <div data-hover-group="" className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
-              <img data-hover-img="" src="/client-logos/jbn-synergy.png" alt="JBN Synergy" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
-            </div>
-            <div data-hover-group="" className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
-              <img data-hover-img="" src="/client-logos/leapsurge.png" alt="Leapsurge" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
-            </div>
-            <div data-hover-group="" className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
-              <img data-hover-img="" src="/client-logos/samyak-group.png" alt="Samyak Group" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
-            </div>
-            <div data-hover-group="" className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
-              <img data-hover-img="" src="/client-logos/sanghvi-ceramics.png" alt="Sanghvi Ceramics" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
-            </div>
-            <div data-hover-group="" className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
-              <img data-hover-img="" src="/client-logos/splash-textures.png" alt="Splash Textures" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
-            </div>
-            <div data-hover-group="" className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
-              <img data-hover-img="" src="/client-logos/supreme.png" alt="Supreme Global Corporations" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
-            </div>
-            <div data-hover-group="" className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
-              <img data-hover-img="" src="/client-logos/viom.png" alt="Viom" className="block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain [filter:brightness(0)_invert(1)] opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]" />
-            </div>
+            {CLIENTS.map(([file, name, mono]) => (
+              <div key={file} data-hover-group="" className="flex items-center justify-center min-h-[clamp(110px,12vw,160px)] p-[clamp(18px,2vw,30px)] [border-top:1px_solid_rgba(245,242,237,.15)] [transition:background_.4s_ease] hover:bg-[rgba(242,96,12,.08)]">
+                <img data-hover-img="" src={`/client-logos/${file}.png`} alt={name} loading="lazy" className={`block max-w-[min(78%,150px)] max-h-[52px] w-auto h-auto object-contain ${mono ? '[filter:brightness(0)_invert(1)]' : ''} opacity-[.62] [transition:opacity_.4s_ease] hover:opacity-[1]`} />
+              </div>
+            ))}
           </div>
           <p className="mt-[clamp(24px,3.5vw,44px)] mx-0 mb-0 max-w-[46ch] text-[clamp(15px,1.3vw,18px)] leading-[1.6] text-[#A9A39A]">Most came back for a second engagement. Several started as a single shoot and ended up as the whole platform.</p>
         </section>
@@ -453,6 +431,38 @@ export default function Home() {
     </>
   );
 }
+
+/** Client wall: [file in /client-logos/*.png, name, mono]. `mono` paints the logo
+ *  white, for marks whose own ink is too dark to read on the page. */
+const CLIENTS: readonly [string, string, boolean?][] = [
+  ['amwill', 'AMWILL', true],
+  ['daadis', "Daadi's"],
+  ['jbn-synergy', 'JBN Synergy', true],
+  ['leapsurge', 'Leapsurge', true],
+  ['samyak-group', 'Samyak Group'],
+  ['sanghvi-ceramics', 'Sanghvi Ceramics', true],
+  ['splash-textures', 'Splash Textures', true],
+  ['supreme', 'Supreme Global Corporations', true],
+  ['viom', 'Viom', true],
+  ['polycab', 'Polycab', true],
+  ['portronics', 'Portronics', true],
+  ['bengaluru-city-police', 'Bengaluru City Police'],
+  ['jito', 'JITO'],
+  ['jito-business-network', 'JITO Business Network', true],
+  ['plk-capital', 'PLK Capital', true],
+  ['trove', 'Trove', true],
+  ['aurika', 'Aurika'],
+  ['synergy-chemicals', 'Synergy Chemicals'],
+  ['yatharth-developers', 'Yatharth Developers'],
+  ['kk-associates', 'KK Associates'],
+  ['mrm-impex', 'MRM Impex'],
+  ['pranjal-textile-house', 'Pranjal Textile House'],
+  ['trendsetter-unicorns', 'Trendsetter Unicorns'],
+  ['madhi-ni-khamni', 'Madhi ni Khamni'],
+  ['maha-videh', 'Maha Videh'],
+  ['oduba', 'Oduba'],
+  ['acnewin', 'Acnewin'],
+];
 
 /** The cards after the lead one, then the call to action (`null`), in rows of two. */
 const REST = [...WORK.slice(1), null];

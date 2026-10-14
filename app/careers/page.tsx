@@ -37,7 +37,7 @@ export default function Careers() {
 <nav data-ag-nav="" className="fixed top-0 left-0 right-0 z-[70] flex items-start justify-between gap-4 py-4 px-[clamp(20px,4.4vw,64px)] [transition:padding_.45s_ease]">
   <Link href="/" className="flex items-center"><Image data-ag-logo="" src="/images/logo.png" alt="Arohance, Tech &amp; Marketing" width={422} height={133} priority className="h-[46px] w-auto block [transition:height_.45s_ease]" /></Link>
   <div className="flex items-center gap-2.5">
-    <a href="#roles" data-ag-navcta="" className="hidden items-center h-[46px] py-0 px-5 rounded-[15px] bg-[var(--ag-accent,#F2600C)] text-[#0A0A0A] [font-family:'Archivo',sans-serif] font-semibold text-[15px] [transition:transform_.5s_cubic-bezier(.16,1,.3,1)] hover:[transform:translate3d(0,-2px,0)] hover:text-[#0A0A0A]">Open roles</a>
+    <a href="#apply" data-ag-navcta=""className="hidden items-center h-[46px] py-0 px-5 rounded-[15px] bg-[var(--ag-accent,#F2600C)] text-[#0A0A0A] [font-family:'Archivo',sans-serif] font-semibold text-[15px] [transition:transform_.5s_cubic-bezier(.16,1,.3,1)] hover:[transform:translate3d(0,-2px,0)] hover:text-[#0A0A0A]">Apply</a>
     <button data-ag-menu-btn="" type="button" aria-label="Menu" className="w-[46px] h-[46px] border-0 rounded-[15px] bg-[#1A1815] text-[#F5F2ED] flex items-center justify-center cursor-pointer shadow-[0_10px_26px_rgba(0,0,0,.5)] [transition:background_.35s_ease,transform_.5s_cubic-bezier(.16,1,.3,1)] hover:bg-[var(--ag-accent,#F2600C)] hover:text-[#0A0A0A] hover:[transform:translate3d(0,-2px,0)]">
       <span data-ag-burger="" className="flex flex-col gap-[5px] w-[19px]">
         <span className="block h-0.5 bg-[currentColor] rounded-[2px] [transition:transform_.45s_cubic-bezier(.16,1,.3,1)]"></span>
@@ -78,7 +78,7 @@ export default function Careers() {
 <header className="relative min-h-[88svh] flex flex-col justify-end pt-[clamp(104px,14vh,170px)] px-[clamp(20px,4.4vw,64px)] pb-[clamp(30px,4.5vw,60px)]">
   <div data-eyebrow="" className="flex justify-between items-baseline gap-4 flex-wrap [border-top:1px_solid_rgba(245,242,237,.15)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E]">
     <span>Careers</span>
-    <span className="flex items-center gap-[9px]"><span className="w-1.5 h-1.5 bg-[var(--ag-accent,#F2600C)] rounded-[50%] [animation:ag-pulse_2.6s_infinite]"></span><span data-ag-count="">Six roles open</span>, Bengaluru</span>
+    <span>No open roles right now, Bengaluru</span>
   </div>
 
   <h1 className="mt-[clamp(26px,4vw,58px)] mx-0 mb-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(2.4rem,8.4vw,9.5rem)] leading-[.87] tracking-[-0.048em] [font-variation-settings:'wdth'_106]">
@@ -89,7 +89,7 @@ export default function Careers() {
 
   <div className="flex justify-between items-end gap-[clamp(20px,5vw,60px)] flex-wrap mt-[clamp(28px,4vw,58px)]">
     <p data-reveal="" className="m-0 max-w-[48ch] text-[clamp(15px,1.35vw,19px)] leading-[1.55] text-[#A9A39A]">Fourteen people who would rather build the thing than manage the people building it. No account layer, no deck factory, no work that goes out with someone else&apos;s name on the craft.</p>
-    <a href="#roles" className="inline-flex items-center gap-3 [font-family:'Archivo',sans-serif] font-semibold text-[clamp(16px,1.6vw,22px)] tracking-[-0.02em] [border-bottom:1px_solid_currentColor] pb-1">See the open roles <span>↓</span></a>
+    <a href="#apply" className="inline-flex items-center gap-3 [font-family:'Archivo',sans-serif] font-semibold text-[clamp(16px,1.6vw,22px)] tracking-[-0.02em] [border-bottom:1px_solid_currentColor] pb-1">Send us your work <span>↓</span></a>
   </div>
 </header>
 
@@ -148,16 +148,6 @@ export default function Careers() {
   </div>
 </section>
 
-<section className="pt-0 px-[clamp(20px,4.4vw,64px)] pb-[clamp(60px,9vw,130px)]">
-  <div className="flex flex-wrap gap-[clamp(14px,2vw,26px)]">
-    <div className="[flex:2_1_min(100%,320px)] relative overflow-hidden h-[clamp(260px,46vh,480px)]">
-      <Image src="/images/b7afa59dc4.jpg" alt="The studio floor, wide" width={950} height={535} priority className="h-full w-full object-cover" />
-    </div>
-    <div className="[flex:1_1_min(100%,220px)] relative overflow-hidden h-[clamp(260px,46vh,480px)]">
-      <Image src="/images/3143905490.jpg" alt="On set, tall" width={900} height={600} className="h-full w-full object-cover" />
-    </div>
-  </div>
-</section>
 
 <section id="roles" className="pt-[clamp(40px,6vw,90px)] px-[clamp(20px,4.4vw,64px)] pb-[clamp(70px,10vw,150px)]">
   <div data-eyebrow="" className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(245,242,237,.15)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E] mb-[clamp(30px,5vw,64px)]">
@@ -165,129 +155,10 @@ export default function Careers() {
     <span>Bengaluru, hybrid</span>
   </div>
 
-  <div data-ag-roles="">
-    <div data-role="" className="[border-top:1px_solid_rgba(245,242,237,.15)]">
-      <div data-role-head="" className="flex items-baseline gap-[clamp(12px,2.4vw,34px)] py-[clamp(14px,1.8vw,24px)] px-0 cursor-pointer">
-        <span data-role-idx="" className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.1em] text-[#8C877E] [transition:color_.35s]">01</span>
-        <h3 className="m-0 [flex:1] [font-family:'Archivo',sans-serif] font-bold text-[clamp(1.5rem,4.4vw,3.6rem)] leading-[1] tracking-[-0.042em] [font-variation-settings:'wdth'_104]">SENIOR PRODUCT DESIGNER</h3>
-        <span data-role-meta="" className="[flex:0_0_auto] [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.12em] uppercase text-[#8C877E] text-right leading-[1.7]">Design<br />Full-time</span>
-        <span data-role-sign="" className="text-[clamp(14px,1.4vw,20px)] [transition:transform_.45s_cubic-bezier(.16,1,.3,1)]">+</span>
-      </div>
-      <div data-role-panel="" className="grid [grid-template-rows:0fr] opacity-[0] [transition:grid-template-rows_.6s_cubic-bezier(.16,1,.3,1),opacity_.45s_ease]">
-        <div className="overflow-hidden">
-          <div className="flex flex-wrap gap-[clamp(20px,4vw,64px)] pt-0 pr-0 pb-[clamp(26px,3.5vw,48px)] pl-[clamp(24px,5vw,86px)]">
-            <p className="[flex:2_1_min(100%,300px)] m-0 max-w-[48ch] text-[clamp(15px,1.3vw,18px)] leading-[1.55] text-[#A9A39A]">You lead the design of a product from the first sketch to the shipped build, sitting next to the engineers writing it. Five years or more, a portfolio of things that actually launched, and an opinion about type.</p>
-            <div className="[flex:1_1_min(100%,200px)] flex flex-col gap-[9px] text-[14px] text-[#A9A39A]">
-              <span>Bengaluru, hybrid</span><span>5+ years</span><span data-pay="">₹28–40L</span>
-              <a href="#apply" className="mt-2 [align-self:flex-start] text-[var(--ag-accent,#F2600C)] [border-bottom:1px_solid_currentColor] pb-0.5 font-semibold max-lg:py-2.5">Apply →</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div data-role="" className="[border-top:1px_solid_rgba(245,242,237,.15)]">
-      <div data-role-head="" className="flex items-baseline gap-[clamp(12px,2.4vw,34px)] py-[clamp(14px,1.8vw,24px)] px-0 cursor-pointer">
-        <span data-role-idx="" className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.1em] text-[#8C877E] [transition:color_.35s]">02</span>
-        <h3 className="m-0 [flex:1] [font-family:'Archivo',sans-serif] font-bold text-[clamp(1.5rem,4.4vw,3.6rem)] leading-[1] tracking-[-0.042em] [font-variation-settings:'wdth'_104]">FULL-STACK ENGINEER</h3>
-        <span data-role-meta="" className="[flex:0_0_auto] [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.12em] uppercase text-[#8C877E] text-right leading-[1.7]">Technology<br />Full-time</span>
-        <span data-role-sign="" className="text-[clamp(14px,1.4vw,20px)] [transition:transform_.45s_cubic-bezier(.16,1,.3,1)]">+</span>
-      </div>
-      <div data-role-panel="" className="grid [grid-template-rows:0fr] opacity-[0] [transition:grid-template-rows_.6s_cubic-bezier(.16,1,.3,1),opacity_.45s_ease]">
-        <div className="overflow-hidden">
-          <div className="flex flex-wrap gap-[clamp(20px,4vw,64px)] pt-0 pr-0 pb-[clamp(26px,3.5vw,48px)] pl-[clamp(24px,5vw,86px)]">
-            <p className="[flex:2_1_min(100%,300px)] m-0 max-w-[48ch] text-[clamp(15px,1.3vw,18px)] leading-[1.55] text-[#A9A39A]">Client platforms, internal tools and the integrations underneath them. TypeScript end to end, comfortable owning infrastructure, and willing to argue with a designer about a transition.</p>
-            <div className="[flex:1_1_min(100%,200px)] flex flex-col gap-[9px] text-[14px] text-[#A9A39A]">
-              <span>Bengaluru, hybrid</span><span>4+ years</span><span data-pay="">₹26–38L</span>
-              <a href="#apply" className="mt-2 [align-self:flex-start] text-[var(--ag-accent,#F2600C)] [border-bottom:1px_solid_currentColor] pb-0.5 font-semibold max-lg:py-2.5">Apply →</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div data-role="" className="[border-top:1px_solid_rgba(245,242,237,.15)]">
-      <div data-role-head="" className="flex items-baseline gap-[clamp(12px,2.4vw,34px)] py-[clamp(14px,1.8vw,24px)] px-0 cursor-pointer">
-        <span data-role-idx="" className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.1em] text-[#8C877E] [transition:color_.35s]">03</span>
-        <h3 className="m-0 [flex:1] [font-family:'Archivo',sans-serif] font-bold text-[clamp(1.5rem,4.4vw,3.6rem)] leading-[1] tracking-[-0.042em] [font-variation-settings:'wdth'_104]">FILMMAKER, EDIT LED</h3>
-        <span data-role-meta="" className="[flex:0_0_auto] [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.12em] uppercase text-[#8C877E] text-right leading-[1.7]">Content<br />Full-time</span>
-        <span data-role-sign="" className="text-[clamp(14px,1.4vw,20px)] [transition:transform_.45s_cubic-bezier(.16,1,.3,1)]">+</span>
-      </div>
-      <div data-role-panel="" className="grid [grid-template-rows:0fr] opacity-[0] [transition:grid-template-rows_.6s_cubic-bezier(.16,1,.3,1),opacity_.45s_ease]">
-        <div className="overflow-hidden">
-          <div className="flex flex-wrap gap-[clamp(20px,4vw,64px)] pt-0 pr-0 pb-[clamp(26px,3.5vw,48px)] pl-[clamp(24px,5vw,86px)]">
-            <p className="[flex:2_1_min(100%,300px)] m-0 max-w-[48ch] text-[clamp(15px,1.3vw,18px)] leading-[1.55] text-[#A9A39A]">You shoot it and you cut it. Brand films, founder interviews, product spots, and the twenty vertical cuts that come out of the same shoot day. Resolve or Premiere, your call.</p>
-            <div className="[flex:1_1_min(100%,200px)] flex flex-col gap-[9px] text-[14px] text-[#A9A39A]">
-              <span>Bengaluru, on site</span><span>3+ years</span><span data-pay="">₹16–26L</span>
-              <a href="#apply" className="mt-2 [align-self:flex-start] text-[var(--ag-accent,#F2600C)] [border-bottom:1px_solid_currentColor] pb-0.5 font-semibold max-lg:py-2.5">Apply →</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div data-role="" className="[border-top:1px_solid_rgba(245,242,237,.15)]">
-      <div data-role-head="" className="flex items-baseline gap-[clamp(12px,2.4vw,34px)] py-[clamp(14px,1.8vw,24px)] px-0 cursor-pointer">
-        <span data-role-idx="" className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.1em] text-[#8C877E] [transition:color_.35s]">04</span>
-        <h3 className="m-0 [flex:1] [font-family:'Archivo',sans-serif] font-bold text-[clamp(1.5rem,4.4vw,3.6rem)] leading-[1] tracking-[-0.042em] [font-variation-settings:'wdth'_104]">BRAND DESIGNER</h3>
-        <span data-role-meta="" className="[flex:0_0_auto] [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.12em] uppercase text-[#8C877E] text-right leading-[1.7]">Design<br />Full-time</span>
-        <span data-role-sign="" className="text-[clamp(14px,1.4vw,20px)] [transition:transform_.45s_cubic-bezier(.16,1,.3,1)]">+</span>
-      </div>
-      <div data-role-panel="" className="grid [grid-template-rows:0fr] opacity-[0] [transition:grid-template-rows_.6s_cubic-bezier(.16,1,.3,1),opacity_.45s_ease]">
-        <div className="overflow-hidden">
-          <div className="flex flex-wrap gap-[clamp(20px,4vw,64px)] pt-0 pr-0 pb-[clamp(26px,3.5vw,48px)] pl-[clamp(24px,5vw,86px)]">
-            <p className="[flex:2_1_min(100%,300px)] m-0 max-w-[48ch] text-[clamp(15px,1.3vw,18px)] leading-[1.55] text-[#A9A39A]">Identity systems that get used on Monday: type, motion, packaging, the templates and the working files. You will see your systems running across film, web and print inside the same quarter.</p>
-            <div className="[flex:1_1_min(100%,200px)] flex flex-col gap-[9px] text-[14px] text-[#A9A39A]">
-              <span>Bengaluru, hybrid</span><span>3+ years</span><span data-pay="">₹18–28L</span>
-              <a href="#apply" className="mt-2 [align-self:flex-start] text-[var(--ag-accent,#F2600C)] [border-bottom:1px_solid_currentColor] pb-0.5 font-semibold max-lg:py-2.5">Apply →</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div data-role="" className="[border-top:1px_solid_rgba(245,242,237,.15)]">
-      <div data-role-head="" className="flex items-baseline gap-[clamp(12px,2.4vw,34px)] py-[clamp(14px,1.8vw,24px)] px-0 cursor-pointer">
-        <span data-role-idx="" className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.1em] text-[#8C877E] [transition:color_.35s]">05</span>
-        <h3 className="m-0 [flex:1] [font-family:'Archivo',sans-serif] font-bold text-[clamp(1.5rem,4.4vw,3.6rem)] leading-[1] tracking-[-0.042em] [font-variation-settings:'wdth'_104]">CONTENT PRODUCER</h3>
-        <span data-role-meta="" className="[flex:0_0_auto] [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.12em] uppercase text-[#8C877E] text-right leading-[1.7]">Production<br />Full-time</span>
-        <span data-role-sign="" className="text-[clamp(14px,1.4vw,20px)] [transition:transform_.45s_cubic-bezier(.16,1,.3,1)]">+</span>
-      </div>
-      <div data-role-panel="" className="grid [grid-template-rows:0fr] opacity-[0] [transition:grid-template-rows_.6s_cubic-bezier(.16,1,.3,1),opacity_.45s_ease]">
-        <div className="overflow-hidden">
-          <div className="flex flex-wrap gap-[clamp(20px,4vw,64px)] pt-0 pr-0 pb-[clamp(26px,3.5vw,48px)] pl-[clamp(24px,5vw,86px)]">
-            <p className="[flex:2_1_min(100%,300px)] m-0 max-w-[48ch] text-[clamp(15px,1.3vw,18px)] leading-[1.55] text-[#A9A39A]">You run the calendar, the shoot days and the people on them. Five clients, a standing crew, and a release schedule that does not slip.</p>
-            <div className="[flex:1_1_min(100%,200px)] flex flex-col gap-[9px] text-[14px] text-[#A9A39A]">
-              <span>Bengaluru, on site</span><span>3+ years</span><span data-pay="">₹14–22L</span>
-              <a href="#apply" className="mt-2 [align-self:flex-start] text-[var(--ag-accent,#F2600C)] [border-bottom:1px_solid_currentColor] pb-0.5 font-semibold max-lg:py-2.5">Apply →</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div data-role="" className="[border-top:1px_solid_rgba(245,242,237,.15)] [border-bottom:1px_solid_rgba(245,242,237,.15)]">
-      <div data-role-head="" className="flex items-baseline gap-[clamp(12px,2.4vw,34px)] py-[clamp(14px,1.8vw,24px)] px-0 cursor-pointer">
-        <span data-role-idx="" className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.1em] text-[#8C877E] [transition:color_.35s]">06</span>
-        <h3 className="m-0 [flex:1] [font-family:'Archivo',sans-serif] font-bold text-[clamp(1.5rem,4.4vw,3.6rem)] leading-[1] tracking-[-0.042em] [font-variation-settings:'wdth'_104]">DESIGN INTERN</h3>
-        <span data-role-meta="" className="[flex:0_0_auto] [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.12em] uppercase text-[#8C877E] text-right leading-[1.7]">Design<br />Six months</span>
-        <span data-role-sign="" className="text-[clamp(14px,1.4vw,20px)] [transition:transform_.45s_cubic-bezier(.16,1,.3,1)]">+</span>
-      </div>
-      <div data-role-panel="" className="grid [grid-template-rows:0fr] opacity-[0] [transition:grid-template-rows_.6s_cubic-bezier(.16,1,.3,1),opacity_.45s_ease]">
-        <div className="overflow-hidden">
-          <div className="flex flex-wrap gap-[clamp(20px,4vw,64px)] pt-0 pr-0 pb-[clamp(26px,3.5vw,48px)] pl-[clamp(24px,5vw,86px)]">
-            <p className="[flex:2_1_min(100%,300px)] m-0 max-w-[48ch] text-[clamp(15px,1.3vw,18px)] leading-[1.55] text-[#A9A39A]">Paid, six months, real client work with a senior designer reviewing it daily. Two of our last three interns are now on the team.</p>
-            <div className="[flex:1_1_min(100%,200px)] flex flex-col gap-[9px] text-[14px] text-[#A9A39A]">
-              <span>Bengaluru, on site</span><span>Portfolio over degree</span><span data-pay="">₹35k per month</span>
-              <a href="#apply" className="mt-2 [align-self:flex-start] text-[var(--ag-accent,#F2600C)] [border-bottom:1px_solid_currentColor] pb-0.5 font-semibold max-lg:py-2.5">Apply →</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div className="[border-top:1px_solid_rgba(245,242,237,.15)] [border-bottom:1px_solid_rgba(245,242,237,.15)] py-[clamp(26px,4vw,56px)] flex flex-wrap items-end justify-between gap-[clamp(20px,4vw,60px)]">
+    <p className="m-0 max-w-[30ch] [font-family:'Archivo',sans-serif] font-medium text-[clamp(1.3rem,2.6vw,2.4rem)] leading-[1.15] tracking-[-0.025em]">No open roles right now. Send the work anyway, two of the last four hires wrote in without a role being open.</p>
+    <a href="#apply" className="text-[var(--ag-accent,#F2600C)]! [border-bottom:1px_solid_currentColor] pb-0.5 font-semibold text-[clamp(16px,1.4vw,19px)] max-lg:py-2.5">Apply →</a>
   </div>
-
-  <p className="mt-[clamp(26px,4vw,48px)] mx-0 mb-0 max-w-[46ch] text-[clamp(15px,1.3vw,18px)] leading-[1.6] text-[#A9A39A]">Nothing here that fits? Send the work anyway. Two of the last four hires wrote in without a role being open.</p>
 </section>
 
 <section id="process" className="py-[clamp(60px,9vw,140px)] px-[clamp(20px,4.4vw,64px)]">
@@ -340,18 +211,6 @@ export default function Careers() {
       <label className="flex flex-col gap-[9px]">
         <span className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8C877E]">Phone</span>
         <input type="tel" name="phone" autoComplete="tel" required placeholder="+91 98765 43210" className="bg-[transparent] border-0 [border-bottom:1px_solid_rgba(245,242,237,.28)] py-2 px-0 text-[clamp(16px,1.5vw,20px)] [outline:none] focus:[border-bottom-color:var(--ag-accent,#F2600C)] max-lg:py-3" />
-      </label>
-      <label className="flex flex-col gap-[9px]">
-        <span className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8C877E]">Role</span>
-        <select name="role" className="bg-[#0C0B0A] border-0 [border-bottom:1px_solid_rgba(245,242,237,.28)] py-2 px-0 text-[clamp(16px,1.5vw,20px)] [outline:none] focus:[border-bottom-color:var(--ag-accent,#F2600C)] max-lg:py-3">
-          <option>Senior product designer</option>
-          <option>Full-stack engineer</option>
-          <option>Filmmaker, edit led</option>
-          <option>Brand designer</option>
-          <option>Content producer</option>
-          <option>Design intern</option>
-          <option>Something else</option>
-        </select>
       </label>
       <label className="flex flex-col gap-[9px]">
         <span className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8C877E]">Portfolio or repo</span>
