@@ -10,7 +10,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import ContactPill from '@/components/ContactPill';
-import { VERTICALS, verticalHref, serviceAnchor, type Media } from '@/lib/verticals';
+import { VERTICALS, verticalHref, serviceAnchor } from '@/lib/verticals';
+import { MediaItem, SoundToggle } from '@/components/MediaItem';
 // Same behaviour set a case study needs: nav over dark sections, clock, parallax, hover lift, text entrances.
 import CaseStudyRuntime from '../../case-study/case-study-runtime';
 import WorksPanel from '@/components/WorksPanel';
@@ -21,7 +22,8 @@ type Props = { params: Promise<{ slug: string }> };
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return VERTICALS.map((v) => ({ slug: v.slug }));
+  // Studios has its own page at /studio (see verticalHref); next.config.ts redirects here to there.
+  return VERTICALS.filter((v) => verticalHref(v).startsWith('/services/')).map((v) => ({ slug: v.slug }));
 }
 
 // Absolute: the name already carries "Arohance", so skip the root layout's `%s — Arohance`.
@@ -155,25 +157,7 @@ export default async function VerticalPage({ params }: Props) {
   ))}
   <div className="relative mx-auto w-[min(70vw,340px)] rotate-[-3deg] rounded-[30px] bg-[#1F1E1C] p-2 [border:1px_solid_rgba(245,242,237,.14)] shadow-[0_40px_90px_rgba(0,0,0,.65)]">
     <MediaItem m={v.media[0]} sizes="340px" className="block w-full h-auto rounded-[22px]" />
-    {/* Sound toggle, wired in lib/behaviors/autoplay.ts; aria-pressed swaps the icon. */}
-    <button data-ag-sound="" type="button" aria-pressed="false" aria-label="Sound" className="group absolute right-5 bottom-5 w-11 h-11 border-0 rounded-full bg-[rgba(12,11,10,.6)] [backdrop-filter:blur(8px)] [-webkit-backdrop-filter:blur(8px)] text-[#F5F2ED] flex items-center justify-center cursor-pointer [transition:background_.35s_ease] hover:bg-[var(--ag-accent,#F2600C)]">
-      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M11 5 6 9H2v6h4l5 4V5z" />
-        <path className="group-aria-pressed:hidden" d="m22 9-6 6m0-6 6 6" />
-        <path className="hidden group-aria-pressed:block" d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14" />
-      </svg>
-    </button>
-  </div>
-</section>
-)}
-
-{v.media && !v.layout && (
-<section className="mt-[clamp(50px,8vw,120px)] px-[clamp(20px,4.4vw,64px)]">
-  {/* Masonry via CSS columns. Landscape items take the full row on phones, where half-width is too small to read. */}
-  <div className="columns-2 lg:columns-3 gap-[clamp(10px,1.2vw,18px)]">
-    {v.media.map((m) => (
-      <MediaItem key={m.src} m={m} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className={`block w-full h-auto mb-[clamp(10px,1.2vw,18px)] break-inside-avoid rounded-[6px] bg-[#1A1815] ${m.w > m.h ? 'max-sm:[column-span:all]' : ''}`} />
-    ))}
+    <SoundToggle />
   </div>
 </section>
 )}
@@ -212,11 +196,3 @@ export default async function VerticalPage({ params }: Props) {
   );
 }
 
-/** `.mp4` as a muted looping clip (played while on screen by lib/behaviors/autoplay.ts), anything else as an image. */
-function MediaItem({ m, sizes, className }: { m: Media; sizes: string; className: string }) {
-  return m.src.endsWith('.mp4') ? (
-    <video data-ag-autoplay="" src={m.src} width={m.w} height={m.h} style={{ aspectRatio: `${m.w} / ${m.h}` }} loop muted playsInline preload="metadata" className={`${className} object-cover`} />
-  ) : (
-    <Image src={m.src} alt="" width={m.w} height={m.h} sizes={sizes} className={className} />
-  );
-}

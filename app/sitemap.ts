@@ -7,7 +7,7 @@ const SITE = 'https://arohance.com';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const paths = [
-    '/', '/about', '/services', '/studio', '/careers', '/contact',
+    '/', '/about', '/services', '/careers', '/contact', // '/studio' comes from VERTICALS
     ...VERTICALS.map(verticalHref),
     ...WORK.map(workHref),
   ];

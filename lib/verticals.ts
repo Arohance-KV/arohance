@@ -18,8 +18,9 @@ export type Vertical = {
   /** Media on the vertical's own page. `.mp4` entries play muted on a loop;
    *  w/h reserve each item's box before it loads. */
   media?: readonly Media[];
-  /** How `media` is laid out: a scroll-stacked deck of browser windows, one
-   *  framed clip over crossed service ribbons, or (default) a masonry grid. */
+  /** How app/services/[slug] lays out `media`: a scroll-stacked deck of browser
+   *  windows, or one framed clip over crossed service ribbons. Studios has
+   *  neither: app/studio/page.tsx lays out its own. */
   layout?: 'stack' | 'feature';
 };
 
@@ -132,7 +133,8 @@ export const VERTICALS: readonly Vertical[] = [
   },
 ];
 
-export const verticalHref = (v: Vertical) => `/services/${v.slug}`;
+/** Studios lives at /studio, on that page's own layout; the rest share app/services/[slug]. */
+export const verticalHref = (v: Vertical) => (v.slug === 'studios' ? '/studio' : `/services/${v.slug}`);
 
 /** "Branding & Design" -> "branding-and-design": the id of that service's
  *  section on its vertical page. */

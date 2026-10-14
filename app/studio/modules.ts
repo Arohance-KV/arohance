@@ -1,6 +1,6 @@
 import {
   applyTheme, reveal, parallax, cursor, clock,
-  shellMinimal, navOnDark, hoverLift, text, type Behavior,
+  shellMinimal, navOnDark, hoverLift, text, autoplay, type Behavior,
 } from '@/lib/behaviors';
 
 /** Studio page behaviour set, in the verified componentDidMount order from
@@ -69,5 +69,5 @@ import {
  *  Must stay a module-level constant: AgRuntime's effect deps are
  *  [modules], so a fresh array each render would remount every behaviour. */
 export const STUDIO_MODULES: Behavior[] = [
-  applyTheme, shellMinimal, reveal, parallax, navOnDark, hoverLift, cursor, clock, text,
+  applyTheme, shellMinimal, reveal, parallax, navOnDark, hoverLift, cursor, clock, text, autoplay,
 ];
