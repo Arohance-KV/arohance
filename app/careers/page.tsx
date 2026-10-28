@@ -22,6 +22,18 @@ import Link from 'next/link';
 import ContactPill from '@/components/ContactPill';
 import CareersRuntime from './careers-runtime';
 
+/** Hiring runs entirely on a Google Form — no backend, no /api/contact on
+ *  this page. Change the link and the five roles here; the roles grid and
+ *  both CTAs below read from these. Keep `tag` short, it renders in a pill. */
+const APPLY_URL = 'https://tinyurl.com/arohance-hiring';
+const ROLES = [
+  { title: 'Social Media Manager', tag: 'Proven reach' },
+  { title: 'Cinematographer', tag: '2–4 yrs' },
+  { title: 'Photographer', tag: '0–1 yr' },
+  { title: 'Video Editor', tag: 'Talent > years' },
+  { title: 'Graphic Designer', tag: 'Junior' },
+];
+
 // Page name first so Google's sitelinks read "Careers", then this page's own
 // h1 ("Come Make the Whole Thing"); description is the hero copy.
 export const metadata: Metadata = {
@@ -78,7 +90,7 @@ export default function Careers() {
 <header className="relative min-h-[88svh] flex flex-col justify-end pt-[clamp(104px,14vh,170px)] px-[clamp(20px,4.4vw,64px)] pb-[clamp(30px,4.5vw,60px)]">
   <div data-eyebrow="" className="flex justify-between items-baseline gap-4 flex-wrap [border-top:1px_solid_rgba(245,242,237,.15)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E]">
     <span>Careers</span>
-    <span>No open roles right now, Bengaluru</span>
+    <span>Five open roles, Jayanagar, Bengaluru</span>
   </div>
 
   <h1 className="mt-[clamp(26px,4vw,58px)] mx-0 mb-0 [font-family:'Archivo',sans-serif] font-bold text-[clamp(2.4rem,8.4vw,9.5rem)] leading-[.87] tracking-[-0.048em] [font-variation-settings:'wdth'_106]">
@@ -152,13 +164,23 @@ export default function Careers() {
 <section id="roles" className="pt-[clamp(40px,6vw,90px)] px-[clamp(20px,4.4vw,64px)] pb-[clamp(70px,10vw,150px)]">
   <div data-eyebrow="" className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(245,242,237,.15)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E] mb-[clamp(30px,5vw,64px)]">
     <span>(02) Open roles</span>
-    <span>Bengaluru, hybrid</span>
+    <span>Jayanagar, Bengaluru, on-site</span>
   </div>
 
-  <div className="[border-top:1px_solid_rgba(245,242,237,.15)] [border-bottom:1px_solid_rgba(245,242,237,.15)] py-[clamp(26px,4vw,56px)] flex flex-wrap items-end justify-between gap-[clamp(20px,4vw,60px)]">
-    <p className="m-0 max-w-[30ch] [font-family:'Archivo',sans-serif] font-medium text-[clamp(1.3rem,2.6vw,2.4rem)] leading-[1.15] tracking-[-0.025em]">No open roles right now. Send the work anyway, two of the last four hires wrote in without a role being open.</p>
-    <a href="#apply" className="text-[var(--ag-accent,#F2600C)]! [border-bottom:1px_solid_currentColor] pb-0.5 font-semibold text-[clamp(16px,1.4vw,19px)] max-lg:py-2.5">Apply →</a>
+  {/* gap-px over a lit background draws the hairlines, so the cells keep
+      their separators when the grid drops to two columns and the last row
+      is short. */}
+  <div className="grid grid-cols-5 gap-px bg-[rgba(245,242,237,.15)] [border:1px_solid_rgba(245,242,237,.15)] max-lg:grid-cols-2">
+    {ROLES.map((role, i) => (
+      <a key={role.title} href={APPLY_URL} target="_blank" rel="noopener noreferrer" data-reveal="" className="bg-[#0C0B0A] flex flex-col gap-[clamp(10px,1.4vw,16px)] py-[clamp(20px,2.4vw,32px)] px-[clamp(14px,1.5vw,20px)] [transition:background_.35s_ease] hover:bg-[#161412]">
+        <span className="[font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] text-[var(--ag-accent,#F2600C)]">{String(i + 1).padStart(2, '0')}</span>
+        <h3 className="mt-0 mx-0 mb-[clamp(10px,1.6vw,22px)] [font-family:'Archivo',sans-serif] font-bold text-[clamp(1rem,1.5vw,1.4rem)] leading-[1.02] tracking-[-0.035em] uppercase">{role.title}</h3>
+        <span className="mt-auto self-start rounded-full [border:1px_solid_rgba(245,242,237,.28)] py-[5px] px-3 [font-family:'JetBrains_Mono',monospace] text-[9.5px] tracking-[.14em] uppercase text-[#A9A39A] whitespace-nowrap">{role.tag}</span>
+      </a>
+    ))}
   </div>
+
+  <p data-reveal="" className="mt-[clamp(22px,3vw,40px)] mx-0 mb-0 max-w-[52ch] text-[15px] leading-[1.55] text-[#A9A39A]">Not quite any of these? Pick the closest one and say so in the last question — two of the last four hires wrote in without a role being open.</p>
 </section>
 
 <section id="process" className="py-[clamp(60px,9vw,140px)] px-[clamp(20px,4.4vw,64px)]">
@@ -193,40 +215,26 @@ export default function Careers() {
 <section id="apply" className="pt-[clamp(60px,9vw,140px)] px-[clamp(20px,4.4vw,64px)] pb-0">
   <div data-eyebrow="" className="flex justify-between items-baseline gap-[18px] flex-wrap [border-top:1px_solid_rgba(245,242,237,.15)] pt-3 [font-family:'JetBrains_Mono',monospace] text-[11px] tracking-[.14em] uppercase text-[#8C877E]">
     <span>(04) Apply</span>
-    <span>We reply to everyone</span>
+    <span>Under two minutes</span>
   </div>
 
   <h2 className="mt-[clamp(30px,5vw,80px)] mx-0 mb-[clamp(28px,4vw,58px)] [font-family:'Archivo',sans-serif] font-bold text-[clamp(2.2rem,8.4vw,8.4rem)] leading-[.89] tracking-[-0.048em] [font-variation-settings:'wdth'_104]">SHOW US<br />SOMETHING<br />YOU <span className="text-[var(--ag-accent,#F2600C)]">MADE.</span></h2>
 
   <div className="flex flex-wrap gap-[clamp(30px,6vw,110px)] items-start pb-[clamp(50px,8vw,110px)]">
-    <form data-ag-form="" className="[flex:2_1_min(100%,320px)] flex flex-col gap-[clamp(18px,2.4vw,30px)]">
-      <label className="flex flex-col gap-[9px]">
-        <span className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8C877E]">Name</span>
-        <input type="text" name="name" required placeholder="Your name" className="bg-[transparent] border-0 [border-bottom:1px_solid_rgba(245,242,237,.28)] py-2 px-0 text-[clamp(16px,1.5vw,20px)] [outline:none] focus:[border-bottom-color:var(--ag-accent,#F2600C)] max-lg:py-3" />
-      </label>
-      <label className="flex flex-col gap-[9px]">
-        <span className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8C877E]">Email</span>
-        <input type="email" name="email" required placeholder="you@email.com" className="bg-[transparent] border-0 [border-bottom:1px_solid_rgba(245,242,237,.28)] py-2 px-0 text-[clamp(16px,1.5vw,20px)] [outline:none] focus:[border-bottom-color:var(--ag-accent,#F2600C)] max-lg:py-3" />
-      </label>
-      <label className="flex flex-col gap-[9px]">
-        <span className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8C877E]">Phone</span>
-        <input type="tel" name="phone" autoComplete="tel" required placeholder="+91 98765 43210" className="bg-[transparent] border-0 [border-bottom:1px_solid_rgba(245,242,237,.28)] py-2 px-0 text-[clamp(16px,1.5vw,20px)] [outline:none] focus:[border-bottom-color:var(--ag-accent,#F2600C)] max-lg:py-3" />
-      </label>
-      <label className="flex flex-col gap-[9px]">
-        <span className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8C877E]">Portfolio or repo</span>
-        <input type="url" name="link" placeholder="https://" className="bg-[transparent] border-0 [border-bottom:1px_solid_rgba(245,242,237,.28)] py-2 px-0 text-[clamp(16px,1.5vw,20px)] [outline:none] focus:[border-bottom-color:var(--ag-accent,#F2600C)] max-lg:py-3" />
-      </label>
-      <label className="flex flex-col gap-[9px]">
-        <span className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8C877E]">The one thing you are proudest of</span>
-        <textarea name="note" rows={3} placeholder="A few sentences is enough." className="bg-[transparent] border-0 [border-bottom:1px_solid_rgba(245,242,237,.28)] py-2 px-0 text-[clamp(16px,1.5vw,20px)] [outline:none] [resize:vertical] [font-family:inherit] focus:[border-bottom-color:var(--ag-accent,#F2600C)]"></textarea>
-      </label>
-      <button data-ag-submit="" type="submit" className="[align-self:flex-start] mt-1.5 bg-[transparent] border-0 [border-bottom:1px_solid_currentColor] pt-0 px-0 pb-1 [font-family:'Archivo',sans-serif] font-semibold text-[clamp(17px,2vw,26px)] tracking-[-0.02em] cursor-pointer [transition:color_.3s] hover:text-[var(--ag-accent,#F2600C)] max-lg:py-2.5">Send it →</button>
-    </form>
+    <div className="[flex:2_1_min(100%,320px)] flex flex-col items-start gap-[clamp(18px,2.4vw,30px)]">
+      <p className="m-0 max-w-[46ch] text-[clamp(15px,1.35vw,19px)] leading-[1.55] text-[#A9A39A]">Everything goes through one form: your name, the role you want, how long you have been at it, and a link to the work. Under two minutes. We read every one and reply within a week.</p>
+      <a href={APPLY_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 rounded-[15px] bg-[var(--ag-accent,#F2600C)] text-[#0A0A0A] py-[clamp(13px,1.4vw,18px)] px-[clamp(20px,2.2vw,32px)] [font-family:'Archivo',sans-serif] font-semibold text-[clamp(17px,2vw,24px)] tracking-[-0.02em] [transition:transform_.5s_cubic-bezier(.16,1,.3,1)] hover:[transform:translate3d(0,-2px,0)] hover:text-[#0A0A0A]">Open the application form <span>→</span></a>
+      <p className="m-0 [font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8C877E]">Opens a Google Form in a new tab</p>
+    </div>
 
     <div className="[flex:1_1_min(100%,240px)] flex flex-col gap-[clamp(20px,3vw,34px)]">
       <div>
         <div className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8C877E] mb-[9px]">Direct</div>
         <a href="mailto:info@arohance.com" className="text-[clamp(16px,1.5vw,21px)] [border-bottom:1px_solid_rgba(245,242,237,.3)] pb-0.5 max-lg:inline-block max-lg:py-3">info@arohance.com</a>
+        <div className="flex flex-col gap-1 mt-3 text-[clamp(15px,1.4vw,19px)]">
+          <a href="tel:+919427673035" className="max-lg:py-2">+91 94276 73035</a>
+          <a href="tel:+918660317750" className="max-lg:py-2">+91 86603 17750</a>
+        </div>
       </div>
       <div>
         <div className="[font-family:'JetBrains_Mono',monospace] text-[10.5px] tracking-[.14em] uppercase text-[#8C877E] mb-[9px]">Studio</div>
