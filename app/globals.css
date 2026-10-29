@@ -278,3 +278,30 @@ a:hover { color: var(--ag-accent, #F2600C); }
 @media (width < 64rem) {
   [data-ag-menu-panel] { order: -1; }
 }
+
+/* Nav scrim. Every page's nav is `fixed` and has no background of its own, so
+ * whatever scrolls under it sits directly behind the logo -- including the
+ * light bands (#F5F2ED / #EDE9E1) on home, about and careers, against which
+ * the light logo all but disappears. One rule here rather than eight copies
+ * of the nav markup or four behaviour variants (nav / navCareers / navOnDark
+ * / navPad), none of which touch background today.
+ *
+ * The gradient's base is the page background (#0C0B0A on seven pages,
+ * #131110 on contact -- close enough to read as the same), so at the top of
+ * a page the scrim is invisible; it only shows once something lighter passes
+ * beneath. `inset: 0 0 -28px` gives the fade room below the nav box so there
+ * is no hard edge, and the mask fades the blur out with it. `z-index: -1`
+ * stays inside the nav's own stacking context (fixed + z-70), so the scrim
+ * lands behind the logo and buttons but still above the page. */
+[data-ag-nav]::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 -28px;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(12,11,10,.92), rgba(12,11,10,.78) 46%, rgba(12,11,10,0));
+  -webkit-backdrop-filter: blur(9px);
+  backdrop-filter: blur(9px);
+  -webkit-mask-image: linear-gradient(to bottom, #000 56%, transparent);
+  mask-image: linear-gradient(to bottom, #000 56%, transparent);
+}
